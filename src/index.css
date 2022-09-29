@@ -9,9 +9,11 @@
 :root {
   --color-1: #0a0a0a;
   --color-2: #1c1c1c;
+  --color-3: #444;
 
   --color-10: #ccc;
   --color-20: #d32f2f;
+  --color-21: #90caf9;
 }
 
 body {

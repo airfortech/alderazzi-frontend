@@ -21,9 +21,9 @@ export const App = () => {
         <Navigation />
         <section className={classes.section}>
           <Routes>
-            <Route index element={<p>index</p>} />
+            <Route index element={<p>Home</p>} />
             <Route path="/wrogowie" element={<EnemiesView />} />
-            <Route path="*" element={<p>not found</p>} />
+            <Route path="*" element={<h1>Nie znaleziono podstrony.</h1>} />
           </Routes>
         </section>
       </ThemeProvider>

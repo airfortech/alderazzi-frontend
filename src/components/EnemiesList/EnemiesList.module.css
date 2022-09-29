@@ -4,3 +4,8 @@
   flex-direction: column;
   gap: 20px;
 }
+
+.EnemiesList a {
+  text-decoration: none;
+  align-self: center;
+}
