@@ -1,0 +1,13 @@
+.Navigation {
+  margin-bottom: 30px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--color-2);
+}
+
+.Navigation a {
+  text-decoration: none;
+}

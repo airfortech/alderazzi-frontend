@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { Header } from "./components/Header/Header";
+import { Navigation } from "./components/Navigation/Navigation";
+import { EnemiesView } from "./views/EnemiesView/EnemiesView";
+import classes from "./App.module.css";
 
-function App() {
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
+
+export const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={classes.App}>
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        <Header />
+        <Navigation />
+        <Routes>
+          <Route index element={<p>index</p>} />
+          <Route path="/wrogowie" element={<EnemiesView />} />
+          <Route path="*" element={<p>not found</p>} />
+        </Routes>
+      </ThemeProvider>
     </div>
   );
-}
-
-export default App;
+};
