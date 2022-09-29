@@ -19,11 +19,13 @@ export const App = () => {
         <CssBaseline />
         <Header />
         <Navigation />
-        <Routes>
-          <Route index element={<p>index</p>} />
-          <Route path="/wrogowie" element={<EnemiesView />} />
-          <Route path="*" element={<p>not found</p>} />
-        </Routes>
+        <section className={classes.section}>
+          <Routes>
+            <Route index element={<p>index</p>} />
+            <Route path="/wrogowie" element={<EnemiesView />} />
+            <Route path="*" element={<p>not found</p>} />
+          </Routes>
+        </section>
       </ThemeProvider>
     </div>
   );

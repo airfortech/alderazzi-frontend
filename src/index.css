@@ -22,3 +22,7 @@ body {
   /* color: var(--color-10); */
   /* background-color: var(--color-1); */
 }
+
+h2 {
+  font-size: 1.3em;
+}
