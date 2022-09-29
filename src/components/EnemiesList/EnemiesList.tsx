@@ -51,11 +51,7 @@ export const EnemiesList = () => {
     <div className={classes.EnemiesList}>
       <AddEnemy error={error} handleAddEnemy={handleAddEnemy} />
       <h2>Lista Wrogów:</h2>
-      <List
-        sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
-        component="ul"
-        aria-labelledby="nested-list-subheader"
-      >
+      <List component="ul" aria-labelledby="nested-list-subheader">
         {enemiesList.map(({ id, name }) => (
           <EnemyItem
             key={id}

@@ -1,3 +1,13 @@
 .EnemyItem {
   display: flex;
+  transition: color 0.2s ease;
+}
+
+.EnemyItem svg {
+  transition: color 0.2s ease;
+}
+
+.EnemyItem:hover,
+.EnemyItem:hover svg {
+  color: var(--color-20);
 }
