@@ -13,16 +13,17 @@ interface Enemy {
 const startingEnemiesList: Enemy[] = [
   {
     id: "232533245",
-    name: "Joe",
+    name: "Zetu",
   },
   {
     id: "9897978",
-    name: "Jane",
+    name: "chudy glupi elf",
   },
 ];
 
 export const EnemiesList = () => {
   const [enemiesList, setEnemiesList] = useState(startingEnemiesList);
+  const [error, setError] = useState("");
 
   const handleDeleteEnemy = (
     event: React.MouseEvent<HTMLElement>,
@@ -37,15 +38,18 @@ export const EnemiesList = () => {
     event.preventDefault();
     if (enemiesList.find(enemy => enemy.name === name)) {
       console.log(name);
+      setError(name + " już jest na liście!");
       return;
     }
+    if (name.trim() === "") return;
     const id = uuidv4();
-    setEnemiesList(prevState => [...prevState, { id, name }]);
+    setEnemiesList(prevState => [...prevState, { id, name: name.trim() }]);
+    setError("");
   };
 
   return (
     <div className={classes.EnemiesList}>
-      <AddEnemy handleAddEnemy={handleAddEnemy} />
+      <AddEnemy error={error} handleAddEnemy={handleAddEnemy} />
       <h2>Lista Wrogów:</h2>
       <List
         sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}

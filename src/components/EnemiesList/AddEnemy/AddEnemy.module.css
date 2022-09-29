@@ -3,3 +3,10 @@
   display: flex;
   justify-content: center;
 }
+
+.error {
+  padding: 0 1em;
+  height: 0.8em;
+  font-size: 0.8em;
+  color: var(--color-20);
+}

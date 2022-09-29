@@ -9,13 +9,14 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import classes from "./AddEnemy.module.css";
 
 interface Props {
+  error: string;
   handleAddEnemy: (
     event: React.FormEvent<HTMLFormElement>,
     name: string
   ) => void;
 }
 
-export const AddEnemy = ({ handleAddEnemy }: Props) => {
+export const AddEnemy = ({ error, handleAddEnemy }: Props) => {
   const [input, setInput] = useState("");
 
   const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) =>
@@ -31,11 +32,12 @@ export const AddEnemy = ({ handleAddEnemy }: Props) => {
         setInput("");
       }}
     >
-      <InputLabel htmlFor="outlined-adornment-password">Dodaj wroga</InputLabel>
+      <InputLabel htmlFor="outlined-adornment-name">Dodaj wroga</InputLabel>
       <OutlinedInput
-        id="outlined-adornment-password"
+        id="outlined-adornment-name"
         type={"text"}
         value={input}
+        autoComplete="off"
         onChange={handleChangeInput}
         required
         endAdornment={
@@ -51,8 +53,9 @@ export const AddEnemy = ({ handleAddEnemy }: Props) => {
             </IconButton>
           </InputAdornment>
         }
-        label="Password"
+        label="Dodaj wroga"
       />
+      <p className={classes.error}>{error}</p>
     </FormControl>
   );
 };
