@@ -1,17 +1,22 @@
 import { NavLink, useLocation } from "react-router-dom";
 import Button from "@mui/material/Button";
 import HomeIcon from "@mui/icons-material/Home";
-import MoodBadIcon from "@mui/icons-material/MoodBad";
+import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
+import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import classes from "./Navigation.module.css";
 
 const urls = [
   { url: "/", name: "Home", icon: <HomeIcon /> },
-  { url: "/wrogowie", name: "Wrogowie", icon: <MoodBadIcon /> },
+  {
+    url: "/wrogowie",
+    name: "Wrogowie",
+    icon: <SentimentVeryDissatisfiedIcon />,
+  },
+  { url: "/kluczodajki", name: "Kluczodajki", icon: <VpnKeyIcon /> },
 ];
 
 export const Navigation = () => {
   const { pathname } = useLocation();
-  console.log("url: " + pathname);
 
   return (
     <nav className={classes.Navigation}>

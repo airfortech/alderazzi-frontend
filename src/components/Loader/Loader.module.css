@@ -6,7 +6,7 @@
 }
 
 .spinner {
-  border: 14px solid var(--color-3);
+  border: 14px solid var(--color-22);
   border-radius: 50%;
   border-top: 14px solid var(--color-21);
   width: 80px;

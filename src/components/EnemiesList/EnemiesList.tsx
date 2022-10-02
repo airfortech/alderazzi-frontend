@@ -15,8 +15,6 @@ interface Enemy {
   name: string;
 }
 
-const saveEnemies = async () => {};
-
 export const EnemiesList = () => {
   const [enemiesList, setEnemiesList] = useState<Enemy[]>([]);
   const [error, setError] = useState("");
