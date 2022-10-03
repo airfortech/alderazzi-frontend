@@ -74,7 +74,7 @@ export const EnemiesList = () => {
       </a>
       <h2>Lista Wrogów:</h2>
       {isLoading ? (
-        <Loader />
+        <Loader isLoading />
       ) : enemiesList.length === 0 ? (
         <p>{apiError || "Lista jest pusta"}</p>
       ) : (

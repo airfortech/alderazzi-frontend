@@ -16,6 +16,7 @@
   --color-20: #d32f2f;
   --color-21: #6666ff;
   --color-22: #1b1b64;
+  --color-23: #2fd373;
 }
 
 body {
@@ -25,7 +26,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(115deg, var(--color-22), var(--color-1));
+  background: linear-gradient(135deg, var(--color-22), var(--color-1));
 }
 
 h2 {

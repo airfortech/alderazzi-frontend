@@ -6,17 +6,20 @@
   gap: 20px;
 }
 
+.Login p:first-child {
+  margin-bottom: 20px;
+}
+
 .form {
+  gap: 20px;
+}
+
+.row {
+  display: flex;
+  justify-content: flex-end;
   gap: 20px;
 }
 
 .submit {
   align-self: flex-end;
-}
-
-.error {
-  margin-top: -9px;
-  padding: 0 1em;
-  height: 0.8em;
-  color: var(--color-20);
 }

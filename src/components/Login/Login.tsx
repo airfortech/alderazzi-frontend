@@ -8,7 +8,9 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { InfoText } from "../InfoText/InfoText";
 import classes from "./Login.module.css";
+import { Loader } from "../Loader/Loader";
 
 interface FormData {
   role: string;
@@ -24,7 +26,7 @@ export const Login = () => {
   const {
     handleSubmit,
     control,
-    formState: { errors, isValid, isDirty },
+    formState: { errors, isValid },
   } = useForm<FormData>({
     mode: "onChange",
     resolver: yupResolver(validationSchema),
@@ -71,16 +73,19 @@ export const Login = () => {
             />
           )}
         />
-        <p className={classes.error}>{errors.password?.message}</p>
-        <Button
-          className={classes.submit}
-          type="submit"
-          variant="contained"
-          size="large"
-          disabled={!isValid}
-        >
-          Zaloguj się
-        </Button>
+        <InfoText type="error" message={errors.password?.message} />
+        <div className={classes.row}>
+          <Loader size="small" isLoading={false} />
+          <Button
+            className={classes.submit}
+            type="submit"
+            variant="contained"
+            size="large"
+            disabled={!isValid}
+          >
+            Zaloguj się
+          </Button>
+        </div>
       </FormControl>
     </div>
   );

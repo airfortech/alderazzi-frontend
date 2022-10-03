@@ -7,6 +7,7 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import classes from "./AddEnemy.module.css";
+import { InfoText } from "../../InfoText/InfoText";
 
 interface Props {
   error: string;
@@ -55,7 +56,7 @@ export const AddEnemy = ({ error, handleAddEnemy }: Props) => {
         }
         label="Dodaj wroga"
       />
-      <p className={classes.error}>{error}</p>
+      <InfoText type="error" size="small" message={error} />
     </FormControl>
   );
 };

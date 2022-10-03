@@ -1,8 +1,22 @@
 .Loader {
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.Loader.center {
+  width: 100%;
+}
+
+.spinner.small {
+  border: 8px solid var(--color-22);
+  border-top: 8px solid var(--color-21);
+  width: 40px;
+  height: 40px;
 }
 
 .spinner {
