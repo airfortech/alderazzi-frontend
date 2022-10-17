@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import HomeIcon from "@mui/icons-material/Home";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
+import ManIcon from "@mui/icons-material/Man";
 import classes from "./Navigation.module.css";
 
 const urls = [
@@ -12,7 +13,8 @@ const urls = [
     name: "Wrogowie",
     icon: <SentimentVeryDissatisfiedIcon />,
   },
-  { url: "/kluczodajki", name: "Kluczodajki", icon: <VpnKeyIcon /> },
+  { url: "/kluczodajki", name: "Kluczodajki", icon: <ManIcon /> },
+  { url: "/klucze", name: "Klucze", icon: <VpnKeyIcon /> },
 ];
 
 export const Navigation = () => {
@@ -25,8 +27,9 @@ export const Navigation = () => {
           <Button
             variant={pathname === url ? "contained" : "outlined"}
             startIcon={icon}
+            className={classes.button}
           >
-            {name}
+            <p>{name}</p>
           </Button>
         </NavLink>
       ))}

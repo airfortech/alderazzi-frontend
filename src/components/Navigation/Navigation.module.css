@@ -12,3 +12,13 @@
 .Navigation a {
   text-decoration: none;
 }
+
+@media (max-width: 560px) {
+  .button p {
+    display: none;
+  }
+
+  :global(.MuiButton-startIcon) {
+    margin: 0;
+  }
+}

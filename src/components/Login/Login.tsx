@@ -1,6 +1,6 @@
 import { UserRole } from "../../types/UserRoles";
+import { FormData } from "./dataLogin";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
@@ -9,18 +9,9 @@ import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { InfoText } from "../InfoText/InfoText";
-import classes from "./Login.module.css";
 import { Loader } from "../Loader/Loader";
-
-interface FormData {
-  role: string;
-  password: string;
-}
-
-const validationSchema = yup.object().shape({
-  role: yup.string().required(),
-  password: yup.string().required("Podaj hasło!"),
-});
+import { validationSchema } from "./dataLogin";
+import classes from "./Login.module.css";
 
 export const Login = () => {
   const {
