@@ -7,6 +7,8 @@
 }
 
 :root {
+  --font-secondary: "MedievalSharp";
+
   --color-1: #0a0a0a;
   --color-2: #1c1c1c;
   --color-3: #444;
@@ -17,6 +19,9 @@
   --color-21: #6666ff;
   --color-22: #1b1b64;
   --color-23: #2fd373;
+  --color-24: #3939b923;
+  --color-25: #3939b94d;
+  --color-26: #8566ff;
 }
 
 body {

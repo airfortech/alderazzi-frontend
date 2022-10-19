@@ -1,7 +1,13 @@
 .Header {
+  position: relative;
   padding: 20px;
   width: 100%;
   display: flex;
   justify-content: center;
-  color: var(--color-21);
+  color: var(--color-26);
+}
+
+.Header h1 {
+  font-family: var(--font-secondary);
+  font-size: 50px;
 }

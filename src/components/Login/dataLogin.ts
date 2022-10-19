@@ -1,7 +1,8 @@
+import { UserRole } from "../../types/UserRole";
 import * as yup from "yup";
 
 export interface FormData {
-  role: string;
+  role: UserRole;
   password: string;
 }
 

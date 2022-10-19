@@ -1,5 +1,6 @@
-import { UserRole } from "../../types/UserRoles";
-import { FormData } from "./dataLogin";
+import { ApiResponse } from "../../types/responseMessages";
+import { UserRole } from "../../types/UserRole";
+import { useEffect, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import MenuItem from "@mui/material/MenuItem";
@@ -8,23 +9,41 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { useAuth } from "../../hooks/useAuth";
 import { InfoText } from "../InfoText/InfoText";
 import { Loader } from "../Loader/Loader";
 import { validationSchema } from "./dataLogin";
+import { login } from "../../api/auth";
+import { FormData } from "./dataLogin";
 import classes from "./Login.module.css";
 
 export const Login = () => {
   const {
     handleSubmit,
     control,
+    watch,
     formState: { errors, isValid },
   } = useForm<FormData>({
     mode: "onChange",
     resolver: yupResolver(validationSchema),
   });
+  const [info, setInfo] = useState<ApiResponse | undefined>(undefined);
+  const [isFetching, setIsFetching] = useState(false);
+  const { setAuth } = useAuth();
 
-  const onSubmit: SubmitHandler<FormData> = data =>
-    console.log("data submitted: ", data);
+  const onSubmit: SubmitHandler<FormData> = async formData => {
+    setIsFetching(true);
+    const response = await login(formData);
+    setIsFetching(false);
+    if (!response) return;
+    const { status, message, data } = response;
+    setInfo({ status, message });
+    setAuth(data);
+  };
+
+  useEffect(() => {
+    setInfo(undefined);
+  }, [watch("password")]);
 
   return (
     <div className={classes.Login}>
@@ -64,9 +83,12 @@ export const Login = () => {
             />
           )}
         />
-        <InfoText type="error" message={errors.password?.message} />
+        <InfoText
+          type={info?.status || "error"}
+          message={errors.password?.message || info?.message}
+        />
         <div className={classes.row}>
-          <Loader size="small" isLoading={false} />
+          <Loader size="small" isLoading={isFetching} />
           <Button
             className={classes.submit}
             type="submit"
