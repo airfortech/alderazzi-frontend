@@ -7,6 +7,10 @@ import { EnemiesView } from "./views/EnemiesView/EnemiesView";
 import classes from "./App.module.css";
 import { HomeView } from "./views/HomeView/HomeView";
 import { Background } from "./components/Background/Background";
+import { RequireAuth } from "./components/RequireAuth/RequireAuth";
+import { UserRole } from "./types/UserRole";
+import { UnauthorizedView } from "./views/UnauthorizedView/UnauthorizedView";
+import { KeysView } from "./views/KeysView/KeysView";
 
 const darkTheme = createTheme({
   palette: {
@@ -36,7 +40,26 @@ export const App = () => {
         <section className={classes.section}>
           <Routes>
             <Route index element={<HomeView />} />
-            <Route path="/wrogowie" element={<EnemiesView />} />
+            <Route
+              element={
+                <RequireAuth
+                  allowedRoles={[
+                    UserRole.caporegime,
+                    UserRole.consigliore,
+                    UserRole.soldato,
+                  ]}
+                />
+              }
+            >
+              <Route path="/wrogowie" element={<EnemiesView />} />
+              <Route path="/klucze" element={<KeysView />} />
+            </Route>
+            <Route
+              element={<RequireAuth allowedRoles={[UserRole.consigliore]} />}
+            >
+              <Route path="/ustawienia" element={<KeysView />} />
+            </Route>
+            <Route path="/unauthorized" element={<UnauthorizedView />} />
             <Route path="*" element={<h2>Nie znaleziono podstrony.</h2>} />
           </Routes>
         </section>

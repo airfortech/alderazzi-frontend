@@ -1,7 +1,7 @@
-import axios from "axios";
 import { ApiResponse, messages, Status } from "../types/responseMessages";
 import { User } from "../types/User";
 import { UserRole } from "../types/UserRole";
+import axios from "axios";
 import { api } from "./api";
 
 interface LoginResponse extends ApiResponse {

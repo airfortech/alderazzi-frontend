@@ -15,6 +15,7 @@ const urls = [
   },
   { url: "/kluczodajki", name: "Kluczodajki", icon: <ManIcon /> },
   { url: "/klucze", name: "Klucze", icon: <VpnKeyIcon /> },
+  { url: "/ustawienia", name: "Ustawienia", icon: <VpnKeyIcon /> },
 ];
 
 export const Navigation = () => {
