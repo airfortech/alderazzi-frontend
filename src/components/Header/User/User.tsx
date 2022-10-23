@@ -4,6 +4,7 @@ import IconButton from "@mui/material/IconButton";
 import { red } from "@mui/material/colors";
 import { logout } from "../../../api/auth";
 import { useAuth } from "../../../hooks/useAuth";
+import { api } from "../../../api/api";
 
 interface Props {
   role: string;
@@ -14,6 +15,7 @@ export const User = ({ role }: Props) => {
   const handleLogout = () => {
     logout();
     setAuth(undefined);
+    api.defaults.headers.common["Authorization"] = undefined;
     console.log("Logout");
   };
   return (

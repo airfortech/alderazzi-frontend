@@ -47,7 +47,7 @@ export const Login = () => {
 
   return (
     <div className={classes.Login}>
-      <p>Zaloguj się by uzyskać uprawnienia</p>
+      <p>Buongiorno! Zaloguj się by uzyskać uprawnienia</p>
       <FormControl
         component="form"
         className={classes.form}

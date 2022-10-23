@@ -7,6 +7,7 @@ import { api } from "./api";
 interface LoginResponse extends ApiResponse {
   data: {
     role: UserRole;
+    token: string;
   };
 }
 
@@ -22,6 +23,8 @@ export const login = async ({
         password,
       }
     );
+    api.defaults.headers.common["Authorization"] =
+      "Bearer " + response.data.token;
     return response;
   } catch (e) {
     if (axios.isAxiosError(e)) {
