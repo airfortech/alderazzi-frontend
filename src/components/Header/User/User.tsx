@@ -16,7 +16,6 @@ export const User = ({ role }: Props) => {
     logout();
     setAuth(undefined);
     api.defaults.headers.common["Authorization"] = undefined;
-    console.log("Logout");
   };
   return (
     <div className={classes.User}>

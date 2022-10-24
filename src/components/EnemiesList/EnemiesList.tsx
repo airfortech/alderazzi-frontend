@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import List from "@mui/material/List";
+import Button from "@mui/material/Button";
+import DescriptionIcon from "@mui/icons-material/Description";
 import { EnemyItem } from "./EnemyItem/EnemyItem";
 import { AddEnemy } from "./AddEnemy/AddEnemy";
 import { Loader } from "../Loader/Loader";
 import { getEnemies } from "../../api/getEnemies";
 import { saveEnemies as fetchSaveEnemies } from "../../api/saveEnemies";
-import Button from "@mui/material/Button";
-import DescriptionIcon from "@mui/icons-material/Description";
 import classes from "./EnemiesList.module.css";
 
 interface Enemy {
