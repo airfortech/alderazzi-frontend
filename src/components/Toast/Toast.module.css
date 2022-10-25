@@ -1,4 +1,5 @@
 .toast :global(.Toastify__toast-theme--dark) {
   background: linear-gradient(90deg, var(--color-24), var(--color-25));
+  background: linear-gradient(90deg, var(--color-2), var(--color-1));
   backdrop-filter: blur(4px);
 }
