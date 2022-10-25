@@ -1,16 +1,17 @@
+import { UserRole } from "./types/UserRole";
 import { Route, Routes } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import { RequireAuth } from "./components/RequireAuth/RequireAuth";
+import { UnauthorizedView } from "./views/UnauthorizedView/UnauthorizedView";
+import { EnemiesView } from "./views/EnemiesView/EnemiesView";
+import { HomeView } from "./views/HomeView/HomeView";
+import { KeysView } from "./views/KeysView/KeysView";
 import { Header } from "./components/Header/Header";
 import { Navigation } from "./components/Navigation/Navigation";
-import { EnemiesView } from "./views/EnemiesView/EnemiesView";
-import classes from "./App.module.css";
-import { HomeView } from "./views/HomeView/HomeView";
 import { Background } from "./components/Background/Background";
-import { RequireAuth } from "./components/RequireAuth/RequireAuth";
-import { UserRole } from "./types/UserRole";
-import { UnauthorizedView } from "./views/UnauthorizedView/UnauthorizedView";
-import { KeysView } from "./views/KeysView/KeysView";
+import { Toast } from "./components/Toast/Toast";
+import classes from "./App.module.css";
 
 const darkTheme = createTheme({
   palette: {
@@ -35,6 +36,7 @@ export const App = () => {
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
         <Background />
+        <Toast />
         <Header />
         <Navigation />
         <section className={classes.section}>

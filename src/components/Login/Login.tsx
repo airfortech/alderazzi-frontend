@@ -16,6 +16,8 @@ import { validationSchema } from "./dataLogin";
 import { login } from "../../api/auth";
 import { FormData } from "./dataLogin";
 import classes from "./Login.module.css";
+import { Toast } from "../Toast/Toast";
+import { toast } from "react-toastify";
 
 export const Login = () => {
   const {
@@ -38,6 +40,7 @@ export const Login = () => {
     if (!response) return;
     const { status, message, data } = response;
     setInfo({ status, message });
+    // toast.warning(message);
     setAuth(data);
   };
 

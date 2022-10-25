@@ -3,5 +3,5 @@ import { config } from "../config/config";
 
 export const api = axios.create({
   baseURL: config.apiUrl,
-  timeout: 2000,
+  timeout: 1000,
 });

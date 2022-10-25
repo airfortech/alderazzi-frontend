@@ -12,3 +12,8 @@
   display: flex;
   justify-content: center;
 }
+
+.toast :global(.Toastify__toast-theme--dark) {
+  background: linear-gradient(90deg, var(--color-24), var(--color-25));
+  backdrop-filter: blur(4px);
+}

@@ -5,7 +5,7 @@ export enum Status {
 
 export interface ApiResponse {
   status: Status;
-  message: string;
+  message?: string;
 }
 
 export const messages = {

@@ -9,10 +9,16 @@ import classes from "./EnemyItem.module.css";
 interface Props {
   id: string;
   name: string;
-  handleDeleteEnemy: (event: React.MouseEvent<HTMLElement>, id: string) => void;
 }
 
-export const EnemyItem = ({ id, name, handleDeleteEnemy }: Props) => {
+export const EnemyItem = ({ id, name }: Props) => {
+  const handleDeleteEnemy = async (
+    event: React.MouseEvent<HTMLElement>,
+    enemyId: string
+  ) => {
+    console.log("delete enemy: " + enemyId);
+  };
+
   return (
     <li className={classes.EnemyItem}>
       <ListItemIcon>

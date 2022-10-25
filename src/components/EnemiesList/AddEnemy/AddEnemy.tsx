@@ -11,17 +11,27 @@ import { InfoText } from "../../InfoText/InfoText";
 
 interface Props {
   error: string;
-  handleAddEnemy: (
-    event: React.FormEvent<HTMLFormElement>,
-    name: string
-  ) => void;
 }
 
-export const AddEnemy = ({ error, handleAddEnemy }: Props) => {
+export const AddEnemy = ({ error }: Props) => {
   const [input, setInput] = useState("");
 
   const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) =>
     setInput(event.target.value);
+
+  const handleAddEnemy = async (
+    event: React.FormEvent<HTMLFormElement>,
+    name: string
+  ) => {
+    event.preventDefault();
+    // if (enemiesList.find(enemy => enemy.name === name)) {
+    // console.log(name);
+    // setError(name + " już jest na liście!");
+    // return;
+    // }
+    if (name.trim() === "") return;
+    console.log("add enemy");
+  };
 
   return (
     <FormControl

@@ -1,72 +1,44 @@
-import { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 import List from "@mui/material/List";
 import Button from "@mui/material/Button";
 import DescriptionIcon from "@mui/icons-material/Description";
 import { EnemyItem } from "./EnemyItem/EnemyItem";
 import { AddEnemy } from "./AddEnemy/AddEnemy";
 import { Loader } from "../Loader/Loader";
-import { getEnemies } from "../../api/getEnemies";
-import { saveEnemies as fetchSaveEnemies } from "../../api/saveEnemies";
+import { getEnemies } from "../../api/enemies";
+import { isRoleAllowed } from "../../utils/isRoleAllowed";
+import { UserRole } from "../../types/UserRole";
+import { useAuth } from "../../hooks/useAuth";
 import classes from "./EnemiesList.module.css";
-
-interface Enemy {
-  id: string;
-  name: string;
-}
+import { messages } from "../../types/responseMessages";
 
 export const EnemiesList = () => {
-  const [enemiesList, setEnemiesList] = useState<Enemy[]>([]);
-  const [error, setError] = useState("");
-  const [apiError, setApiError] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
-  const [refresh, setRefresh] = useState(0);
+  const { auth } = useAuth();
+  const queryClient = useQueryClient();
+  const {
+    data: enemies,
+    error,
+    isError,
+    isLoading,
+  } = useQuery(["enemies"], getEnemies, {
+    select: data => data.data.enemies,
+    onError: error => {
+      const message = (error as any)?.response?.data.message;
+      console.log(message ? message : "Later.");
+      toast.error(message ? message : messages.default);
+    },
+    // onSuccess: data => console.log(data.message);
+  });
 
-  const handleDeleteEnemy = async (
-    event: React.MouseEvent<HTMLElement>,
-    enemyId: string
-  ) => {
-    const newEnemiesList = enemiesList.filter(({ id }) => enemyId !== id);
-    setEnemiesList(newEnemiesList);
-    const { status } = await fetchSaveEnemies(newEnemiesList);
-    if (status === "success") setRefresh(prevState => prevState + 1);
-  };
-
-  const handleAddEnemy = async (
-    event: React.FormEvent<HTMLFormElement>,
-    name: string
-  ) => {
-    event.preventDefault();
-    if (enemiesList.find(enemy => enemy.name === name)) {
-      console.log(name);
-      setError(name + " już jest na liście!");
-      return;
-    }
-    if (name.trim() === "") return;
-    const id = uuidv4();
-    const newEnemiesList = [...enemiesList, { id, name: name.trim() }];
-    setEnemiesList(newEnemiesList);
-    setError("");
-    const { status } = await fetchSaveEnemies(newEnemiesList);
-    if (status === "success") setRefresh(prevState => prevState + 1);
-  };
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await getEnemies();
-        setEnemiesList(data);
-        setIsLoading(false);
-      } catch (e) {
-        setApiError("Coś poszło nie tak. Spróbuj później.");
-        setIsLoading(false);
-      }
-    })();
-  }, [refresh]);
+  console.log(error);
 
   return (
     <div className={classes.EnemiesList}>
-      <AddEnemy error={error} handleAddEnemy={handleAddEnemy} />
+      {isRoleAllowed(
+        [UserRole.caporegime, UserRole.consigliore],
+        auth?.role
+      ) && <AddEnemy error={"error"} />}
       <a href="/data/enemies.txt" target="_blank">
         <Button size="large" startIcon={<DescriptionIcon />}>
           Podgląd pliku
@@ -75,17 +47,12 @@ export const EnemiesList = () => {
       <h2>Lista Wrogów:</h2>
       {isLoading ? (
         <Loader isLoading />
-      ) : enemiesList.length === 0 ? (
-        <p>{apiError || "Lista jest pusta"}</p>
+      ) : enemies?.length === 0 ? (
+        <p>{"Lista jest pusta"}</p>
       ) : (
         <List component="ul" aria-labelledby="nested-list-subheader">
-          {enemiesList.map(({ id, name }) => (
-            <EnemyItem
-              key={id}
-              id={id}
-              name={name}
-              handleDeleteEnemy={handleDeleteEnemy}
-            />
+          {enemies?.map(({ id, name }) => (
+            <EnemyItem key={id} id={id} name={name} />
           ))}
         </List>
       )}
