@@ -40,7 +40,6 @@ export const Login = () => {
     if (!response) return;
     const { status, message, data } = response;
     setInfo({ status, message });
-    // toast.warning(message);
     setAuth(data);
   };
 

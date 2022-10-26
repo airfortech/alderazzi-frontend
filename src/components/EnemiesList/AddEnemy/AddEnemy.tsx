@@ -6,15 +6,12 @@ import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
+import { useEnemies } from "../../../hooks/useEnemies";
 import classes from "./AddEnemy.module.css";
-import { InfoText } from "../../InfoText/InfoText";
 
-interface Props {
-  error: string;
-}
-
-export const AddEnemy = ({ error }: Props) => {
+export const AddEnemy = () => {
   const [input, setInput] = useState("");
+  const { addEnemyMutation } = useEnemies();
 
   const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) =>
     setInput(event.target.value);
@@ -24,13 +21,7 @@ export const AddEnemy = ({ error }: Props) => {
     name: string
   ) => {
     event.preventDefault();
-    // if (enemiesList.find(enemy => enemy.name === name)) {
-    // console.log(name);
-    // setError(name + " już jest na liście!");
-    // return;
-    // }
-    if (name.trim() === "") return;
-    console.log("add enemy");
+    addEnemyMutation.mutate(name);
   };
 
   return (
@@ -66,7 +57,6 @@ export const AddEnemy = ({ error }: Props) => {
         }
         label="Dodaj wroga"
       />
-      <InfoText type="error" size="small" message={error} />
     </FormControl>
   );
 };

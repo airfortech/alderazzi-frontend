@@ -4,6 +4,7 @@ import IconButton from "@mui/material/IconButton";
 import AvatarIcon from "@mui/icons-material/PermIdentity";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { red } from "@mui/material/colors";
+import { useEnemies } from "../../../hooks/useEnemies";
 import classes from "./EnemyItem.module.css";
 
 interface Props {
@@ -12,11 +13,12 @@ interface Props {
 }
 
 export const EnemyItem = ({ id, name }: Props) => {
+  const { deleteEnemyMutation } = useEnemies();
   const handleDeleteEnemy = async (
     event: React.MouseEvent<HTMLElement>,
     enemyId: string
   ) => {
-    console.log("delete enemy: " + enemyId);
+    deleteEnemyMutation.mutate(enemyId);
   };
 
   return (

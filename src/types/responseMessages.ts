@@ -9,7 +9,7 @@ export interface ApiResponse {
 }
 
 export const messages = {
-  default: "Try again later.",
+  default: "Something went wrong.",
   auth: {
     wrongRole: "Role doesn't exist.",
     wrongPassword: "Wrong password.",

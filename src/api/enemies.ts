@@ -9,14 +9,16 @@ export interface GetEnemies extends ApiResponse {
 }
 
 export const getEnemies = async () => {
-  const { data } = await api.get<GetEnemies>("/enemies2");
+  const { data } = await api.get<GetEnemies>("/enemies");
   return data;
 };
 
 export const addEnemy = async (name: string) => {
-  return await api.post<ApiResponse>("/enemies", { name });
+  const { data } = await api.post<ApiResponse>("/enemies", { name });
+  return data;
 };
 
 export const deleteEnemy = async (id: string) => {
-  return await api.post<ApiResponse>("/enemies/" + id);
+  const { data } = await api.delete<ApiResponse>("/enemies/" + id);
+  return data;
 };
