@@ -12,12 +12,9 @@ import Button from "@mui/material/Button";
 import { useAuth } from "../../hooks/useAuth";
 import { InfoText } from "../InfoText/InfoText";
 import { Loader } from "../Loader/Loader";
-import { validationSchema } from "./dataLogin";
-import { login } from "../../api/auth";
 import { FormData } from "./dataLogin";
+import { validationSchema } from "./dataLogin";
 import classes from "./Login.module.css";
-import { Toast } from "../Toast/Toast";
-import { toast } from "react-toastify";
 
 export const Login = () => {
   const {
@@ -30,22 +27,17 @@ export const Login = () => {
     resolver: yupResolver(validationSchema),
   });
   const [info, setInfo] = useState<ApiResponse | undefined>(undefined);
-  const [isFetching, setIsFetching] = useState(false);
-  const { setAuth } = useAuth();
+  const { loginUserMutation, isLoading } = useAuth();
 
   const onSubmit: SubmitHandler<FormData> = async formData => {
-    setIsFetching(true);
-    const response = await login(formData);
-    setIsFetching(false);
-    if (!response) return;
-    const { status, message, data } = response;
-    setInfo({ status, message });
-    setAuth(data);
+    await loginUserMutation(formData);
   };
+
+  const passwordValidation = watch("password");
 
   useEffect(() => {
     setInfo(undefined);
-  }, [watch("password")]);
+  }, [passwordValidation]);
 
   return (
     <div className={classes.Login}>
@@ -90,7 +82,7 @@ export const Login = () => {
           message={errors.password?.message || info?.message}
         />
         <div className={classes.row}>
-          <Loader size="small" isLoading={isFetching} />
+          <Loader size="small" isLoading={isLoading} />
           <Button
             className={classes.submit}
             type="submit"

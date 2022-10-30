@@ -1,16 +1,21 @@
+import { QueryKey } from "./types/QueryKey";
 import { UserRole } from "./types/UserRole";
+
 import { Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import { RequireAuth } from "./components/RequireAuth/RequireAuth";
+
 import { UnauthorizedView } from "./views/UnauthorizedView/UnauthorizedView";
 import { EnemiesView } from "./views/EnemiesView/EnemiesView";
 import { HomeView } from "./views/HomeView/HomeView";
 import { KeysView } from "./views/KeysView/KeysView";
+import { Background } from "./components/Background/Background";
 import { Header } from "./components/Header/Header";
 import { Navigation } from "./components/Navigation/Navigation";
-import { Background } from "./components/Background/Background";
+import { RequireAuth } from "./components/RequireAuth/RequireAuth";
 import { Toast } from "./components/Toast/Toast";
+import { queryClient } from "./api/queryClient";
 import classes from "./App.module.css";
 
 const darkTheme = createTheme({
@@ -31,6 +36,10 @@ const darkTheme = createTheme({
 });
 
 export const App = () => {
+  useEffect(() => {
+    queryClient.fetchQuery([QueryKey.auth]);
+  }, []);
+
   return (
     <div className={classes.App}>
       <ThemeProvider theme={darkTheme}>

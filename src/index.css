@@ -11,6 +11,8 @@
 
   --color-1: #0a0a0a;
   --color-2: #1c1c1c;
+  --color-1-opacity: #0a0a0add;
+  --color-2-opacity: #1c1c1cdd;
   --color-3: #444;
 
   --color-10: #ccc;
@@ -23,6 +25,8 @@
   --color-25: #3939b94d;
   --color-26: #8566ff;
   --color-27: #8566ff44;
+
+  --border-radius-normal: 4px;
 }
 
 body {

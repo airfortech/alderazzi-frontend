@@ -1,43 +1,39 @@
-import { ApiResponse, messages, Status } from "../types/responseMessages";
+import { ApiResponse } from "../types/responseMessages";
 import { User } from "../types/User";
 import { UserRole } from "../types/UserRole";
-import axios from "axios";
+
 import { api } from "./api";
 
-interface LoginResponse extends ApiResponse {
+export interface GetMe extends ApiResponse {
   data: {
-    role: UserRole;
+    auth: {
+      role: UserRole;
+      token: string;
+    };
+  };
+}
+
+export interface Login extends ApiResponse {
+  data: {
     token: string;
   };
 }
 
-export const login = async ({
-  role,
-  password,
-}: User): Promise<LoginResponse | undefined> => {
+export const login = async ({ role, password }: User) => {
+  const { data } = await api.post<Login>("/auth/login", { role, password });
+  return data;
+};
+
+export const getMe = async () => {
   try {
-    const { data: response }: { data: LoginResponse } = await api.post(
-      "/auth/login",
-      {
-        role,
-        password,
-      }
-    );
-    api.defaults.headers.common["Authorization"] =
-      "Bearer " + response.data.token;
-    return response;
+    const { data } = await api.get<GetMe>("/auth/getme");
+    return data;
   } catch (e) {
-    if (axios.isAxiosError(e)) {
-      return e.response?.data
-        ? e.response?.data
-        : {
-            status: Status.error,
-            message: messages.default,
-          };
-    }
+    return null;
   }
 };
 
-export const logout = async (): Promise<void> => {
-  await api.get("/auth/logout");
+export const logout = async () => {
+  const { data } = await api.get<ApiResponse>("/auth/logout");
+  return data;
 };

@@ -1,20 +1,20 @@
-import LogoutIcon from "@mui/icons-material/Logout";
-import classes from "./User.module.css";
 import IconButton from "@mui/material/IconButton";
+import LogoutIcon from "@mui/icons-material/Logout";
 import { red } from "@mui/material/colors";
-import { logout } from "../../../api/auth";
-import { useAuth } from "../../../hooks/useAuth";
+
 import { api } from "../../../api/api";
+import { useAuth } from "../../../hooks/useAuth";
+import classes from "./User.module.css";
 
 interface Props {
   role: string;
 }
 
 export const User = ({ role }: Props) => {
-  const { setAuth } = useAuth();
+  const { logoutUserMutation } = useAuth();
+
   const handleLogout = () => {
-    logout();
-    setAuth(undefined);
+    logoutUserMutation();
     api.defaults.headers.common["Authorization"] = undefined;
   };
   return (
