@@ -6,6 +6,17 @@
   align-items: center;
 }
 
+.App::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, var(--color-22), var(--color-1));
+  z-index: -1;
+}
+
 .section {
   padding: 40px 20px;
   width: 100%;
@@ -13,7 +24,18 @@
   justify-content: center;
 }
 
+.section > * {
+  position: relative;
+  max-width: 800px;
+}
+
 .toast :global(.Toastify__toast-theme--dark) {
   background: linear-gradient(90deg, var(--color-24), var(--color-25));
   backdrop-filter: blur(4px);
+}
+
+@media (max-width: 580px) {
+  .section {
+    padding: 40px 0px;
+  }
 }

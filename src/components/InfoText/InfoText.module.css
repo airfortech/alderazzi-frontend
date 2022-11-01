@@ -11,6 +11,10 @@
 }
 
 .info {
+  color: var(--color-28);
+}
+
+.success {
   color: var(--color-23);
 }
 

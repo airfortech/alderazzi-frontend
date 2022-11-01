@@ -1,0 +1,17 @@
+.KeyGiversList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.KeyGiversList a {
+  text-decoration: none;
+  align-self: center;
+}
+
+.KeyGiversList ul {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

@@ -1,7 +1,8 @@
-import { ApiResponse } from "../../types/responseMessages";
 import { UserRole } from "../../types/UserRole";
-import { useEffect, useState } from "react";
+
+import { useEffect } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
@@ -9,35 +10,32 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { useAuth } from "../../hooks/useAuth";
-import { InfoText } from "../InfoText/InfoText";
+
 import { Loader } from "../Loader/Loader";
-import { FormData } from "./dataLogin";
+import { useAuth } from "../../hooks/useAuth";
 import { validationSchema } from "./dataLogin";
+import { FormData } from "./dataLogin";
 import classes from "./Login.module.css";
 
 export const Login = () => {
   const {
     handleSubmit,
     control,
-    watch,
     formState: { errors, isValid },
   } = useForm<FormData>({
     mode: "onChange",
     resolver: yupResolver(validationSchema),
   });
-  const [info, setInfo] = useState<ApiResponse | undefined>(undefined);
   const { loginUserMutation, isLoading } = useAuth();
 
   const onSubmit: SubmitHandler<FormData> = async formData => {
     await loginUserMutation(formData);
   };
 
-  const passwordValidation = watch("password");
-
   useEffect(() => {
-    setInfo(undefined);
-  }, [passwordValidation]);
+    if (errors.password !== undefined) toast.dismiss();
+    toast.error(errors?.password?.message);
+  }, [errors.password]);
 
   return (
     <div className={classes.Login}>
@@ -76,10 +74,6 @@ export const Login = () => {
               autoComplete="current-password"
             />
           )}
-        />
-        <InfoText
-          type={info?.status || "error"}
-          message={errors.password?.message || info?.message}
         />
         <div className={classes.row}>
           <Loader size="small" isLoading={isLoading} />

@@ -1,5 +1,12 @@
 .AddEnemy {
+  padding: 0 20px !important;
   width: 100%;
+  max-width: 600px;
+  align-self: center;
   display: flex;
   justify-content: center;
+}
+
+.form {
+  width: 100%;
 }

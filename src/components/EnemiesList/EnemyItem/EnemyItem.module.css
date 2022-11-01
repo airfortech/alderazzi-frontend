@@ -2,8 +2,8 @@
   padding: 0 13px;
   display: flex;
   align-items: center;
-  border-radius: var(--border-radius-normal);
-  border-radius: 20px;
+  /* border-radius: var(--border-radius-normal); */
+  /* border-radius: 20px; */
   transition: color 0.2s ease;
 }
 

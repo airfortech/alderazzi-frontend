@@ -9,6 +9,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { UnauthorizedView } from "./views/UnauthorizedView/UnauthorizedView";
 import { EnemiesView } from "./views/EnemiesView/EnemiesView";
 import { HomeView } from "./views/HomeView/HomeView";
+import { KeyGiversView } from "./views/KeyGiversView/KeyGiversView";
 import { KeysView } from "./views/KeysView/KeysView";
 import { Background } from "./components/Background/Background";
 import { Header } from "./components/Header/Header";
@@ -64,6 +65,7 @@ export const App = () => {
             >
               <Route path="/wrogowie" element={<EnemiesView />} />
               <Route path="/klucze" element={<KeysView />} />
+              <Route path="/kluczodajki" element={<KeyGiversView />} />
             </Route>
             <Route
               element={<RequireAuth allowedRoles={[UserRole.consigliore]} />}

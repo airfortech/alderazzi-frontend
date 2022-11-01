@@ -25,6 +25,7 @@
   --color-25: #3939b94d;
   --color-26: #8566ff;
   --color-27: #8566ff44;
+  --color-28: #d3a72f;
 
   --border-radius-normal: 4px;
 }
@@ -36,9 +37,21 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, var(--color-22), var(--color-1));
 }
 
 h2 {
   font-size: 1.3em;
+}
+
+body::-webkit-scrollbar {
+  width: 9px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: var(--color-1);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--color-26);
+  outline: none;
 }

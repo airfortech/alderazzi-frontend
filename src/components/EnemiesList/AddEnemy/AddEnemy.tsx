@@ -26,38 +26,39 @@ export const AddEnemy = () => {
   };
 
   return (
-    <FormControl
-      variant="outlined"
-      component="form"
-      className={classes.AddEnemy}
-      onSubmit={event => {
-        handleAddEnemy(event, input);
-        setInput("");
-      }}
-    >
-      <InputLabel htmlFor="outlined-adornment-name">Dodaj wroga</InputLabel>
-      <OutlinedInput
-        id="outlined-adornment-name"
-        type={"text"}
-        value={input}
-        autoComplete="off"
-        onChange={handleChangeInput}
-        required
-        endAdornment={
-          <InputAdornment position="end">
-            <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-            <IconButton
-              color="primary"
-              sx={{ p: "10px" }}
-              aria-label="directions"
-              type="submit"
-            >
-              <DirectionsIcon />
-            </IconButton>
-          </InputAdornment>
-        }
-        label="Dodaj wroga"
-      />
-    </FormControl>
+    <div className={classes.AddEnemy}>
+      <FormControl
+        variant="outlined"
+        component="form"
+        className={classes.form}
+        onSubmit={event => {
+          handleAddEnemy(event, input);
+          setInput("");
+        }}
+      >
+        <InputLabel htmlFor="outlined-adornment-name">Dodaj wroga</InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-name"
+          type={"text"}
+          value={input}
+          autoComplete="off"
+          onChange={handleChangeInput}
+          endAdornment={
+            <InputAdornment position="end">
+              <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+              <IconButton
+                color="primary"
+                sx={{ p: "10px" }}
+                aria-label="directions"
+                type="submit"
+              >
+                <DirectionsIcon />
+              </IconButton>
+            </InputAdornment>
+          }
+          label="Dodaj wroga"
+        />
+      </FormControl>
+    </div>
   );
 };

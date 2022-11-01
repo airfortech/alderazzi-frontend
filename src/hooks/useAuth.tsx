@@ -20,7 +20,7 @@ export const useAuth = () => {
   const { mutate: loginUserMutation, isLoading } = useMutation(
     (userData: User) => login(userData),
     {
-      onSuccess: data => {
+      onSuccess: () => {
         query.refetch();
       },
     }

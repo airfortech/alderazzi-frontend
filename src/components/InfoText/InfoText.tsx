@@ -11,7 +11,7 @@ export const InfoText = ({ size = "normal", type, message }: Props) => {
   const pClasses = clsx(
     classes.InfoText,
     type === "info" && classes.info,
-    type === "success" && classes.info,
+    type === "success" && classes.success,
     type === "error" && classes.error,
     size === "small" && classes.small
   );
