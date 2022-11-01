@@ -1,20 +1,31 @@
 .Navigation {
   position: sticky;
   top: 0;
-  padding: 12px 20px;
+  /* padding: 0 20px; */
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  /* gap: 8px; */
   background: linear-gradient(90deg, var(--color-24), var(--color-25));
   backdrop-filter: blur(8px);
   z-index: 1;
 }
 
+.tabs {
+  /* border: 1px solid red; */
+}
+
 .Navigation a {
-  text-decoration: none;
+  /* padding: 0; */
+  /* display: flex; */
+  min-height: auto;
+  /* text-decoration: none; */
+}
+
+:global(.MuiTabs-scroller) {
+  display: flex;
 }
 
 @media (max-width: 580px) {

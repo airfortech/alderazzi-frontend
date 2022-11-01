@@ -1,29 +1,44 @@
-import { NavLink, useLocation } from "react-router-dom";
-import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+
 import { useAuth } from "../../hooks/useAuth";
+import { useRouteMatch } from "../../hooks/useRouteMatch";
 import { isRoleAllowed } from "../../utils/isRoleAllowed";
 import { links } from "./navigationLinks";
 import classes from "./Navigation.module.css";
 
 export const Navigation = () => {
-  const { pathname } = useLocation();
   const { auth } = useAuth();
+
+  const routeMatch = useRouteMatch(links.map(({ url }) => url));
+  const currentTab = routeMatch?.pattern?.path;
 
   return (
     <nav className={classes.Navigation}>
-      {links.map(({ url, name, icon, allowedRoles }, i) =>
-        isRoleAllowed(allowedRoles, auth?.role) ? (
-          <NavLink key={i} to={url}>
-            <Button
-              variant={pathname === url ? "contained" : "outlined"}
-              startIcon={icon}
-              className={classes.button}
-            >
-              <p>{name}</p>
-            </Button>
-          </NavLink>
-        ) : null
-      )}
+      <Tabs
+        value={currentTab}
+        variant="scrollable"
+        scrollButtons="auto"
+        allowScrollButtonsMobile
+        selectionFollowsFocus
+        centered
+        className={classes.tabs}
+      >
+        {links.map(({ url, name, icon, allowedRoles }, i) =>
+          isRoleAllowed(allowedRoles, auth?.role) ? (
+            <Tab
+              value={url}
+              key={name + i}
+              label={name}
+              icon={icon}
+              iconPosition="start"
+              component={Link}
+              to={url}
+            />
+          ) : null
+        )}
+      </Tabs>
     </nav>
   );
 };
