@@ -1,33 +1,34 @@
 import { UserRole } from "../../types/UserRole";
-import HomeIcon from "@mui/icons-material/Home";
-import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
-import VpnKeyIcon from "@mui/icons-material/VpnKey";
-import ManIcon from "@mui/icons-material/Man";
+import { GiCrossedSwords } from "react-icons/gi";
+import { GiTavernSign } from "react-icons/gi";
+import { GiKeyring } from "react-icons/gi";
+import { MdSettings } from "react-icons/md";
+import { GiOpenTreasureChest } from "react-icons/gi";
 
 export const links = [
-  { url: "/", name: "Home", icon: <HomeIcon />, allowedRoles: null },
+  { url: "/", name: "Home", icon: <GiTavernSign />, allowedRoles: null },
   {
     url: "/wrogowie",
     name: "Wrogowie",
-    icon: <SentimentVeryDissatisfiedIcon />,
+    icon: <GiCrossedSwords />,
     allowedRoles: [UserRole.caporegime, UserRole.consigliore, UserRole.soldato],
   },
   {
     url: "/kluczodajki",
     name: "Kluczodajki",
-    icon: <ManIcon />,
+    icon: <GiOpenTreasureChest />,
     allowedRoles: [UserRole.caporegime, UserRole.consigliore, UserRole.soldato],
   },
   {
     url: "/klucze",
     name: "Klucze",
-    icon: <VpnKeyIcon />,
+    icon: <GiKeyring />,
     allowedRoles: [UserRole.caporegime, UserRole.consigliore, UserRole.soldato],
   },
   {
     url: "/ustawienia",
     name: "Ustawienia",
-    icon: <VpnKeyIcon />,
+    icon: <MdSettings />,
     allowedRoles: [UserRole.consigliore],
   },
 ];

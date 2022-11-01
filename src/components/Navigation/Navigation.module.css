@@ -1,39 +1,24 @@
 .Navigation {
   position: sticky;
   top: 0;
-  /* padding: 0 20px; */
+  padding: 0 8px;
   width: 100%;
   display: flex;
-  /* flex-wrap: wrap; */
   justify-content: center;
   align-items: center;
-  /* gap: 8px; */
   background: linear-gradient(90deg, var(--color-24), var(--color-25));
   backdrop-filter: blur(8px);
   z-index: 1;
 }
 
-.tabs {
-  /* border: 1px solid red; */
+.Navigation a {
+  min-height: auto;
 }
 
-.Navigation a {
-  /* padding: 0; */
-  /* display: flex; */
-  min-height: auto;
-  /* text-decoration: none; */
+.Navigation svg {
+  font-size: 20px;
 }
 
 :global(.MuiTabs-scroller) {
-  display: flex;
-}
-
-@media (max-width: 580px) {
-  .button p {
-    display: none;
-  }
-
-  .button :global(.MuiButton-startIcon) {
-    margin: 0;
-  }
+  display: flex !important;
 }

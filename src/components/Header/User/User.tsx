@@ -1,6 +1,6 @@
 import IconButton from "@mui/material/IconButton";
-import LogoutIcon from "@mui/icons-material/Logout";
 import { red } from "@mui/material/colors";
+import { GiExitDoor } from "react-icons/gi";
 
 import { api } from "../../../api/api";
 import { useAuth } from "../../../hooks/useAuth";
@@ -27,7 +27,7 @@ export const User = ({ role }: Props) => {
         className={classes.button}
         onClick={handleLogout}
       >
-        <LogoutIcon />
+        <GiExitDoor />
       </IconButton>
     </div>
   );
