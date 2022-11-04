@@ -13,6 +13,7 @@ export const Navigation = () => {
 
   const routeMatch = useRouteMatch(links.map(({ url }) => url));
   const currentTab = routeMatch?.pattern?.path;
+  console.log(currentTab);
 
   return (
     <nav className={classes.Navigation}>
@@ -22,14 +23,13 @@ export const Navigation = () => {
         scrollButtons="auto"
         allowScrollButtonsMobile
         selectionFollowsFocus
-        centered
         className={classes.tabs}
       >
         {links.map(({ url, name, icon, allowedRoles }, i) =>
           isRoleAllowed(allowedRoles, auth?.role) ? (
             <Tab
               value={url}
-              key={name + i}
+              key={name}
               label={name}
               icon={icon}
               iconPosition="start"

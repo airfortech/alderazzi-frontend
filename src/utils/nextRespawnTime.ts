@@ -12,7 +12,7 @@ export const nextRespawnTime = (time: string) => {
   if (Math.abs(diff) < 48) obj.date = Math.abs(diff) + " godzin";
   else obj.date = Math.abs(nextTime.diff(now, "day")) + " dni";
   diff > 0
-    ? (obj.type = "error")
+    ? (obj = { ...obj, type: "error", date: "za " + obj.date })
     : (obj = { ...obj, type: "success", date: obj.date + " temu" });
   return obj;
 };

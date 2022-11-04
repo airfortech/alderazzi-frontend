@@ -1,10 +1,10 @@
-import { KeyGiversList } from "../../components/KeyGiversList/KeyGiversList";
+import { KeyGivers } from "../../components/KeyGivers/KeyGivers";
 import classes from "./KeyGiversView.module.css";
 
 export const KeyGiversView = () => {
   return (
     <div className={classes.KeyGiversView}>
-      <KeyGiversList />
+      <KeyGivers />
     </div>
   );
 };
