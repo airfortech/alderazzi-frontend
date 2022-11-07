@@ -6,10 +6,14 @@ export const useRouteMatch = (patterns: string[]) => {
   for (let i = 0; i < patterns.length; i++) {
     const pattern = patterns[i];
     const possibleMatch = matchPath(pattern, pathname);
-    if (possibleMatch !== null) {
+    // if (possibleMatch !== null) {
+    if (possibleMatch) {
+      console.log(pattern, pathname);
+      console.log("possibleMatch", possibleMatch);
       return possibleMatch;
     }
   }
 
+  // return matchPath("/", "/");
   return null;
 };

@@ -6,8 +6,10 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { api } from "../api/api";
 import { login, logout, getMe } from "../api/auth";
 import { queryClient } from "../api/queryClient";
+import { useNavigate } from "react-router-dom";
 
 export const useAuth = () => {
+  const navigate = useNavigate();
   const query = useQuery([QueryKey.auth], getMe, {
     enabled: false,
     select: data => (data ? data.data.auth : null),
@@ -28,6 +30,7 @@ export const useAuth = () => {
 
   const { mutate: logoutUserMutation } = useMutation(() => logout(), {
     onSuccess: () => {
+      navigate("/");
       queryClient.setQueryData([QueryKey.auth], null);
     },
   });

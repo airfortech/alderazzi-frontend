@@ -1,12 +1,25 @@
 import { KeyGiver } from "../../types/KeyGiver";
+// import { SortingFn } from "react-table";
+import {
+  createColumnHelper,
+  SortingFns,
+  IdentifiedColumnDef,
+} from "@tanstack/react-table";
 
-import { Row } from "react-table";
+// import { Row } from "react-table";
 import dayjs from "dayjs";
 
 import { nextRespawnTime } from "../../utils/nextRespawnTime";
 import { InfoText } from "../InfoText/InfoText";
+import { Columns } from "../../types/Table";
+// import { CustomColumn } from "../Table/Table";
 
-const customSort = (rowA: Row, rowB: Row, id: string, desc: boolean) => {
+const customSort: SortingFns = (
+  rowA: any,
+  rowB: any,
+  id: string,
+  desc: boolean
+) => {
   const a = rowA.values[id];
   const b = rowB.values[id];
 
@@ -39,37 +52,40 @@ const customSort = (rowA: Row, rowB: Row, id: string, desc: boolean) => {
   }
 };
 
+const { accessor } = createColumnHelper<KeyGiver>();
+
 export const columns = [
-  {
-    Header: "id",
-    accessor: "id",
-    // disableSortBy: true,
-    show: false,
-  },
-  {
-    Header: "Name",
-    accessor: "name",
+  accessor("id", {
+    header: "id",
+
+    // show: false,
+  }),
+  accessor("name", {
+    header: "Nazwa",
+    /* disable sorting for column */
+    enableSorting: false,
     // disableSortBy: true,
     // show: false,
-  },
-  {
-    Header: "Respawn Time",
-    accessor: "respawnTime",
-    align: "center",
-  },
-  {
-    Header: "Next Respawn",
-    accessor: "nextRespawn",
-    align: "right",
-    Cell: ({ value }: { value: string }) => {
-      const { date: nextResp, type } = nextRespawnTime(value);
+  }),
+  accessor("respawnTime", {
+    header: "Czas odrodzenia",
+    cell: props => props.getValue() + "h",
+    // align: "right",
+    sortUndefined: 1,
+  }),
+  accessor("nextRespawn", {
+    header: "Odrodzi się",
+    // sortUndefined: 1,
+    // align: "right",
+    cell: props => {
+      const { date: nextResp, type } = nextRespawnTime(props.getValue());
       return <InfoText message={nextResp} type={type} />;
     },
-    sortType: customSort,
-  },
+    // sortType: customSort,
+  }),
 ];
 
-export const rows = (data: KeyGiver[] | undefined) => {
+export const rows = (data: KeyGiver[]) => {
   return data?.map(({ id, name, respawnTime, nextRespawn }) => {
     return {
       id,
@@ -79,3 +95,32 @@ export const rows = (data: KeyGiver[] | undefined) => {
     };
   });
 };
+
+export const columns2: Columns<KeyGiver> = [
+  {
+    selector: "id",
+    isVisible: false,
+  },
+  {
+    selector: "name",
+    header: "Nazwa",
+    isSortable: true,
+  },
+  {
+    selector: "respawnTime",
+    header: "Czas odrodzenia",
+    isSortable: true,
+    align: "right",
+    cell: value => value + "h",
+  },
+  {
+    selector: "nextRespawn",
+    header: "Odrodzi się",
+    isSortable: true,
+    align: "right",
+    cell: value => {
+      const { date: nextResp, type } = nextRespawnTime(value as string);
+      return <InfoText message={nextResp} type={type} />;
+    },
+  },
+];

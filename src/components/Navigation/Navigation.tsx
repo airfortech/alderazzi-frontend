@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 
@@ -10,15 +10,18 @@ import classes from "./Navigation.module.css";
 
 export const Navigation = () => {
   const { auth } = useAuth();
+  const { pathname } = useLocation();
 
   const routeMatch = useRouteMatch(links.map(({ url }) => url));
-  const currentTab = routeMatch?.pattern?.path;
-  console.log(currentTab);
+  const currentTab = routeMatch?.pathnameBase;
+  // const currentTab = routeMatch?.pattern?.path;
+  console.log(pathname);
 
   return (
     <nav className={classes.Navigation}>
       <Tabs
-        value={currentTab}
+        // value={currentTab}
+        value={pathname}
         variant="scrollable"
         scrollButtons="auto"
         allowScrollButtonsMobile
