@@ -1,4 +1,4 @@
-import { Align, Columns, SortOption } from "../../../types/Table";
+import { Align, Columns, SortFunc, SortOption } from "../../../types/Table";
 import clsx from "clsx";
 import SouthIcon from "@mui/icons-material/South";
 import NorthIcon from "@mui/icons-material/North";
@@ -8,7 +8,7 @@ import classes from "../Table.module.css";
 interface Props<T> {
   columns: Columns<T>;
   sortOption: SortOption<T> | undefined;
-  handleSort: (selector: string) => void;
+  handleSort: (selector: string, sortFunc: SortFunc | undefined) => void;
 }
 
 const thClasses = (align: Align, isSortable: boolean) => {
@@ -34,12 +34,15 @@ export const TableHead = <T,>({
             selector,
             isSortable = false,
             align = "left",
+            sortFunc,
           }) =>
             isVisible && (
               <th
                 key={selector as string}
                 onClick={
-                  isSortable ? () => handleSort(selector as string) : undefined
+                  isSortable
+                    ? () => handleSort(selector as string, sortFunc)
+                    : undefined
                 }
               >
                 <p className={thClasses(align, isSortable)}>

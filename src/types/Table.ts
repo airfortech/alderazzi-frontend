@@ -12,7 +12,7 @@ export interface Row {
   name?: string;
 }
 
-export interface Table<T> {
+export interface ITable<T> {
   columns: Columns<T>;
   // todo: values of keys should be string or number
   data: T[];
@@ -28,13 +28,13 @@ export interface Column<T> {
   align?: Align;
   isSortable?: boolean;
   cell?: (value: string | number) => string | number | ReactNode;
+  sortFunc?: SortFunc;
 }
 
 export type Columns<T> = Column<T>[];
 
 export type SortFunc = (
-  rowA: any,
-  rowB: any,
-  field: string,
-  desc: Order
+  aField: string | number,
+  bField: string | number,
+  order: Order
 ) => 1 | -1 | 0;
