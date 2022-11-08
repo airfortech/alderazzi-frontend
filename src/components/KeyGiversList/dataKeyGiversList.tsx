@@ -55,7 +55,7 @@ export const columns: Columns<KeyGiver> = [
   {
     selector: "name",
     header: "Nazwa",
-    isSortable: true,
+    isSortable: false,
   },
   {
     selector: "respawnTime",

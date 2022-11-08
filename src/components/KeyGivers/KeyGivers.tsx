@@ -16,7 +16,11 @@ export const KeyGivers = () => {
       ) : keyGivers?.length === 0 || isError ? (
         <p>{"Lista jest pusta"}</p>
       ) : (
-        <Table data={rows(keyGivers)} columns={columns} />
+        <Table
+          data={rows(keyGivers)}
+          columns={columns}
+          initialSorting={{ field: "nextRespawn", order: "asc" }}
+        />
       )}
     </div>
   );

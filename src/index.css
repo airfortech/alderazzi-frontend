@@ -28,6 +28,9 @@
   --color-28: #d3a72f;
 
   --border-radius-normal: 4px;
+
+  scrollbar-color: var(--color-26) var(--color-1);
+  scrollbar-width: thin !important;
 }
 
 body {

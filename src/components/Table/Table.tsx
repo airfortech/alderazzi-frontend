@@ -10,10 +10,19 @@ export const Table = <T extends Row>({
   columns,
   data,
   linkToId,
+  initialSorting,
 }: ITable<T>) => {
-  const [bodyData, setBodyData] = useState(data);
+  const initialBodyData = initialSorting
+    ? tableSortFunc(
+        data,
+        initialSorting,
+        columns.find(({ selector }) => selector === initialSorting.field)
+          ?.sortFunc
+      )
+    : data;
+  const [bodyData, setBodyData] = useState(initialBodyData);
   const [sortOption, setSortOption] = useState<SortOption<T> | undefined>(
-    undefined
+    initialSorting || undefined
   );
 
   const handleSort = (selector: string, sortFunc: SortFunc | undefined) => {

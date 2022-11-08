@@ -17,6 +17,10 @@ export interface ITable<T> {
   // todo: values of keys should be string or number
   data: T[];
   linkToId?: string;
+  initialSorting?: {
+    field: keyof T;
+    order: Order;
+  };
 }
 
 export type Align = "left" | "right" | "center";
