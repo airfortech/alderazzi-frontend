@@ -2,23 +2,8 @@ import { Row, SortOption, Table } from "../../types/Table";
 import { useState } from "react";
 import { TableHead } from "./TableHead/TableHead";
 import { TableBody } from "./TableBody/TableBody";
+import { tableSortFunc } from "./tableSortFn";
 import classes from "./Table.module.css";
-
-const sortFunc = <T,>(data: T[], sortOption: SortOption<T>): T[] => {
-  const { field, order } = sortOption;
-  return [...data].sort((a, b) => {
-    const aField = a[field] as string;
-    const bField = b[field] as string;
-    if (aField === null) return 1;
-    if (bField === null) return -1;
-    if (aField === null && bField === null) return 0;
-    return (
-      aField.toString().localeCompare(bField.toString(), "en", {
-        numeric: true,
-      }) * (order === "asc" ? 1 : -1)
-    );
-  });
-};
 
 export const Table2 = <T extends Row>({
   columns,
@@ -41,7 +26,7 @@ export const Table2 = <T extends Row>({
           : "asc",
     };
     setSortOption(newSortOption);
-    setBodyData(sortFunc(bodyData, newSortOption));
+    setBodyData(tableSortFunc(bodyData, newSortOption));
   };
 
   return (

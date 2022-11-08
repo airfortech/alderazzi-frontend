@@ -14,12 +14,7 @@ import { InfoText } from "../InfoText/InfoText";
 import { Columns } from "../../types/Table";
 // import { CustomColumn } from "../Table/Table";
 
-const customSort: SortingFns = (
-  rowA: any,
-  rowB: any,
-  id: string,
-  desc: boolean
-) => {
+const customSort = (rowA: any, rowB: any, id: string, desc: boolean) => {
   const a = rowA.values[id];
   const b = rowB.values[id];
 

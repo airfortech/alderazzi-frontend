@@ -1,8 +1,10 @@
 import { ReactNode } from "react";
 
+export type Order = "asc" | "desc";
+
 export interface SortOption<T> {
   field: keyof T;
-  order: "asc" | "desc";
+  order: Order;
 }
 
 export interface Row {
@@ -29,3 +31,10 @@ export interface Column<T> {
 }
 
 export type Columns<T> = Column<T>[];
+
+export type SortFunc = (
+  rowA: any,
+  rowB: any,
+  field: string,
+  desc: Order
+) => 1 | -1 | 0;
