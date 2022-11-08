@@ -1,5 +1,10 @@
 import { ReactNode } from "react";
 
+export interface SortOption<T> {
+  field: keyof T;
+  order: "asc" | "desc";
+}
+
 export interface Row {
   id: string;
   name?: string;
