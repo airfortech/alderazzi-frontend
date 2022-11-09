@@ -19,6 +19,7 @@ export const KeyGivers = () => {
           data={rows(keyGivers)}
           columns={columns}
           title="Lista kluczodajek"
+          isFilterable
           initialSorting={{ field: "nextRespawn", order: "asc" }}
         />
       )}

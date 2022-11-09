@@ -13,6 +13,7 @@ export const Table = <T extends Row>({
   title,
   linkToId,
   initialSorting,
+  isFilterable = false,
 }: ITable<T>) => {
   const initialBodyData = initialSorting
     ? tableSortFunc(
@@ -26,6 +27,7 @@ export const Table = <T extends Row>({
   const [sortOption, setSortOption] = useState<SortOption<T> | undefined>(
     initialSorting || undefined
   );
+  const [filter, setFilter] = useState<string>("");
 
   const handleSort = (selector: string, sortFunc: SortFunc | undefined) => {
     const newSortOption: SortOption<T> = {
@@ -48,8 +50,16 @@ export const Table = <T extends Row>({
         sortOption={sortOption}
         handleSort={handleSort}
         title={title}
+        isFilterable={isFilterable}
+        filter={filter}
+        setFilter={setFilter}
       />
-      <TableBody columns={columns} bodyData={bodyData} linkToId={linkToId} />
+      <TableBody
+        columns={columns}
+        bodyData={bodyData}
+        linkToId={linkToId}
+        filter={filter}
+      />
     </table>
   );
 };

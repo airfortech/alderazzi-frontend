@@ -18,6 +18,7 @@ export interface ITable<T> {
   data: T[];
   title?: string;
   linkToId?: string;
+  isFilterable?: boolean;
   initialSorting?: {
     field: keyof T;
     order: Order;
