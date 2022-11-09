@@ -30,8 +30,23 @@
   position: sticky;
   user-select: none;
   background-color: var(--color-2);
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(9px);
   box-shadow: 0px 1px 0px var(--color-21);
+}
+
+.Table thead tr:first-child {
+  /* background-color: var(--color-28); */
+  /* box-shadow: 0px 1px 0px var(--color-21); */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.Table .title {
+  font-size: 1rem;
 }
 
 .Table th,
@@ -55,10 +70,11 @@
 .Table thead th p {
   display: flex;
   align-items: center;
+  font-size: 0.8rem;
 }
 
 .Table th svg {
-  font-size: 1.2rem;
+  font-size: 1rem;
   opacity: 0.7;
 }
 

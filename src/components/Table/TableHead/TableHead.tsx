@@ -3,6 +3,7 @@ import clsx from "clsx";
 import SouthIcon from "@mui/icons-material/South";
 import NorthIcon from "@mui/icons-material/North";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
+import { Filter } from "../Filter/Filter";
 import classes from "../Table.module.css";
 
 interface Props<T> {
@@ -10,6 +11,10 @@ interface Props<T> {
   sortOption: SortOption<T> | undefined;
   handleSort: (selector: string, sortFunc: SortFunc | undefined) => void;
 }
+
+const headerClasses = () => {
+  return clsx(classes.header);
+};
 
 const thClasses = (align: Align, isSortable: boolean) => {
   return clsx(classes["align-" + align], isSortable && classes.cursorPointer);
@@ -26,6 +31,14 @@ export const TableHead = <T,>({
 }: Props<T>) => {
   return (
     <thead>
+      <tr>
+        <th colSpan={3}>
+          <div className={headerClasses()}>
+            <p className={classes.title}>Lista Kluczodajek</p>
+            <Filter />
+          </div>
+        </th>
+      </tr>
       <tr>
         {columns.map(
           ({

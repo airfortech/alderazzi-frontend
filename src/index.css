@@ -16,6 +16,7 @@
   --color-3: #444;
 
   --color-10: #ccc;
+  --color-11: #888;
 
   --color-20: #d32f2f;
   --color-21: #6666ff;
@@ -28,6 +29,8 @@
   --color-28: #d3a72f;
 
   --border-radius-normal: 4px;
+
+  --transition-speed: 0.2s;
 
   scrollbar-color: var(--color-26) var(--color-1);
   scrollbar-width: thin !important;

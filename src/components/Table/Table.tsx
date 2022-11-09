@@ -1,11 +1,12 @@
 import { Row, SortFunc, SortOption, ITable } from "../../types/Table";
 import { useState } from "react";
+import clsx from "clsx";
 import { TableHead } from "./TableHead/TableHead";
 import { TableBody } from "./TableBody/TableBody";
 import { tableSortFunc } from "./tableSortFn";
 import classes from "./Table.module.css";
 
-// todo: initialSorting, title, filtering
+// todo: title, filtering
 export const Table = <T extends Row>({
   columns,
   data,

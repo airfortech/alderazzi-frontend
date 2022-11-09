@@ -3,6 +3,7 @@ import { MouseEventHandler, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
 import classes from "../Table.module.css";
+import { MdRemoveFromQueue } from "react-icons/md";
 
 interface Props<T> {
   bodyData: T[];
@@ -46,6 +47,7 @@ export const TableBody = <T extends Row>({
               ? handleLinkToId(row.id, "name" in row ? row["name"] : "")
               : undefined
           }
+          key={row.id}
         >
           {columns.map(
             (
@@ -53,7 +55,7 @@ export const TableBody = <T extends Row>({
               index
             ) =>
               isVisible && (
-                <td className={tdClasses(align)}>
+                <td className={tdClasses(align)} key={index}>
                   {!cell
                     ? (row[selector] as string)
                     : cell(row[selector] as string)}

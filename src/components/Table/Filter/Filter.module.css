@@ -1,0 +1,30 @@
+.Filter {
+  padding: 8px 12px;
+  max-width: 300px;
+  flex: 1;
+  font-size: inherit;
+  font-family: inherit;
+  border: none;
+  border: 1px solid transparent;
+  outline: none;
+  box-shadow: none;
+  border-radius: 0;
+  border-radius: var(--border-radius-normal);
+  color: var(--color-10);
+  background-color: var(--color-25);
+  background-color: #ffffff09;
+  transition: all var(--transition-speed) ease;
+}
+
+.Filter:hover {
+  background-color: #ffffff11;
+}
+
+.Filter:focus {
+  border: 1px solid var(--color-21);
+  outline: none;
+}
+
+.Filter::placeholder {
+  color: var(--color-11);
+}

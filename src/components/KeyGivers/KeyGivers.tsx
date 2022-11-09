@@ -10,7 +10,7 @@ export const KeyGivers = () => {
 
   return (
     <div className={classes.KeyGivers}>
-      <h2>Lista Kluczodajek:</h2>
+      {/* <h2>Lista Kluczodajek:</h2> */}
       {isLoading ? (
         <Loader isLoading />
       ) : keyGivers?.length === 0 || isError ? (
