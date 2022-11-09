@@ -16,6 +16,7 @@ export interface ITable<T> {
   columns: Columns<T>;
   // todo: values of keys should be string or number
   data: T[];
+  title?: string;
   linkToId?: string;
   initialSorting?: {
     field: keyof T;

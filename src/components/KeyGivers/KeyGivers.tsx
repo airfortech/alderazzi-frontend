@@ -10,7 +10,6 @@ export const KeyGivers = () => {
 
   return (
     <div className={classes.KeyGivers}>
-      {/* <h2>Lista Kluczodajek:</h2> */}
       {isLoading ? (
         <Loader isLoading />
       ) : keyGivers?.length === 0 || isError ? (
@@ -19,6 +18,7 @@ export const KeyGivers = () => {
         <Table
           data={rows(keyGivers)}
           columns={columns}
+          title="Lista kluczodajek"
           initialSorting={{ field: "nextRespawn", order: "asc" }}
         />
       )}

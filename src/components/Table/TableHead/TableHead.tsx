@@ -8,12 +8,13 @@ import classes from "../Table.module.css";
 
 interface Props<T> {
   columns: Columns<T>;
+  title: string | undefined;
   sortOption: SortOption<T> | undefined;
   handleSort: (selector: string, sortFunc: SortFunc | undefined) => void;
 }
 
-const headerClasses = () => {
-  return clsx(classes.header);
+const headerClasses = (title: string | undefined) => {
+  return clsx(classes.header, !title && null);
 };
 
 const thClasses = (align: Align, isSortable: boolean) => {
@@ -26,6 +27,7 @@ const thSpanClasses = (align: Align) => {
 
 export const TableHead = <T,>({
   columns,
+  title,
   sortOption,
   handleSort,
 }: Props<T>) => {
@@ -33,8 +35,8 @@ export const TableHead = <T,>({
     <thead>
       <tr>
         <th colSpan={3}>
-          <div className={headerClasses()}>
-            <p className={classes.title}>Lista Kluczodajek</p>
+          <div className={headerClasses(title)}>
+            {title && <p className={classes.title}>{title}</p>}
             <Filter />
           </div>
         </th>

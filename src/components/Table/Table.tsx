@@ -10,6 +10,7 @@ import classes from "./Table.module.css";
 export const Table = <T extends Row>({
   columns,
   data,
+  title,
   linkToId,
   initialSorting,
 }: ITable<T>) => {
@@ -46,6 +47,7 @@ export const Table = <T extends Row>({
         columns={columns}
         sortOption={sortOption}
         handleSort={handleSort}
+        title={title}
       />
       <TableBody columns={columns} bodyData={bodyData} linkToId={linkToId} />
     </table>

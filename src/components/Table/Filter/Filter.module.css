@@ -1,7 +1,14 @@
 .Filter {
-  padding: 8px 12px;
+  position: relative;
+  width: 100%;
   max-width: 300px;
-  flex: 1;
+  grid-column-start: 2;
+  justify-self: end;
+}
+
+.input {
+  padding: 8px 38px 8px 12px;
+  width: 100%;
   font-size: inherit;
   font-family: inherit;
   border: none;
@@ -16,15 +23,43 @@
   transition: all var(--transition-speed) ease;
 }
 
-.Filter:hover {
+.input:hover {
   background-color: #ffffff11;
 }
 
-.Filter:focus {
+.input:focus {
   border: 1px solid var(--color-21);
   outline: none;
 }
 
-.Filter::placeholder {
+.input::placeholder {
   color: var(--color-11);
+}
+
+.Filter .clear {
+  margin-right: 6px;
+  padding: 0 6px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+  border-radius: 0;
+}
+
+.Filter .icon {
+  font-size: inherit;
+  color: var(--color-11);
+  transform: scale(1.4);
+  transition: color var(--transition-speed) ease;
+}
+
+.Filter .clear:hover .icon {
+  color: var(--color-20);
 }
