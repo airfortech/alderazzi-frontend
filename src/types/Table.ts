@@ -33,6 +33,7 @@ export interface Column<T> {
   isVisible?: boolean;
   align?: Align;
   isSortable?: boolean;
+  isFilterable?: boolean;
   cell?: (value: string | number) => string | number | ReactNode;
   sortFunc?: SortFunc;
 }

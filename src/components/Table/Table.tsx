@@ -1,12 +1,12 @@
 import { Row, SortFunc, SortOption, ITable } from "../../types/Table";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import clsx from "clsx";
 import { TableHead } from "./TableHead/TableHead";
 import { TableBody } from "./TableBody/TableBody";
 import { tableSortFunc } from "./tableSortFn";
 import classes from "./Table.module.css";
 
-// todo: title, filtering
+// todo: Nothing found message, translations, catching id's
 export const Table = <T extends Row>({
   columns,
   data,
@@ -28,6 +28,12 @@ export const Table = <T extends Row>({
     initialSorting || undefined
   );
   const [filter, setFilter] = useState<string>("");
+
+  const filteringSelectors = useMemo(
+    () =>
+      columns.filter(col => col.isFilterable === true).map(col => col.selector),
+    [columns]
+  );
 
   const handleSort = (selector: string, sortFunc: SortFunc | undefined) => {
     const newSortOption: SortOption<T> = {
@@ -59,6 +65,7 @@ export const Table = <T extends Row>({
         bodyData={bodyData}
         linkToId={linkToId}
         filter={filter}
+        filteringSelectors={filteringSelectors}
       />
     </table>
   );

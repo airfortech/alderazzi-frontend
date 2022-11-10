@@ -1,5 +1,5 @@
 import { Align, Columns, Row } from "../../../types/Table";
-import { MouseEventHandler, useCallback, useEffect } from "react";
+import { MouseEventHandler, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
 import classes from "../Table.module.css";
@@ -9,6 +9,7 @@ interface Props<T> {
   columns: Columns<T>;
   linkToId?: string;
   filter: string;
+  filteringSelectors: Array<keyof T>;
 }
 
 const tdClasses = (align: Align) => {
@@ -20,6 +21,7 @@ export const TableBody = <T extends Row>({
   columns,
   linkToId,
   filter,
+  filteringSelectors,
 }: Props<T>) => {
   const navigate = useNavigate();
 
@@ -38,14 +40,21 @@ export const TableBody = <T extends Row>({
     []
   );
 
-  useEffect(() => {
-    console.log(filter);
-  }, [filter]);
-
   return (
     <tbody>
       {bodyData
-        .filter(row => row.name?.toLowerCase().includes(filter.toLowerCase()))
+        .filter(row => {
+          for (let selector of filteringSelectors) {
+            if (
+              row[selector]
+                ?.toString()
+                .toLowerCase()
+                .includes(filter.toLowerCase())
+            )
+              return true;
+          }
+          return false;
+        })
         .map((row, index) => (
           <tr
             className={trClasses()}

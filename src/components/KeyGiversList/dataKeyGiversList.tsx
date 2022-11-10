@@ -56,11 +56,13 @@ export const columns: Columns<KeyGiver> = [
     selector: "name",
     header: "Nazwa",
     isSortable: false,
+    isFilterable: true,
   },
   {
     selector: "respawnTime",
     header: "Czas odrodzenia",
     isSortable: true,
+    isFilterable: true,
     align: "right",
     cell: value => value + "h",
   },
