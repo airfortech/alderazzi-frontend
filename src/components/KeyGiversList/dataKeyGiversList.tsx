@@ -55,7 +55,7 @@ export const columns: Columns<KeyGiver> = [
   {
     selector: "name",
     header: "Nazwa",
-    isSortable: false,
+    isSortable: true,
     isFilterable: true,
   },
   {

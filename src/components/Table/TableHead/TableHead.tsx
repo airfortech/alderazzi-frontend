@@ -1,5 +1,5 @@
 import { Align, Columns, SortFunc, SortOption } from "../../../types/Table";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import clsx from "clsx";
 import SouthIcon from "@mui/icons-material/South";
 import NorthIcon from "@mui/icons-material/North";
@@ -38,11 +38,15 @@ export const TableHead = <T,>({
   filter,
   setFilter,
 }: Props<T>) => {
+  const colSpan = columns.filter(
+    ({ isVisible }) => isVisible === true || isVisible === undefined
+  ).length;
+
   return (
     <thead>
       {(title || isFilterable) && (
         <tr>
-          <th colSpan={3}>
+          <th colSpan={colSpan}>
             <div className={headerClasses(title)}>
               {title && <p className={classes.title}>{title}</p>}
               {isFilterable && <Filter filter={filter} setFilter={setFilter} />}
@@ -52,17 +56,20 @@ export const TableHead = <T,>({
       )}
       <tr>
         {columns.map(
-          ({
-            isVisible = true,
-            header,
-            selector,
-            isSortable = false,
-            align = "left",
-            sortFunc,
-          }) =>
+          (
+            {
+              isVisible = true,
+              header,
+              selector,
+              isSortable = false,
+              align = "left",
+              sortFunc,
+            },
+            index
+          ) =>
             isVisible && (
               <th
-                key={selector as string}
+                key={(selector as string) + index}
                 onClick={
                   isSortable
                     ? () => handleSort(selector as string, sortFunc)
