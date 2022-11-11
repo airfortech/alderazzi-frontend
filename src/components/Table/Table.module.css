@@ -46,7 +46,9 @@
 }
 
 .Table .title {
-  font-size: 1rem;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  color: var(--color-10);
 }
 
 .Table th,
@@ -82,7 +84,8 @@
   opacity: 0.3;
 }
 
-.Table tbody tr:nth-child(even) {
+/* 3, 7, 11 */
+.Table tbody tr:nth-child(4n-1) {
   background-color: #ffffff0c;
 }
 
@@ -96,4 +99,8 @@
 
 .cursorPointer {
   cursor: pointer;
+}
+
+.expandableRow {
+  /* display: none; */
 }

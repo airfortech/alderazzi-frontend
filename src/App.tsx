@@ -65,7 +65,7 @@ export const App = () => {
             >
               <Route path="/wrogowie" element={<EnemiesView />} />
               <Route path="/klucze" element={<KeysView />} />
-              <Route path="/kluczodajki" element={<KeyGiversView />} />
+              <Route path="/klucznicy" element={<KeyGiversView />} />
             </Route>
             <Route
               element={<RequireAuth allowedRoles={[UserRole.consigliore]} />}

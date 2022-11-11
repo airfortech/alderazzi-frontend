@@ -1,4 +1,10 @@
-import { Align, Columns, SortFunc, SortOption } from "../../../types/Table";
+import {
+  Align,
+  Columns,
+  ExpandableRowsComponent,
+  SortFunc,
+  SortOption,
+} from "../../../types/Table";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import clsx from "clsx";
 import SouthIcon from "@mui/icons-material/South";
@@ -15,6 +21,8 @@ interface Props<T> {
   handleSort: (selector: string, sortFunc: SortFunc | undefined) => void;
   filter: string;
   setFilter: Dispatch<SetStateAction<string>>;
+  colSpan: number;
+  expandableRowsComponent?: ExpandableRowsComponent<T>;
 }
 
 const headerClasses = (title: string | undefined) => {
@@ -37,11 +45,9 @@ export const TableHead = <T,>({
   handleSort,
   filter,
   setFilter,
+  colSpan,
+  expandableRowsComponent,
 }: Props<T>) => {
-  const colSpan = columns.filter(
-    ({ isVisible }) => isVisible === true || isVisible === undefined
-  ).length;
-
   return (
     <thead>
       {(title || isFilterable) && (
@@ -55,6 +61,7 @@ export const TableHead = <T,>({
         </tr>
       )}
       <tr>
+        {expandableRowsComponent && <th></th>}
         {columns.map(
           (
             {

@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactElement } from "react";
 
 export type Order = "asc" | "desc";
 
@@ -15,10 +15,11 @@ export interface Row {
 export interface ITable<T> {
   columns: Columns<T>;
   // todo: values of keys should be string or number
-  data: T[];
+  data: Array<T>;
   title?: string;
   linkToId?: string;
   isFilterable?: boolean;
+  expandableRowsComponent?: ExpandableRowsComponent<T>;
   initialSorting?: {
     field: keyof T;
     order: Order;
@@ -34,7 +35,7 @@ export interface Column<T> {
   align?: Align;
   isSortable?: boolean;
   isFilterable?: boolean;
-  cell?: (value: string | number) => string | number | ReactNode;
+  cell?: CellFunc;
   sortFunc?: SortFunc;
 }
 
@@ -45,3 +46,9 @@ export type SortFunc = (
   bField: string | number,
   order: Order
 ) => 1 | -1 | 0;
+
+export type CellFunc = (
+  value: string | number
+) => string | number | ReactElement;
+
+export type ExpandableRowsComponent<T> = (props: T) => ReactElement;

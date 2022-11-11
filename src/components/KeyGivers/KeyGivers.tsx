@@ -18,8 +18,9 @@ export const KeyGivers = () => {
         <Table
           data={rows(keyGivers)}
           columns={columns}
-          title="Lista kluczodajek"
+          title="Lista kluczników"
           isFilterable
+          expandableRowsComponent={props => <p>{props.id}</p>}
           initialSorting={{ field: "nextRespawn", order: "asc" }}
         />
       )}

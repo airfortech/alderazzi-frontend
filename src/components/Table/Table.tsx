@@ -6,14 +6,15 @@ import { TableBody } from "./TableBody/TableBody";
 import { tableSortFunc } from "./tableSortFn";
 import classes from "./Table.module.css";
 
-// todo: Nothing found message, translations, catching id's
-export const Table = <T extends Row>({
+// todo: Nothing found message, translations, catching id's, sticky as option, expandableComponent, passing id as second arg
+export const Table = <T,>({
   columns,
   data,
   title,
   linkToId,
   initialSorting,
   isFilterable = false,
+  expandableRowsComponent,
 }: ITable<T>) => {
   const initialBodyData = initialSorting
     ? tableSortFunc(
@@ -49,6 +50,11 @@ export const Table = <T extends Row>({
     setBodyData(tableSortFunc(bodyData, newSortOption, sortFunc));
   };
 
+  const colSpan =
+    columns.filter(
+      ({ isVisible }) => isVisible === true || isVisible === undefined
+    ).length + (expandableRowsComponent ? 1 : 0);
+
   return (
     <table className={classes.Table}>
       <TableHead
@@ -59,6 +65,8 @@ export const Table = <T extends Row>({
         isFilterable={isFilterable}
         filter={filter}
         setFilter={setFilter}
+        colSpan={colSpan}
+        expandableRowsComponent={expandableRowsComponent}
       />
       <TableBody
         columns={columns}
@@ -66,6 +74,8 @@ export const Table = <T extends Row>({
         linkToId={linkToId}
         filter={filter}
         filteringSelectors={filteringSelectors}
+        colSpan={colSpan}
+        expandableRowsComponent={expandableRowsComponent}
       />
     </table>
   );

@@ -14,8 +14,8 @@ export const links = [
     allowedRoles: [UserRole.caporegime, UserRole.consigliore, UserRole.soldato],
   },
   {
-    url: "/kluczodajki",
-    name: "Kluczodajki",
+    url: "/klucznicy",
+    name: "Klucznicy",
     icon: <GiOpenTreasureChest />,
     allowedRoles: [UserRole.caporegime, UserRole.consigliore, UserRole.soldato],
   },
