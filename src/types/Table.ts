@@ -2,6 +2,8 @@ import { ReactElement } from "react";
 
 export type Order = "asc" | "desc";
 
+export type Align = "left" | "right" | "center";
+
 export interface SortOption<T> {
   field: keyof T;
   order: Order;
@@ -9,24 +11,8 @@ export interface SortOption<T> {
 
 export interface Row {
   id: string;
-  name?: string;
+  // [key: string]: string | number | undefined;
 }
-
-export interface ITable<T> {
-  columns: Columns<T>;
-  // todo: values of keys should be string or number
-  data: Array<T>;
-  title?: string;
-  linkToId?: string;
-  isFilterable?: boolean;
-  expandableRowsComponent?: ExpandableRowsComponent<T>;
-  initialSorting?: {
-    field: keyof T;
-    order: Order;
-  };
-}
-
-export type Align = "left" | "right" | "center";
 
 export interface Column<T> {
   selector: keyof T;
@@ -40,6 +26,19 @@ export interface Column<T> {
 }
 
 export type Columns<T> = Column<T>[];
+
+export interface ITable<T> {
+  columns: Columns<T>;
+  data: Array<T>;
+  title?: string;
+  linkToId?: string;
+  isFilterable?: boolean;
+  expandableRowsComponent?: ExpandableRowsComponent<T>;
+  initialSorting?: {
+    field: keyof T;
+    order: Order;
+  };
+}
 
 export type SortFunc = (
   aField: string | number,

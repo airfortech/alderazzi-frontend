@@ -35,7 +35,6 @@
 }
 
 .Table thead tr:first-child {
-  /* background-color: var(--color-28); */
   /* box-shadow: 0px 1px 0px var(--color-21); */
 }
 
@@ -84,8 +83,10 @@
   opacity: 0.3;
 }
 
-/* 3, 7, 11 */
-.Table tbody tr:nth-child(4n-1) {
+.bodyTr {
+}
+
+.evenBodyTr {
   background-color: #ffffff0c;
 }
 
@@ -102,5 +103,7 @@
 }
 
 .expandableRow {
+  /* box-shadow: 0px 1px 0px var(--color-10); */
   /* display: none; */
+  /* background-color: var(--color-25); */
 }

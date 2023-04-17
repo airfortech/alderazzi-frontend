@@ -7,7 +7,7 @@ import { tableSortFunc } from "./tableSortFn";
 import classes from "./Table.module.css";
 
 // todo: Nothing found message, translations, catching id's, sticky as option, expandableComponent, passing id as second arg
-export const Table = <T,>({
+export const Table = <T extends Row>({
   columns,
   data,
   title,

@@ -20,7 +20,7 @@ interface Props<T> {
   expandableRowsComponent?: ExpandableRowsComponent<T>;
 }
 
-export const TableBody = <T,>({
+export const TableBody = <T extends Row>({
   bodyData,
   columns,
   linkToId,
@@ -53,6 +53,8 @@ export const TableBody = <T,>({
             row={row}
             colSpan={colSpan}
             expandableRowsComponent={expandableRowsComponent}
+            key={row.id}
+            index={index}
           />
         ))}
     </tbody>

@@ -1,5 +1,5 @@
 import { Columns, SortFunc } from "../../types/Table";
-import { KeyGiver } from "../../types/KeyGiver";
+import { KeyGiver, KeyGiverTableData } from "../../types/KeyGiver";
 import dayjs from "dayjs";
 import { InfoText } from "../InfoText/InfoText";
 import { nextRespawnTime } from "../../utils/nextRespawnTime";
@@ -47,7 +47,7 @@ export const rows = (data: KeyGiver[]) => {
   });
 };
 
-export const columns: Columns<KeyGiver> = [
+export const columns: Columns<KeyGiverTableData> = [
   {
     selector: "id",
     isVisible: false,

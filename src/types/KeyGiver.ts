@@ -11,3 +11,9 @@ export interface KeyGiver {
   nextRespawn: string;
   isActive?: boolean;
 }
+
+export interface KeyGiverTableData
+  extends Omit<
+    KeyGiver,
+    "description" | "respawns" | "lastRespawn" | "isActive"
+  > {}

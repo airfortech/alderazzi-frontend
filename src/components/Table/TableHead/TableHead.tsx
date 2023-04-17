@@ -2,6 +2,7 @@ import {
   Align,
   Columns,
   ExpandableRowsComponent,
+  Row,
   SortFunc,
   SortOption,
 } from "../../../types/Table";
@@ -37,7 +38,7 @@ const thSpanClasses = (align: Align) => {
   return clsx(align === "right" && classes.spanLeft);
 };
 
-export const TableHead = <T,>({
+export const TableHead = <T extends Row>({
   columns,
   title,
   isFilterable,
