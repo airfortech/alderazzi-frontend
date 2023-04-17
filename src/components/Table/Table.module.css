@@ -95,15 +95,24 @@
 }
 
 .row {
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .cursorPointer {
   cursor: pointer;
 }
 
-.expandableRow {
-  /* box-shadow: 0px 1px 0px var(--color-10); */
-  /* display: none; */
-  /* background-color: var(--color-25); */
+.expandableRowTr > td {
+  padding: 0;
+  border-bottom: 1px solid var(--color-10);
+}
+
+.expandableRowContentWrapper {
+  height: auto;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.expandableRowContent {
+  padding: 15px;
 }

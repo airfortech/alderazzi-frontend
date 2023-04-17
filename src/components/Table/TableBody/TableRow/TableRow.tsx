@@ -4,7 +4,15 @@ import {
   ExpandableRowsComponent,
   Row,
 } from "../../../../types/Table";
-import { Fragment, MouseEventHandler, useCallback, useState } from "react";
+import {
+  Fragment,
+  MouseEvent,
+  MouseEventHandler,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -32,10 +40,18 @@ const trClasses = (linkToId: string | undefined, index: number) => {
   );
 };
 
-const expandableRowClasses = (index: number) => {
+const expandableRowTrClasses = (index: number) => {
+  return clsx(classes.expandableRowTr, index % 2 === 1 && classes.evenBodyTr);
+};
+
+const expandableRowContentClasses = () => {
+  return clsx(classes.expandableRowContent);
+};
+
+const expandableRowContentWrapperClasses = (isExpanded: boolean) => {
   return clsx(
-    index % 2 === 1 && classes.expandableRow,
-    index % 2 === 1 && classes.evenBodyTr
+    classes.expandableRowContentWrapper,
+    isExpanded && classes.expandableRowContentWrapperOpen
   );
 };
 
@@ -48,7 +64,9 @@ export const TableRow = <T extends Row>({
   expandableRowsComponent,
 }: Props<T>) => {
   const navigate = useNavigate();
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [expandableRowContentHeight, setExpandableRowContent] = useState(0);
+  const refExpandableRowContent = useRef<HTMLDivElement>(null);
 
   const handleLinkToId = useCallback(
     (id: string, title: string = ""): MouseEventHandler<HTMLTableRowElement> =>
@@ -60,6 +78,15 @@ export const TableRow = <T extends Row>({
       },
     []
   );
+
+  const handleExpandTrigger = (e: MouseEvent<HTMLTableCellElement>) =>
+    setIsExpanded(prev => !prev);
+
+  useEffect(() => {
+    if (refExpandableRowContent.current) {
+      setExpandableRowContent(refExpandableRowContent.current.scrollHeight);
+    }
+  }, []);
 
   return (
     <Fragment key={row.id}>
@@ -74,7 +101,7 @@ export const TableRow = <T extends Row>({
         // key={row.id}
       >
         {expandableRowsComponent && (
-          <td>
+          <td onClick={handleExpandTrigger}>
             {isExpanded ? (
               <KeyboardArrowDownIcon />
             ) : (
@@ -96,12 +123,25 @@ export const TableRow = <T extends Row>({
             )
         )}
       </tr>
-      {expandableRowsComponent && isExpanded && (
+
+      {expandableRowsComponent && (
         <tr
-          className={expandableRowClasses(index)}
+          className={expandableRowTrClasses(index)}
           // key={"expandableRowsComponent-" + row.id}
         >
-          <td colSpan={colSpan}>{expandableRowsComponent(row)}</td>
+          <td colSpan={colSpan}>
+            <div
+              className={expandableRowContentWrapperClasses(isExpanded)}
+              style={{ maxHeight: isExpanded ? expandableRowContentHeight : 0 }}
+            >
+              <div
+                className={expandableRowContentClasses()}
+                ref={refExpandableRowContent}
+              >
+                {expandableRowsComponent(row)}
+              </div>
+            </div>
+          </td>
         </tr>
       )}
     </Fragment>
