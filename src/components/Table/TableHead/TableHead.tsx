@@ -6,7 +6,7 @@ import {
   SortFunc,
   SortOption,
 } from "../../../types/Table";
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction } from "react";
 import clsx from "clsx";
 import SouthIcon from "@mui/icons-material/South";
 import NorthIcon from "@mui/icons-material/North";
@@ -34,8 +34,11 @@ const thClasses = (align: Align, isSortable: boolean) => {
   return clsx(classes["align-" + align], isSortable && classes.cursorPointer);
 };
 
-const thSpanClasses = (align: Align) => {
-  return clsx(align === "right" && classes.spanLeft);
+const thSpanClasses = (align: Align, isActive: boolean) => {
+  return clsx(
+    align === "right" && classes.spanLeft,
+    isActive && classes.activeSort
+  );
 };
 
 export const TableHead = <T extends Row>({
@@ -87,7 +90,12 @@ export const TableHead = <T extends Row>({
                 <p className={thClasses(align, isSortable)}>
                   {header}
                   {isSortable && (
-                    <span className={thSpanClasses(align)}>
+                    <span
+                      className={thSpanClasses(
+                        align,
+                        sortOption?.field === selector
+                      )}
+                    >
                       {sortOption?.field === selector ? (
                         sortOption.order === "asc" ? (
                           <NorthIcon />

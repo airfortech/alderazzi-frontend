@@ -68,6 +68,10 @@
   order: -1;
 }
 
+.activeSort {
+  color: var(--color-23);
+}
+
 .Table thead th p {
   display: flex;
   align-items: center;
@@ -104,7 +108,7 @@
 
 .expandableRowTr > td {
   padding: 0;
-  border-bottom: 1px solid var(--color-10);
+  border-bottom: 1px solid var(--color-10-opacity);
 }
 
 .expandableRowContentWrapper {
