@@ -35,8 +35,7 @@ const tdClasses = (align: Align) => {
 const trClasses = (linkToId: string | undefined, index: number) => {
   return clsx(
     linkToId && classes.cursorPointer,
-    index % 2 === 1 && classes.evenBodyTr,
-    classes.bodyTr
+    index % 2 === 1 && classes.evenBodyTr
   );
 };
 
