@@ -11,6 +11,7 @@ import classes from "./Navigation.module.css";
 export const Navigation = () => {
   const { auth } = useAuth();
 
+  // INFO: https://github.com/mui/material-ui/issues/32749 fixed
   const availableLinks = links.filter(({ allowedRoles }) =>
     isRoleAllowed(allowedRoles, auth?.role)
   );

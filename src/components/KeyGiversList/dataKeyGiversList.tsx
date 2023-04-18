@@ -72,7 +72,7 @@ export const columns: Columns<KeyGiverTableData> = [
     isSortable: true,
     align: "right",
     cell: value => {
-      const { date: nextResp, type } = nextRespawnTime(value as string);
+      const { date: nextResp, type } = nextRespawnTime(value as number);
       return <InfoText message={nextResp} type={type} />;
     },
     sortFunc: sortNextRespawn,
