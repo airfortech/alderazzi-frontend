@@ -59,14 +59,6 @@ export const columns: Columns<KeyGiverTableData> = [
     isFilterable: true,
   },
   {
-    selector: "respawnTime",
-    header: "Czas odrodzenia",
-    isSortable: true,
-    isFilterable: true,
-    align: "right",
-    cell: value => value + "h",
-  },
-  {
     selector: "nextRespawn",
     header: "Odrodzi się",
     isSortable: true,
@@ -76,5 +68,13 @@ export const columns: Columns<KeyGiverTableData> = [
       return <InfoText message={nextResp} type={type} />;
     },
     sortFunc: sortNextRespawn,
+  },
+  {
+    selector: "respawnTime",
+    header: "Czas odrodzenia",
+    isSortable: true,
+    isFilterable: true,
+    align: "right",
+    cell: value => value + "h",
   },
 ];

@@ -78,8 +78,11 @@ export const TableRow = <T extends Row>({
     []
   );
 
-  const handleExpandTrigger = (e: MouseEvent<HTMLTableCellElement>) =>
+  const handleExpandTrigger = (e: MouseEvent<HTMLTableCellElement>) => {
+    // INFO: prevents trigger onClick functions of parent if exists
+    e.stopPropagation();
     setIsExpanded(prev => !prev);
+  };
 
   useEffect(() => {
     if (refExpandableRowContent.current) {
@@ -90,9 +93,10 @@ export const TableRow = <T extends Row>({
   return (
     <Fragment key={row.id}>
       <tr
+        style={{ zIndex: -1 }}
         className={trClasses(linkToId, index)}
         onClick={
-          () => console.log(linkToId)
+          () => console.log("you clicked link:", linkToId)
           // linkToId
           //   ? handleLinkToId(row.id, "name" in row ? row["name"] : "")
           //   : undefined
@@ -100,7 +104,7 @@ export const TableRow = <T extends Row>({
         // key={row.id}
       >
         {expandableRowsComponent && (
-          <td onClick={handleExpandTrigger}>
+          <td onClick={handleExpandTrigger} style={{ zIndex: 99 }}>
             {isExpanded ? (
               <KeyboardArrowDownIcon />
             ) : (
