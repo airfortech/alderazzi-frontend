@@ -2,6 +2,7 @@ import {
   Align,
   Columns,
   ExpandableRowsComponent,
+  OnRowClickFunc,
   Row,
 } from "../../../../types/Table";
 import {
@@ -25,6 +26,7 @@ interface Props<T> {
   row: T;
   colSpan: number;
   index: number;
+  onRowClick?: OnRowClickFunc;
   expandableRowsComponent?: ExpandableRowsComponent<T> | undefined;
 }
 
@@ -32,9 +34,9 @@ const tdClasses = (align: Align) => {
   return clsx(classes["align-" + align]);
 };
 
-const trClasses = (linkToId: string | undefined, index: number) => {
+const trClasses = (index: number, hasOnClickFunction: boolean) => {
   return clsx(
-    linkToId && classes.cursorPointer,
+    hasOnClickFunction && classes.cursorPointer,
     index % 2 === 1 && classes.evenBodyTr
   );
 };
@@ -60,6 +62,7 @@ export const TableRow = <T extends Row>({
   row,
   colSpan,
   index,
+  onRowClick,
   expandableRowsComponent,
 }: Props<T>) => {
   const navigate = useNavigate();
@@ -74,6 +77,15 @@ export const TableRow = <T extends Row>({
         navigate({
           pathname: `${linkToId}/${id}${name}`,
         });
+      },
+    []
+  );
+
+  const handleOnRowClick = useCallback(
+    (id: string): MouseEventHandler<HTMLTableRowElement> =>
+      () => {
+        if (!onRowClick) return;
+        onRowClick(id);
       },
     []
   );
@@ -94,17 +106,11 @@ export const TableRow = <T extends Row>({
     <Fragment key={row.id}>
       <tr
         style={{ zIndex: -1 }}
-        className={trClasses(linkToId, index)}
-        onClick={
-          () => console.log("you clicked link:", linkToId)
-          // linkToId
-          //   ? handleLinkToId(row.id, "name" in row ? row["name"] : "")
-          //   : undefined
-        }
-        // key={row.id}
+        className={trClasses(index, onRowClick ? true : false)}
+        onClick={onRowClick ? handleOnRowClick(row.id) : undefined}
       >
         {expandableRowsComponent && (
-          <td onClick={handleExpandTrigger} style={{ zIndex: 99 }}>
+          <td onClick={handleExpandTrigger} className={classes.cursorPointer}>
             {isExpanded ? (
               <KeyboardArrowDownIcon />
             ) : (

@@ -2,6 +2,7 @@ import {
   Align,
   Columns,
   ExpandableRowsComponent,
+  OnRowClickFunc,
   Row,
 } from "../../../types/Table";
 import { Fragment, MouseEventHandler, ReactElement, useCallback } from "react";
@@ -17,6 +18,7 @@ interface Props<T> {
   filter: string;
   filteringSelectors: Array<keyof T>;
   colSpan: number;
+  onRowClick?: OnRowClickFunc;
   expandableRowsComponent?: ExpandableRowsComponent<T>;
 }
 
@@ -27,6 +29,7 @@ export const TableBody = <T extends Row>({
   filter,
   filteringSelectors,
   colSpan,
+  onRowClick,
   expandableRowsComponent,
 }: Props<T>) => {
   const navigate = useNavigate();
@@ -52,9 +55,10 @@ export const TableBody = <T extends Row>({
             linkToId={linkToId}
             row={row}
             colSpan={colSpan}
-            expandableRowsComponent={expandableRowsComponent}
             key={row.id}
             index={index}
+            onRowClick={onRowClick}
+            expandableRowsComponent={expandableRowsComponent}
           />
         ))}
     </tbody>

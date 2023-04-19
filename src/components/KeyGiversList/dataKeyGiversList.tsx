@@ -1,4 +1,4 @@
-import { Columns, SortFunc } from "../../types/Table";
+import { Columns, OnRowClickFunc, SortFunc } from "../../types/Table";
 import { KeyGiver, KeyGiverTableData } from "../../types/KeyGiver";
 import dayjs from "dayjs";
 import { InfoText } from "../InfoText/InfoText";
@@ -35,6 +35,8 @@ const sortNextRespawn: SortFunc = (aField, bField, order) => {
 
   return 0;
 };
+
+export const handleDetails: OnRowClickFunc = id => console.log(id);
 
 export const rows = (data: KeyGiver[]) => {
   return data?.map(({ id, name, respawnTime, nextRespawn }) => {

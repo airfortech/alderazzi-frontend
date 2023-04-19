@@ -33,11 +33,12 @@ export interface ITable<T> {
   title?: string;
   linkToId?: string;
   isFilterable?: boolean;
-  expandableRowsComponent?: ExpandableRowsComponent<T>;
   initialSorting?: {
     field: keyof T;
     order: Order;
   };
+  onRowClick?: OnRowClickFunc;
+  expandableRowsComponent?: ExpandableRowsComponent<T>;
 }
 
 export type SortFunc = (
@@ -49,5 +50,7 @@ export type SortFunc = (
 export type CellFunc = (
   value: string | number
 ) => string | number | ReactElement;
+
+export type OnRowClickFunc = (id: string) => void;
 
 export type ExpandableRowsComponent<T> = (props: T) => ReactElement;

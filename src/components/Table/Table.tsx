@@ -1,6 +1,5 @@
 import { Row, SortFunc, SortOption, ITable } from "../../types/Table";
 import { useMemo, useState } from "react";
-import clsx from "clsx";
 import { TableHead } from "./TableHead/TableHead";
 import { TableBody } from "./TableBody/TableBody";
 import { tableSortFunc } from "./tableSortFn";
@@ -14,6 +13,7 @@ export const Table = <T extends Row>({
   linkToId,
   initialSorting,
   isFilterable = false,
+  onRowClick,
   expandableRowsComponent,
 }: ITable<T>) => {
   const initialBodyData = initialSorting
@@ -72,6 +72,7 @@ export const Table = <T extends Row>({
         columns={columns}
         bodyData={bodyData}
         linkToId={linkToId}
+        onRowClick={onRowClick}
         filter={filter}
         filteringSelectors={filteringSelectors}
         colSpan={colSpan}

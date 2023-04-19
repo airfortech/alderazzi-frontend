@@ -1,5 +1,9 @@
 import { useKeyGivers } from "../../hooks/useKeyGivers";
-import { columns, rows } from "../KeyGiversList/dataKeyGiversList";
+import {
+  columns,
+  handleDetails,
+  rows,
+} from "../KeyGiversList/dataKeyGiversList";
 import { Loader } from "../Loader/Loader";
 import { Table } from "../Table/Table";
 
@@ -23,6 +27,7 @@ export const KeyGivers = () => {
           linkToId="/klucznicy"
           expandableRowsComponent={props => <p>{props.id}</p>}
           initialSorting={{ field: "nextRespawn", order: "asc" }}
+          onRowClick={handleDetails}
         />
       )}
     </div>
