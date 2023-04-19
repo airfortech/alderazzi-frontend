@@ -11,6 +11,7 @@ export interface SortOption<T> {
 
 export interface Row {
   id: string;
+  // TODO: check if you can limit key to types provided below
   // [key: string]: string | number | undefined;
 }
 
@@ -22,7 +23,7 @@ export interface Column<T> {
   isSortable?: boolean;
   isFilterable?: boolean;
   isOnRowClickActive?: boolean;
-  cell?: CellFunc;
+  cell?: CellFunc<T>;
   sortFunc?: SortFunc;
 }
 
@@ -37,7 +38,7 @@ export interface ITable<T> {
     field: keyof T;
     order: Order;
   };
-  onRowClick?: OnRowClickFunc;
+  onRowClick?: OnRowClickFunc<T>;
   expandableRowsComponent?: ExpandableRowsComponent<T>;
 }
 
@@ -47,10 +48,11 @@ export type SortFunc = (
   order: Order
 ) => 1 | -1 | 0;
 
-export type CellFunc = (
-  value: string | number
+export type CellFunc<T> = (
+  value: string | number,
+  props: T
 ) => string | number | ReactElement;
 
-export type OnRowClickFunc = (id: string) => void;
+export type OnRowClickFunc<T> = (props: T) => void;
 
 export type ExpandableRowsComponent<T> = (props: T) => ReactElement;

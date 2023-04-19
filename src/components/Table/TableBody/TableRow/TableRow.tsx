@@ -25,7 +25,7 @@ interface Props<T> {
   row: T;
   colSpan: number;
   index: number;
-  onRowClick?: OnRowClickFunc;
+  onRowClick?: OnRowClickFunc<T>;
   expandableRowsComponent?: ExpandableRowsComponent<T> | undefined;
 }
 
@@ -73,10 +73,10 @@ export const TableRow = <T extends Row>({
   const refExpandableRowContent = useRef<HTMLDivElement>(null);
 
   const handleOnRowClick = useCallback(
-    (id: string): MouseEventHandler<HTMLTableRowElement> =>
+    (props: T): MouseEventHandler<HTMLTableRowElement> =>
       () => {
         if (!onRowClick) return;
-        onRowClick(id);
+        onRowClick(props);
       },
     []
   );
@@ -89,6 +89,7 @@ export const TableRow = <T extends Row>({
 
   useEffect(() => {
     if (refExpandableRowContent.current) {
+      // INFO: transition for height: auto fix
       setExpandableRowContent(refExpandableRowContent.current.scrollHeight);
     }
   }, []);
@@ -98,7 +99,7 @@ export const TableRow = <T extends Row>({
       <tr
         style={{ zIndex: -1 }}
         className={trClasses(index)}
-        onClick={onRowClick ? handleOnRowClick(row.id) : undefined}
+        onClick={onRowClick ? handleOnRowClick(row) : undefined}
       >
         {expandableRowsComponent && (
           <td onClick={handleExpandTrigger} className={classes.cursorPointer}>
@@ -135,7 +136,7 @@ export const TableRow = <T extends Row>({
               >
                 {!cell
                   ? (row[selector] as string)
-                  : cell(row[selector] as string)}
+                  : cell(row[selector] as string, row)}
               </td>
             )
         )}

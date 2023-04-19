@@ -36,7 +36,9 @@ const sortNextRespawn: SortFunc = (aField, bField, order) => {
   return 0;
 };
 
-export const handleDetails: OnRowClickFunc = id => console.log(id);
+// TODO: check if it is possible to type OnRowClickFunc function in way you dont need provide <KeyGiver>
+export const handleDetails: OnRowClickFunc<KeyGiver> = props =>
+  console.log(props);
 
 export const rows = (data: KeyGiver[]) => {
   return data?.map(({ id, name, respawnTime, nextRespawn }) => {
@@ -82,12 +84,12 @@ export const columns: Columns<KeyGiverTableData> = [
   {
     selector: "id",
     isOnRowClickActive: false,
-    cell: value => (
+    cell: (value, props) => (
       <button
         style={{ height: "100%", width: "100%" }}
         onClick={e => {
           e.stopPropagation();
-          console.log("ok");
+          console.log("value:", value, "props:", props);
         }}
       >
         x

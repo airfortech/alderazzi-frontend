@@ -17,7 +17,7 @@ interface Props<T> {
   filter: string;
   filteringSelectors: Array<keyof T>;
   colSpan: number;
-  onRowClick?: OnRowClickFunc;
+  onRowClick?: OnRowClickFunc<T>;
   expandableRowsComponent?: ExpandableRowsComponent<T>;
 }
 
