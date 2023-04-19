@@ -22,7 +22,6 @@ import clsx from "clsx";
 
 interface Props<T> {
   columns: Columns<T>;
-  linkToId?: string;
   row: T;
   colSpan: number;
   index: number;
@@ -30,14 +29,18 @@ interface Props<T> {
   expandableRowsComponent?: ExpandableRowsComponent<T> | undefined;
 }
 
-const tdClasses = (align: Align) => {
-  return clsx(classes["align-" + align]);
+const trClasses = (index: number) => {
+  return clsx(index % 2 === 1 && classes.evenBodyTr);
 };
 
-const trClasses = (index: number, hasOnClickFunction: boolean) => {
+const tdClasses = (
+  align: Align,
+  isOnRowClickActive: boolean,
+  hasOnClickFunction: boolean
+) => {
   return clsx(
-    hasOnClickFunction && classes.cursorPointer,
-    index % 2 === 1 && classes.evenBodyTr
+    classes["align-" + align],
+    isOnRowClickActive && hasOnClickFunction && classes.cursorPointer
   );
 };
 
@@ -58,7 +61,6 @@ const expandableRowContentWrapperClasses = (isExpanded: boolean) => {
 
 export const TableRow = <T extends Row>({
   columns,
-  linkToId,
   row,
   colSpan,
   index,
@@ -69,17 +71,6 @@ export const TableRow = <T extends Row>({
   const [isExpanded, setIsExpanded] = useState(false);
   const [expandableRowContentHeight, setExpandableRowContent] = useState(0);
   const refExpandableRowContent = useRef<HTMLDivElement>(null);
-
-  const handleLinkToId = useCallback(
-    (id: string, title: string = ""): MouseEventHandler<HTMLTableRowElement> =>
-      () => {
-        const name = title ? `-${title.split(" ").join("-")}` : "";
-        navigate({
-          pathname: `${linkToId}/${id}${name}`,
-        });
-      },
-    []
-  );
 
   const handleOnRowClick = useCallback(
     (id: string): MouseEventHandler<HTMLTableRowElement> =>
@@ -106,7 +97,7 @@ export const TableRow = <T extends Row>({
     <Fragment key={row.id}>
       <tr
         style={{ zIndex: -1 }}
-        className={trClasses(index, onRowClick ? true : false)}
+        className={trClasses(index)}
         onClick={onRowClick ? handleOnRowClick(row.id) : undefined}
       >
         {expandableRowsComponent && (
@@ -120,11 +111,28 @@ export const TableRow = <T extends Row>({
         )}
         {columns.map(
           (
-            { isVisible = true, selector, header, align = "left", cell },
+            {
+              isVisible = true,
+              selector,
+              align = "left",
+              isOnRowClickActive = true,
+              cell,
+            },
             index
           ) =>
             isVisible && (
-              <td className={tdClasses(align)} key={index}>
+              <td
+                className={tdClasses(
+                  align,
+                  isOnRowClickActive,
+                  onRowClick ? true : false
+                )}
+                key={index}
+                onClick={e => {
+                  if (isOnRowClickActive) return;
+                  e.stopPropagation();
+                }}
+              >
                 {!cell
                   ? (row[selector] as string)
                   : cell(row[selector] as string)}
@@ -134,10 +142,7 @@ export const TableRow = <T extends Row>({
       </tr>
 
       {expandableRowsComponent && (
-        <tr
-          className={expandableRowTrClasses(index)}
-          // key={"expandableRowsComponent-" + row.id}
-        >
+        <tr className={expandableRowTrClasses(index)}>
           <td colSpan={colSpan}>
             <div
               className={expandableRowContentWrapperClasses(isExpanded)}

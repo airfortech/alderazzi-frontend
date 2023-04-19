@@ -21,6 +21,7 @@ export interface Column<T> {
   align?: Align;
   isSortable?: boolean;
   isFilterable?: boolean;
+  isOnRowClickActive?: boolean;
   cell?: CellFunc;
   sortFunc?: SortFunc;
 }
@@ -31,7 +32,6 @@ export interface ITable<T> {
   columns: Columns<T>;
   data: Array<T>;
   title?: string;
-  linkToId?: string;
   isFilterable?: boolean;
   initialSorting?: {
     field: keyof T;

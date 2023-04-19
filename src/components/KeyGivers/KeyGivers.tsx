@@ -24,7 +24,6 @@ export const KeyGivers = () => {
           columns={columns}
           title="Lista kluczników"
           isFilterable
-          linkToId="/klucznicy"
           expandableRowsComponent={props => <p>{props.id}</p>}
           initialSorting={{ field: "nextRespawn", order: "asc" }}
           onRowClick={handleDetails}

@@ -79,4 +79,19 @@ export const columns: Columns<KeyGiverTableData> = [
     align: "right",
     cell: value => value + "h",
   },
+  {
+    selector: "id",
+    isOnRowClickActive: false,
+    cell: value => (
+      <button
+        style={{ height: "100%", width: "100%" }}
+        onClick={e => {
+          e.stopPropagation();
+          console.log("ok");
+        }}
+      >
+        x
+      </button>
+    ),
+  },
 ];

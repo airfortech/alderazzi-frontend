@@ -10,7 +10,6 @@ export const Table = <T extends Row>({
   columns,
   data,
   title,
-  linkToId,
   initialSorting,
   isFilterable = false,
   onRowClick,
@@ -71,7 +70,6 @@ export const Table = <T extends Row>({
       <TableBody
         columns={columns}
         bodyData={bodyData}
-        linkToId={linkToId}
         onRowClick={onRowClick}
         filter={filter}
         filteringSelectors={filteringSelectors}
