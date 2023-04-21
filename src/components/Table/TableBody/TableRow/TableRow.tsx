@@ -14,7 +14,6 @@ import {
   useRef,
   useState,
 } from "react";
-import { useNavigate } from "react-router-dom";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import classes from "../../Table.module.css";
@@ -67,7 +66,6 @@ export const TableRow = <T extends Row>({
   onRowClick,
   expandableRowsComponent,
 }: Props<T>) => {
-  const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(false);
   const [expandableRowContentHeight, setExpandableRowContent] = useState(0);
   const refExpandableRowContent = useRef<HTMLDivElement>(null);

@@ -54,16 +54,6 @@ export const TableHead = <T extends Row>({
 }: Props<T>) => {
   return (
     <thead>
-      {(title || isFilterable) && (
-        <tr>
-          <th colSpan={colSpan}>
-            <div className={headerClasses(title)}>
-              {title && <p className={classes.title}>{title}</p>}
-              {isFilterable && <Filter filter={filter} setFilter={setFilter} />}
-            </div>
-          </th>
-        </tr>
-      )}
       <tr>
         {expandableRowsComponent && <th></th>}
         {columns.map(

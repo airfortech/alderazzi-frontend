@@ -1,14 +1,9 @@
 import {
-  Align,
   Columns,
   ExpandableRowsComponent,
   OnRowClickFunc,
   Row,
 } from "../../../types/Table";
-import { Fragment, MouseEventHandler, ReactElement, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
-import clsx from "clsx";
-import classes from "../Table.module.css";
 import { TableRow } from "./TableRow/TableRow";
 
 interface Props<T> {
@@ -30,8 +25,6 @@ export const TableBody = <T extends Row>({
   onRowClick,
   expandableRowsComponent,
 }: Props<T>) => {
-  const navigate = useNavigate();
-
   return (
     <tbody>
       {bodyData

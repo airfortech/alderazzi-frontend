@@ -4,6 +4,7 @@ import { TableHead } from "./TableHead/TableHead";
 import { TableBody } from "./TableBody/TableBody";
 import { tableSortFunc } from "./tableSortFn";
 import classes from "./Table.module.css";
+import { TableHeader } from "./TableHeader/TableHeader";
 
 // todo: Nothing found message, translations, catching id's, sticky as option, expandableComponent, passing id as second arg
 export const Table = <T extends Row>({
@@ -55,27 +56,37 @@ export const Table = <T extends Row>({
     ).length + (expandableRowsComponent ? 1 : 0);
 
   return (
-    <table className={classes.Table}>
-      <TableHead
-        columns={columns}
-        sortOption={sortOption}
-        handleSort={handleSort}
+    <div className="tableContainer">
+      <TableHeader
         title={title}
         isFilterable={isFilterable}
         filter={filter}
         setFilter={setFilter}
-        colSpan={colSpan}
-        expandableRowsComponent={expandableRowsComponent}
       />
-      <TableBody
-        columns={columns}
-        bodyData={bodyData}
-        onRowClick={onRowClick}
-        filter={filter}
-        filteringSelectors={filteringSelectors}
-        colSpan={colSpan}
-        expandableRowsComponent={expandableRowsComponent}
-      />
-    </table>
+      <div className={classes.TableWrapper}>
+        <table className={classes.Table}>
+          <TableHead
+            columns={columns}
+            sortOption={sortOption}
+            handleSort={handleSort}
+            title={title}
+            isFilterable={isFilterable}
+            filter={filter}
+            setFilter={setFilter}
+            colSpan={colSpan}
+            expandableRowsComponent={expandableRowsComponent}
+          />
+          <TableBody
+            columns={columns}
+            bodyData={bodyData}
+            onRowClick={onRowClick}
+            filter={filter}
+            filteringSelectors={filteringSelectors}
+            colSpan={colSpan}
+            expandableRowsComponent={expandableRowsComponent}
+          />
+        </table>
+      </div>
+    </div>
   );
 };
