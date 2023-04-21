@@ -1,12 +1,8 @@
 import { Row, SortFunc, SortOption, ITable } from "../../types/Table";
 import { useMemo, useState } from "react";
-import { TableHead } from "./TableHead/TableHead";
-import { TableBody } from "./TableBody/TableBody";
 import { tableSortFunc } from "./tableSortFn";
-import classes from "./Table.module.css";
-import { TableHeader } from "./TableHeader/TableHeader";
+import { TableRender } from "./TableRender";
 
-// todo: Nothing found message, translations, catching id's, sticky as option, expandableComponent, passing id as second arg
 export const Table = <T extends Row>({
   columns,
   data,
@@ -56,37 +52,19 @@ export const Table = <T extends Row>({
     ).length + (expandableRowsComponent ? 1 : 0);
 
   return (
-    <div className="tableContainer">
-      <TableHeader
-        title={title}
-        isFilterable={isFilterable}
-        filter={filter}
-        setFilter={setFilter}
-      />
-      <div className={classes.TableWrapper}>
-        <table className={classes.Table}>
-          <TableHead
-            columns={columns}
-            sortOption={sortOption}
-            handleSort={handleSort}
-            title={title}
-            isFilterable={isFilterable}
-            filter={filter}
-            setFilter={setFilter}
-            colSpan={colSpan}
-            expandableRowsComponent={expandableRowsComponent}
-          />
-          <TableBody
-            columns={columns}
-            bodyData={bodyData}
-            onRowClick={onRowClick}
-            filter={filter}
-            filteringSelectors={filteringSelectors}
-            colSpan={colSpan}
-            expandableRowsComponent={expandableRowsComponent}
-          />
-        </table>
-      </div>
-    </div>
+    <TableRender
+      bodyData={bodyData}
+      columns={columns}
+      colSpan={colSpan}
+      title={title}
+      sortOption={sortOption}
+      handleSort={handleSort}
+      isFilterable={isFilterable}
+      filter={filter}
+      setFilter={setFilter}
+      filteringSelectors={filteringSelectors}
+      onRowClick={onRowClick}
+      expandableRowsComponent={expandableRowsComponent}
+    />
   );
 };

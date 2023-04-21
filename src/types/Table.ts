@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { Dispatch, ReactElement, SetStateAction } from "react";
 
 export type Order = "asc" | "desc";
 
@@ -38,6 +38,21 @@ export interface ITable<T> {
     field: keyof T;
     order: Order;
   };
+  onRowClick?: OnRowClickFunc<T>;
+  expandableRowsComponent?: ExpandableRowsComponent<T>;
+}
+
+export interface ITableRender<T> {
+  bodyData: T[];
+  columns: Columns<T>;
+  title?: string;
+  isFilterable: boolean;
+  filter: string;
+  setFilter: Dispatch<SetStateAction<string>>;
+  filteringSelectors: Array<keyof T>;
+  sortOption: SortOption<T> | undefined;
+  handleSort: (selector: string, sortFunc: SortFunc | undefined) => void;
+  colSpan: number;
   onRowClick?: OnRowClickFunc<T>;
   expandableRowsComponent?: ExpandableRowsComponent<T>;
 }

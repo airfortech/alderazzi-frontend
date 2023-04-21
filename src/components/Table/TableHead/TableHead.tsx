@@ -13,16 +13,13 @@ import NorthIcon from "@mui/icons-material/North";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import { Filter } from "../Filter/Filter";
 import classes from "../Table.module.css";
+import { relative } from "path";
 
 interface Props<T> {
   columns: Columns<T>;
-  title: string | undefined;
-  isFilterable: boolean;
+  colSpan: number;
   sortOption: SortOption<T> | undefined;
   handleSort: (selector: string, sortFunc: SortFunc | undefined) => void;
-  filter: string;
-  setFilter: Dispatch<SetStateAction<string>>;
-  colSpan: number;
   expandableRowsComponent?: ExpandableRowsComponent<T>;
 }
 
@@ -43,17 +40,13 @@ const thSpanClasses = (align: Align, isActive: boolean) => {
 
 export const TableHead = <T extends Row>({
   columns,
-  title,
-  isFilterable,
+  colSpan,
   sortOption,
   handleSort,
-  filter,
-  setFilter,
-  colSpan,
   expandableRowsComponent,
 }: Props<T>) => {
   return (
-    <thead>
+    <thead style={{ position: "relative" }}>
       <tr>
         {expandableRowsComponent && <th></th>}
         {columns.map(
@@ -101,6 +94,11 @@ export const TableHead = <T extends Row>({
               </th>
             )
         )}
+      </tr>
+      <tr>
+        <th colSpan={colSpan} className={classes.scrollTop}>
+          <div className={classes.scrollTopContent}></div>
+        </th>
       </tr>
     </thead>
   );

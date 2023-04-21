@@ -17,16 +17,13 @@ export const TableHeader = ({
   setFilter,
 }: Props) => {
   return (
-    <header>
+    <header className={classes.TableHeader}>
       {(title || isFilterable) && (
         <div className={classes.headerWrapper}>
           {title && <p className={classes.headerTitle}>{title}</p>}
           {isFilterable && <Filter filter={filter} setFilter={setFilter} />}
         </div>
       )}
-      <div className="scroll">
-        <div className="scrollContent"></div>
-      </div>
     </header>
   );
 };

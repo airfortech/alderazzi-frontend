@@ -96,4 +96,8 @@ export const columns: Columns<KeyGiverTableData> = [
       </button>
     ),
   },
+  {
+    selector: "id",
+    // isVisible: false,
+  },
 ];

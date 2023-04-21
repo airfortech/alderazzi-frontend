@@ -1,4 +1,9 @@
+.TableContainer {
+  width: 100%;
+}
+
 .TableWrapper {
+  overflow-x: auto;
 }
 
 .Table {
@@ -43,22 +48,67 @@
 
 /* header */
 
+.TableHeader {
+  background-color: var(--color-2);
+}
+
 .headerWrapper {
   padding: 15px;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto minmax(140px, 1fr);
   gap: 40px;
   align-items: center;
   font-size: 0.875rem;
   font-weight: 500;
   user-select: none;
-  background-color: var(--color-2);
 }
 
 .headerTitle {
   font-size: 1.1rem;
   letter-spacing: 1px;
   color: var(--color-10);
+}
+
+.Table .scrollTop {
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow-x: scroll;
+}
+
+.scrollTopContent {
+  width: 200%;
+  height: 1px;
+}
+
+.scrollTop::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+}
+
+.scrollTop::-webkit-scrollbar-track {
+  background-color: var(--color-25);
+}
+
+.scrollTop::-webkit-scrollbar-thumb {
+  background-color: var(--color-26);
+  outline: none;
+}
+
+.scrollBottom::-webkit-scrollbar {
+  width: 4px;
+  height: 9px;
+}
+
+.scrollBottom::-webkit-scrollbar-track {
+  background-color: var(--color-25);
+}
+
+.scrollBottom::-webkit-scrollbar-thumb {
+  background-color: var(--color-26);
+  outline: none;
 }
 
 /* ********* */
