@@ -46,7 +46,6 @@ export const TableRender = <T extends Row>({
     };
 
     if (tableWrapper && scrollTop && tableContainer && thead) {
-      const tableWidth = tableContainer.offsetWidth;
       const tableRowsWidth = tableWrapper.querySelector("table")?.offsetWidth;
       const scrollTopContent = scrollTop.querySelector("div");
       scrollTop.style.bottom = -thead.offsetHeight + "px";

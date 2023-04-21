@@ -5,6 +5,7 @@ import {
   Row,
 } from "../../../types/Table";
 import { TableRow } from "./TableRow/TableRow";
+import classes from "../Table.module.css";
 
 interface Props<T> {
   bodyData: T[];
@@ -25,22 +26,19 @@ export const TableBody = <T extends Row>({
   onRowClick,
   expandableRowsComponent,
 }: Props<T>) => {
+  const data = bodyData.filter(row => {
+    for (let selector of filteringSelectors) {
+      if (
+        row[selector]?.toString().toLowerCase().includes(filter.toLowerCase())
+      )
+        return true;
+    }
+    return false;
+  });
   return (
     <tbody>
-      {bodyData
-        .filter(row => {
-          for (let selector of filteringSelectors) {
-            if (
-              row[selector]
-                ?.toString()
-                .toLowerCase()
-                .includes(filter.toLowerCase())
-            )
-              return true;
-          }
-          return false;
-        })
-        .map((row, index) => (
+      {data.length > 0 ? (
+        data.map((row, index) => (
           <TableRow
             columns={columns}
             row={row}
@@ -50,7 +48,14 @@ export const TableBody = <T extends Row>({
             onRowClick={onRowClick}
             expandableRowsComponent={expandableRowsComponent}
           />
-        ))}
+        ))
+      ) : (
+        <tr>
+          <td colSpan={colSpan} className={classes.noData}>
+            No data found
+          </td>
+        </tr>
+      )}
     </tbody>
   );
 };
