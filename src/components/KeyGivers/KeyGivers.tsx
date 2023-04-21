@@ -27,6 +27,7 @@ export const KeyGivers = () => {
           expandableRowsComponent={props => <p>{props.id}</p>}
           initialSorting={{ field: "nextRespawn", order: "asc" }}
           onRowClick={handleDetails}
+          horizontalScroll="top"
         />
       )}
     </div>

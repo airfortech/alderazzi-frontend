@@ -38,6 +38,7 @@ export interface ITable<T> {
     field: keyof T;
     order: Order;
   };
+  horizontalScroll?: "top" | "bottom";
   onRowClick?: OnRowClickFunc<T>;
   expandableRowsComponent?: ExpandableRowsComponent<T>;
 }
@@ -53,6 +54,7 @@ export interface ITableRender<T> {
   sortOption: SortOption<T> | undefined;
   handleSort: (selector: string, sortFunc: SortFunc | undefined) => void;
   colSpan: number;
+  horizontalScroll: "top" | "bottom";
   onRowClick?: OnRowClickFunc<T>;
   expandableRowsComponent?: ExpandableRowsComponent<T>;
 }

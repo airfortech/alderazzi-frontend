@@ -6,26 +6,19 @@ import {
   SortFunc,
   SortOption,
 } from "../../../types/Table";
-import { Dispatch, SetStateAction } from "react";
-import clsx from "clsx";
 import SouthIcon from "@mui/icons-material/South";
 import NorthIcon from "@mui/icons-material/North";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
-import { Filter } from "../Filter/Filter";
+import clsx from "clsx";
 import classes from "../Table.module.css";
-import { relative } from "path";
 
 interface Props<T> {
   columns: Columns<T>;
-  colSpan: number;
   sortOption: SortOption<T> | undefined;
   handleSort: (selector: string, sortFunc: SortFunc | undefined) => void;
   expandableRowsComponent?: ExpandableRowsComponent<T>;
+  theadRef: React.RefObject<HTMLTableSectionElement>;
 }
-
-const headerClasses = (title: string | undefined) => {
-  return clsx(classes.header, !title && null);
-};
 
 const thClasses = (align: Align, isSortable: boolean) => {
   return clsx(classes["align-" + align], isSortable && classes.cursorPointer);
@@ -40,13 +33,13 @@ const thSpanClasses = (align: Align, isActive: boolean) => {
 
 export const TableHead = <T extends Row>({
   columns,
-  colSpan,
   sortOption,
   handleSort,
   expandableRowsComponent,
+  theadRef,
 }: Props<T>) => {
   return (
-    <thead style={{ position: "relative" }}>
+    <thead ref={theadRef}>
       <tr>
         {expandableRowsComponent && <th></th>}
         {columns.map(
@@ -94,11 +87,6 @@ export const TableHead = <T extends Row>({
               </th>
             )
         )}
-      </tr>
-      <tr>
-        <th colSpan={colSpan} className={classes.scrollTop}>
-          <div className={classes.scrollTopContent}></div>
-        </th>
       </tr>
     </thead>
   );
