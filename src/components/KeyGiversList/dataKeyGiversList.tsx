@@ -84,12 +84,12 @@ export const columns: Columns<KeyGiverTableData> = [
   {
     selector: "id",
     isOnRowClickActive: false,
-    cell: (value, props) => (
+    cell: value => (
       <button
         style={{ height: "100%", width: "100%" }}
         onClick={e => {
           e.stopPropagation();
-          console.log("value:", value, "props:", props);
+          console.log("value:", value);
         }}
       >
         x
@@ -98,6 +98,6 @@ export const columns: Columns<KeyGiverTableData> = [
   },
   {
     selector: "id",
-    // isVisible: false,
+    header: "ID",
   },
 ];

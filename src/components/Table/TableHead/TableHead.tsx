@@ -11,11 +11,13 @@ import NorthIcon from "@mui/icons-material/North";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import clsx from "clsx";
 import classes from "../Table.module.css";
+import { theadTrTh, theadTrThSwitcher } from "../TableCss";
 
 interface Props<T> {
   columns: Columns<T>;
   sortOption: SortOption<T> | undefined;
   handleSort: (selector: string, sortFunc: SortFunc | undefined) => void;
+  stickyColumn: "switcher" | "first column" | "none";
   expandableRowsComponent?: ExpandableRowsComponent<T>;
   theadRef: React.RefObject<HTMLTableSectionElement>;
 }
@@ -35,26 +37,29 @@ export const TableHead = <T extends Row>({
   columns,
   sortOption,
   handleSort,
+  stickyColumn,
   expandableRowsComponent,
   theadRef,
 }: Props<T>) => {
   return (
     <thead ref={theadRef}>
       <tr>
-        {expandableRowsComponent && <th></th>}
-        {columns.map(
-          (
-            {
-              isVisible = true,
-              header,
-              selector,
-              isSortable = false,
-              align = "left",
-              sortFunc,
-            },
-            index
-          ) =>
-            isVisible && (
+        {expandableRowsComponent && (
+          <th className={theadTrThSwitcher(stickyColumn)}></th>
+        )}
+        {columns
+          .filter(({ isVisible = true }) => isVisible === true)
+          .map(
+            (
+              {
+                header,
+                selector,
+                isSortable = false,
+                align = "left",
+                sortFunc,
+              },
+              index
+            ) => (
               <th
                 key={(selector as string) + index}
                 onClick={
@@ -62,6 +67,7 @@ export const TableHead = <T extends Row>({
                     ? () => handleSort(selector as string, sortFunc)
                     : undefined
                 }
+                className={theadTrTh(index, stickyColumn)}
               >
                 <p className={thClasses(align, isSortable)}>
                   {header}
@@ -86,7 +92,7 @@ export const TableHead = <T extends Row>({
                 </p>
               </th>
             )
-        )}
+          )}
       </tr>
     </thead>
   );

@@ -10,6 +10,7 @@ export const Table = <T extends Row>({
   initialSorting,
   isFilterable = false,
   horizontalScroll = "bottom",
+  stickyColumn = "none",
   onRowClick,
   expandableRowsComponent,
 }: ITable<T>) => {
@@ -67,6 +68,7 @@ export const Table = <T extends Row>({
       onRowClick={onRowClick}
       expandableRowsComponent={expandableRowsComponent}
       horizontalScroll={horizontalScroll}
+      stickyColumn={stickyColumn}
     />
   );
 };

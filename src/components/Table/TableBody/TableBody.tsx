@@ -14,6 +14,7 @@ interface Props<T> {
   filteringSelectors: Array<keyof T>;
   colSpan: number;
   onRowClick?: OnRowClickFunc<T>;
+  stickyColumn: "switcher" | "first column" | "none";
   expandableRowsComponent?: ExpandableRowsComponent<T>;
 }
 
@@ -23,6 +24,7 @@ export const TableBody = <T extends Row>({
   filter,
   filteringSelectors,
   colSpan,
+  stickyColumn,
   onRowClick,
   expandableRowsComponent,
 }: Props<T>) => {
@@ -45,6 +47,7 @@ export const TableBody = <T extends Row>({
             colSpan={colSpan}
             key={row.id}
             index={index}
+            stickyColumn={stickyColumn}
             onRowClick={onRowClick}
             expandableRowsComponent={expandableRowsComponent}
           />

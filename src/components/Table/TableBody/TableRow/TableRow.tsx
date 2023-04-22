@@ -18,18 +18,29 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import classes from "../../Table.module.css";
 import clsx from "clsx";
+import {
+  bodyTr,
+  bodyTrExpandTrigger,
+  bodyTrExpandableRow,
+  bodyTrTd,
+} from "../../TableCss";
 
 interface Props<T> {
   columns: Columns<T>;
   row: T;
   colSpan: number;
   index: number;
+  stickyColumn: "switcher" | "first column" | "none";
   onRowClick?: OnRowClickFunc<T>;
   expandableRowsComponent?: ExpandableRowsComponent<T> | undefined;
 }
 
 const trClasses = (index: number) => {
   return clsx(index % 2 === 1 && classes.evenBodyTr);
+};
+
+const tdSwitcherClasses = () => {
+  return clsx(classes.tdSwitcher, classes.cursorPointer);
 };
 
 const tdClasses = (
@@ -63,6 +74,7 @@ export const TableRow = <T extends Row>({
   row,
   colSpan,
   index,
+  stickyColumn,
   onRowClick,
   expandableRowsComponent,
 }: Props<T>) => {
@@ -96,11 +108,14 @@ export const TableRow = <T extends Row>({
     <Fragment key={row.id}>
       <tr
         style={{ zIndex: -1 }}
-        className={trClasses(index)}
+        className={bodyTr(index)}
         onClick={onRowClick ? handleOnRowClick(row) : undefined}
       >
         {expandableRowsComponent && (
-          <td onClick={handleExpandTrigger} className={classes.cursorPointer}>
+          <td
+            onClick={handleExpandTrigger}
+            className={bodyTrExpandTrigger(index, stickyColumn)}
+          >
             {isExpanded ? (
               <KeyboardArrowDownIcon />
             ) : (
@@ -108,40 +123,38 @@ export const TableRow = <T extends Row>({
             )}
           </td>
         )}
-        {columns.map(
-          (
-            {
-              isVisible = true,
-              selector,
-              align = "left",
-              isOnRowClickActive = true,
-              cell,
-            },
-            index
-          ) =>
-            isVisible && (
+        {columns
+          .filter(({ isVisible = true }) => isVisible === true)
+          .map(
+            (
+              { selector, align = "left", isOnRowClickActive = true, cell },
+              i
+            ) => (
               <td
-                className={tdClasses(
+                className={bodyTrTd(
+                  index,
+                  i,
                   align,
                   isOnRowClickActive,
+                  stickyColumn,
                   onRowClick ? true : false
                 )}
-                key={index}
+                key={i}
                 onClick={e => {
                   if (isOnRowClickActive) return;
                   e.stopPropagation();
                 }}
               >
                 {!cell
-                  ? (row[selector] as string)
+                  ? (row[selector] as string) + i
                   : cell(row[selector] as string, row)}
               </td>
             )
-        )}
+          )}
       </tr>
 
       {expandableRowsComponent && (
-        <tr className={expandableRowTrClasses(index)}>
+        <tr className={bodyTrExpandableRow(index, stickyColumn)}>
           <td colSpan={colSpan}>
             <div
               className={expandableRowContentWrapperClasses(isExpanded)}

@@ -38,16 +38,14 @@
 }
 
 .Table thead {
-  /* top: 50px; */
-  /* position: sticky; */
+  position: relative;
   user-select: none;
   background-color: var(--color-2);
-  /* backdrop-filter: blur(9px); */
   box-shadow: 0px 1px 0px var(--color-21);
+  z-index: 1;
 }
 
 .Table thead tr:first-child {
-  /* box-shadow: 0px 1px 0px var(--color-21); */
 }
 
 /* header */
@@ -80,10 +78,10 @@
   bottom: 0;
   left: 0;
   overflow-x: scroll;
+  z-index: 2;
 }
 
 .scrollTopContent {
-  /* width: 100%; */
   width: 0;
   height: 1px;
 }
@@ -156,11 +154,129 @@
 }
 
 .evenBodyTr {
-  background-color: #ffffff0c;
+  /* background-color: #ffffff0c !important; */
 }
 
 .Table tbody tr:hover {
+  /* background-color: #ffffff32 !important; */
+}
+
+/* thead tr */
+
+.theadTrThSwitcher {
+  width: 50px;
+  padding: 0;
+  background-color: var(--color-2);
+  z-index: 1;
+}
+
+.Table .bodyTrTdSwitcher {
+  padding: 0;
+}
+
+.bodyTrTdSwitcher svg {
+  width: 50px;
+}
+
+/* ******** */
+
+/* body tr */
+
+.bodyTr {
+}
+
+.bodyTr:hover {
   background-color: #ffffff32;
+}
+
+.bodyTrOdd {
+}
+
+.bodyTrOdd:hover > td {
+  background-color: #ffffff32;
+}
+
+.bodyTrEven {
+  background-color: #ffffff0c;
+}
+
+.bodyTrEven:hover > td {
+  background-color: #ffffff32;
+}
+
+.bodyTrTdOddSticky {
+  position: sticky;
+  left: 50px;
+  background-color: hsl(240, 36%, 14%);
+}
+
+.bodyTrOdd:hover > .bodyTrTdOddSticky {
+  background-color: hsl(240, 14%, 40%);
+}
+
+.bodyTrTdEvenSticky {
+  position: sticky;
+  left: 50px;
+  background-color: hsl(240, 36%, 20%);
+}
+
+.bodyTrEven:hover > .bodyTrTdEvenSticky {
+  background-color: hsl(240, 14%, 40%);
+}
+
+.bodyTrExpandableRow > td {
+  padding: 0;
+  border-bottom: 1px solid var(--color-10-opacity);
+}
+
+.stickyTrigger {
+  position: sticky;
+  left: 0;
+  padding: 0;
+  width: 50px;
+  text-align: center;
+}
+
+.stickyFirstColumn {
+  position: sticky;
+  left: 50px;
+  background-color: var(--color-2);
+  z-index: 1;
+}
+
+.bodyTrExpandableRowOdd {
+}
+
+.bodyTrExpandableRowOddSticky {
+  /* background-color: hsl(240, 36%, 14%); */
+}
+
+.bodyTrExpandableRowEven {
+  /* background-color: #ffffff0c; */
+}
+
+.bodyTrExpandableRowEvenSticky {
+  /* background-color: hsl(240, 36%, 20%); */
+}
+
+/* ********** */
+
+.tdSwitcher {
+  position: sticky;
+  left: 0;
+}
+
+.tdFirstColumnSwitcher {
+  position: sticky;
+  left: 50px;
+}
+
+.Table tbody tr td:nth-child(2) {
+  /* background-color: #25254c; */
+}
+
+.Table tbody tr:nth-child(even) {
+  /* background-color: #2f2f5d !important; */
 }
 
 .cursorPointer {

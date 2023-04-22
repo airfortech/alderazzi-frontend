@@ -28,6 +28,7 @@ export const KeyGivers = () => {
           initialSorting={{ field: "nextRespawn", order: "asc" }}
           onRowClick={handleDetails}
           horizontalScroll="top"
+          stickyColumn="first column"
         />
       )}
     </div>

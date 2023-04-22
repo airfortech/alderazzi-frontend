@@ -28,6 +28,7 @@ export const TableRender = <T extends Row>({
   onRowClick,
   expandableRowsComponent,
   horizontalScroll,
+  stickyColumn,
 }: ITableRender<T>) => {
   const tableWrapperRef = useRef<HTMLDivElement>(null);
   const scrollTopRef = useRef<HTMLTableCellElement>(null);
@@ -85,6 +86,7 @@ export const TableRender = <T extends Row>({
             columns={columns}
             sortOption={sortOption}
             handleSort={handleSort}
+            stickyColumn={stickyColumn}
             expandableRowsComponent={expandableRowsComponent}
             theadRef={theadRef}
           />
@@ -95,6 +97,7 @@ export const TableRender = <T extends Row>({
             filter={filter}
             filteringSelectors={filteringSelectors}
             colSpan={colSpan}
+            stickyColumn={stickyColumn}
             expandableRowsComponent={expandableRowsComponent}
           />
         </table>

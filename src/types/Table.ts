@@ -39,6 +39,7 @@ export interface ITable<T> {
     order: Order;
   };
   horizontalScroll?: "top" | "bottom";
+  stickyColumn?: "switcher" | "first column" | "none";
   onRowClick?: OnRowClickFunc<T>;
   expandableRowsComponent?: ExpandableRowsComponent<T>;
 }
@@ -55,6 +56,7 @@ export interface ITableRender<T> {
   handleSort: (selector: string, sortFunc: SortFunc | undefined) => void;
   colSpan: number;
   horizontalScroll: "top" | "bottom";
+  stickyColumn: "switcher" | "first column" | "none";
   onRowClick?: OnRowClickFunc<T>;
   expandableRowsComponent?: ExpandableRowsComponent<T>;
 }
