@@ -2,6 +2,18 @@ import { Align } from "../../types/Table";
 import clsx from "clsx";
 import classes from "./Table.module.css";
 
+export const tableWrapperClasses = (horizontalScroll: "top" | "bottom") => {
+  return clsx(
+    classes.TableWrapper,
+    classes.scrollBottom,
+    horizontalScroll === "top" && classes.scrollHidden
+  );
+};
+
+export const thead = () => {
+  return clsx(classes.thead);
+};
+
 export const theadTrThSwitcher = (
   stickyColumn: "switcher" | "first column" | "none"
 ) => {
@@ -20,10 +32,21 @@ export const theadTrTh = (
   );
 };
 
+export const thClasses = (align: Align, isSortable: boolean) => {
+  return clsx(classes["align-" + align], isSortable && classes.cursorPointer);
+};
+
+export const thSpanClasses = (align: Align, isActive: boolean) => {
+  return clsx(
+    align === "right" && classes.spanLeft,
+    isActive && classes.activeSort
+  );
+};
+
 export const bodyTr = (index: number) => {
   return clsx(
-    index % 2 === 1 && classes.bodyTrEven,
-    index % 2 === 0 && classes.bodyTrOdd
+    index % 2 === 1 && classes.tbodyTrEven,
+    index % 2 === 0 && classes.tbodyTrOdd
   );
 };
 
@@ -33,9 +56,9 @@ export const bodyTrExpandTrigger = (
 ) => {
   return clsx(
     classes.cursorPointer,
-    classes.bodyTrTdSwitcher,
-    index % 2 === 1 && stickyColumn !== "none" && classes.bodyTrTdEvenSticky,
-    index % 2 === 0 && stickyColumn !== "none" && classes.bodyTrTdOddSticky,
+    classes.tbodyTrTdSwitcher,
+    index % 2 === 1 && stickyColumn !== "none" && classes.tbodyTrTdEvenSticky,
+    index % 2 === 0 && stickyColumn !== "none" && classes.tbodyTrTdOddSticky,
     stickyColumn !== "none" && classes.stickyTrigger
   );
 };
@@ -52,11 +75,11 @@ export const bodyTrTd = (
     index % 2 === 1 &&
       tdIndex === 0 &&
       stickyColumn === "first column" &&
-      classes.bodyTrTdEvenSticky,
+      classes.tbodyTrTdEvenSticky,
     index % 2 === 0 &&
       tdIndex === 0 &&
       stickyColumn === "first column" &&
-      classes.bodyTrTdOddSticky,
+      classes.tbodyTrTdOddSticky,
     classes["align-" + align],
     isOnRowClickActive && hasOnClickFunction && classes.cursorPointer
   );
@@ -67,10 +90,10 @@ export const bodyTrExpandableRow = (
   stickyColumn: "switcher" | "first column" | "none"
 ) => {
   return clsx(
-    classes.bodyTrExpandableRow,
-    index % 2 === 1 && classes.bodyTrTdEven,
-    index % 2 === 0 && classes.bodyTrTdOdd,
-    index % 2 === 1 && stickyColumn !== "none" && classes.bodyTrTdEvenSticky,
-    index % 2 === 0 && stickyColumn !== "none" && classes.bodyTrTdOddSticky
+    classes.tbodyTrExpandableRow,
+    index % 2 === 1 && classes.tbodyTrTdEven,
+    index % 2 === 0 && classes.tbodyTrTdOdd,
+    index % 2 === 1 && stickyColumn !== "none" && classes.tbodyTrTdEvenSticky,
+    index % 2 === 0 && stickyColumn !== "none" && classes.tbodyTrTdOddSticky
   );
 };

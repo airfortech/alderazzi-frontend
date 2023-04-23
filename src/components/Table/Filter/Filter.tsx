@@ -1,6 +1,6 @@
 import { IFilter } from "../../../types/Table";
 import CancelIcon from "@mui/icons-material/Cancel";
-import classes from "./Filter.module.css";
+import classes from "../Table.module.css";
 
 export const Filter = ({ filter, setFilter }: IFilter) => {
   return (

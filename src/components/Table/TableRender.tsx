@@ -3,16 +3,8 @@ import { useEffect, useRef } from "react";
 import { TableHeader } from "./TableHeader/TableHeader";
 import { TableHead } from "./TableHead/TableHead";
 import { TableBody } from "./TableBody/TableBody";
-import clsx from "clsx";
+import { tableWrapperClasses } from "./TableCss";
 import classes from "./Table.module.css";
-
-const tableWrapperClasses = (horizontalScroll: "top" | "bottom") => {
-  return clsx(
-    classes.TableWrapper,
-    classes.scrollBottom,
-    horizontalScroll === "top" && classes.scrollHidden
-  );
-};
 
 export const TableRender = <T extends Row>({
   bodyData,

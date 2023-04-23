@@ -1,21 +1,14 @@
-import { Align, ITableHead, Row } from "../../../types/Table";
-import { theadTrTh, theadTrThSwitcher } from "../TableCss";
+import { ITableHead, Row } from "../../../types/Table";
+import {
+  thClasses,
+  thSpanClasses,
+  thead,
+  theadTrTh,
+  theadTrThSwitcher,
+} from "../TableCss";
 import SouthIcon from "@mui/icons-material/South";
 import NorthIcon from "@mui/icons-material/North";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
-import clsx from "clsx";
-import classes from "../Table.module.css";
-
-const thClasses = (align: Align, isSortable: boolean) => {
-  return clsx(classes["align-" + align], isSortable && classes.cursorPointer);
-};
-
-const thSpanClasses = (align: Align, isActive: boolean) => {
-  return clsx(
-    align === "right" && classes.spanLeft,
-    isActive && classes.activeSort
-  );
-};
 
 export const TableHead = <T extends Row>({
   columns,
@@ -26,7 +19,7 @@ export const TableHead = <T extends Row>({
   theadRef,
 }: ITableHead<T>) => {
   return (
-    <thead ref={theadRef}>
+    <thead ref={theadRef} className={thead()}>
       <tr>
         {expandableRowsComponent && (
           <th className={theadTrThSwitcher(stickyColumn)}></th>

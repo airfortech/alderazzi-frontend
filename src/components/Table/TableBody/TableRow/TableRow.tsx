@@ -1,4 +1,4 @@
-import { Align, ITableRow, Row } from "../../../../types/Table";
+import { ITableRow, Row } from "../../../../types/Table";
 import {
   Fragment,
   MouseEvent,
@@ -10,48 +10,13 @@ import {
 } from "react";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import classes from "../../Table.module.css";
-import clsx from "clsx";
 import {
   bodyTr,
   bodyTrExpandTrigger,
   bodyTrExpandableRow,
   bodyTrTd,
 } from "../../TableCss";
-
-const trClasses = (index: number) => {
-  return clsx(index % 2 === 1 && classes.evenBodyTr);
-};
-
-const tdSwitcherClasses = () => {
-  return clsx(classes.tdSwitcher, classes.cursorPointer);
-};
-
-const tdClasses = (
-  align: Align,
-  isOnRowClickActive: boolean,
-  hasOnClickFunction: boolean
-) => {
-  return clsx(
-    classes["align-" + align],
-    isOnRowClickActive && hasOnClickFunction && classes.cursorPointer
-  );
-};
-
-const expandableRowTrClasses = (index: number) => {
-  return clsx(classes.expandableRowTr, index % 2 === 1 && classes.evenBodyTr);
-};
-
-const expandableRowContentClasses = () => {
-  return clsx(classes.expandableRowContent);
-};
-
-const expandableRowContentWrapperClasses = (isExpanded: boolean) => {
-  return clsx(
-    classes.expandableRowContentWrapper,
-    isExpanded && classes.expandableRowContentWrapperOpen
-  );
-};
+import classes from "../../Table.module.css";
 
 export const TableRow = <T extends Row>({
   columns,
@@ -130,7 +95,7 @@ export const TableRow = <T extends Row>({
                 }}
               >
                 {!cell
-                  ? (row[selector] as string) + i
+                  ? (row[selector] as string)
                   : cell(row[selector] as string, row)}
               </td>
             )
@@ -141,11 +106,11 @@ export const TableRow = <T extends Row>({
         <tr className={bodyTrExpandableRow(index, stickyColumn)}>
           <td colSpan={colSpan}>
             <div
-              className={expandableRowContentWrapperClasses(isExpanded)}
+              className={classes.tbodyTrExpandableRowContentWrapper}
               style={{ maxHeight: isExpanded ? expandableRowContentHeight : 0 }}
             >
               <div
-                className={expandableRowContentClasses()}
+                className={classes.tbodyTrExpandableRowContent}
                 ref={refExpandableRowContent}
               >
                 {expandableRowsComponent(row)}
