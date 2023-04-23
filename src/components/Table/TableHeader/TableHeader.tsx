@@ -1,18 +1,7 @@
-import { Dispatch, SetStateAction } from "react";
+import { ITableHeader } from "../../../types/Table";
 import { Filter } from "../Filter/Filter";
 import { Title } from "./Title";
 import classes from "../Table.module.css";
-import { TagName } from "../../../types/Table";
-
-interface Props {
-  title: string | undefined;
-  titleTag: TagName;
-  isFilterable: boolean;
-  filter: string;
-  setFilter: Dispatch<SetStateAction<string>>;
-  scrollTopRef: React.RefObject<HTMLTableCellElement>;
-  horizontalScroll: "top" | "bottom";
-}
 
 export const TableHeader = ({
   title,
@@ -22,7 +11,7 @@ export const TableHeader = ({
   setFilter,
   scrollTopRef,
   horizontalScroll,
-}: Props) => {
+}: ITableHeader) => {
   return (
     <header className={classes.TableHeader}>
       {(title || isFilterable) && (

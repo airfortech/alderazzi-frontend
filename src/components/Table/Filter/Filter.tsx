@@ -1,13 +1,8 @@
-import { Dispatch, SetStateAction } from "react";
+import { IFilter } from "../../../types/Table";
 import CancelIcon from "@mui/icons-material/Cancel";
 import classes from "./Filter.module.css";
 
-interface Props {
-  filter: string;
-  setFilter: Dispatch<SetStateAction<string>>;
-}
-
-export const Filter = ({ filter, setFilter }: Props) => {
+export const Filter = ({ filter, setFilter }: IFilter) => {
   return (
     <div className={classes.Filter}>
       <input

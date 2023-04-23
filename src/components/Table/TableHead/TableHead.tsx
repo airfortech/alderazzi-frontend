@@ -1,26 +1,10 @@
-import {
-  Align,
-  Columns,
-  ExpandableRowsComponent,
-  Row,
-  SortFunc,
-  SortOption,
-} from "../../../types/Table";
+import { Align, ITableHead, Row } from "../../../types/Table";
+import { theadTrTh, theadTrThSwitcher } from "../TableCss";
 import SouthIcon from "@mui/icons-material/South";
 import NorthIcon from "@mui/icons-material/North";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import clsx from "clsx";
 import classes from "../Table.module.css";
-import { theadTrTh, theadTrThSwitcher } from "../TableCss";
-
-interface Props<T> {
-  columns: Columns<T>;
-  sortOption: SortOption<T> | undefined;
-  handleSort: (selector: string, sortFunc: SortFunc | undefined) => void;
-  stickyColumn: "switcher" | "first column" | "none";
-  expandableRowsComponent?: ExpandableRowsComponent<T>;
-  theadRef: React.RefObject<HTMLTableSectionElement>;
-}
 
 const thClasses = (align: Align, isSortable: boolean) => {
   return clsx(classes["align-" + align], isSortable && classes.cursorPointer);
@@ -40,7 +24,7 @@ export const TableHead = <T extends Row>({
   stickyColumn,
   expandableRowsComponent,
   theadRef,
-}: Props<T>) => {
+}: ITableHead<T>) => {
   return (
     <thead ref={theadRef}>
       <tr>

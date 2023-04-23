@@ -17,6 +17,21 @@ export interface Row {
   // [key: string]: string | number | undefined;
 }
 
+export type SortFunc = (
+  aField: string | number,
+  bField: string | number,
+  order: Order
+) => 1 | -1 | 0;
+
+export type CellFunc<T> = (
+  value: string | number,
+  props: T
+) => string | number | ReactElement;
+
+export type OnRowClickFunc<T> = (props: T) => void;
+
+export type ExpandableRowsComponent<T> = (props: T) => ReactElement;
+
 export interface Column<T> {
   selector: keyof T;
   header?: string;
@@ -65,17 +80,47 @@ export interface ITableRender<T> {
   expandableRowsComponent?: ExpandableRowsComponent<T>;
 }
 
-export type SortFunc = (
-  aField: string | number,
-  bField: string | number,
-  order: Order
-) => 1 | -1 | 0;
+export interface ITableHeader {
+  title: string | undefined;
+  titleTag: TagName;
+  isFilterable: boolean;
+  filter: string;
+  setFilter: Dispatch<SetStateAction<string>>;
+  scrollTopRef: React.RefObject<HTMLTableCellElement>;
+  horizontalScroll: "top" | "bottom";
+}
 
-export type CellFunc<T> = (
-  value: string | number,
-  props: T
-) => string | number | ReactElement;
+export interface IFilter {
+  filter: string;
+  setFilter: Dispatch<SetStateAction<string>>;
+}
 
-export type OnRowClickFunc<T> = (props: T) => void;
+export interface ITableHead<T> {
+  columns: Columns<T>;
+  sortOption: SortOption<T> | undefined;
+  handleSort: (selector: string, sortFunc: SortFunc | undefined) => void;
+  stickyColumn: "switcher" | "first column" | "none";
+  expandableRowsComponent?: ExpandableRowsComponent<T>;
+  theadRef: React.RefObject<HTMLTableSectionElement>;
+}
 
-export type ExpandableRowsComponent<T> = (props: T) => ReactElement;
+export interface ITableBody<T> {
+  bodyData: T[];
+  columns: Columns<T>;
+  filter: string;
+  filteringSelectors: Array<keyof T>;
+  colSpan: number;
+  onRowClick?: OnRowClickFunc<T>;
+  stickyColumn: "switcher" | "first column" | "none";
+  expandableRowsComponent?: ExpandableRowsComponent<T>;
+}
+
+export interface ITableRow<T> {
+  columns: Columns<T>;
+  row: T;
+  colSpan: number;
+  index: number;
+  stickyColumn: "switcher" | "first column" | "none";
+  onRowClick?: OnRowClickFunc<T>;
+  expandableRowsComponent?: ExpandableRowsComponent<T> | undefined;
+}

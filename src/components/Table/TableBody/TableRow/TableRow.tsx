@@ -1,10 +1,4 @@
-import {
-  Align,
-  Columns,
-  ExpandableRowsComponent,
-  OnRowClickFunc,
-  Row,
-} from "../../../../types/Table";
+import { Align, ITableRow, Row } from "../../../../types/Table";
 import {
   Fragment,
   MouseEvent,
@@ -24,16 +18,6 @@ import {
   bodyTrExpandableRow,
   bodyTrTd,
 } from "../../TableCss";
-
-interface Props<T> {
-  columns: Columns<T>;
-  row: T;
-  colSpan: number;
-  index: number;
-  stickyColumn: "switcher" | "first column" | "none";
-  onRowClick?: OnRowClickFunc<T>;
-  expandableRowsComponent?: ExpandableRowsComponent<T> | undefined;
-}
 
 const trClasses = (index: number) => {
   return clsx(index % 2 === 1 && classes.evenBodyTr);
@@ -77,7 +61,7 @@ export const TableRow = <T extends Row>({
   stickyColumn,
   onRowClick,
   expandableRowsComponent,
-}: Props<T>) => {
+}: ITableRow<T>) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [expandableRowContentHeight, setExpandableRowContent] = useState(0);
   const refExpandableRowContent = useRef<HTMLDivElement>(null);
