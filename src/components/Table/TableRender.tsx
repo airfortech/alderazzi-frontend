@@ -19,6 +19,7 @@ export const TableRender = <T extends Row>({
   columns,
   colSpan,
   title,
+  titleTag,
   sortOption,
   handleSort,
   isFilterable,
@@ -71,6 +72,7 @@ export const TableRender = <T extends Row>({
     >
       <TableHeader
         title={title}
+        titleTag={titleTag}
         isFilterable={isFilterable}
         filter={filter}
         setFilter={setFilter}

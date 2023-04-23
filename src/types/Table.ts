@@ -4,6 +4,8 @@ export type Order = "asc" | "desc";
 
 export type Align = "left" | "right" | "center";
 
+export type TagName = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p";
+
 export interface SortOption<T> {
   field: keyof T;
   order: Order;
@@ -33,6 +35,7 @@ export interface ITable<T> {
   columns: Columns<T>;
   data: Array<T>;
   title?: string;
+  titleTag?: TagName;
   isFilterable?: boolean;
   initialSorting?: {
     field: keyof T;
@@ -48,6 +51,7 @@ export interface ITableRender<T> {
   bodyData: T[];
   columns: Columns<T>;
   title?: string;
+  titleTag: TagName;
   isFilterable: boolean;
   filter: string;
   setFilter: Dispatch<SetStateAction<string>>;

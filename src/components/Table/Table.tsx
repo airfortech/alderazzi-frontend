@@ -7,6 +7,7 @@ export const Table = <T extends Row>({
   columns,
   data,
   title,
+  titleTag = "p",
   initialSorting,
   isFilterable = false,
   horizontalScroll = "bottom",
@@ -59,6 +60,7 @@ export const Table = <T extends Row>({
       columns={columns}
       colSpan={colSpan}
       title={title}
+      titleTag={titleTag}
       sortOption={sortOption}
       handleSort={handleSort}
       isFilterable={isFilterable}

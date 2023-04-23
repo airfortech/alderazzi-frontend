@@ -1,10 +1,12 @@
 import { Dispatch, SetStateAction } from "react";
 import { Filter } from "../Filter/Filter";
-import clsx from "clsx";
+import { Title } from "./Title";
 import classes from "../Table.module.css";
+import { TagName } from "../../../types/Table";
 
 interface Props {
   title: string | undefined;
+  titleTag: TagName;
   isFilterable: boolean;
   filter: string;
   setFilter: Dispatch<SetStateAction<string>>;
@@ -14,6 +16,7 @@ interface Props {
 
 export const TableHeader = ({
   title,
+  titleTag,
   isFilterable,
   filter,
   setFilter,
@@ -24,7 +27,11 @@ export const TableHeader = ({
     <header className={classes.TableHeader}>
       {(title || isFilterable) && (
         <div className={classes.headerWrapper}>
-          {title && <p className={classes.headerTitle}>{title}</p>}
+          {title && (
+            <Title tag={titleTag} className={classes.headerTitle}>
+              {title}
+            </Title>
+          )}
           {isFilterable && <Filter filter={filter} setFilter={setFilter} />}
         </div>
       )}
