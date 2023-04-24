@@ -15,7 +15,6 @@ export const Table = <T extends Row>({
   onRowClick,
   expandableRowsComponent,
   initialExpandableRowsState = "hidden",
-  ref,
   style,
 }: ITable<T>) => {
   const initialBodyData = initialSorting
@@ -75,7 +74,6 @@ export const Table = <T extends Row>({
       initialExpandableRowsState={initialExpandableRowsState}
       horizontalScroll={horizontalScroll}
       stickyColumn={stickyColumn}
-      ref={ref}
       style={style}
     />
   );

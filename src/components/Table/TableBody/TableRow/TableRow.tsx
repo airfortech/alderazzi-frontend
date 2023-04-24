@@ -31,8 +31,17 @@ export const TableRow = <T extends Row>({
 }: ITableRow<T>) => {
   const [isExpanded, setIsExpanded] = useState(isAllExpanded);
   const [isTransitionOn, setIsTransitionOn] = useState(false);
-  const [expandableRowContentHeight, setExpandableRowContent] = useState(0);
+  const [expandableRowContentHeight, setExpandableRowContent] = useState<
+    number | null
+  >(null);
   const refExpandableRowContent = useRef<HTMLDivElement>(null);
+
+  console.log(
+    "isExpanded:",
+    isExpanded,
+    "expandableRowContentHeight:",
+    expandableRowContentHeight
+  );
 
   const handleOnRowClick = useCallback(
     (props: T): MouseEventHandler<HTMLTableRowElement> =>
@@ -111,7 +120,15 @@ export const TableRow = <T extends Row>({
           <td colSpan={colSpan}>
             <div
               className={tbodyTrExpandableRowContentWrapper(isTransitionOn)}
-              style={{ maxHeight: isExpanded ? expandableRowContentHeight : 0 }}
+              // INFO: style={{maxHeight: undefined}} not setting style, so can fixing stuttering
+              style={{
+                maxHeight:
+                  expandableRowContentHeight != null
+                    ? isExpanded
+                      ? expandableRowContentHeight + "px"
+                      : 0
+                    : undefined,
+              }}
             >
               <div
                 className={classes.tbodyTrExpandableRowContent}

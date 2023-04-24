@@ -1,12 +1,4 @@
-import {
-  CSSProperties,
-  DetailedHTMLProps,
-  Dispatch,
-  HTMLAttributes,
-  LegacyRef,
-  ReactElement,
-  SetStateAction,
-} from "react";
+import { CSSProperties, Dispatch, ReactElement, SetStateAction } from "react";
 
 export type Order = "asc" | "desc";
 
@@ -55,7 +47,7 @@ export interface Column<T> {
 export type Columns<T> = Column<T>[];
 
 export interface ITable<T> {
-  /* extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> */ columns: Columns<T>;
+  columns: Columns<T>;
   data: Array<T>;
   title?: string;
   titleTag?: TagName;
@@ -70,7 +62,6 @@ export interface ITable<T> {
   expandableRowsComponent?: ExpandableRowsComponent<T>;
   initialExpandableRowsState?: "hidden" | "visible";
   style?: CSSProperties;
-  ref?: LegacyRef<HTMLDivElement>;
 }
 
 export interface ITableRender<T> {
@@ -91,7 +82,6 @@ export interface ITableRender<T> {
   expandableRowsComponent?: ExpandableRowsComponent<T>;
   initialExpandableRowsState?: "hidden" | "visible";
   style?: CSSProperties;
-  ref?: LegacyRef<HTMLDivElement>;
 }
 
 export interface ITableHeader {
