@@ -201,7 +201,7 @@
   background-color: hsl(240, 36%, 14%);
 }
 
-.tbodyTrOdd:hover > .bodyTrTdOddSticky {
+.tbodyTrOdd:hover > .tbodyTrTdOddSticky {
   background-color: hsl(240, 14%, 40%);
 }
 
@@ -219,7 +219,7 @@
   background-color: hsl(240, 36%, 20%);
 }
 
-.tbodyTrEven:hover > .bodyTrTdEvenSticky {
+.tbodyTrEven:hover > .tbodyTrTdEvenSticky {
   background-color: hsl(240, 14%, 40%);
 }
 
