@@ -1,5 +1,5 @@
 import { Row, ITableRender } from "../../types/Table";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { TableHeader } from "./TableHeader/TableHeader";
 import { TableHead } from "./TableHead/TableHead";
 import { TableBody } from "./TableBody/TableBody";
@@ -20,13 +20,24 @@ export const TableRender = <T extends Row>({
   filteringSelectors,
   onRowClick,
   expandableRowsComponent,
+  initialExpandableRowsState,
   horizontalScroll,
   stickyColumn,
+  style,
 }: ITableRender<T>) => {
+  const [isAllExpanded, setIsAllExpanded] = useState(
+    initialExpandableRowsState === "visible" ? true : false
+  );
   const tableWrapperRef = useRef<HTMLDivElement>(null);
   const scrollTopRef = useRef<HTMLTableCellElement>(null);
   const tableContainerRef = useRef<HTMLDivElement>(null);
   const theadRef = useRef<HTMLTableSectionElement>(null);
+
+  const handleAllExpandTrigger = () => {
+    // INFO: prevents trigger onClick functions of parent if exists
+    // e.stopPropagation();
+    setIsAllExpanded(prev => !prev);
+  };
 
   useEffect(() => {
     const tableWrapper = tableWrapperRef.current;
@@ -58,9 +69,9 @@ export const TableRender = <T extends Row>({
 
   return (
     <div
-      className="tableContainer"
+      className={classes.TableContainer}
       ref={tableContainerRef}
-      style={{ position: "relative" }}
+      style={style}
     >
       <TableHeader
         title={title}
@@ -83,6 +94,8 @@ export const TableRender = <T extends Row>({
             stickyColumn={stickyColumn}
             expandableRowsComponent={expandableRowsComponent}
             theadRef={theadRef}
+            isAllExpanded={isAllExpanded}
+            handleAllExpandTrigger={handleAllExpandTrigger}
           />
           <TableBody
             columns={columns}
@@ -93,6 +106,7 @@ export const TableRender = <T extends Row>({
             colSpan={colSpan}
             stickyColumn={stickyColumn}
             expandableRowsComponent={expandableRowsComponent}
+            isAllExpanded={isAllExpanded}
           />
         </table>
       </div>

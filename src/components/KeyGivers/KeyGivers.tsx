@@ -29,6 +29,7 @@ export const KeyGivers = () => {
           onRowClick={handleDetails}
           horizontalScroll="top"
           stickyColumn="first column"
+          initialExpandableRowsState="visible"
         />
       )}
     </div>

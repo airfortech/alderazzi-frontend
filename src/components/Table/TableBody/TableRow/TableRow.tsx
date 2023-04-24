@@ -8,13 +8,14 @@ import {
   useRef,
   useState,
 } from "react";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import {
   bodyTr,
   bodyTrExpandTrigger,
   bodyTrExpandableRow,
   bodyTrTd,
+  tbodyTrExpandableRowContentWrapper,
 } from "../../TableCss";
 import classes from "../../Table.module.css";
 
@@ -26,8 +27,10 @@ export const TableRow = <T extends Row>({
   stickyColumn,
   onRowClick,
   expandableRowsComponent,
+  isAllExpanded,
 }: ITableRow<T>) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(isAllExpanded);
+  const [isTransitionOn, setIsTransitionOn] = useState(false);
   const [expandableRowContentHeight, setExpandableRowContent] = useState(0);
   const refExpandableRowContent = useRef<HTMLDivElement>(null);
 
@@ -51,7 +54,12 @@ export const TableRow = <T extends Row>({
       // INFO: transition for height: auto fix
       setExpandableRowContent(refExpandableRowContent.current.scrollHeight);
     }
+    setTimeout(() => setIsTransitionOn(true), 0);
   }, []);
+
+  useEffect(() => {
+    setIsExpanded(isAllExpanded);
+  }, [isAllExpanded]);
 
   return (
     <Fragment key={row.id}>
@@ -65,11 +73,7 @@ export const TableRow = <T extends Row>({
             onClick={handleExpandTrigger}
             className={bodyTrExpandTrigger(index, stickyColumn)}
           >
-            {isExpanded ? (
-              <KeyboardArrowDownIcon />
-            ) : (
-              <KeyboardArrowRightIcon />
-            )}
+            {isExpanded ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </td>
         )}
         {columns
@@ -106,7 +110,7 @@ export const TableRow = <T extends Row>({
         <tr className={bodyTrExpandableRow(index, stickyColumn)}>
           <td colSpan={colSpan}>
             <div
-              className={classes.tbodyTrExpandableRowContentWrapper}
+              className={tbodyTrExpandableRowContentWrapper(isTransitionOn)}
               style={{ maxHeight: isExpanded ? expandableRowContentHeight : 0 }}
             >
               <div

@@ -1,4 +1,12 @@
-import { Dispatch, ReactElement, SetStateAction } from "react";
+import {
+  CSSProperties,
+  DetailedHTMLProps,
+  Dispatch,
+  HTMLAttributes,
+  LegacyRef,
+  ReactElement,
+  SetStateAction,
+} from "react";
 
 export type Order = "asc" | "desc";
 
@@ -47,7 +55,7 @@ export interface Column<T> {
 export type Columns<T> = Column<T>[];
 
 export interface ITable<T> {
-  columns: Columns<T>;
+  /* extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> */ columns: Columns<T>;
   data: Array<T>;
   title?: string;
   titleTag?: TagName;
@@ -60,6 +68,9 @@ export interface ITable<T> {
   stickyColumn?: "switcher" | "first column" | "none";
   onRowClick?: OnRowClickFunc<T>;
   expandableRowsComponent?: ExpandableRowsComponent<T>;
+  initialExpandableRowsState?: "hidden" | "visible";
+  style?: CSSProperties;
+  ref?: LegacyRef<HTMLDivElement>;
 }
 
 export interface ITableRender<T> {
@@ -78,6 +89,9 @@ export interface ITableRender<T> {
   stickyColumn: "switcher" | "first column" | "none";
   onRowClick?: OnRowClickFunc<T>;
   expandableRowsComponent?: ExpandableRowsComponent<T>;
+  initialExpandableRowsState?: "hidden" | "visible";
+  style?: CSSProperties;
+  ref?: LegacyRef<HTMLDivElement>;
 }
 
 export interface ITableHeader {
@@ -102,6 +116,8 @@ export interface ITableHead<T> {
   stickyColumn: "switcher" | "first column" | "none";
   expandableRowsComponent?: ExpandableRowsComponent<T>;
   theadRef: React.RefObject<HTMLTableSectionElement>;
+  isAllExpanded: boolean;
+  handleAllExpandTrigger: () => void;
 }
 
 export interface ITableBody<T> {
@@ -113,6 +129,7 @@ export interface ITableBody<T> {
   onRowClick?: OnRowClickFunc<T>;
   stickyColumn: "switcher" | "first column" | "none";
   expandableRowsComponent?: ExpandableRowsComponent<T>;
+  isAllExpanded: boolean;
 }
 
 export interface ITableRow<T> {
@@ -123,4 +140,5 @@ export interface ITableRow<T> {
   stickyColumn: "switcher" | "first column" | "none";
   onRowClick?: OnRowClickFunc<T>;
   expandableRowsComponent?: ExpandableRowsComponent<T> | undefined;
+  isAllExpanded: boolean;
 }

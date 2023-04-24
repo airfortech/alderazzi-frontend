@@ -14,6 +14,9 @@ export const Table = <T extends Row>({
   stickyColumn = "none",
   onRowClick,
   expandableRowsComponent,
+  initialExpandableRowsState = "hidden",
+  ref,
+  style,
 }: ITable<T>) => {
   const initialBodyData = initialSorting
     ? tableSortFunc(
@@ -69,8 +72,11 @@ export const Table = <T extends Row>({
       filteringSelectors={filteringSelectors}
       onRowClick={onRowClick}
       expandableRowsComponent={expandableRowsComponent}
+      initialExpandableRowsState={initialExpandableRowsState}
       horizontalScroll={horizontalScroll}
       stickyColumn={stickyColumn}
+      ref={ref}
+      style={style}
     />
   );
 };

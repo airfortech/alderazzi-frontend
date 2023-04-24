@@ -11,6 +11,7 @@ export const TableBody = <T extends Row>({
   stickyColumn,
   onRowClick,
   expandableRowsComponent,
+  isAllExpanded,
 }: ITableBody<T>) => {
   const data = bodyData.filter(row => {
     for (let selector of filteringSelectors) {
@@ -34,6 +35,7 @@ export const TableBody = <T extends Row>({
             stickyColumn={stickyColumn}
             onRowClick={onRowClick}
             expandableRowsComponent={expandableRowsComponent}
+            isAllExpanded={isAllExpanded}
           />
         ))
       ) : (

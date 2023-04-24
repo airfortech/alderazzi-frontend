@@ -9,6 +9,8 @@ import {
 import SouthIcon from "@mui/icons-material/South";
 import NorthIcon from "@mui/icons-material/North";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export const TableHead = <T extends Row>({
   columns,
@@ -17,12 +19,23 @@ export const TableHead = <T extends Row>({
   stickyColumn,
   expandableRowsComponent,
   theadRef,
+  isAllExpanded,
+  handleAllExpandTrigger,
 }: ITableHead<T>) => {
   return (
     <thead ref={theadRef} className={thead()}>
       <tr>
         {expandableRowsComponent && (
-          <th className={theadTrThSwitcher(stickyColumn)}></th>
+          <th
+            className={theadTrThSwitcher(stickyColumn)}
+            onClick={handleAllExpandTrigger}
+          >
+            {isAllExpanded ? (
+              <KeyboardArrowUpIcon />
+            ) : (
+              <KeyboardArrowDownIcon />
+            )}
+          </th>
         )}
         {columns
           .filter(({ isVisible = true }) => isVisible === true)

@@ -19,6 +19,7 @@ export const theadTrThSwitcher = (
 ) => {
   return clsx(
     classes.theadTrThSwitcher,
+    classes.cursorPointer,
     stickyColumn !== "none" && classes.stickyTrigger
   );
 };
@@ -95,5 +96,12 @@ export const bodyTrExpandableRow = (
     index % 2 === 0 && classes.tbodyTrTdOdd,
     index % 2 === 1 && stickyColumn !== "none" && classes.tbodyTrTdEvenSticky,
     index % 2 === 0 && stickyColumn !== "none" && classes.tbodyTrTdOddSticky
+  );
+};
+
+export const tbodyTrExpandableRowContentWrapper = (isTransitionOn: boolean) => {
+  return clsx(
+    classes.tbodyTrExpandableRowContentWrapper,
+    isTransitionOn && classes.tbodyTrExpandableRowContentWrapperTransition
   );
 };
