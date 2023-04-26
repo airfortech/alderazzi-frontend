@@ -23,14 +23,16 @@ export const TableRender = <T extends Row>({
   initialExpandableRowsState,
   horizontalScroll,
   stickyColumn,
+  stickyHeaderPosition,
   style,
 }: ITableRender<T>) => {
   const [isAllExpanded, setIsAllExpanded] = useState(
     initialExpandableRowsState === "visible" ? true : false
   );
   const tableWrapperRef = useRef<HTMLDivElement>(null);
-  const scrollTopRef = useRef<HTMLTableCellElement>(null);
+  const scrollTopRef = useRef<HTMLDivElement>(null);
   const tableContainerRef = useRef<HTMLDivElement>(null);
+  const tableHeaderRef = useRef<HTMLElement>(null);
   const theadRef = useRef<HTMLTableSectionElement>(null);
 
   const handleAllExpandTrigger = () => {
@@ -44,22 +46,57 @@ export const TableRender = <T extends Row>({
     const scrollTop = scrollTopRef.current;
     const tableContainer = tableContainerRef.current;
     const thead = theadRef.current;
+    const tableHeader = tableHeaderRef.current;
 
     const scrollTopListener = () => {
       if (!tableWrapper || !scrollTop) return;
       tableWrapper.scrollLeft = scrollTop.scrollLeft;
     };
 
+    const stickyHeaderListener = () => {
+      const headerHeight = 103;
+      const tablePosTop = tableContainer?.getBoundingClientRect().top;
+      const theadPosY = thead?.offsetTop;
+      const tableHeaderPos = tableHeader?.getBoundingClientRect().top;
+      // console.log("tablePosTop:", tableContainer?.getBoundingClientRect().top);
+      // console.log(
+      //   "tablePosTop:",
+      //   tablePosTop,
+      //   "tableHeaderPos:",
+      //   tableHeaderPos
+      // );
+      if (
+        tableHeaderPos !== undefined &&
+        stickyHeaderPosition !== undefined &&
+        theadPosY !== undefined &&
+        thead &&
+        tablePosTop
+        // theadPosY < stickyHeaderPosition + headerHeight
+      ) {
+        // const theadTop =
+        //   stickyHeaderPosition -
+        //   (tablePosTop + stickyHeaderPosition) +
+        //   stickyHeaderPosition;
+        // // console.log(theadTop);
+        // console.log("ok");
+
+        // TODO: do it on position relative, sticky is bugged
+        thead.style.position = "relative";
+        if (tableHeaderPos <= stickyHeaderPosition)
+          thead.style.top = stickyHeaderPosition - tablePosTop - 1 + "px";
+        else thead.style.top = "0px";
+      }
+    };
+
     if (tableWrapper && scrollTop && tableContainer && thead) {
       const tableRowsWidth = tableWrapper.querySelector("table")?.offsetWidth;
       const scrollTopContent = scrollTop.querySelector("div");
       scrollTop.style.bottom = -thead.offsetHeight + "px";
-
       if (scrollTopContent)
         scrollTopContent.style.width = tableRowsWidth + "px";
-
       scrollTop.addEventListener("scroll", scrollTopListener);
     }
+    window.addEventListener("scroll", stickyHeaderListener);
 
     return () => {
       if (!tableWrapper || !scrollTop) return;
@@ -81,6 +118,8 @@ export const TableRender = <T extends Row>({
         setFilter={setFilter}
         scrollTopRef={scrollTopRef}
         horizontalScroll={horizontalScroll}
+        stickyHeaderPosition={stickyHeaderPosition}
+        tableHeaderRef={tableHeaderRef}
       />
       <div
         className={tableWrapperClasses(horizontalScroll)}

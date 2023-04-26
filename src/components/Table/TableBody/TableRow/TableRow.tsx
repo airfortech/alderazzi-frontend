@@ -36,13 +36,6 @@ export const TableRow = <T extends Row>({
   >(null);
   const refExpandableRowContent = useRef<HTMLDivElement>(null);
 
-  console.log(
-    "isExpanded:",
-    isExpanded,
-    "expandableRowContentHeight:",
-    expandableRowContentHeight
-  );
-
   const handleOnRowClick = useCallback(
     (props: T): MouseEventHandler<HTMLTableRowElement> =>
       () => {

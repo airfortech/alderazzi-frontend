@@ -12,6 +12,7 @@ export const Table = <T extends Row>({
   isFilterable = false,
   horizontalScroll = "bottom",
   stickyColumn = "none",
+  stickyHeaderPosition,
   onRowClick,
   expandableRowsComponent,
   initialExpandableRowsState = "hidden",
@@ -74,6 +75,7 @@ export const Table = <T extends Row>({
       initialExpandableRowsState={initialExpandableRowsState}
       horizontalScroll={horizontalScroll}
       stickyColumn={stickyColumn}
+      stickyHeaderPosition={stickyHeaderPosition}
       style={style}
     />
   );

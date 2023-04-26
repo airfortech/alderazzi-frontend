@@ -58,6 +58,7 @@ export interface ITable<T> {
   };
   horizontalScroll?: "top" | "bottom";
   stickyColumn?: "switcher" | "first column" | "none";
+  stickyHeaderPosition?: number;
   onRowClick?: OnRowClickFunc<T>;
   expandableRowsComponent?: ExpandableRowsComponent<T>;
   initialExpandableRowsState?: "hidden" | "visible";
@@ -78,6 +79,7 @@ export interface ITableRender<T> {
   colSpan: number;
   horizontalScroll: "top" | "bottom";
   stickyColumn: "switcher" | "first column" | "none";
+  stickyHeaderPosition?: number;
   onRowClick?: OnRowClickFunc<T>;
   expandableRowsComponent?: ExpandableRowsComponent<T>;
   initialExpandableRowsState?: "hidden" | "visible";
@@ -90,8 +92,10 @@ export interface ITableHeader {
   isFilterable: boolean;
   filter: string;
   setFilter: Dispatch<SetStateAction<string>>;
-  scrollTopRef: React.RefObject<HTMLTableCellElement>;
+  scrollTopRef: React.RefObject<HTMLDivElement>;
+  tableHeaderRef: React.RefObject<HTMLElement>;
   horizontalScroll: "top" | "bottom";
+  stickyHeaderPosition?: number;
 }
 
 export interface IFilter {

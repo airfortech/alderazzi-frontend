@@ -10,10 +10,22 @@ export const TableHeader = ({
   filter,
   setFilter,
   scrollTopRef,
+  tableHeaderRef,
   horizontalScroll,
+  stickyHeaderPosition,
 }: ITableHeader) => {
   return (
-    <header className={classes.TableHeader}>
+    <header
+      className={classes.TableHeader}
+      style={{
+        position: "sticky",
+        top:
+          stickyHeaderPosition !== undefined
+            ? stickyHeaderPosition + "px"
+            : undefined,
+      }}
+      ref={tableHeaderRef}
+    >
       {(title || isFilterable) && (
         <div className={classes.headerWrapper}>
           {title && (
