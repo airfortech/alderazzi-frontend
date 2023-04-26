@@ -104,6 +104,8 @@ export interface IFilter {
 }
 
 export interface ITableHead<T> {
+  title: string | undefined;
+  isFilterable: boolean;
   columns: Columns<T>;
   sortOption: SortOption<T> | undefined;
   handleSort: (selector: string, sortFunc: SortFunc | undefined) => void;

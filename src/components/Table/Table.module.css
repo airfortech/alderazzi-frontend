@@ -105,6 +105,7 @@
 /* header */
 
 .TableHeader {
+  position: relative;
   background-color: var(--color-2);
   z-index: 3;
 }
@@ -144,6 +145,10 @@
   z-index: 2;
   position: sticky;
   top: 0px;
+}
+
+.theadShadow {
+  box-shadow: 0px 1px 0px var(--color-21), 0px -20px 0px var(--color-2);
 }
 
 .thead span {

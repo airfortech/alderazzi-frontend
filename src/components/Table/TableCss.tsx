@@ -10,8 +10,8 @@ export const tableWrapperClasses = (horizontalScroll: "top" | "bottom") => {
   );
 };
 
-export const thead = () => {
-  return clsx(classes.thead);
+export const thead = (title: string | undefined, isFilterable: boolean) => {
+  return clsx(classes.thead, (title || isFilterable) && classes.theadShadow);
 };
 
 export const theadTrThSwitcher = (

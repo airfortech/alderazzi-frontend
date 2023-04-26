@@ -83,7 +83,7 @@ export const TableRender = <T extends Row>({
         // TODO: do it on position relative, sticky is bugged
         thead.style.position = "relative";
         if (tableHeaderPos <= stickyHeaderPosition)
-          thead.style.top = stickyHeaderPosition - tablePosTop - 1 + "px";
+          thead.style.top = stickyHeaderPosition - tablePosTop + "px";
         else thead.style.top = "0px";
       }
     };
@@ -127,6 +127,8 @@ export const TableRender = <T extends Row>({
       >
         <table className={classes.Table}>
           <TableHead
+            title={title}
+            isFilterable={isFilterable}
             columns={columns}
             sortOption={sortOption}
             handleSort={handleSort}

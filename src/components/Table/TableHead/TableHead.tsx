@@ -13,6 +13,8 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export const TableHead = <T extends Row>({
+  title,
+  isFilterable,
   columns,
   sortOption,
   handleSort,
@@ -23,7 +25,7 @@ export const TableHead = <T extends Row>({
   handleAllExpandTrigger,
 }: ITableHead<T>) => {
   return (
-    <thead ref={theadRef} className={thead()}>
+    <thead ref={theadRef} className={thead(title, isFilterable)}>
       <tr>
         {expandableRowsComponent && (
           <th
