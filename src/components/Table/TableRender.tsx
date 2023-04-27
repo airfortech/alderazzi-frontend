@@ -85,6 +85,12 @@ export const TableRender = <T extends Row>({
         if (tableHeaderPos <= stickyHeaderPosition)
           thead.style.top = stickyHeaderPosition - tablePosTop + "px";
         else thead.style.top = "0px";
+
+        // if (tableHeaderPos <= stickyHeaderPosition)
+        //   thead.style.transform = `translateY(${
+        //     stickyHeaderPosition - tablePosTop
+        //   }px)`;
+        // else thead.style.transform = "translateY(0px)";
       }
     };
 

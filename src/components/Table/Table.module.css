@@ -62,9 +62,14 @@
   outline: none;
 }
 
+.scrollBottom {
+  overflow-y: hidden;
+}
+
 .scrollBottom::-webkit-scrollbar {
   width: 4px;
   height: 9px;
+  /* display: none; */
 }
 
 .scrollBottom::-webkit-scrollbar-track {
@@ -253,7 +258,7 @@
 
 .tbodyTrExpandableRowContentWrapper {
   height: auto;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .tbodyTrExpandableRowContentWrapperTransition {
