@@ -1,31 +1,17 @@
-import { ITableHeader } from "../../../types/Table";
+import { ITableHeader, Row } from "../../../types/Table";
 import { Filter } from "../Filter/Filter";
 import { Title } from "./Title";
 import classes from "../Table.module.css";
 
-export const TableHeader = ({
+export const TableHeader = <T extends Row>({
   title,
   titleTag,
   isFilterable,
   filter,
   setFilter,
-  scrollTopRef,
-  tableHeaderRef,
-  horizontalScroll,
-  stickyHeaderPosition,
-}: ITableHeader) => {
+}: ITableHeader<T>) => {
   return (
-    <header
-      className={classes.TableHeader}
-      style={{
-        position: "sticky",
-        top:
-          stickyHeaderPosition !== undefined
-            ? stickyHeaderPosition + "px"
-            : undefined,
-      }}
-      ref={tableHeaderRef}
-    >
+    <header className={classes.TableHeader}>
       {(title || isFilterable) && (
         <div className={classes.headerWrapper}>
           {title && (
@@ -36,11 +22,11 @@ export const TableHeader = ({
           {isFilterable && <Filter filter={filter} setFilter={setFilter} />}
         </div>
       )}
-      {horizontalScroll === "top" && (
+      {/* {horizontalScroll === "top" && (
         <div className={classes.scrollTop} ref={scrollTopRef}>
           <div className={classes.scrollTopContent}></div>
         </div>
-      )}
+      )} */}
     </header>
   );
 };

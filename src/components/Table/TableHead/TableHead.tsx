@@ -20,12 +20,11 @@ export const TableHead = <T extends Row>({
   handleSort,
   stickyColumn,
   expandableRowsComponent,
-  theadRef,
   isAllExpanded,
   handleAllExpandTrigger,
 }: ITableHead<T>) => {
   return (
-    <thead ref={theadRef} className={thead(title, isFilterable)}>
+    <thead className={thead(title, isFilterable)}>
       <tr>
         {expandableRowsComponent && (
           <th

@@ -1,8 +1,8 @@
-import { IFilter } from "../../../types/Table";
+import { IFilter, Row } from "../../../types/Table";
 import CancelIcon from "@mui/icons-material/Cancel";
 import classes from "../Table.module.css";
 
-export const Filter = ({ filter, setFilter }: IFilter) => {
+export const Filter = <T extends Row>({ filter, setFilter }: IFilter<T>) => {
   return (
     <div className={classes.Filter}>
       <input

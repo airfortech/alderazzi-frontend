@@ -11,11 +11,11 @@ export interface SortOption<T> {
   order: Order;
 }
 
-export interface Row {
+export type Row = {
   id: string;
   // TODO: check if you can limit key to types provided below
   // [key: string]: string | number | undefined;
-}
+};
 
 export type SortFunc = (
   aField: string | number,
@@ -65,76 +65,92 @@ export interface ITable<T> {
   style?: CSSProperties;
 }
 
-export interface ITableRender<T> {
-  bodyData: T[];
-  columns: Columns<T>;
-  title?: string;
+export interface ITableRender<T> extends Omit<ITable<T>, "data"> {
   titleTag: TagName;
   isFilterable: boolean;
+  horizontalScroll: "top" | "bottom";
+  stickyColumn: "switcher" | "first column" | "none";
+
+  bodyData: T[];
   filter: string;
   setFilter: Dispatch<SetStateAction<string>>;
   filteringSelectors: Array<keyof T>;
   sortOption: SortOption<T> | undefined;
   handleSort: (selector: string, sortFunc: SortFunc | undefined) => void;
   colSpan: number;
-  horizontalScroll: "top" | "bottom";
-  stickyColumn: "switcher" | "first column" | "none";
-  stickyHeaderPosition?: number;
-  onRowClick?: OnRowClickFunc<T>;
-  expandableRowsComponent?: ExpandableRowsComponent<T>;
-  initialExpandableRowsState?: "hidden" | "visible";
-  style?: CSSProperties;
 }
 
-export interface ITableHeader {
+export interface ITableHeader<T>
+  extends Omit<
+    ITableRender<T>,
+    | "columns"
+    | "horizontalScroll"
+    | "stickyColumn"
+    | "bodyData"
+    | "filteringSelectors"
+    | "sortOption"
+    | "handleSort"
+    | "colSpan"
+    | "style"
+    | "expandableRowsComponent"
+    | "initialExpandableRowsState"
+    | "initialSorting"
+    | "onRowClick"
+    | "stickyHeaderPosition"
+  > {
   title: string | undefined;
-  titleTag: TagName;
-  isFilterable: boolean;
-  filter: string;
-  setFilter: Dispatch<SetStateAction<string>>;
-  scrollTopRef: React.RefObject<HTMLDivElement>;
-  tableHeaderRef: React.RefObject<HTMLElement>;
-  horizontalScroll: "top" | "bottom";
-  stickyHeaderPosition?: number;
 }
 
-export interface IFilter {
-  filter: string;
-  setFilter: Dispatch<SetStateAction<string>>;
-}
+export interface IFilter<T>
+  extends Omit<ITableHeader<T>, "title" | "titleTag" | "isFilterable"> {}
 
-export interface ITableHead<T> {
-  title: string | undefined;
-  isFilterable: boolean;
-  columns: Columns<T>;
-  sortOption: SortOption<T> | undefined;
-  handleSort: (selector: string, sortFunc: SortFunc | undefined) => void;
-  stickyColumn: "switcher" | "first column" | "none";
-  expandableRowsComponent?: ExpandableRowsComponent<T>;
-  theadRef: React.RefObject<HTMLTableSectionElement>;
+export interface ITableHead<T>
+  extends Omit<
+    ITableRender<T>,
+    | "filter"
+    | "setFilter"
+    | "titleTag"
+    | "horizontalScroll"
+    | "bodyData"
+    | "filteringSelectors"
+    | "colSpan"
+    | "style"
+    | "initialExpandableRowsState"
+    | "initialSorting"
+    | "onRowClick"
+    | "stickyHeaderPosition"
+  > {
   isAllExpanded: boolean;
   handleAllExpandTrigger: () => void;
 }
 
-export interface ITableBody<T> {
-  bodyData: T[];
-  columns: Columns<T>;
-  filter: string;
-  filteringSelectors: Array<keyof T>;
+export interface ITableBody<T>
+  extends Omit<
+    ITableRender<T>,
+    | "titleTag"
+    | "horizontalScroll"
+    | "colSpan"
+    | "style"
+    | "expandableRowsComponent"
+    | "initialExpandableRowsState"
+    | "initialSorting"
+    | "sortOption"
+    | "handleSort"
+    | "isFilterable"
+    | "setFilter"
+    | "onRowClick"
+    | "stickyHeaderPosition"
+  > {
   colSpan: number;
   onRowClick?: OnRowClickFunc<T>;
-  stickyColumn: "switcher" | "first column" | "none";
   expandableRowsComponent?: ExpandableRowsComponent<T>;
   isAllExpanded: boolean;
 }
 
-export interface ITableRow<T> {
-  columns: Columns<T>;
+export type ITableRow<T> = Omit<
+  ITableBody<T>,
+  "titleTag" | "bodyData" | "filteringSelectors" | "filter"
+> & {
   row: T;
-  colSpan: number;
   index: number;
-  stickyColumn: "switcher" | "first column" | "none";
-  onRowClick?: OnRowClickFunc<T>;
-  expandableRowsComponent?: ExpandableRowsComponent<T> | undefined;
-  isAllExpanded: boolean;
-}
+};

@@ -4,7 +4,7 @@ import classes from "./Table.module.css";
 
 export const tableWrapperClasses = (horizontalScroll: "top" | "bottom") => {
   return clsx(
-    classes.TableWrapper,
+    classes.tableBodyWrapper,
     classes.scrollBottom,
     horizontalScroll === "top" && classes.scrollHidden
   );
