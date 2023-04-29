@@ -124,6 +124,7 @@ export interface ITableHead<T>
   isAllExpanded: boolean;
   handleAllExpandTrigger: () => void;
   parent: "tableBody" | "tableHeader";
+  theadRef: React.LegacyRef<HTMLTableSectionElement>;
 }
 
 export interface ITableBody<T>

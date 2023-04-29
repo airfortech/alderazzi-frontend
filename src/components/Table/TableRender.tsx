@@ -31,6 +31,8 @@ export const TableRender = <T extends Row>({
   );
   const tableBodyWrapperRef = useRef<HTMLDivElement>(null);
   const headerScrollRef = useRef<HTMLDivElement>(null);
+  const theadHeaderRef = useRef<HTMLTableSectionElement>(null);
+  const theadBodyRef = useRef<HTMLTableSectionElement>(null);
 
   const handleAllExpandTrigger = () => {
     // INFO: prevents trigger onClick functions of parent if exists
@@ -41,9 +43,8 @@ export const TableRender = <T extends Row>({
   useEffect(() => {
     const tableBodyWrapper = tableBodyWrapperRef.current;
     const headerScroll = headerScrollRef.current;
-
-    console.log("tableBodyWrapper:", tableBodyWrapper);
-    console.log("headerScroll:", headerScroll);
+    const theadHeader = theadHeaderRef.current;
+    const theadBody = theadBodyRef.current;
 
     const headerScrollListener = () => {
       if (!tableBodyWrapper || !headerScroll) return;
@@ -53,6 +54,14 @@ export const TableRender = <T extends Row>({
         headerScroll.scrollLeft = tableBodyWrapper.scrollLeft;
     };
 
+    if (theadHeader && theadBody) {
+      const theadBodyCellsWidth = [...theadBody.querySelectorAll("p")].map(
+        cell => cell.offsetWidth
+      );
+      theadHeader
+        .querySelectorAll("p")
+        .forEach((p, i) => (p.style.width = theadBodyCellsWidth[i] + "px"));
+    }
     if (headerScroll && tableBodyWrapper) {
       if (horizontalScroll === "top")
         headerScroll.addEventListener("scroll", headerScrollListener);
@@ -64,14 +73,13 @@ export const TableRender = <T extends Row>({
       if (!tableBodyWrapper || !headerScroll) return;
       if (horizontalScroll === "top") {
         headerScroll.removeEventListener("scroll", headerScrollListener);
-        console.log("top");
       }
       if (horizontalScroll === "bottom") {
         tableBodyWrapper.removeEventListener("scroll", headerScrollListener);
         console.log("bottom");
       }
     };
-  }, [filter]);
+  }, []);
 
   return (
     <div className={classes.tableWrapper} style={style}>
@@ -107,6 +115,7 @@ export const TableRender = <T extends Row>({
               expandableRowsComponent={expandableRowsComponent}
               isAllExpanded={isAllExpanded}
               handleAllExpandTrigger={handleAllExpandTrigger}
+              theadRef={theadHeaderRef}
             />
           </table>
         </div>
@@ -126,6 +135,7 @@ export const TableRender = <T extends Row>({
             expandableRowsComponent={expandableRowsComponent}
             isAllExpanded={isAllExpanded}
             handleAllExpandTrigger={handleAllExpandTrigger}
+            theadRef={theadBodyRef}
           />
           <TableBody
             columns={columns}
