@@ -32,11 +32,7 @@
 
 /* scroll */
 
-.scrollHidden {
-  overflow-x: hidden;
-}
-
-.scrollTop {
+.headerScroll {
   padding: 0;
   position: relative;
   width: 100%;
@@ -46,21 +42,20 @@
   z-index: 3;
 }
 
-.scrollTopContent {
-  width: 0;
-  height: 1px;
+.scrollHidden {
+  overflow-x: hidden;
 }
 
-.scrollTop::-webkit-scrollbar {
+.headerScroll::-webkit-scrollbar {
   width: 4px;
   height: 6px;
 }
 
-.scrollTop::-webkit-scrollbar-track {
+.headerScroll::-webkit-scrollbar-track {
   background-color: var(--color-25);
 }
 
-.scrollTop::-webkit-scrollbar-thumb {
+.headerScroll::-webkit-scrollbar-thumb {
   background-color: var(--color-26);
   outline: none;
 }
@@ -112,10 +107,15 @@
 
 /* header */
 
-.TableHeader {
-  position: relative;
+.tableHeaderWrapper {
   background-color: var(--color-2);
-  z-index: 3;
+  box-shadow: 0px 1px 0px var(--color-21);
+  z-index: 2;
+}
+
+.TableHeader {
+  margin-bottom: 13px;
+  background-color: var(--color-2);
 }
 
 .headerWrapper {
@@ -149,14 +149,9 @@
   position: relative;
   user-select: none;
   background-color: var(--color-2);
-  box-shadow: 0px 1px 0px var(--color-21);
   z-index: 2;
   position: sticky;
   top: 0px;
-}
-
-.theadShadow {
-  box-shadow: 0px 1px 0px var(--color-21), 0px -20px 0px var(--color-2);
 }
 
 .thead span {
@@ -173,7 +168,6 @@
   display: flex;
   align-items: center;
   font-size: 0.9em;
-  /* font-size: inherit; */
 }
 
 .thead th svg {
@@ -183,6 +177,28 @@
 
 .activeSort {
   color: var(--color-23);
+}
+
+/* thead options */
+
+.theadTableBody,
+.theadTableBody tr,
+.theadTableBody th,
+.theadTableBody span,
+.theadTableBody svg,
+.theadTableBody svg path,
+.thead.theadTableBody p {
+  height: 0px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.theadTableBody th {
+  overflow: hidden;
+}
+
+.theadTableBody svg {
+  display: none;
 }
 
 /* thead tr */
@@ -262,7 +278,7 @@
 
 .tbodyTrExpandableRowContentWrapper {
   height: auto;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .tbodyTrExpandableRowContentWrapperTransition {

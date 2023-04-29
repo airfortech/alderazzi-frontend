@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { TableHeader } from "./TableHeader/TableHeader";
 import { TableHead } from "./TableHead/TableHead";
 import { TableBody } from "./TableBody/TableBody";
-import { tableWrapperClasses } from "./TableCss";
+import { headerScrollClasses, tableBodyWrapperClasses } from "./TableCss";
 import classes from "./Table.module.css";
 
 export const TableRender = <T extends Row>({
@@ -29,8 +29,8 @@ export const TableRender = <T extends Row>({
   const [isAllExpanded, setIsAllExpanded] = useState(
     initialExpandableRowsState === "visible" ? true : false
   );
-  const tableWrapperRef = useRef<HTMLDivElement>(null);
-  const scrollTopRef = useRef<HTMLDivElement>(null);
+  const tableBodyWrapperRef = useRef<HTMLDivElement>(null);
+  const headerScrollRef = useRef<HTMLDivElement>(null);
 
   const handleAllExpandTrigger = () => {
     // INFO: prevents trigger onClick functions of parent if exists
@@ -39,17 +39,37 @@ export const TableRender = <T extends Row>({
   };
 
   useEffect(() => {
-    const tableWrapper = tableWrapperRef.current;
-    const scrollTop = scrollTopRef.current;
+    const tableBodyWrapper = tableBodyWrapperRef.current;
+    const headerScroll = headerScrollRef.current;
 
-    const scrollTopListener = () => {
-      if (!tableWrapper || !scrollTop) return;
-      tableWrapper.scrollLeft = scrollTop.scrollLeft;
+    console.log("tableBodyWrapper:", tableBodyWrapper);
+    console.log("headerScroll:", headerScroll);
+
+    const headerScrollListener = () => {
+      if (!tableBodyWrapper || !headerScroll) return;
+      if (horizontalScroll === "top")
+        tableBodyWrapper.scrollLeft = headerScroll.scrollLeft;
+      else if (horizontalScroll === "bottom")
+        headerScroll.scrollLeft = tableBodyWrapper.scrollLeft;
     };
 
+    if (headerScroll && tableBodyWrapper) {
+      if (horizontalScroll === "top")
+        headerScroll.addEventListener("scroll", headerScrollListener);
+      else if (horizontalScroll === "bottom")
+        tableBodyWrapper.addEventListener("scroll", headerScrollListener);
+    }
+
     return () => {
-      if (!tableWrapper || !scrollTop) return;
-      scrollTop.removeEventListener("scroll", scrollTopListener);
+      if (!tableBodyWrapper || !headerScroll) return;
+      if (horizontalScroll === "top") {
+        headerScroll.removeEventListener("scroll", headerScrollListener);
+        console.log("top");
+      }
+      if (horizontalScroll === "bottom") {
+        tableBodyWrapper.removeEventListener("scroll", headerScrollListener);
+        console.log("bottom");
+      }
     };
   }, [filter]);
 
@@ -72,10 +92,13 @@ export const TableRender = <T extends Row>({
           filter={filter}
           setFilter={setFilter}
         />
-        <div className={classes.headerScroll}>
-          <table>
+        <div
+          className={headerScrollClasses(horizontalScroll)}
+          ref={headerScrollRef}
+        >
+          <table className={classes.Table}>
             <TableHead
-              title={title}
+              parent="tableHeader"
               isFilterable={isFilterable}
               columns={columns}
               sortOption={sortOption}
@@ -89,12 +112,12 @@ export const TableRender = <T extends Row>({
         </div>
       </div>
       <div
-        className={tableWrapperClasses(horizontalScroll)}
-        ref={tableWrapperRef}
+        className={tableBodyWrapperClasses(horizontalScroll)}
+        ref={tableBodyWrapperRef}
       >
         <table className={classes.Table}>
           <TableHead
-            title={title}
+            parent="tableBody"
             isFilterable={isFilterable}
             columns={columns}
             sortOption={sortOption}

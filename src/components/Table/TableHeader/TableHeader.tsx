@@ -22,11 +22,6 @@ export const TableHeader = <T extends Row>({
           {isFilterable && <Filter filter={filter} setFilter={setFilter} />}
         </div>
       )}
-      {/* {horizontalScroll === "top" && (
-        <div className={classes.scrollTop} ref={scrollTopRef}>
-          <div className={classes.scrollTopContent}></div>
-        </div>
-      )} */}
     </header>
   );
 };

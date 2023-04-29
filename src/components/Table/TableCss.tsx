@@ -2,7 +2,14 @@ import { Align } from "../../types/Table";
 import clsx from "clsx";
 import classes from "./Table.module.css";
 
-export const tableWrapperClasses = (horizontalScroll: "top" | "bottom") => {
+export const headerScrollClasses = (horizontalScroll: "top" | "bottom") => {
+  return clsx(
+    classes.headerScroll,
+    horizontalScroll === "bottom" && classes.scrollHidden
+  );
+};
+
+export const tableBodyWrapperClasses = (horizontalScroll: "top" | "bottom") => {
   return clsx(
     classes.tableBodyWrapper,
     classes.scrollBottom,
@@ -10,8 +17,15 @@ export const tableWrapperClasses = (horizontalScroll: "top" | "bottom") => {
   );
 };
 
-export const thead = (title: string | undefined, isFilterable: boolean) => {
-  return clsx(classes.thead, (title || isFilterable) && classes.theadShadow);
+export const thead = (
+  isFilterable: boolean,
+  parent: "tableBody" | "tableHeader"
+) => {
+  return clsx(
+    classes.thead,
+    parent === "tableHeader" && classes.theadTableHeader,
+    parent === "tableBody" && classes.theadTableBody
+  );
 };
 
 export const theadTrThSwitcher = (

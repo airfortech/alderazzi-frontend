@@ -107,6 +107,7 @@ export interface IFilter<T>
 export interface ITableHead<T>
   extends Omit<
     ITableRender<T>,
+    | "title"
     | "filter"
     | "setFilter"
     | "titleTag"
@@ -122,6 +123,7 @@ export interface ITableHead<T>
   > {
   isAllExpanded: boolean;
   handleAllExpandTrigger: () => void;
+  parent: "tableBody" | "tableHeader";
 }
 
 export interface ITableBody<T>
@@ -147,10 +149,12 @@ export interface ITableBody<T>
   isAllExpanded: boolean;
 }
 
-export type ITableRow<T> = Omit<
-  ITableBody<T>,
-  "titleTag" | "bodyData" | "filteringSelectors" | "filter"
-> & {
+export interface ITableRow<T>
+  extends Omit<
+    ITableBody<T>,
+    "titleTag" | "bodyData" | "filteringSelectors" | "filter"
+  > {
   row: T;
   index: number;
-};
+  isAllExpanded: boolean;
+}
