@@ -78,6 +78,7 @@ export interface ITableRender<T> extends Omit<ITable<T>, "data"> {
   sortOption: SortOption<T> | undefined;
   handleSort: (selector: string, sortFunc: SortFunc | undefined) => void;
   colSpan: number;
+  initialExpandableRowsState: "hidden" | "visible";
 }
 
 export interface ITableHeader<T>
@@ -135,7 +136,6 @@ export interface ITableBody<T>
     | "colSpan"
     | "style"
     | "expandableRowsComponent"
-    | "initialExpandableRowsState"
     | "initialSorting"
     | "sortOption"
     | "handleSort"

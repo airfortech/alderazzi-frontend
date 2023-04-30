@@ -6,15 +6,6 @@ export const KeyGiversView = () => {
     <div className={classes.KeyGiversView}>
       <KeyGivers />
       <div style={{ marginTop: "50px", lineHeight: 2 }}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora
-        laborum veniam assumenda necessitatibus est autem et quia ipsum maxime?
-        Et, voluptate tempore! Maxime nesciunt numquam exercitationem aliquam
-        recusandae quisquam quis quas ea dolore! Cumque expedita in veritatis
-        facilis libero? At ipsum quos, possimus placeat quam quasi iusto non
-        facilis voluptas.
-      </div>
-      <KeyGivers />
-      <div style={{ marginTop: "50px", lineHeight: 2 }}>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta enim
         illo, dolor et sequi fugiat iure doloremque sit. Libero, molestias
         nihil. At possimus eveniet dignissimos quisquam nisi odio voluptates

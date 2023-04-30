@@ -12,6 +12,7 @@ export const TableBody = <T extends Row>({
   onRowClick,
   expandableRowsComponent,
   isAllExpanded,
+  initialExpandableRowsState,
 }: ITableBody<T>) => {
   const data = bodyData.filter(row => {
     for (let selector of filteringSelectors) {
@@ -36,6 +37,7 @@ export const TableBody = <T extends Row>({
             onRowClick={onRowClick}
             expandableRowsComponent={expandableRowsComponent}
             isAllExpanded={isAllExpanded}
+            initialExpandableRowsState={initialExpandableRowsState}
           />
         ))
       ) : (

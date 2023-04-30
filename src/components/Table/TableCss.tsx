@@ -113,9 +113,16 @@ export const bodyTrExpandableRow = (
   );
 };
 
-export const tbodyTrExpandableRowContentWrapper = (isTransitionOn: boolean) => {
+export const tbodyTrExpandableRowContentWrapper = (
+  isTransitionOn: boolean,
+  initialExpandableRowsState: "hidden" | "visible"
+) => {
+  console.log(initialExpandableRowsState);
+
   return clsx(
     classes.tbodyTrExpandableRowContentWrapper,
+    initialExpandableRowsState === "visible" && classes.maxHeightAuto,
+    initialExpandableRowsState === "hidden" && classes.maxHeightZero,
     isTransitionOn && classes.tbodyTrExpandableRowContentWrapperTransition
   );
 };

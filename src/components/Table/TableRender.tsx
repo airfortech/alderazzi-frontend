@@ -20,7 +20,7 @@ export const TableRender = <T extends Row>({
   filteringSelectors,
   onRowClick,
   expandableRowsComponent,
-  initialExpandableRowsState,
+  initialExpandableRowsState = "hidden",
   horizontalScroll,
   stickyColumn,
   stickyHeaderPosition,
@@ -54,14 +54,20 @@ export const TableRender = <T extends Row>({
         headerScroll.scrollLeft = tableBodyWrapper.scrollLeft;
     };
 
-    if (theadHeader && theadBody) {
-      const theadBodyCellsWidth = [...theadBody.querySelectorAll("p")].map(
-        cell => cell.offsetWidth
-      );
-      theadHeader
-        .querySelectorAll("p")
-        .forEach((p, i) => (p.style.width = theadBodyCellsWidth[i] + "px"));
-    }
+    const theadCalculation = () => {
+      if (theadHeader && theadBody) {
+        const theadBodyCellsWidth = [...theadBody.querySelectorAll("p")].map(
+          cell => cell.offsetWidth
+        );
+        theadHeader
+          .querySelectorAll("p")
+          .forEach((p, i) => (p.style.width = theadBodyCellsWidth[i] + "px"));
+      }
+    };
+
+    theadCalculation();
+    window.addEventListener("resize", theadCalculation);
+
     if (headerScroll && tableBodyWrapper) {
       if (horizontalScroll === "top")
         headerScroll.addEventListener("scroll", headerScrollListener);
@@ -70,6 +76,7 @@ export const TableRender = <T extends Row>({
     }
 
     return () => {
+      window.removeEventListener("resize", theadCalculation);
       if (!tableBodyWrapper || !headerScroll) return;
       if (horizontalScroll === "top") {
         headerScroll.removeEventListener("scroll", headerScrollListener);
@@ -147,6 +154,7 @@ export const TableRender = <T extends Row>({
             stickyColumn={stickyColumn}
             expandableRowsComponent={expandableRowsComponent}
             isAllExpanded={isAllExpanded}
+            initialExpandableRowsState={initialExpandableRowsState}
           />
         </table>
       </div>

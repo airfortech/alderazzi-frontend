@@ -28,6 +28,7 @@ export const TableRow = <T extends Row>({
   onRowClick,
   expandableRowsComponent,
   isAllExpanded,
+  initialExpandableRowsState,
 }: ITableRow<T>) => {
   const [isExpanded, setIsExpanded] = useState(isAllExpanded);
   const [isTransitionOn, setIsTransitionOn] = useState(false);
@@ -112,7 +113,10 @@ export const TableRow = <T extends Row>({
         <tr className={bodyTrExpandableRow(index, stickyColumn)}>
           <td colSpan={colSpan}>
             <div
-              className={tbodyTrExpandableRowContentWrapper(isTransitionOn)}
+              className={tbodyTrExpandableRowContentWrapper(
+                isTransitionOn,
+                initialExpandableRowsState
+              )}
               // INFO: style={{maxHeight: undefined}} not setting style, so can fixing stuttering
               style={{
                 maxHeight:

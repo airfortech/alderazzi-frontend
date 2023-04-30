@@ -278,8 +278,15 @@
 }
 
 .tbodyTrExpandableRowContentWrapper {
-  height: auto;
   overflow: hidden;
+}
+
+.maxHeightZero {
+  max-height: 0;
+}
+
+.maxHeightAuto {
+  max-height: auto;
 }
 
 .tbodyTrExpandableRowContentWrapperTransition {
