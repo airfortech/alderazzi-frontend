@@ -57,8 +57,11 @@ export const TableRender = <T extends Row>({
     const theadCalculation = () => {
       if (theadHeader && theadBody) {
         const theadBodyCellsWidth = [...theadBody.querySelectorAll("p")].map(
-          cell => cell.offsetWidth
+          // INFO: getBoundingClientRect().width returns non-integer values, offsetWidth returns rounded to integer
+          cell => cell.getBoundingClientRect().width
         );
+        console.log(theadBodyCellsWidth);
+
         theadHeader
           .querySelectorAll("p")
           .forEach((p, i) => (p.style.width = theadBodyCellsWidth[i] + "px"));
