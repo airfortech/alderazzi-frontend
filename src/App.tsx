@@ -26,7 +26,6 @@ const darkTheme = createTheme({
       white: "#796969",
     },
     primary: {
-      // main: "#6666ff",
       main: "hsl(240, 100%, 76%)",
       dark: "hsl(240, 100%, 70%)",
     },

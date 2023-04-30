@@ -11,7 +11,11 @@ import classes from "./Navigation.module.css";
 export const Navigation = () => {
   const { auth } = useAuth();
 
-  const currentTab = useRouteMatch(links.map(({ url }) => url));
+  // INFO: https://github.com/mui/material-ui/issues/32749 fixed
+  const availableLinks = links.filter(({ allowedRoles }) =>
+    isRoleAllowed(allowedRoles, auth?.role)
+  );
+  const currentTab = useRouteMatch(availableLinks.map(({ url }) => url));
 
   return (
     <nav className={classes.Navigation}>
@@ -23,19 +27,17 @@ export const Navigation = () => {
         selectionFollowsFocus
         className={classes.tabs}
       >
-        {links.map(({ url, name, icon, allowedRoles }, i) =>
-          isRoleAllowed(allowedRoles, auth?.role) ? (
-            <Tab
-              value={url}
-              key={name}
-              label={name}
-              icon={icon}
-              iconPosition="start"
-              component={Link}
-              to={url}
-            />
-          ) : null
-        )}
+        {availableLinks.map(({ url, name, icon, allowedRoles }) => (
+          <Tab
+            value={url}
+            key={name}
+            label={name}
+            icon={icon}
+            iconPosition="start"
+            component={Link}
+            to={url}
+          />
+        ))}
       </Tabs>
     </nav>
   );

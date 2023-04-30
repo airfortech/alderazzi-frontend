@@ -1,4 +1,4 @@
-import { Columns, SortFunc } from "../../types/Table";
+import { Columns, OnRowClickFunc, SortFunc } from "../../types/Table";
 import { KeyGiver, KeyGiverTableData } from "../../types/KeyGiver";
 import dayjs from "dayjs";
 import { InfoText } from "../InfoText/InfoText";
@@ -36,6 +36,10 @@ const sortNextRespawn: SortFunc = (aField, bField, order) => {
   return 0;
 };
 
+// TODO: check if it is possible to type OnRowClickFunc function in way you dont need provide <KeyGiver>
+export const handleDetails: OnRowClickFunc<KeyGiver> = props =>
+  console.log(props);
+
 export const rows = (data: KeyGiver[]) => {
   return data?.map(({ id, name, respawnTime, nextRespawn }) => {
     return {
@@ -59,6 +63,17 @@ export const columns: Columns<KeyGiverTableData> = [
     isFilterable: true,
   },
   {
+    selector: "nextRespawn",
+    header: "Odrodzi się",
+    isSortable: true,
+    align: "right",
+    cell: value => {
+      const { date: nextResp, type } = nextRespawnTime(value as number);
+      return <InfoText message={nextResp} type={type} />;
+    },
+    sortFunc: sortNextRespawn,
+  },
+  {
     selector: "respawnTime",
     header: "Czas odrodzenia",
     isSortable: true,
@@ -67,14 +82,22 @@ export const columns: Columns<KeyGiverTableData> = [
     cell: value => value + "h",
   },
   {
-    selector: "nextRespawn",
-    header: "Odrodzi się",
-    isSortable: true,
-    align: "right",
-    cell: value => {
-      const { date: nextResp, type } = nextRespawnTime(value as string);
-      return <InfoText message={nextResp} type={type} />;
-    },
-    sortFunc: sortNextRespawn,
+    selector: "id",
+    isOnRowClickActive: false,
+    cell: value => (
+      <button
+        style={{ height: "100%", width: "100%" }}
+        onClick={e => {
+          e.stopPropagation();
+          console.log("value:", value);
+        }}
+      >
+        x
+      </button>
+    ),
+  },
+  {
+    selector: "id",
+    header: "ID",
   },
 ];

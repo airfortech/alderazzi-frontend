@@ -1,107 +1,140 @@
+import { ITableRow, Row } from "../../../../types/Table";
 import {
-  Align,
-  Columns,
-  ExpandableRowsComponent,
-  Row,
-} from "../../../../types/Table";
-import { Fragment, MouseEventHandler, useCallback, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+  Fragment,
+  MouseEvent,
+  MouseEventHandler,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import {
+  bodyTr,
+  bodyTrExpandTrigger,
+  bodyTrExpandableRow,
+  bodyTrTd,
+  tbodyTrExpandableRowContentWrapper,
+} from "../../TableCss";
 import classes from "../../Table.module.css";
-import clsx from "clsx";
-
-interface Props<T> {
-  columns: Columns<T>;
-  linkToId?: string;
-  row: T;
-  colSpan: number;
-  index: number;
-  expandableRowsComponent?: ExpandableRowsComponent<T> | undefined;
-}
-
-const tdClasses = (align: Align) => {
-  return clsx(classes["align-" + align]);
-};
-
-const trClasses = (linkToId: string | undefined, index: number) => {
-  return clsx(
-    linkToId && classes.cursorPointer,
-    index % 2 === 1 && classes.evenBodyTr,
-    classes.bodyTr
-  );
-};
-
-const expandableRowClasses = (index: number) => {
-  return clsx(
-    index % 2 === 1 && classes.expandableRow,
-    index % 2 === 1 && classes.evenBodyTr
-  );
-};
 
 export const TableRow = <T extends Row>({
   columns,
-  linkToId,
   row,
   colSpan,
   index,
+  stickyColumn,
+  onRowClick,
   expandableRowsComponent,
-}: Props<T>) => {
-  const navigate = useNavigate();
-  const [isExpanded, setIsExpanded] = useState(true);
+  isAllExpanded,
+  initialExpandableRowsState,
+}: ITableRow<T>) => {
+  const [isExpanded, setIsExpanded] = useState(isAllExpanded);
+  const [isTransitionOn, setIsTransitionOn] = useState(false);
+  const [expandableRowContentHeight, setExpandableRowContent] = useState<
+    number | null
+  >(null);
+  const refExpandableRowContent = useRef<HTMLDivElement>(null);
 
-  const handleLinkToId = useCallback(
-    (id: string, title: string = ""): MouseEventHandler<HTMLTableRowElement> =>
+  const handleOnRowClick = useCallback(
+    (props: T): MouseEventHandler<HTMLTableRowElement> =>
       () => {
-        const name = title ? `-${title.split(" ").join("-")}` : "";
-        navigate({
-          pathname: `${linkToId}/${id}${name}`,
-        });
+        if (!onRowClick) return;
+        onRowClick(props);
       },
     []
   );
 
+  const handleExpandTrigger = (e: MouseEvent<HTMLTableCellElement>) => {
+    // INFO: prevents trigger onClick functions of parent if exists
+    e.stopPropagation();
+    setIsExpanded(prev => !prev);
+  };
+
+  useEffect(() => {
+    if (refExpandableRowContent.current) {
+      // INFO: transition for height: auto fix
+      setExpandableRowContent(refExpandableRowContent.current.scrollHeight);
+    }
+    setTimeout(() => setIsTransitionOn(true), 0);
+  }, []);
+
+  useEffect(() => {
+    setIsExpanded(isAllExpanded);
+  }, [isAllExpanded]);
+
   return (
     <Fragment key={row.id}>
       <tr
-        className={trClasses(linkToId, index)}
-        onClick={
-          () => console.log(linkToId)
-          // linkToId
-          //   ? handleLinkToId(row.id, "name" in row ? row["name"] : "")
-          //   : undefined
-        }
-        // key={row.id}
+        style={{ zIndex: -1 }}
+        className={bodyTr(index)}
+        onClick={onRowClick ? handleOnRowClick(row) : undefined}
       >
         {expandableRowsComponent && (
-          <td>
-            {isExpanded ? (
-              <KeyboardArrowDownIcon />
-            ) : (
-              <KeyboardArrowRightIcon />
-            )}
+          <td
+            onClick={handleExpandTrigger}
+            className={bodyTrExpandTrigger(index, stickyColumn)}
+          >
+            {isExpanded ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </td>
         )}
-        {columns.map(
-          (
-            { isVisible = true, selector, header, align = "left", cell },
-            index
-          ) =>
-            isVisible && (
-              <td className={tdClasses(align)} key={index}>
+        {columns
+          .filter(({ isVisible = true }) => isVisible === true)
+          .map(
+            (
+              { selector, align = "left", isOnRowClickActive = true, cell },
+              i
+            ) => (
+              <td
+                className={bodyTrTd(
+                  index,
+                  i,
+                  align,
+                  isOnRowClickActive,
+                  stickyColumn,
+                  onRowClick ? true : false
+                )}
+                key={i}
+                onClick={e => {
+                  if (isOnRowClickActive) return;
+                  e.stopPropagation();
+                }}
+              >
                 {!cell
                   ? (row[selector] as string)
-                  : cell(row[selector] as string)}
+                  : cell(row[selector] as string, row)}
               </td>
             )
-        )}
+          )}
       </tr>
-      {expandableRowsComponent && isExpanded && (
-        <tr
-          className={expandableRowClasses(index)}
-          // key={"expandableRowsComponent-" + row.id}
-        >
-          <td colSpan={colSpan}>{expandableRowsComponent(row)}</td>
+
+      {expandableRowsComponent && (
+        <tr className={bodyTrExpandableRow(index, stickyColumn)}>
+          <td colSpan={colSpan}>
+            <div
+              className={tbodyTrExpandableRowContentWrapper(
+                isTransitionOn,
+                initialExpandableRowsState
+              )}
+              // INFO: style={{maxHeight: undefined}} not setting style, so can fixing stuttering
+              style={{
+                maxHeight:
+                  expandableRowContentHeight != null
+                    ? isExpanded
+                      ? expandableRowContentHeight + "px"
+                      : 0
+                    : undefined,
+              }}
+            >
+              <div
+                className={classes.tbodyTrExpandableRowContent}
+                ref={refExpandableRowContent}
+              >
+                {expandableRowsComponent(row)}
+              </div>
+            </div>
+          </td>
         </tr>
       )}
     </Fragment>

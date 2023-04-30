@@ -1,20 +1,22 @@
 import { Row, SortFunc, SortOption, ITable } from "../../types/Table";
 import { useMemo, useState } from "react";
-import clsx from "clsx";
-import { TableHead } from "./TableHead/TableHead";
-import { TableBody } from "./TableBody/TableBody";
 import { tableSortFunc } from "./tableSortFn";
-import classes from "./Table.module.css";
+import { TableRender } from "./TableRender";
 
-// todo: Nothing found message, translations, catching id's, sticky as option, expandableComponent, passing id as second arg
 export const Table = <T extends Row>({
   columns,
   data,
   title,
-  linkToId,
+  titleTag = "p",
   initialSorting,
   isFilterable = false,
+  horizontalScroll = "bottom",
+  stickyColumn = "none",
+  stickyHeaderPosition,
+  onRowClick,
   expandableRowsComponent,
+  initialExpandableRowsState = "hidden",
+  style,
 }: ITable<T>) => {
   const initialBodyData = initialSorting
     ? tableSortFunc(
@@ -56,27 +58,25 @@ export const Table = <T extends Row>({
     ).length + (expandableRowsComponent ? 1 : 0);
 
   return (
-    <table className={classes.Table}>
-      <TableHead
-        columns={columns}
-        sortOption={sortOption}
-        handleSort={handleSort}
-        title={title}
-        isFilterable={isFilterable}
-        filter={filter}
-        setFilter={setFilter}
-        colSpan={colSpan}
-        expandableRowsComponent={expandableRowsComponent}
-      />
-      <TableBody
-        columns={columns}
-        bodyData={bodyData}
-        linkToId={linkToId}
-        filter={filter}
-        filteringSelectors={filteringSelectors}
-        colSpan={colSpan}
-        expandableRowsComponent={expandableRowsComponent}
-      />
-    </table>
+    <TableRender
+      bodyData={bodyData}
+      columns={columns}
+      colSpan={colSpan}
+      title={title}
+      titleTag={titleTag}
+      sortOption={sortOption}
+      handleSort={handleSort}
+      isFilterable={isFilterable}
+      filter={filter}
+      setFilter={setFilter}
+      filteringSelectors={filteringSelectors}
+      onRowClick={onRowClick}
+      expandableRowsComponent={expandableRowsComponent}
+      initialExpandableRowsState={initialExpandableRowsState}
+      horizontalScroll={horizontalScroll}
+      stickyColumn={stickyColumn}
+      stickyHeaderPosition={stickyHeaderPosition}
+      style={style}
+    />
   );
 };
