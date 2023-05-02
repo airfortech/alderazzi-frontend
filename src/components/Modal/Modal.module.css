@@ -1,0 +1,112 @@
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 15px;
+  max-width: 600px;
+  width: 100%;
+  height: 100%;
+  max-height: 980px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  background: linear-gradient(45deg, var(--color-24), var(--color-25));
+  border: 3px solid var(--color-25);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 11px 15px -7px,
+    rgba(0, 0, 0, 0.14) 0px 24px 38px 3px, rgba(0, 0, 0, 0.12) 0px 9px 46px 8px;
+}
+
+:global(.MuiBackdrop-root.MuiModal-backdrop) {
+  background-color: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(14px);
+}
+
+.header {
+  margin-bottom: 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.flexEnd {
+  margin-bottom: 8px;
+  justify-content: flex-end;
+}
+
+.fullWidth {
+  width: 100%;
+  max-width: 100%;
+}
+
+.fullHeight {
+  height: 100%;
+  max-height: 100%;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--color-26);
+}
+
+.button {
+  transform: translate(-2px, -9px);
+}
+
+.content {
+  height: 100%;
+  overflow: auto;
+}
+
+.content::-webkit-scrollbar {
+  width: 18px;
+  height: 20px;
+}
+
+.content::-webkit-scrollbar-track:vertical {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 60%,
+    var(--color-25) 60%,
+    var(--color-25) 100%
+  );
+}
+
+.content::-webkit-scrollbar-track:horizontal {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 60%,
+    var(--color-25) 60%,
+    var(--color-25) 100%
+  );
+}
+
+.content::-webkit-scrollbar-thumb:vertical {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 60%,
+    var(--color-26) 60%,
+    var(--color-26) 100%
+  );
+  outline: none;
+}
+
+.content::-webkit-scrollbar-thumb:horizontal {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 60%,
+    var(--color-26) 60%,
+    var(--color-26) 100%
+  );
+  outline: none;
+}
+
+.content::-webkit-scrollbar-corner {
+  background: transparent;
+}
