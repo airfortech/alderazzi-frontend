@@ -1,4 +1,4 @@
-import { CSSProperties, useState } from "react";
+import { CSSProperties } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import MuiModal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
@@ -25,7 +25,8 @@ interface Props {
   style?: CSSProperties;
   fullWidth?: boolean;
   fullHeight?: boolean;
-  isOpen: boolean;
+  open: boolean;
+  onClose: () => void;
 }
 
 export const Modal = ({
@@ -34,17 +35,15 @@ export const Modal = ({
   style,
   fullWidth = false,
   fullHeight = false,
-  isOpen,
+  open,
+  onClose,
 }: Props) => {
-  const [open, setOpen] = useState(isOpen);
-  const handleClose = () => setOpen(false);
-
   return (
     <MuiModal
       aria-labelledby="transition-modal-title"
       aria-describedby="transition-modal-description"
       open={open}
-      onClose={handleClose}
+      onClose={onClose}
       closeAfterTransition
       slots={{ backdrop: Backdrop }}
       slotProps={{
@@ -59,10 +58,9 @@ export const Modal = ({
             {title && <p className={classes.title}>{title}</p>}
             <IconButton
               aria-label="logout"
-              // edge="end"
               sx={{ color: red[700] }}
               className={classes.button}
-              onClick={handleClose}
+              onClick={onClose}
             >
               <CloseIcon />
             </IconButton>

@@ -96,6 +96,6 @@ export const Icon = ({
       {iconComponent[icon as keyof typeof iconComponent]}
     </IconButton>
   ) : (
-    <div>{iconComponent[icon as keyof typeof iconComponent]}</div>
+    iconComponent[icon as keyof typeof iconComponent]
   );
 };

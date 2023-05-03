@@ -1,26 +1,27 @@
+import { useState } from "react";
 import { Icon } from "../../components/Icon/Icon";
 import { Modal } from "../../components/Modal/Modal";
 import classes from "./KeysView.module.css";
 
 export const KeysView = () => {
+  const [open, setOpen] = useState(false);
   return (
     <div className={classes.KeysView}>
       <h2>Klucze</h2>
-      <Icon icon="exit" />
-      <Icon icon="settings" size="sm" type="button" />
-      <Icon icon="settings" type="button" size="normal" color="success" />
-      <Icon icon="settings" type="button" color="success" size="lg" />
-      <Icon icon="settings" type="button" color="success" size="xl" />
       <Icon
-        icon="settings"
         type="button"
-        color="success"
+        icon="settings"
         size="xl"
-        style={{ fontSize: "54px" }}
+        color="info"
+        onClick={() => {
+          console.log("test");
+          setOpen(true);
+        }}
       />
       <Modal
         title=" Lorem ipsum dolor sit amet consectetur adipisicing."
-        isOpen={true}
+        open={open}
+        onClose={() => setOpen(false)}
       >
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
