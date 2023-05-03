@@ -1,6 +1,5 @@
 import List from "@mui/material/List";
 import Button from "@mui/material/Button";
-import DescriptionIcon from "@mui/icons-material/Description";
 import { useAuth } from "../../hooks/useAuth";
 import { useEnemies } from "../../hooks/useEnemies";
 import { EnemyItem } from "./EnemyItem/EnemyItem";
@@ -9,6 +8,7 @@ import { Loader } from "../Loader/Loader";
 import { isRoleAllowed } from "../../utils/isRoleAllowed";
 import { UserRole } from "../../types/UserRole";
 import classes from "./EnemiesList.module.css";
+import { Icon } from "../Icon/Icon";
 
 export const EnemiesList = () => {
   const { auth } = useAuth();
@@ -21,7 +21,7 @@ export const EnemiesList = () => {
         auth?.role
       ) && <AddEnemy />}
       <a href="/data/enemies.txt" target="_blank">
-        <Button size="large" startIcon={<DescriptionIcon />}>
+        <Button size="large" startIcon={<Icon icon="file" size="lg" />}>
           Podgląd pliku
         </Button>
       </a>

@@ -18,7 +18,7 @@ interface Props {
     | "chest"
     | "close"
     | "crossedSwords"
-    | "description"
+    | "file"
     | "down"
     | "exit"
     | "keys"
@@ -36,6 +36,7 @@ interface Props {
     | "inherit";
   size?: "sm" | "normal" | "lg" | "xl" | "xxl" | "inherit";
   ariaLabel?: string;
+  edge?: "start" | "end";
   style?: CSSProperties;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
@@ -65,6 +66,7 @@ export const Icon = ({
   color = "inherit",
   size = "inherit",
   ariaLabel,
+  edge,
   style,
   onClick,
 }: Props) => {
@@ -78,7 +80,7 @@ export const Icon = ({
     chest: <GiOpenTreasureChest style={iconStyle} />,
     close: <CloseIcon style={iconStyle} />,
     crossedSwords: <GiCrossedSwords style={iconStyle} />,
-    description: <DescriptionIcon style={iconStyle} />,
+    file: <DescriptionIcon style={iconStyle} />,
     down: <KeyboardArrowDownIcon style={iconStyle} />,
     exit: <GiExitDoor style={iconStyle} />,
     keys: <GiKeyring style={iconStyle} />,
@@ -91,7 +93,8 @@ export const Icon = ({
     <IconButton
       aria-label={ariaLabel}
       onClick={onClick}
-      style={{ fontSize: iconSizes[size], ...style }}
+      edge={edge}
+      style={{ fontSize: iconSizes[size], color: iconColors[color], ...style }}
     >
       {iconComponent[icon as keyof typeof iconComponent]}
     </IconButton>
