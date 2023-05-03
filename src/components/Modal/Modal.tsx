@@ -2,7 +2,6 @@ import { CSSProperties, useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import MuiModal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
-import Button from "@mui/material/Button";
 import { red } from "@mui/material/colors";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
@@ -60,7 +59,7 @@ export const Modal = ({
             {title && <p className={classes.title}>{title}</p>}
             <IconButton
               aria-label="logout"
-              edge="end"
+              // edge="end"
               sx={{ color: red[700] }}
               className={classes.button}
               onClick={handleClose}
