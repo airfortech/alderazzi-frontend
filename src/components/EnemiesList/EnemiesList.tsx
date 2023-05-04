@@ -9,6 +9,8 @@ import { isRoleAllowed } from "../../utils/isRoleAllowed";
 import { UserRole } from "../../types/UserRole";
 import classes from "./EnemiesList.module.css";
 import { Icon } from "../Icon/Icon";
+import { Table } from "../Table/Table";
+import { columns } from "./dataEnemiesList";
 
 export const EnemiesList = () => {
   const { auth } = useAuth();
@@ -25,17 +27,19 @@ export const EnemiesList = () => {
           Podgląd pliku
         </Button>
       </a>
-      <h2>Lista Wrogów:</h2>
       {isLoading ? (
         <Loader isLoading />
       ) : enemies?.length === 0 || isError ? (
         <p>{"Lista jest pusta"}</p>
       ) : (
-        <List component="ul" aria-labelledby="nested-list-subheader">
-          {enemies?.map(({ id, name }: { id: string; name: string }) => (
-            <EnemyItem key={id} id={id} name={name} />
-          ))}
-        </List>
+        <Table
+          data={enemies}
+          columns={columns}
+          title="Lista Wrogów"
+          titleTag="h2"
+          isFilterable
+          stickyHeaderPosition={50}
+        />
       )}
     </div>
   );

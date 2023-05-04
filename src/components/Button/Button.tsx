@@ -16,7 +16,7 @@ type Color =
   | "inherit";
 
 interface Props {
-  children?: string;
+  children: string;
   icon?: IIcon;
   iconAlign?: "left" | "right";
   color?: Color;

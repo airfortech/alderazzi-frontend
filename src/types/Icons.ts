@@ -1,4 +1,5 @@
 export type Icon =
+  | "basket"
   | "cancel"
   | "chest"
   | "close"

@@ -1,162 +1,162 @@
 .Button {
 }
 
-.small {
+.Button.Button.small {
   font-size: 14px;
 }
 
-.success {
+.Button.success {
   color: var(--color-23);
 }
 
-.success:hover {
+.Button.success:hover {
   background-color: var(--color-23-opacity-2);
 }
 
-.success.outlined {
+.Button.success.outlined {
   border-color: var(--color-23-opacity-1);
 }
 
-.success.outlined:hover {
+.Button.success.outlined:hover {
   border-color: var(--color-23);
   background-color: var(--color-23-opacity-2);
 }
 
-.success.contained {
+.Button.success.contained {
   color: var(--color-1-opacity);
   background-color: var(--color-23);
 }
 
-.success.contained:hover {
+.Button.success.contained:hover {
   background-color: var(--color-23-hover);
 }
 
-.danger {
+.Button.danger {
   color: var(--color-20);
 }
 
-.danger:hover {
+.Button.danger:hover {
   background-color: var(--color-20-opacity-2);
 }
 
-.danger.outlined {
+.Button.danger.outlined {
   border-color: var(--color-20-opacity-1);
 }
 
-.danger.outlined:hover {
+.Button.danger.outlined:hover {
   border-color: var(--color-20);
   background-color: var(--color-20-opacity-2);
 }
 
-.danger.contained {
+.Button.danger.contained {
   color: #fff;
   background-color: var(--color-20);
 }
 
-.danger.contained:hover {
+.Button.danger.contained:hover {
   background-color: var(--color-20-hover);
 }
 
-.info {
+.Button.info {
   color: var(--color-26);
 }
 
-.info:hover {
+.Button.info:hover {
   background-color: var(--color-26-opacity-2);
 }
 
-.info.outlined {
+.Button.info.outlined {
   border-color: var(--color-26-opacity-1);
 }
 
-.info.outlined:hover {
+.Button.info.outlined:hover {
   border-color: var(--color-26);
   background-color: var(--color-26-opacity-2);
 }
 
-.info.contained {
+.Button.info.contained {
   color: #fff;
   background-color: var(--color-26);
 }
 
-.info.contained:hover {
+.Button.info.contained:hover {
   background-color: var(--color-26-hover);
 }
 
-.warning {
+.Button.warning {
   color: var(--color-28);
 }
 
-.warning:hover {
+.Button.warning:hover {
   background-color: var(--color-28-opacity-2);
 }
 
-.warning.outlined {
+.Button.warning.outlined {
   border-color: var(--color-28-opacity-1);
 }
 
-.warning.outlined:hover {
+.Button.warning.outlined:hover {
   border-color: var(--color-28);
   background-color: var(--color-28-opacity-2);
 }
 
-.warning.contained {
+.Button.warning.contained {
   color: #fff;
   background-color: var(--color-28);
 }
 
-.warning.contained:hover {
+.Button.warning.contained:hover {
   background-color: var(--color-28-hover);
 }
 
-.primary {
+.Button.primary {
   color: var(--color-10);
 }
 
-.primary:hover {
+.Button.primary:hover {
   background-color: var(--color-10-opacity-2);
 }
 
-.primary.outlined {
+.Button.primary.outlined {
   border-color: var(--color-10-opacity-1);
 }
 
-.primary.outlined:hover {
+.Button.primary.outlined:hover {
   border-color: var(--color-10);
   background-color: var(--color-10-opacity-2);
 }
 
-.primary.contained {
+.Button.primary.contained {
   color: var(--color-1-opacity);
   background-color: var(--color-10);
 }
 
-.primary.contained:hover {
+.Button.primary.contained:hover {
   background-color: var(--color-10-hover);
 }
 
-.secondary {
+.Button.secondary {
   color: var(--color-2);
 }
 
-.secondary:hover {
+.Button.secondary:hover {
   background-color: var(--color-2-opacity-2);
 }
 
-.secondary.outlined {
+.Button.secondary.outlined {
   border-color: var(--color-2-opacity-1);
 }
 
-.secondary.outlined:hover {
+.Button.secondary.outlined:hover {
   border-color: var(--color-2);
   background-color: var(--color-2-opacity-2);
 }
 
-.secondary.contained {
+.Button.secondary.contained {
   color: #fff;
   background-color: var(--color-2);
 }
 
-.secondary.contained:hover {
+.Button.secondary.contained:hover {
   background-color: var(--color-2-hover);
 }

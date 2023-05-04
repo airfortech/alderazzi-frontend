@@ -23,6 +23,7 @@ export const TableBody = <T extends Row>({
     }
     return false;
   });
+
   return (
     <tbody>
       {data.length > 0 ? (

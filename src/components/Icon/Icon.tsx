@@ -1,6 +1,7 @@
 import { Icon as IIcon } from "../../types/Icons";
 import { CSSProperties, MouseEventHandler } from "react";
 import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
 import CancelIcon from "@mui/icons-material/Cancel";
 import CloseIcon from "@mui/icons-material/Close";
 import DescriptionIcon from "@mui/icons-material/Description";
@@ -66,6 +67,7 @@ export const Icon = ({
     ...style,
   };
   const iconComponent = {
+    basket: <DeleteIcon style={iconStyle} />,
     cancel: <CancelIcon style={iconStyle} />,
     chest: <GiOpenTreasureChest style={iconStyle} />,
     close: <CloseIcon style={iconStyle} />,

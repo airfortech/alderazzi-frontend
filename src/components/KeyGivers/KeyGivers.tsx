@@ -1,9 +1,5 @@
 import { useKeyGivers } from "../../hooks/useKeyGivers";
-import {
-  columns,
-  handleDetails,
-  rows,
-} from "../KeyGiversList/dataKeyGiversList";
+import { columns, handleDetails, rows } from "./dataKeyGiversList";
 import { Loader } from "../Loader/Loader";
 import { Table } from "../Table/Table";
 

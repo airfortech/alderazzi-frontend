@@ -41,7 +41,7 @@ export const handleDetails: OnRowClickFunc<KeyGiver> = props =>
   console.log(props);
 
 export const rows = (data: KeyGiver[]) => {
-  return data?.map(({ id, name, respawnTime, nextRespawn }) => {
+  return data.map(({ id, name, respawnTime, nextRespawn }) => {
     return {
       id,
       name,
@@ -52,10 +52,10 @@ export const rows = (data: KeyGiver[]) => {
 };
 
 export const columns: Columns<KeyGiverTableData> = [
-  {
-    selector: "id",
-    isVisible: false,
-  },
+  // {
+  //   selector: "id",
+  //   isVisible: false,
+  // },
   {
     selector: "name",
     header: "Nazwa",
@@ -95,9 +95,5 @@ export const columns: Columns<KeyGiverTableData> = [
         x
       </button>
     ),
-  },
-  {
-    selector: "id",
-    header: "ID",
   },
 ];
