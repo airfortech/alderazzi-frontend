@@ -9,7 +9,6 @@ export const Table = <T extends Row>({
   title,
   titleTag = "p",
   initialSorting,
-  isFilterable = false,
   horizontalScroll = "bottom",
   stickyColumn = "none",
   stickyHeaderPosition,
@@ -72,7 +71,6 @@ export const Table = <T extends Row>({
       titleTag={titleTag}
       sortOption={sortOption}
       handleSort={handleSort}
-      isFilterable={isFilterable}
       filter={filter}
       setFilter={setFilter}
       filteringSelectors={filteringSelectors}

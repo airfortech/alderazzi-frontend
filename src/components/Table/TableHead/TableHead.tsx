@@ -14,10 +14,10 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export const TableHead = <T extends Row>({
   parent,
-  isFilterable,
   columns,
   sortOption,
   handleSort,
+  filteringSelectors,
   stickyColumn,
   expandableRowsComponent,
   isAllExpanded,
@@ -25,7 +25,10 @@ export const TableHead = <T extends Row>({
   theadRef,
 }: ITableHead<T>) => {
   return (
-    <thead className={thead(isFilterable, parent)} ref={theadRef}>
+    <thead
+      className={thead(filteringSelectors.length > 0, parent)}
+      ref={theadRef}
+    >
       <tr>
         {expandableRowsComponent && (
           <th

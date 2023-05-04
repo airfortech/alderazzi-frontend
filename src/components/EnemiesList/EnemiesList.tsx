@@ -37,7 +37,6 @@ export const EnemiesList = () => {
           columns={columns}
           title="Lista Wrogów"
           titleTag="h2"
-          isFilterable
           stickyHeaderPosition={50}
         />
       )}

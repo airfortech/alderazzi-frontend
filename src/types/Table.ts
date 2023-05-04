@@ -51,7 +51,6 @@ export interface ITable<T> {
   data: Array<T>;
   title?: string;
   titleTag?: TagName;
-  isFilterable?: boolean;
   initialSorting?: {
     field: keyof T;
     order: Order;
@@ -67,7 +66,6 @@ export interface ITable<T> {
 
 export interface ITableRender<T> extends Omit<ITable<T>, "data"> {
   titleTag: TagName;
-  isFilterable: boolean;
   horizontalScroll: "top" | "bottom";
   stickyColumn: "switcher" | "first column" | "none";
 
@@ -88,7 +86,6 @@ export interface ITableHeader<T>
     | "horizontalScroll"
     | "stickyColumn"
     | "bodyData"
-    | "filteringSelectors"
     | "sortOption"
     | "handleSort"
     | "colSpan"
@@ -103,7 +100,7 @@ export interface ITableHeader<T>
 }
 
 export interface IFilter<T>
-  extends Omit<ITableHeader<T>, "title" | "titleTag" | "isFilterable"> {}
+  extends Omit<ITableHeader<T>, "title" | "titleTag" | "filteringSelectors"> {}
 
 export interface ITableHead<T>
   extends Omit<
@@ -114,7 +111,6 @@ export interface ITableHead<T>
     | "titleTag"
     | "horizontalScroll"
     | "bodyData"
-    | "filteringSelectors"
     | "colSpan"
     | "style"
     | "initialExpandableRowsState"
@@ -139,7 +135,6 @@ export interface ITableBody<T>
     | "initialSorting"
     | "sortOption"
     | "handleSort"
-    | "isFilterable"
     | "setFilter"
     | "onRowClick"
     | "stickyHeaderPosition"
