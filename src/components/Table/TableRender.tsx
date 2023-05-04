@@ -60,8 +60,6 @@ export const TableRender = <T extends Row>({
           // INFO: getBoundingClientRect().width returns non-integer values, offsetWidth returns rounded to integer
           cell => cell.getBoundingClientRect().width
         );
-        console.log(theadBodyCellsWidth);
-
         theadHeader
           .querySelectorAll("p")
           .forEach((p, i) => (p.style.width = theadBodyCellsWidth[i] + "px"));
@@ -86,7 +84,6 @@ export const TableRender = <T extends Row>({
       }
       if (horizontalScroll === "bottom") {
         tableBodyWrapper.removeEventListener("scroll", headerScrollListener);
-        console.log("bottom");
       }
     };
   }, []);

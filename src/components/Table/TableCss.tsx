@@ -117,8 +117,6 @@ export const tbodyTrExpandableRowContentWrapper = (
   isTransitionOn: boolean,
   initialExpandableRowsState: "hidden" | "visible"
 ) => {
-  console.log(initialExpandableRowsState);
-
   return clsx(
     classes.tbodyTrExpandableRowContentWrapper,
     initialExpandableRowsState === "visible" && classes.maxHeightAuto,

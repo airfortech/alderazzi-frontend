@@ -1,34 +1,35 @@
 import { UserRole } from "../../types/UserRole";
-import { GiCrossedSwords } from "react-icons/gi";
-import { GiTavernSign } from "react-icons/gi";
-import { GiKeyring } from "react-icons/gi";
-import { MdSettings } from "react-icons/md";
-import { GiOpenTreasureChest } from "react-icons/gi";
+import { Icon } from "../Icon/Icon";
 
 export const links = [
-  { url: "/", name: "Home", icon: <GiTavernSign />, allowedRoles: null },
+  {
+    url: "/",
+    name: "Home",
+    icon: <Icon icon="tavernSign" size="normal" />,
+    allowedRoles: null,
+  },
   {
     url: "/wrogowie",
     name: "Wrogowie",
-    icon: <GiCrossedSwords />,
+    icon: <Icon icon="crossedSwords" size="normal" />,
     allowedRoles: [UserRole.caporegime, UserRole.consigliore, UserRole.soldato],
   },
   {
     url: "/klucznicy",
     name: "Klucznicy",
-    icon: <GiOpenTreasureChest />,
+    icon: <Icon icon="chest" size="normal" />,
     allowedRoles: [UserRole.caporegime, UserRole.consigliore, UserRole.soldato],
   },
   {
     url: "/klucze",
     name: "Klucze",
-    icon: <GiKeyring />,
+    icon: <Icon icon="keys" size="normal" />,
     allowedRoles: [UserRole.caporegime, UserRole.consigliore, UserRole.soldato],
   },
   {
     url: "/ustawienia",
     name: "Ustawienia",
-    icon: <MdSettings />,
+    icon: <Icon icon="settings" size="normal" />,
     allowedRoles: [UserRole.consigliore],
   },
 ];

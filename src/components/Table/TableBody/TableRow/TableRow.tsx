@@ -57,7 +57,9 @@ export const TableRow = <T extends Row>({
       // INFO: transition for height: auto fix
       setExpandableRowContent(refExpandableRowContent.current.scrollHeight);
     }
-    setTimeout(() => setIsTransitionOn(true), 0);
+    const timeout = setTimeout(() => setIsTransitionOn(true), 0);
+
+    return () => clearTimeout(timeout);
   }, []);
 
   useEffect(() => {
