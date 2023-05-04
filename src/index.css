@@ -10,24 +10,42 @@
   --font-secondary: "MedievalSharp";
 
   --color-1: #0a0a0a;
-  --color-2: #1c1c1c;
   --color-1-opacity: #0a0a0add;
+  --color-2: hsl(0, 0%, 11%);
+  --color-2-hover: hsl(0, 0%, 20%);
+  --color-2-opacity-1: hsl(0, 0%, 11%, 0.5);
+  --color-2-opacity-2: hsl(0, 0%, 11%, 0.18);
   --color-2-opacity: #1c1c1cdd;
   --color-3: #444;
 
-  --color-10: #ccc;
+  --color-10: hsl(0, 0%, 80%);
+  --color-10-hover: hsl(0, 0%, 54%);
+  --color-10-opacity-1: hsl(0, 0%, 80%, 0.5);
+  --color-10-opacity-2: hsl(0, 0%, 80%, 0.18);
   --color-10-opacity: #ccc5;
   --color-11: #888;
 
-  --color-20: #d32f2f;
+  --color-20: hsl(0, 77%, 56%);
+  --color-20-hover: hsl(0, 65%, 36%);
+  --color-20-opacity-1: hsl(0, 77%, 56%, 0.5);
+  --color-20-opacity-2: hsl(0, 77%, 56%, 0.18);
   --color-21: #6666ff;
   --color-22: #1b1b64;
-  --color-23: #2fd373;
+  --color-23: hsl(145, 65%, 51%);
+  --color-23-hover: hsl(145, 65%, 36%);
+  --color-23-opacity-1: hsl(145, 65%, 51%, 0.5);
+  --color-23-opacity-2: hsl(145, 65%, 51%, 0.18);
   --color-24: #3939b923;
   --color-25: #3939b94d;
-  --color-26: #8566ff;
+  --color-26: hsl(252, 100%, 70%);
+  --color-26-hover: hsl(252, 100%, 63%);
+  --color-26-opacity-1: hsl(252, 100%, 70%, 0.5);
+  --color-26-opacity-2: hsl(252, 100%, 70%, 0.18);
   --color-27: #8566ff44;
-  --color-28: #d3a72f;
+  --color-28: hsl(44, 65%, 51%);
+  --color-28-hover: hsl(44, 85%, 37%);
+  --color-28-opacity-1: hsl(44, 65%, 51%, 0.5);
+  --color-28-opacity-2: hsl(44, 65%, 51%, 0.18);
 
   --border-radius-normal: 4px;
 

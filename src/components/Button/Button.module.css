@@ -1,0 +1,163 @@
+.Button {
+  margin: 10px !important;
+}
+
+.small {
+  font-size: 14px;
+}
+
+.success {
+  color: var(--color-23);
+}
+
+.success:hover {
+  background-color: var(--color-23-opacity-2);
+}
+
+.success.outlined {
+  border-color: var(--color-23-opacity-1);
+}
+
+.success.outlined:hover {
+  border-color: var(--color-23);
+  background-color: var(--color-23-opacity-2);
+}
+
+.success.contained {
+  color: var(--color-1-opacity);
+  background-color: var(--color-23);
+}
+
+.success.contained:hover {
+  background-color: var(--color-23-hover);
+}
+
+.danger {
+  color: var(--color-20);
+}
+
+.danger:hover {
+  background-color: var(--color-20-opacity-2);
+}
+
+.danger.outlined {
+  border-color: var(--color-20-opacity-1);
+}
+
+.danger.outlined:hover {
+  border-color: var(--color-20);
+  background-color: var(--color-20-opacity-2);
+}
+
+.danger.contained {
+  color: #fff;
+  background-color: var(--color-20);
+}
+
+.danger.contained:hover {
+  background-color: var(--color-20-hover);
+}
+
+.info {
+  color: var(--color-26);
+}
+
+.info:hover {
+  background-color: var(--color-26-opacity-2);
+}
+
+.info.outlined {
+  border-color: var(--color-26-opacity-1);
+}
+
+.info.outlined:hover {
+  border-color: var(--color-26);
+  background-color: var(--color-26-opacity-2);
+}
+
+.info.contained {
+  color: #fff;
+  background-color: var(--color-26);
+}
+
+.info.contained:hover {
+  background-color: var(--color-26-hover);
+}
+
+.warning {
+  color: var(--color-28);
+}
+
+.warning:hover {
+  background-color: var(--color-28-opacity-2);
+}
+
+.warning.outlined {
+  border-color: var(--color-28-opacity-1);
+}
+
+.warning.outlined:hover {
+  border-color: var(--color-28);
+  background-color: var(--color-28-opacity-2);
+}
+
+.warning.contained {
+  color: #fff;
+  background-color: var(--color-28);
+}
+
+.warning.contained:hover {
+  background-color: var(--color-28-hover);
+}
+
+.primary {
+  color: var(--color-10);
+}
+
+.primary:hover {
+  background-color: var(--color-10-opacity-2);
+}
+
+.primary.outlined {
+  border-color: var(--color-10-opacity-1);
+}
+
+.primary.outlined:hover {
+  border-color: var(--color-10);
+  background-color: var(--color-10-opacity-2);
+}
+
+.primary.contained {
+  color: var(--color-1-opacity);
+  background-color: var(--color-10);
+}
+
+.primary.contained:hover {
+  background-color: var(--color-10-hover);
+}
+
+.secondary {
+  color: var(--color-2);
+}
+
+.secondary:hover {
+  background-color: var(--color-2-opacity-2);
+}
+
+.secondary.outlined {
+  border-color: var(--color-2-opacity-1);
+}
+
+.secondary.outlined:hover {
+  border-color: var(--color-2);
+  background-color: var(--color-2-opacity-2);
+}
+
+.secondary.contained {
+  color: #fff;
+  background-color: var(--color-2);
+}
+
+.secondary.contained:hover {
+  background-color: var(--color-2-hover);
+}

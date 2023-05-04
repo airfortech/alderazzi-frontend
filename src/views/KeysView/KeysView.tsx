@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Icon } from "../../components/Icon/Icon";
 import { Modal } from "../../components/Modal/Modal";
 import classes from "./KeysView.module.css";
+import { Button } from "../../components/Button/Button";
 
 export const KeysView = () => {
   const [open, setOpen] = useState(false);
+
   return (
     <div className={classes.KeysView}>
       <h2>Klucze</h2>
@@ -14,10 +16,87 @@ export const KeysView = () => {
         size="xl"
         color="info"
         onClick={() => {
-          console.log("test");
           setOpen(true);
         }}
       />
+      <br />
+      <Button>Test</Button>
+      <br />
+      <Button size="sm" icon="chest">
+        Test
+      </Button>
+      <Button size="normal" icon="chest">
+        Test
+      </Button>
+      <Button size="lg" color="success" icon="chest">
+        Test
+      </Button>
+      <Button size="lg" color="danger" icon="chest">
+        Test
+      </Button>
+      <Button size="lg" color="info">
+        Test
+      </Button>
+      <Button size="lg" color="warning">
+        Test
+      </Button>
+      <Button size="lg" color="primary">
+        Test
+      </Button>
+      <Button size="lg" color="secondary">
+        Test
+      </Button>
+
+      <br />
+      <Button variant="outlined" size="sm" icon="chest">
+        Test
+      </Button>
+      <Button variant="outlined" size="normal" icon="chest">
+        Test
+      </Button>
+      <Button variant="outlined" size="lg" color="success" icon="chest">
+        Test
+      </Button>
+      <Button variant="outlined" size="lg" color="danger" icon="chest">
+        Test
+      </Button>
+      <Button variant="outlined" size="lg" color="info">
+        Test
+      </Button>
+      <Button variant="outlined" size="lg" color="warning">
+        Test
+      </Button>
+      <Button variant="outlined" size="lg" color="primary">
+        Test
+      </Button>
+      <Button variant="outlined" size="lg" color="secondary">
+        Test
+      </Button>
+      <br />
+      <Button variant="contained" size="sm" icon="chest">
+        Test
+      </Button>
+      <Button variant="contained" size="normal" icon="chest">
+        Test
+      </Button>
+      <Button variant="contained" size="lg" color="success" icon="chest">
+        Test
+      </Button>
+      <Button variant="contained" size="lg" color="danger" icon="chest">
+        Test
+      </Button>
+      <Button variant="contained" size="lg" color="info">
+        Test
+      </Button>
+      <Button variant="contained" size="lg" color="warning">
+        Test
+      </Button>
+      <Button variant="contained" size="lg" color="primary">
+        Test
+      </Button>
+      <Button variant="contained" size="lg" color="secondary">
+        Test
+      </Button>
       <Modal
         title=" Lorem ipsum dolor sit amet consectetur adipisicing."
         open={open}

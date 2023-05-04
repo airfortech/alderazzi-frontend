@@ -1,3 +1,4 @@
+import { Icon as IIcon } from "../../types/Icons";
 import { CSSProperties, MouseEventHandler } from "react";
 import IconButton from "@mui/material/IconButton";
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -13,18 +14,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 interface Props {
-  icon:
-    | "cancel"
-    | "chest"
-    | "close"
-    | "crossedSwords"
-    | "file"
-    | "down"
-    | "exit"
-    | "keys"
-    | "settings"
-    | "tavernSign"
-    | "up";
+  icon: IIcon;
   type?: "icon" | "button";
   color?:
     | "primary"
