@@ -34,7 +34,7 @@ export const EnemiesList = () => {
       ) : (
         <Table
           data={enemies}
-          columns={columns}
+          columns={columns(auth?.role)}
           title="Lista Wrogów"
           titleTag="h2"
           stickyHeaderPosition={50}

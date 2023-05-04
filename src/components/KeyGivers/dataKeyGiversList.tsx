@@ -52,10 +52,6 @@ export const rows = (data: KeyGiver[]) => {
 };
 
 export const columns: Columns<KeyGiverTableData> = [
-  // {
-  //   selector: "id",
-  //   isVisible: false,
-  // },
   {
     selector: "name",
     header: "Nazwa",
