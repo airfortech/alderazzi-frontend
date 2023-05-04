@@ -66,10 +66,10 @@ export const Button = ({
       style={style}
       onClick={onClick}
       startIcon={
-        icon && iconAlign === "left" && <Icon icon="chest" size={size} />
+        icon && iconAlign === "left" && <Icon icon={icon} size={size} />
       }
       endIcon={
-        icon && iconAlign === "right" && <Icon icon="chest" size={size} />
+        icon && iconAlign === "right" && <Icon icon={icon} size={size} />
       }
     >
       {children}

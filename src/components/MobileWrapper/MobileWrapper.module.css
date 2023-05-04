@@ -1,0 +1,9 @@
+.MobileWrapper {
+  padding: 0;
+}
+
+@media (max-width: 580px) {
+  .MobileWrapper {
+    padding: 0px 15px;
+  }
+}
