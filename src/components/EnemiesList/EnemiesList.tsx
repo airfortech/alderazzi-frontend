@@ -37,6 +37,7 @@ export const EnemiesList = () => {
           columns={columns(auth?.role)}
           title="Lista Wrogów"
           titleTag="h2"
+          initialSorting={{ field: "name", order: "asc" }}
           stickyHeaderPosition={50}
         />
       )}

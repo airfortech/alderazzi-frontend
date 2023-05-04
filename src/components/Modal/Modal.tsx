@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import { CSSProperties, ReactNode } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import MuiModal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
@@ -20,7 +20,7 @@ const modalClasses = (fullWidth: boolean, fullHeight: boolean) =>
   );
 
 interface Props {
-  children: React.ReactElement;
+  children: ReactNode;
   title?: string;
   style?: CSSProperties;
   fullWidth?: boolean;
