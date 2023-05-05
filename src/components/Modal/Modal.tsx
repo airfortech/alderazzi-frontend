@@ -26,6 +26,7 @@ interface Props {
   fullWidth?: boolean;
   fullHeight?: boolean;
   open: boolean;
+  closeIcon?: boolean;
   onClose: () => void;
 }
 
@@ -36,6 +37,7 @@ export const Modal = ({
   fullWidth = false,
   fullHeight = false,
   open,
+  closeIcon = true,
   onClose,
 }: Props) => {
   return (
@@ -54,17 +56,21 @@ export const Modal = ({
     >
       <Fade in={open}>
         <div className={modalClasses(fullWidth, fullHeight)} style={style}>
-          <div className={headerClasses(title)}>
-            {title && <p className={classes.title}>{title}</p>}
-            <IconButton
-              aria-label="logout"
-              sx={{ color: red[700] }}
-              className={classes.button}
-              onClick={onClose}
-            >
-              <CloseIcon />
-            </IconButton>
-          </div>
+          {(title || closeIcon) && (
+            <div className={headerClasses(title)}>
+              {title && <p className={classes.title}>{title}</p>}
+              {closeIcon && (
+                <IconButton
+                  aria-label="logout"
+                  sx={{ color: red[700] }}
+                  className={classes.button}
+                  onClick={onClose}
+                >
+                  <CloseIcon />
+                </IconButton>
+              )}
+            </div>
+          )}
           <div className={classes.content}>{children}</div>
         </div>
       </Fade>

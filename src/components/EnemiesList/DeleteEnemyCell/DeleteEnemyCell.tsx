@@ -1,7 +1,7 @@
-import { Enemy } from "../../../types/Enemy";
 import { useState } from "react";
 import { Button } from "../../Button/Button";
-import { Modal } from "../../Modal/Modal";
+import { Enemy } from "../../../types/Enemy";
+import { Prompt } from "../../Prompt/Prompt";
 import { useEnemies } from "../../../hooks/useEnemies";
 
 import classes from "./DeleteEnemyCell.module.css";
@@ -25,30 +25,12 @@ export const DeleteEnemyCell = ({ id, name }: Enemy) => {
       >
         Usuń
       </Button>
-      <Modal
+      <Prompt
         title={`Czy na pewno chcesz usunąć wroga: ${name}?`}
         open={open}
         onClose={() => setOpen(false)}
-      >
-        <div className={classes.prompt}>
-          <Button
-            size="lg"
-            variant="outlined"
-            color="success"
-            onClick={() => handleDeleteEnemy(id)}
-          >
-            Tak
-          </Button>
-          <Button
-            size="lg"
-            color="danger"
-            variant="outlined"
-            onClick={() => setOpen(false)}
-          >
-            Nie
-          </Button>
-        </div>
-      </Modal>
+        onAccept={() => handleDeleteEnemy(id)}
+      />
     </>
   );
 };

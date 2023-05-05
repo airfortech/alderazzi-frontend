@@ -4,9 +4,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 15px;
-  max-width: 600px;
   width: 100%;
-  max-height: min(900px, 100%);
+  max-width: 600px;
+  max-height: min(100%, 900px);
   display: grid;
   grid-template-rows: auto 1fr;
   background: linear-gradient(45deg, var(--color-24), var(--color-25));
@@ -27,6 +27,7 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 18px;
+  width: 100%;
 }
 
 .flexEnd {
