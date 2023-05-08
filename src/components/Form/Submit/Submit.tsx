@@ -22,6 +22,7 @@ export const Submit = ({
   title = "Submit",
   icon,
   iconAlign,
+  disableIfInvalid = false,
 }: Props) => {
   return (
     <div className={submitClasses(align)}>
@@ -32,7 +33,7 @@ export const Submit = ({
         size="lg"
         icon={icon}
         iconAlign={iconAlign}
-        disabled={isValid}
+        disabled={disableIfInvalid ? !isValid : false}
         style={{ order: align === "left" ? -1 : "auto" }}
       >
         {title}

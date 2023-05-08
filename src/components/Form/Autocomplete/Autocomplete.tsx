@@ -1,32 +1,40 @@
-import { Controller } from "react-hook-form";
+import { IAutocomplete } from "../../../types/Form";
+import { Control, Controller, FieldValues } from "react-hook-form";
 import MuiAutocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 
-interface Props {
-  control: any;
+interface Props<T> extends Omit<IAutocomplete<T>, "type"> {
+  control: Control<FieldValues, any>;
 }
 
-export const Autocomplete = ({ control }: Props) => {
+export const Autocomplete = <T,>({
+  control,
+  name,
+  options,
+  placeholder,
+  defaultOption,
+}: Props<T>) => {
   return (
     <>
       <Controller
-        name="password"
+        name={name as string}
         control={control}
-        // defaultValue={{ label: "Pulp Fiction", id: 2 }}
+        defaultValue={defaultOption}
         render={({ field: { onChange } }) => (
           <MuiAutocomplete
-            // defaultValue={{ label: "Pulp Fiction", id: 2 }}
-            options={[
-              { label: "The Godfather", id: 1 },
-              { label: "Pulp Fiction", id: 2 },
-            ]}
+            defaultValue={defaultOption}
+            options={options}
             // to bedzie wyswietlane
             getOptionLabel={option => {
               return option.label;
             }}
             // porownanie wybranej wartosci
-            isOptionEqualToValue={(option, value) => option.id === value.id}
-            renderInput={params => <TextField {...params} label="Movie" />}
+            isOptionEqualToValue={(option, value) =>
+              option.value === value.value
+            }
+            renderInput={params => (
+              <TextField {...params} label={placeholder} />
+            )}
             onChange={(e, data) => onChange(data)}
           />
         )}

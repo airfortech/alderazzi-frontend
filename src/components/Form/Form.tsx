@@ -70,6 +70,17 @@ export const Form = <T,>({
                 control={control}
                 name={item.name as never}
                 options={item.options}
+                defaultValue={item.defaultValue}
+                placeholder={item.placeholder}
+                key={item.name as Key}
+              />
+            );
+          else if (item.type === "autocomplete")
+            return (
+              <Autocomplete
+                control={control}
+                name={item.name as never}
+                options={item.options}
                 placeholder={item.placeholder}
                 key={item.name as Key}
               />
@@ -81,15 +92,13 @@ export const Form = <T,>({
                 icon={item.icon}
                 iconAlign={item.iconAlign}
                 align={item.align}
+                disableIfInvalid={item.disableIfInvalid}
                 isValid={isValid}
                 isLoading={true}
                 key={i}
               />
             );
         })}
-        {/* <Select control={control} />
-        <Autocomplete control={control} />
-        <Submit isValid={isValid} isLoading={true} align="left" /> */}
       </FormControl>
     </div>
   );

@@ -7,27 +7,27 @@ import { toast } from "react-toastify";
 import { FieldErrors } from "react-hook-form";
 
 export interface FormData {
-  role: number;
-  test: { label: string; value: number };
-  password: { label: string; id: number };
+  select: number;
+  autocomplete: { label: string; id: number };
 }
 
 const submit = (formData: FormData) => {
   console.log("submit:", formData);
+  // FIXME: submit returns formData.select not formData.select.value
 };
 
 const validationSchema = yup.object().shape({
-  role: yup.string().required(),
-  password: yup.object().nullable().required("Podaj hasło!"),
+  select: yup.string().required("Podaj select!"),
+  autocomplete: yup.object().nullable().required("Podaj autocomplete!"),
 });
 
 const errors = (errors: FieldErrors<FormData>) => {
   console.log("errors:", errors);
-  if (errors.password?.id !== undefined) toast.dismiss();
-  if (errors.password !== undefined) toast.dismiss();
-  toast.error(errors?.password?.id?.message);
-  toast.error(errors?.password?.message);
-  toast.error(errors?.role?.message);
+  if (errors.select !== undefined) toast.dismiss();
+  if (errors.select !== undefined) toast.dismiss();
+  toast.error(errors?.select?.message);
+  toast.error(errors?.autocomplete?.message);
+  // toast.error(errors?.role?.message);
 };
 
 export const KeysView = () => {
@@ -40,8 +40,18 @@ export const KeysView = () => {
           items={[
             {
               type: "select",
-              name: "role",
-              placeholder: "test",
+              name: "select",
+              placeholder: "select",
+              options: [
+                { label: "test", value: 1 },
+                { label: "test2", value: 2 },
+              ],
+              // defaultValue: 2,
+            },
+            {
+              type: "autocomplete",
+              name: "autocomplete",
+              placeholder: "autocomplete",
               options: [
                 { label: "test", value: "test" },
                 { label: "test2", value: "test2" },
