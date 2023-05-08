@@ -1,16 +1,15 @@
-import List from "@mui/material/List";
-import Button from "@mui/material/Button";
+import { UserRole } from "../../types/UserRole";
 import { useAuth } from "../../hooks/useAuth";
 import { useEnemies } from "../../hooks/useEnemies";
-import { EnemyItem } from "./EnemyItem/EnemyItem";
 import { AddEnemy } from "./AddEnemy/AddEnemy";
+import Button from "@mui/material/Button";
 import { Loader } from "../Loader/Loader";
-import { isRoleAllowed } from "../../utils/isRoleAllowed";
-import { UserRole } from "../../types/UserRole";
-import classes from "./EnemiesList.module.css";
 import { Icon } from "../Icon/Icon";
 import { Table } from "../Table/Table";
+import { isRoleAllowed } from "../../utils/isRoleAllowed";
 import { columns } from "./dataEnemiesList";
+
+import classes from "./EnemiesList.module.css";
 
 export const EnemiesList = () => {
   const { auth } = useAuth();

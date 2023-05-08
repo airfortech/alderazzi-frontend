@@ -17,6 +17,7 @@ type Color =
 
 interface Props {
   children: string;
+  type?: "button" | "submit";
   icon?: IIcon;
   iconAlign?: "left" | "right";
   color?: Color;
@@ -48,6 +49,7 @@ const buttonClasses = (
 
 export const Button = ({
   children,
+  type = "button",
   size = "normal",
   variant = "text",
   color = "inherit",
@@ -60,6 +62,7 @@ export const Button = ({
   return (
     <MuiButton
       className={buttonClasses(color, variant, size)}
+      type={type}
       size={sizes[size] as "small" | "medium" | "large"}
       variant={variant}
       disabled={disabled}

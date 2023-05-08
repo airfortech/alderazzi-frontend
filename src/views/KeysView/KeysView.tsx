@@ -1,206 +1,59 @@
-import { useState } from "react";
-import { Modal } from "../../components/Modal/Modal";
-import { Button } from "../../components/Button/Button";
+import * as yup from "yup";
+import { Form } from "../../components/Form/Form";
 import { MobileWrapper } from "../../components/MobileWrapper/MobileWrapper";
 
 import classes from "./KeysView.module.css";
-import { Prompt } from "../../components/Prompt/Prompt";
+import { toast } from "react-toastify";
+import { FieldErrors } from "react-hook-form";
+
+export interface FormData {
+  role: number;
+  test: { label: string; value: number };
+  password: { label: string; id: number };
+}
+
+const submit = (formData: FormData) => {
+  console.log("submit:", formData);
+};
+
+const validationSchema = yup.object().shape({
+  role: yup.string().required(),
+  password: yup.object().nullable().required("Podaj hasło!"),
+});
+
+const errors = (errors: FieldErrors<FormData>) => {
+  console.log("errors:", errors);
+  if (errors.password?.id !== undefined) toast.dismiss();
+  if (errors.password !== undefined) toast.dismiss();
+  toast.error(errors?.password?.id?.message);
+  toast.error(errors?.password?.message);
+  toast.error(errors?.role?.message);
+};
 
 export const KeysView = () => {
-  const [open, setOpen] = useState(false);
-  const [open2, setOpen2] = useState(false);
-  const [open3, setOpen3] = useState(false);
-
   return (
     <div className={classes.KeysView}>
       <MobileWrapper>
         <h2>Klucze</h2>
-        <Button
-          icon="settings"
-          size="lg"
-          variant="outlined"
-          onClick={() => {
-            setOpen(true);
-          }}
-        >
-          Modal
-        </Button>
-        <Button
-          icon="settings"
-          size="lg"
-          variant="outlined"
-          onClick={() => {
-            setOpen2(true);
-          }}
-        >
-          Modal
-        </Button>
-        <Button
-          icon="settings"
-          size="lg"
-          variant="outlined"
-          onClick={() => {
-            setOpen3(true);
-          }}
-        >
-          Prompt
-        </Button>
         <br />
-        <Button>Test</Button>
-        <br />
-        <Button size="sm" icon="chest">
-          Test
-        </Button>
-        <Button size="normal" icon="chest">
-          Test
-        </Button>
-        <Button size="lg" color="success" icon="chest">
-          Test
-        </Button>
-        <Button size="lg" color="danger" icon="chest">
-          Test
-        </Button>
-        <Button size="lg" color="info">
-          Test
-        </Button>
-        <Button size="lg" color="warning">
-          Test
-        </Button>
-        <Button size="lg" color="primary">
-          Test
-        </Button>
-        <Button size="lg" color="secondary">
-          Test
-        </Button>
-
-        <br />
-        <Button variant="outlined" size="sm" icon="chest">
-          Test
-        </Button>
-        <Button variant="outlined" size="normal" icon="chest">
-          Test
-        </Button>
-        <Button variant="outlined" size="lg" color="success" icon="chest">
-          Test
-        </Button>
-        <Button variant="outlined" size="lg" color="danger" icon="chest">
-          Test
-        </Button>
-        <Button variant="outlined" size="lg" color="info">
-          Test
-        </Button>
-        <Button variant="outlined" size="lg" color="warning">
-          Test
-        </Button>
-        <Button variant="outlined" size="lg" color="primary">
-          Test
-        </Button>
-        <Button variant="outlined" size="lg" color="secondary">
-          Test
-        </Button>
-        <br />
-        <Button variant="contained" size="sm" icon="chest">
-          Test
-        </Button>
-        <Button variant="contained" size="normal" icon="chest">
-          Test
-        </Button>
-        <Button variant="contained" size="lg" color="success" icon="chest">
-          Test
-        </Button>
-        <Button variant="contained" size="lg" color="danger" icon="chest">
-          Test
-        </Button>
-        <Button variant="contained" size="lg" color="info">
-          Test
-        </Button>
-        <Button variant="contained" size="lg" color="warning">
-          Test
-        </Button>
-        <Button variant="contained" size="lg" color="primary">
-          Test
-        </Button>
-        <Button variant="contained" size="lg" color="secondary">
-          Test
-        </Button>
+        <Form<FormData>
+          items={[
+            {
+              type: "select",
+              name: "role",
+              placeholder: "test",
+              options: [
+                { label: "test", value: "test" },
+                { label: "test2", value: "test2" },
+              ],
+            },
+            { type: "submit" },
+          ]}
+          submit={submit}
+          errorsHandler={errors}
+          validationSchema={validationSchema}
+        />
       </MobileWrapper>
-      <Modal
-        title=" Lorem ipsum dolor sit amet consectetur adipisicing. dasdasdas dasd as"
-        open={open}
-        closeIcon={false}
-        onClose={() => setOpen(false)}
-      >
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
-          doloremque quod placeat blanditiis nesciunt omnis libero, optio fugit
-          reprehenderit ipsa, quasi voluptatibus nam saepe quisquam aliquid enim
-          delectus, magnam amet suscipit nobis accusamus eveniet! Eius dolor
-          voluptate facilis ipsam quaerat aspernatur deleniti ex, quos dicta
-          incidunt quisquam ducimus voluptates amet facere tempore rerum numquam
-          labore minus impedit pariatur est.
-        </p>
-      </Modal>
-      <Modal
-        title=" Lorem ipsum dolor sit amet consectetur adipisicing."
-        open={open2}
-        onClose={() => setOpen2(false)}
-      >
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
-          doloremque quod placeat blanditiis nesciunt omnis libero, optio fugit
-          reprehenderit ipsa, quasi voluptatibus nam saepe quisquam aliquid enim
-          delectus, magnam amet suscipit nobis accusamus eveniet! Eius dolor
-          voluptate facilis ipsam quaerat aspernatur deleniti ex, quos dicta
-          incidunt quisquam ducimus voluptates amet facere tempore rerum numquam
-          labore minus impedit pariatur est. Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Veritatis doloremque quod placeat
-          blanditiis nesciunt omnis libero, optio fugit reprehenderit ipsa,
-          quasi voluptatibus nam saepe quisquam aliquid enim delectus, magnam
-          amet suscipit nobis accusamus eveniet! Eius dolor voluptate facilis
-          ipsam quaerat aspernatur deleniti ex, quos dicta incidunt quisquam
-          ducimus voluptates amet facere tempore rerum numquam labore minus
-          impedit pariatur est. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Veritatis doloremque quod placeat blanditiis
-          nesciunt omnis libero, optio fugit reprehenderit ipsa, quasi
-          voluptatibus nam saepe quisquam aliquid enim delectus, magnam amet
-          suscipit nobis accusamus eveniet! Eius dolor voluptate facilis ipsam
-          quaerat aspernatur deleniti ex, quos dicta incidunt quisquam ducimus
-          voluptates amet facere tempore rerum numquam labore minus impedit
-          pariatur est. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Veritatis doloremque quod placeat blanditiis nesciunt omnis libero,
-          optio fugit reprehenderit ipsa, quasi voluptatibus nam saepe quisquam
-          aliquid enim delectus, magnam amet suscipit nobis accusamus eveniet!
-          Eius dolor voluptate facilis ipsam quaerat aspernatur deleniti ex,
-          quos dicta incidunt quisquam ducimus voluptates amet facere tempore
-          rerum numquam labore minus impedit pariatur est. Lorem ipsum dolor sit
-          amet consectetur adipisicing elit. Veritatis doloremque quod placeat
-          blanditiis nesciunt omnis libero, optio fugit reprehenderit ipsa,
-          quasi voluptatibus nam saepe quisquam aliquid enim delectus, magnam
-          amet suscipit nobis accusamus eveniet! Eius dolor voluptate facilis
-          ipsam quaerat aspernatur deleniti ex, quos dicta incidunt quisquam
-          ducimus voluptates amet facere tempore rerum numquam labore minus
-          impedit pariatur est. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Veritatis doloremque quod placeat blanditiis
-          nesciunt omnis libero, optio fugit reprehenderit ipsa, quasi
-          voluptatibus nam saepe quisquam aliquid enim delectus, magnam amet
-          suscipit nobis accusamus eveniet! Eius dolor voluptate facilis ipsam
-          quaerat aspernatur deleniti ex, quos dicta incidunt quisquam ducimus
-          voluptates amet facere tempore rerum numquam labore minus impedit
-          pariatur est. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Veritatis doloremque quod placeat blanditiis nesciunt omnis libero,
-          optio fugit reprehenderit ipsa, quasi voluptatibus nam saepe quisquam
-          aliquid enim delectus, magnam amet suscipit nobis accusamus eveniet!
-          Eius dolor voluptate facilis ipsam quaerat aspernatur deleniti ex,
-          quos dicta incidunt quisquam ducimus voluptates amet facere tempore
-          rerum numquam labore minus impedit pariatur est.
-        </p>
-      </Modal>
-      <Prompt
-        title="Na pewno?"
-        open={open3}
-        onClose={() => setOpen3(false)}
-        onAccept={() => console.log("ok")}
-      />
     </div>
   );
 };

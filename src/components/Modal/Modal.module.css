@@ -16,7 +16,7 @@
     rgba(0, 0, 0, 0.14) 0px 24px 38px 3px, rgba(0, 0, 0, 0.12) 0px 9px 46px 8px;
 }
 
-:global(.MuiBackdrop-root.MuiModal-backdrop) {
+:global(.MuiBackdrop-root.MuiModal-backdrop:not(.MuiBackdrop-invisible)) {
   background-color: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(14px);
 }

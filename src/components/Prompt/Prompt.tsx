@@ -29,7 +29,7 @@ export const Prompt = ({
       open={open}
       onClose={onClose}
       closeIcon={false}
-      style={{}}
+      style={style}
     >
       <div className={classes.prompt}>
         <Button size="lg" variant="outlined" color="success" onClick={onAccept}>

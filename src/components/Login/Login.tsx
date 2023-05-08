@@ -33,6 +33,8 @@ export const Login = () => {
   };
 
   useEffect(() => {
+    console.log(errors.password);
+
     if (errors.password !== undefined) toast.dismiss();
     toast.error(errors?.password?.message);
   }, [errors.password]);

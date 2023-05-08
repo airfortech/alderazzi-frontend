@@ -4,8 +4,6 @@ import { Enemy } from "../../../types/Enemy";
 import { Prompt } from "../../Prompt/Prompt";
 import { useEnemies } from "../../../hooks/useEnemies";
 
-import classes from "./DeleteEnemyCell.module.css";
-
 export const DeleteEnemyCell = ({ id, name }: Enemy) => {
   const [open, setOpen] = useState(false);
   const { deleteEnemyMutation } = useEnemies();
