@@ -19,6 +19,7 @@ export const Select = <T,>({
   options,
   defaultValue,
   icon,
+  iconColor = "inherit",
   placeholder,
 }: Props<T>) => {
   return (
@@ -36,7 +37,7 @@ export const Select = <T,>({
             InputProps={{
               startAdornment: icon && (
                 <InputAdornment position="start">
-                  <Icon icon={icon} size="lg" />
+                  <Icon icon={icon} size="lg" color={iconColor} />
                 </InputAdornment>
               ),
             }}

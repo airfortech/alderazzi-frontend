@@ -19,6 +19,7 @@ export const DateTime = <T,>({
   defaultValue,
   hideToolbar = false,
   showIcon = true,
+  iconColor = "inherit",
 }: Props<T>) => {
   return (
     <Controller
@@ -43,7 +44,7 @@ export const DateTime = <T,>({
                 InputProps: {
                   startAdornment: showIcon && (
                     <div className={classes.iconWrapper}>
-                      <Icon icon="clock" size="lg" color="inherit" />
+                      <Icon icon="clock" size="lg" color={iconColor} />
                     </div>
                   ),
                 },

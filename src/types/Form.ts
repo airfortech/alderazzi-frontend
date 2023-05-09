@@ -1,6 +1,6 @@
+import { Icon, IconColor } from "./Icons";
 import dayjs from "dayjs";
 import { FieldErrors, FieldValues } from "react-hook-form";
-import { Icon } from "./Icons";
 
 export interface IForm<T> {
   items: Fields<T>;
@@ -33,6 +33,7 @@ export interface IField<T> {
   placeholder: string;
   unit?: string;
   icon?: Icon;
+  iconColor?: IconColor;
   defaultValue?: string | number;
 }
 
@@ -42,6 +43,7 @@ export interface ISelect<T> {
   placeholder?: string;
   options: { value: string | number; label: string }[];
   icon?: Icon;
+  iconColor?: IconColor;
   defaultValue?: string | number;
 }
 
@@ -50,6 +52,7 @@ export interface IAutocomplete<T> {
   name: keyof T;
   placeholder?: string;
   icon?: Icon;
+  iconColor?: IconColor;
   options: { value: string | number; label: string }[];
   defaultOption?: { value: string | number; label: string };
 }
@@ -61,6 +64,7 @@ export interface IDateTime<T> {
   defaultValue?: Date | dayjs.Dayjs | null;
   hideToolbar?: boolean;
   showIcon?: boolean;
+  iconColor?: IconColor;
 }
 
 export interface ISubmit {

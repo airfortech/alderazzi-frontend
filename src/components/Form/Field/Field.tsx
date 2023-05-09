@@ -19,6 +19,7 @@ export const Field = <T,>({
   placeholder,
   unit,
   icon,
+  iconColor = "inherit",
   defaultValue,
 }: Props<T>) => {
   return (
@@ -37,7 +38,7 @@ export const Field = <T,>({
           InputProps={{
             startAdornment: icon ? (
               <InputAdornment position="start">
-                <Icon icon={icon} size="lg" />
+                <Icon icon={icon} size="lg" color={iconColor} />
               </InputAdornment>
             ) : undefined,
             endAdornment: unit && (

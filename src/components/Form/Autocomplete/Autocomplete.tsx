@@ -15,6 +15,7 @@ export const Autocomplete = <T,>({
   options,
   placeholder,
   icon,
+  iconColor = "inherit",
   defaultOption,
 }: Props<T>) => {
   return (
@@ -41,7 +42,7 @@ export const Autocomplete = <T,>({
                   ...params.InputProps,
                   startAdornment: icon && (
                     <InputAdornment position="start">
-                      <Icon icon={icon} size="lg" />
+                      <Icon icon={icon} size="lg" color={iconColor} />
                     </InputAdornment>
                   ),
                 }}
