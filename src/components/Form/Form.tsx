@@ -26,6 +26,7 @@ import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import { Field } from "./Field/Field";
 import { DateTime } from "./DateTime/DateTime";
+import { TextArea } from "./TextArea/TextArea";
 
 export interface FormData {
   role: number;
@@ -117,6 +118,19 @@ export const Form = <T,>({
                 icon={item.icon}
                 iconColor={item.iconColor}
                 defaultValue={item.defaultValue}
+                key={item.name as Key}
+              />
+            );
+          else if (item.type === "textarea")
+            return (
+              <TextArea
+                control={control}
+                name={item.name}
+                placeholder={item.placeholder}
+                defaultValue={item.defaultValue}
+                rows={item.rows}
+                minRows={item.minRows}
+                maxRows={item.maxRows}
                 key={item.name as Key}
               />
             );

@@ -10,6 +10,10 @@ import classes from "../Form.module.css";
 
 interface Props<T> extends Omit<IField<T>, "type"> {
   control: Control<FieldValues, any>;
+  multiline?: boolean;
+  rows?: number;
+  minRows?: number;
+  maxRows?: number;
 }
 
 export const Field = <T,>({
@@ -21,7 +25,13 @@ export const Field = <T,>({
   icon,
   iconColor = "inherit",
   defaultValue,
+  multiline = false,
+  rows = undefined,
+  minRows = undefined,
+  maxRows = undefined,
 }: Props<T>) => {
+  console.log("field:", defaultValue);
+
   return (
     <Controller
       name={name as string}
@@ -34,6 +44,10 @@ export const Field = <T,>({
           label={placeholder}
           type={fieldType}
           variant="outlined"
+          multiline={multiline}
+          rows={rows}
+          minRows={minRows}
+          maxRows={maxRows}
           // autoComplete="current-password"
           InputProps={{
             startAdornment: icon ? (

@@ -11,7 +11,8 @@ export interface FormData {
   datetime: Date;
   field: string;
   field2: string;
-  select: number;
+  textarea: string;
+  select: string;
   autocomplete: { label: string; id: number };
 }
 
@@ -57,22 +58,30 @@ export const KeysView = () => {
               icon: "basket",
             },
             {
+              type: "textarea",
+              name: "textarea",
+              placeholder: "textarea",
+              minRows: 3,
+              maxRows: 5,
+              defaultValue: "lorem ipsum",
+            },
+            {
               type: "select",
               name: "select",
               placeholder: "select",
               options: [
-                { label: "test", value: 1 },
-                { label: "test2", value: 2 },
+                { label: "test", value: "1" },
+                { label: "test2", value: "2" },
               ],
-              defaultValue: 2,
+              defaultValue: "2",
             },
             {
               type: "autocomplete",
               name: "autocomplete",
               placeholder: "autocomplete",
               options: [
-                { label: "test", value: 1 },
-                { label: "test2", value: 2 },
+                { label: "test", value: "1" },
+                { label: "test2", value: "2" },
               ],
               icon: "chest",
             },
@@ -80,7 +89,7 @@ export const KeysView = () => {
               type: "datetime",
               name: "datetime",
               placeholder: "datetime",
-              // defaultValue: new Date(),
+              defaultValue: new Date(),
             },
             { type: "submit" },
           ]}

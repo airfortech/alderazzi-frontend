@@ -15,3 +15,29 @@
   display: flex;
   gap: 8px;
 }
+
+:global(.MuiInputBase-inputMultiline)::-webkit-scrollbar {
+  width: 10px;
+  height: 4px;
+}
+
+:global(.MuiInputBase-inputMultiline)::-webkit-scrollbar-track {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    transparent 50%,
+    var(--color-25) 50%,
+    var(--color-25)
+  );
+}
+
+:global(.MuiInputBase-inputMultiline)::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    transparent 50%,
+    var(--color-26) 50%,
+    var(--color-26)
+  );
+  outline: none;
+}

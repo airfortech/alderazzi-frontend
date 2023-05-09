@@ -1,15 +1,9 @@
-import { Icon, IconColor } from "./Icons";
 import dayjs from "dayjs";
 import { FieldErrors, FieldValues } from "react-hook-form";
+import { Icon, IconColor } from "./Icons";
 
 export interface IForm<T> {
   items: Fields<T>;
-  // form_action="/path/to/form/submit"
-  // form_method="POST"
-  // task_id={12} // Used to submit a hidden variable with the id to the form from the database.
-  // answer_data={JSON_ANSWERS} // Answer data, only used if loading a pre-existing form with values.
-  // authenticity_token={AUTH_TOKEN} // If using Rails and need an auth token to submit form.
-  // data={JSON_QUESTION_DATA} // Question data
   submit?: (formData: T) => void;
   // TODO: how to type it?
   validationSchema?: any;
@@ -20,10 +14,10 @@ export type Field<T> =
   | ISelect<T>
   | IAutocomplete<T>
   | IField<T>
+  | ITextArea<T>
   | IDateTime<T>
   | ISubmit;
 
-// export type Fields<T> = [ISubmit, ...Field<T>[]] | [...Field<T>[], ISubmit];
 export type Fields<T> = Field<T>[];
 
 export interface IField<T> {
@@ -34,17 +28,28 @@ export interface IField<T> {
   unit?: string;
   icon?: Icon;
   iconColor?: IconColor;
-  defaultValue?: string | number;
+  defaultValue?: string;
+}
+
+export interface ITextArea<T>
+  extends Omit<
+    IField<T>,
+    "type" | "fieldType" | "unit" | "icon" | "iconColor"
+  > {
+  type: "textarea";
+  rows?: number;
+  minRows?: number;
+  maxRows?: number;
 }
 
 export interface ISelect<T> {
   type: "select";
   name: keyof T;
   placeholder?: string;
-  options: { value: string | number; label: string }[];
+  options: { value: string; label: string }[];
   icon?: Icon;
   iconColor?: IconColor;
-  defaultValue?: string | number;
+  defaultValue?: string;
 }
 
 export interface IAutocomplete<T> {
@@ -53,8 +58,8 @@ export interface IAutocomplete<T> {
   placeholder?: string;
   icon?: Icon;
   iconColor?: IconColor;
-  options: { value: string | number; label: string }[];
-  defaultOption?: { value: string | number; label: string };
+  options: { value: string; label: string }[];
+  defaultOption?: { value: string; label: string };
 }
 
 export interface IDateTime<T> {
