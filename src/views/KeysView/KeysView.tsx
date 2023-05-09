@@ -1,4 +1,5 @@
 import * as yup from "yup";
+import dayjs from "dayjs";
 import { Form } from "../../components/Form/Form";
 import { MobileWrapper } from "../../components/MobileWrapper/MobileWrapper";
 
@@ -7,12 +8,17 @@ import { toast } from "react-toastify";
 import { FieldErrors } from "react-hook-form";
 
 export interface FormData {
+  datetime: Date;
+  field: string;
+  field2: string;
   select: number;
   autocomplete: { label: string; id: number };
 }
 
 const submit = (formData: FormData) => {
   console.log("submit:", formData);
+  // console.log("date:", formData.datetime.valueOf());
+
   // FIXME: submit returns formData.select not formData.select.value
 };
 
@@ -27,7 +33,6 @@ const errors = (errors: FieldErrors<FormData>) => {
   if (errors.select !== undefined) toast.dismiss();
   toast.error(errors?.select?.message);
   toast.error(errors?.autocomplete?.message);
-  // toast.error(errors?.role?.message);
 };
 
 export const KeysView = () => {
@@ -39,6 +44,17 @@ export const KeysView = () => {
         <Form<FormData>
           items={[
             {
+              type: "field",
+              name: "field2",
+              placeholder: "field2",
+            },
+            {
+              type: "field",
+              name: "field",
+              placeholder: "field",
+              fieldType: "number",
+            },
+            {
               type: "select",
               name: "select",
               placeholder: "select",
@@ -46,16 +62,22 @@ export const KeysView = () => {
                 { label: "test", value: 1 },
                 { label: "test2", value: 2 },
               ],
-              // defaultValue: 2,
+              defaultValue: 2,
             },
             {
               type: "autocomplete",
               name: "autocomplete",
               placeholder: "autocomplete",
               options: [
-                { label: "test", value: "test" },
-                { label: "test2", value: "test2" },
+                { label: "test", value: 1 },
+                { label: "test2", value: 2 },
               ],
+            },
+            {
+              type: "datetime",
+              name: "datetime",
+              placeholder: "datetime",
+              defaultValue: new Date(),
             },
             { type: "submit" },
           ]}

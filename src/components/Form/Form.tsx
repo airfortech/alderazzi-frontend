@@ -22,6 +22,10 @@ import { Select } from "./Select/Select";
 import { Autocomplete } from "./Autocomplete/Autocomplete";
 import { Submit } from "./Submit/Submit";
 import { IForm } from "../../types/Form";
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import { Field } from "./Field/Field";
+import { DateTime } from "./DateTime/DateTime";
 
 export interface FormData {
   role: number;
@@ -96,6 +100,30 @@ export const Form = <T,>({
                 isValid={isValid}
                 isLoading={true}
                 key={i}
+              />
+            );
+          else if (item.type === "field")
+            return (
+              <Field
+                control={control}
+                name={item.name}
+                fieldType={item.fieldType}
+                placeholder={item.placeholder}
+                unit={item.unit}
+                unitAlign={item.unitAlign}
+                defaultValue={item.defaultValue}
+                key={item.name as Key}
+              />
+            );
+          else if (item.type === "datetime")
+            return (
+              <DateTime
+                control={control}
+                name={item.name}
+                placeholder={item.placeholder}
+                defaultValue={item.defaultValue}
+                hideToolbar={item.hideToolbar}
+                key={item.name as Key}
               />
             );
         })}

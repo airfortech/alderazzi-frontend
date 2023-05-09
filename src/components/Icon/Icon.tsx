@@ -1,5 +1,6 @@
 import { Icon as IIcon } from "../../types/Icons";
 import { CSSProperties, MouseEventHandler } from "react";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -11,6 +12,7 @@ import { GiKeyring } from "react-icons/gi";
 import { GiOpenTreasureChest } from "react-icons/gi";
 import { MdSettings } from "react-icons/md";
 import { GiTavernSign } from "react-icons/gi";
+import InsertInvitationIcon from "@mui/icons-material/InsertInvitation";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
@@ -68,8 +70,10 @@ export const Icon = ({
   };
   const iconComponent = {
     basket: <DeleteIcon style={iconStyle} />,
+    calendar: <InsertInvitationIcon style={iconStyle} />,
     cancel: <CancelIcon style={iconStyle} />,
     chest: <GiOpenTreasureChest style={iconStyle} />,
+    clock: <AccessTimeIcon style={iconStyle} />,
     close: <CloseIcon style={iconStyle} />,
     crossedSwords: <GiCrossedSwords style={iconStyle} />,
     file: <DescriptionIcon style={iconStyle} />,

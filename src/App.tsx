@@ -5,6 +5,8 @@ import { Route, Routes } from "react-router-dom";
 import { useEffect } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import { plPL as corePlPl } from "@mui/material/locale";
+import { plPL } from "@mui/x-date-pickers/locales";
 
 import { UnauthorizedView } from "./views/UnauthorizedView/UnauthorizedView";
 import { EnemiesView } from "./views/EnemiesView/EnemiesView";
@@ -19,21 +21,25 @@ import { Toast } from "./components/Toast/Toast";
 import { queryClient } from "./api/queryClient";
 import classes from "./App.module.css";
 
-const darkTheme = createTheme({
-  palette: {
-    mode: "dark",
-    common: {
-      white: "#796969",
-    },
-    primary: {
-      main: "hsl(240, 100%, 76%)",
-      dark: "hsl(240, 100%, 70%)",
-    },
-    background: {
-      default: "#00001a",
+const darkTheme = createTheme(
+  {
+    palette: {
+      mode: "dark",
+      common: {
+        white: "#796969",
+      },
+      primary: {
+        main: "hsl(240, 100%, 76%)",
+        dark: "hsl(240, 100%, 70%)",
+      },
+      background: {
+        default: "#00001a",
+      },
     },
   },
-});
+  plPL,
+  corePlPl
+);
 
 export const App = () => {
   useEffect(() => {

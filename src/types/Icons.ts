@@ -1,7 +1,9 @@
 export type Icon =
   | "basket"
+  | "calendar"
   | "cancel"
   | "chest"
+  | "clock"
   | "close"
   | "crossedSwords"
   | "file"

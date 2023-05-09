@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { FieldErrors, FieldValues } from "react-hook-form";
 import { Icon } from "./Icons";
 
@@ -15,16 +16,24 @@ export interface IForm<T> {
   errorsHandler?: (errors: FieldErrors<FieldValues>) => void;
 }
 
-// export type Field = Input | "password" | "textarea" | Select | "datetime";
-export type Field<T> = ISelect<T> | IAutocomplete<T> | ISubmit;
+export type Field<T> =
+  | ISelect<T>
+  | IAutocomplete<T>
+  | IField<T>
+  | IDateTime<T>
+  | ISubmit;
 
-export type Fields<T> = [ISubmit, ...Field<T>[]] | [...Field<T>[], ISubmit];
+// export type Fields<T> = [ISubmit, ...Field<T>[]] | [...Field<T>[], ISubmit];
+export type Fields<T> = Field<T>[];
 
-export interface IInput {
-  type: "input";
-  name: string;
-  placeholder?: string | number;
-  required?: boolean;
+export interface IField<T> {
+  type: "field";
+  fieldType?: "text" | "number" | "password" | "email";
+  name: keyof T;
+  placeholder: string;
+  unit?: string;
+  unitAlign?: "left" | "right";
+  defaultValue?: string | number;
 }
 
 export interface ISelect<T> {
@@ -43,6 +52,14 @@ export interface IAutocomplete<T> {
   defaultOption?: { value: string | number; label: string };
 }
 
+export interface IDateTime<T> {
+  type: "datetime";
+  name: keyof T;
+  placeholder?: string;
+  defaultValue?: Date | dayjs.Dayjs | null;
+  hideToolbar?: boolean;
+}
+
 export interface ISubmit {
   type: "submit";
   title?: string;
@@ -51,18 +68,3 @@ export interface ISubmit {
   align?: "left" | "right";
   disableIfInvalid?: boolean;
 }
-
-interface FormData {
-  role: string;
-  test: number;
-  password: string;
-}
-
-const test: Fields<FormData> = [
-  {
-    type: "select",
-    name: "role",
-    options: [{ label: "test", value: "23" }],
-  },
-  { type: "submit" },
-];
