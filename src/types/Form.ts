@@ -32,7 +32,7 @@ export interface IField<T> {
   name: keyof T;
   placeholder: string;
   unit?: string;
-  unitAlign?: "left" | "right";
+  icon?: Icon;
   defaultValue?: string | number;
 }
 
@@ -41,6 +41,7 @@ export interface ISelect<T> {
   name: keyof T;
   placeholder?: string;
   options: { value: string | number; label: string }[];
+  icon?: Icon;
   defaultValue?: string | number;
 }
 
@@ -48,6 +49,7 @@ export interface IAutocomplete<T> {
   type: "autocomplete";
   name: keyof T;
   placeholder?: string;
+  icon?: Icon;
   options: { value: string | number; label: string }[];
   defaultOption?: { value: string | number; label: string };
 }
@@ -58,6 +60,7 @@ export interface IDateTime<T> {
   placeholder?: string;
   defaultValue?: Date | dayjs.Dayjs | null;
   hideToolbar?: boolean;
+  showIcon?: boolean;
 }
 
 export interface ISubmit {

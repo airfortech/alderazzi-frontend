@@ -21,7 +21,7 @@ export const Submit = ({
   align = "left",
   title = "Submit",
   icon,
-  iconAlign,
+  iconAlign = "right",
   disableIfInvalid = false,
 }: Props) => {
   return (

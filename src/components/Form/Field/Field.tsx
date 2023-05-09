@@ -5,6 +5,8 @@ import MenuItem from "@mui/material/MenuItem";
 import { IField, ISelect } from "../../../types/Form";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
+import { Icon } from "../../Icon/Icon";
+import classes from "../Form.module.css";
 
 interface Props<T> extends Omit<IField<T>, "type"> {
   control: Control<FieldValues, any>;
@@ -16,7 +18,7 @@ export const Field = <T,>({
   name,
   placeholder,
   unit,
-  unitAlign = "right",
+  icon,
   defaultValue,
 }: Props<T>) => {
   return (
@@ -26,23 +28,21 @@ export const Field = <T,>({
       defaultValue={defaultValue}
       render={({ field: { onChange, value } }) => (
         <TextField
-          // {...field}
           onChange={onChange}
           value={value}
           label={placeholder}
           type={fieldType}
           variant="outlined"
-          // InputLabelProps={{ shrink: true }}
           // autoComplete="current-password"
           InputProps={{
-            startAdornment:
-              unit && unitAlign === "left" ? (
-                <InputAdornment position="start">{unit}</InputAdornment>
-              ) : undefined,
-            endAdornment:
-              unit && unitAlign === "right" ? (
-                <InputAdornment position="end">{unit}</InputAdornment>
-              ) : undefined,
+            startAdornment: icon ? (
+              <InputAdornment position="start">
+                <Icon icon={icon} size="lg" />
+              </InputAdornment>
+            ) : undefined,
+            endAdornment: unit && (
+              <InputAdornment position="end">{unit}</InputAdornment>
+            ),
           }}
         />
       )}

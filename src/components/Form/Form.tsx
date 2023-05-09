@@ -76,6 +76,7 @@ export const Form = <T,>({
                 options={item.options}
                 defaultValue={item.defaultValue}
                 placeholder={item.placeholder}
+                icon={item.icon}
                 key={item.name as Key}
               />
             );
@@ -86,6 +87,7 @@ export const Form = <T,>({
                 name={item.name as never}
                 options={item.options}
                 placeholder={item.placeholder}
+                icon={item.icon}
                 key={item.name as Key}
               />
             );
@@ -110,7 +112,7 @@ export const Form = <T,>({
                 fieldType={item.fieldType}
                 placeholder={item.placeholder}
                 unit={item.unit}
-                unitAlign={item.unitAlign}
+                icon={item.icon}
                 defaultValue={item.defaultValue}
                 key={item.name as Key}
               />
@@ -123,6 +125,7 @@ export const Form = <T,>({
                 placeholder={item.placeholder}
                 defaultValue={item.defaultValue}
                 hideToolbar={item.hideToolbar}
+                showIcon={item.showIcon}
                 key={item.name as Key}
               />
             );

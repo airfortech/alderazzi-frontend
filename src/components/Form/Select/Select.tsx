@@ -6,6 +6,8 @@ import { ISelect } from "../../../types/Form";
 
 import classes from "./Select.module.css";
 import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import { Icon } from "../../Icon/Icon";
 
 interface Props<T> extends Omit<ISelect<T>, "type"> {
   control: Control<FieldValues, any>;
@@ -16,6 +18,7 @@ export const Select = <T,>({
   name,
   options,
   defaultValue,
+  icon,
   placeholder,
 }: Props<T>) => {
   return (
@@ -30,6 +33,13 @@ export const Select = <T,>({
             label={placeholder}
             onChange={onChange}
             select
+            InputProps={{
+              startAdornment: icon && (
+                <InputAdornment position="start">
+                  <Icon icon={icon} size="lg" />
+                </InputAdornment>
+              ),
+            }}
           >
             {options.map(({ value, label }, i) => (
               <MenuItem value={value as string | number} key={value + "-" + i}>

@@ -2,6 +2,8 @@ import { IAutocomplete } from "../../../types/Form";
 import { Control, Controller, FieldValues } from "react-hook-form";
 import MuiAutocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import { Icon } from "../../Icon/Icon";
 
 interface Props<T> extends Omit<IAutocomplete<T>, "type"> {
   control: Control<FieldValues, any>;
@@ -12,6 +14,7 @@ export const Autocomplete = <T,>({
   name,
   options,
   placeholder,
+  icon,
   defaultOption,
 }: Props<T>) => {
   return (
@@ -24,16 +27,25 @@ export const Autocomplete = <T,>({
           <MuiAutocomplete
             defaultValue={defaultOption}
             options={options}
-            // to bedzie wyswietlane
             getOptionLabel={option => {
               return option.label;
             }}
-            // porownanie wybranej wartosci
             isOptionEqualToValue={(option, value) =>
               option.value === value.value
             }
             renderInput={params => (
-              <TextField {...params} label={placeholder} />
+              <TextField
+                {...params}
+                label={placeholder}
+                InputProps={{
+                  ...params.InputProps,
+                  startAdornment: icon && (
+                    <InputAdornment position="start">
+                      <Icon icon={icon} size="lg" />
+                    </InputAdornment>
+                  ),
+                }}
+              />
             )}
             onChange={(e, data) => onChange(data)}
           />

@@ -53,6 +53,8 @@ export const KeysView = () => {
               name: "field",
               placeholder: "field",
               fieldType: "number",
+              unit: "kg",
+              icon: "basket",
             },
             {
               type: "select",
@@ -72,12 +74,13 @@ export const KeysView = () => {
                 { label: "test", value: 1 },
                 { label: "test2", value: 2 },
               ],
+              icon: "chest",
             },
             {
               type: "datetime",
               name: "datetime",
               placeholder: "datetime",
-              defaultValue: new Date(),
+              // defaultValue: new Date(),
             },
             { type: "submit" },
           ]}

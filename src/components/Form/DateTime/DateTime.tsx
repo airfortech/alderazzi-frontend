@@ -18,13 +18,13 @@ export const DateTime = <T,>({
   placeholder,
   defaultValue,
   hideToolbar = false,
+  showIcon = true,
 }: Props<T>) => {
   return (
     <Controller
       control={control}
       name={name as string}
-      // defaultValue={defaultValue || null}
-      defaultValue={dayjs(defaultValue)}
+      defaultValue={defaultValue ? dayjs(defaultValue) : null}
       render={({ field: { onChange, value } }) => (
         <LocalizationProvider
           dateAdapter={AdapterDayjs}
@@ -37,11 +37,15 @@ export const DateTime = <T,>({
             label={placeholder}
             ampm={false}
             slotProps={{
-              toolbar: { toolbarFormat: "DD MMMM", hidden: hideToolbar },
+              toolbar: { toolbarFormat: "DD MMM", hidden: hideToolbar },
               actionBar: { actions: ["clear", "cancel", "accept"] },
               field: {
                 InputProps: {
-                  endAdornment: <Icon icon="clock" size="lg" color="inherit" />,
+                  startAdornment: showIcon && (
+                    <div className={classes.iconWrapper}>
+                      <Icon icon="clock" size="lg" color="inherit" />
+                    </div>
+                  ),
                 },
               },
             }}
