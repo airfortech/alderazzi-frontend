@@ -3,6 +3,8 @@ import { FieldErrors, FieldValues, Control } from "react-hook-form";
 import { Icon, IconColor } from "./Icons";
 
 export interface IForm<T> {
+  label?: string;
+  labelAlign?: "left" | "center" | "right";
   items: Fields<T>;
   submit?: (formData: T) => void;
   // TODO: how to type it?

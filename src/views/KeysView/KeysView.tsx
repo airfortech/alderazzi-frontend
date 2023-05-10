@@ -60,6 +60,7 @@ export const KeysView = () => {
         <h2>Klucze</h2>
         <br />
         <Form<FormData>
+          label="Lorem ipsum bal bla"
           items={[
             {
               type: "field",

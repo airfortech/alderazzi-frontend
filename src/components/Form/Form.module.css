@@ -3,6 +3,23 @@
   gap: 8px;
 }
 
+.label {
+  margin-bottom: 20px;
+  font-size: 1.3em;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.form :global(.MuiInputBase-root.MuiAutocomplete-inputRoot) {
+  padding-left: 14px;
+}
+
 :global(.MuiAutocomplete-paper) {
   background-color: #121212;
   background-image: linear-gradient(

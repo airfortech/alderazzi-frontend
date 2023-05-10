@@ -39,7 +39,7 @@ export const DateTime = <T,>({
             label={placeholder}
             ampm={false}
             slotProps={{
-              toolbar: { toolbarFormat: "DD MMM", hidden: hideToolbar },
+              toolbar: { toolbarFormat: "DD MMMM", hidden: hideToolbar },
               actionBar: { actions: ["clear", "cancel", "accept"] },
               field: {
                 InputProps: {

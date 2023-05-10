@@ -27,6 +27,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import { Field } from "./Field/Field";
 import { DateTime } from "./DateTime/DateTime";
 import { TextArea } from "./TextArea/TextArea";
+import clsx from "clsx";
 
 export interface FormData {
   role: number;
@@ -34,7 +35,16 @@ export interface FormData {
   password: { label: string; id: number };
 }
 
+const labelClasses = (align: "left" | "center" | "right") =>
+  clsx(
+    classes.label,
+    align === "center" && classes.center,
+    align === "right" && classes.right
+  );
+
 export const Form = <T,>({
+  label,
+  labelAlign = "left",
   submit,
   items,
   validationSchema,
@@ -68,6 +78,7 @@ export const Form = <T,>({
         fullWidth
         onSubmit={handleSubmit(onSubmit)}
       >
+        {label && <label className={labelClasses(labelAlign)}>{label}</label>}
         {items.map((item, i) => {
           if (item.type === "select")
             return (

@@ -17,6 +17,15 @@
   color: var(--color-20);
 }
 
+:global(.MuiDateTimePickerToolbar-dateContainer span) {
+  /* background-color: red; */
+  font-size: 1.3rem;
+}
+
+:global(.MuiDateTimePickerToolbar-dateContainer) button:first-child {
+  display: none;
+}
+
 .iconWrapper {
   display: flex;
   align-items: center;
