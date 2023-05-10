@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { FieldErrors, FieldValues } from "react-hook-form";
+import { FieldErrors, FieldValues, Control } from "react-hook-form";
 import { Icon, IconColor } from "./Icons";
 
 export interface IForm<T> {
@@ -24,11 +24,16 @@ export interface IField<T> {
   type: "field";
   fieldType?: "text" | "number" | "password" | "email";
   name: keyof T;
-  placeholder: string;
+  placeholder?: string;
   unit?: string;
   icon?: Icon;
   iconColor?: IconColor;
-  defaultValue?: string;
+  defaultValue?: string | number;
+}
+
+export interface IFieldHookProps {
+  control: Control<FieldValues, any>;
+  errors: FieldErrors<FieldValues>;
 }
 
 export interface ITextArea<T>

@@ -73,6 +73,7 @@ export const Form = <T,>({
             return (
               <Select
                 control={control}
+                errors={errors}
                 name={item.name as never}
                 options={item.options}
                 defaultValue={item.defaultValue}
@@ -86,6 +87,7 @@ export const Form = <T,>({
             return (
               <Autocomplete
                 control={control}
+                errors={errors}
                 name={item.name as never}
                 options={item.options}
                 placeholder={item.placeholder}
@@ -111,6 +113,7 @@ export const Form = <T,>({
             return (
               <Field
                 control={control}
+                errors={errors}
                 name={item.name}
                 fieldType={item.fieldType}
                 placeholder={item.placeholder}
@@ -125,6 +128,7 @@ export const Form = <T,>({
             return (
               <TextArea
                 control={control}
+                errors={errors}
                 name={item.name}
                 placeholder={item.placeholder}
                 defaultValue={item.defaultValue}
@@ -138,6 +142,7 @@ export const Form = <T,>({
             return (
               <DateTime
                 control={control}
+                errors={errors}
                 name={item.name}
                 placeholder={item.placeholder}
                 defaultValue={item.defaultValue}

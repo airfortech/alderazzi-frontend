@@ -1,6 +1,6 @@
 .form {
   display: flex;
-  gap: 20px;
+  gap: 34px;
 }
 
 :global(.MuiAutocomplete-paper) {
@@ -40,4 +40,15 @@
     var(--color-26)
   );
   outline: none;
+}
+
+.form :global(.MuiFormHelperText-root.Mui-error) {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  font-size: 0.9rem;
+}
+
+.form :global(.Mui-error .MuiOutlinedInput-notchedOutline) {
+  border-color: #f44336aa;
 }

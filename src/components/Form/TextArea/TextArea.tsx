@@ -1,13 +1,11 @@
-import { Control, FieldValues } from "react-hook-form";
-import { ITextArea } from "../../../types/Form";
+import { IFieldHookProps, ITextArea } from "../../../types/Form";
 import { Field } from "../Field/Field";
 
-interface Props<T> extends Omit<ITextArea<T>, "type"> {
-  control: Control<FieldValues, any>;
-}
+interface Props<T> extends Omit<ITextArea<T> & IFieldHookProps, "type"> {}
 
 export const TextArea = <T,>({
   control,
+  errors,
   name,
   placeholder,
   defaultValue,
@@ -18,6 +16,7 @@ export const TextArea = <T,>({
   return (
     <Field
       control={control}
+      errors={errors}
       name={name as string}
       placeholder={placeholder}
       defaultValue={defaultValue}

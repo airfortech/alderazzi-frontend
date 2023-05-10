@@ -1,20 +1,16 @@
-import InputLabel from "@mui/material/InputLabel";
-import { Control, Controller, FieldValues } from "react-hook-form";
-import MuiSelect from "@mui/material/Select";
+import { Controller } from "react-hook-form";
 import MenuItem from "@mui/material/MenuItem";
-import { ISelect } from "../../../types/Form";
+import { IFieldHookProps, ISelect } from "../../../types/Form";
 
-import classes from "./Select.module.css";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import { Icon } from "../../Icon/Icon";
 
-interface Props<T> extends Omit<ISelect<T>, "type"> {
-  control: Control<FieldValues, any>;
-}
+interface Props<T> extends Omit<ISelect<T> & IFieldHookProps, "type"> {}
 
 export const Select = <T,>({
   control,
+  errors,
   name,
   options,
   defaultValue,
@@ -22,6 +18,8 @@ export const Select = <T,>({
   iconColor = "inherit",
   placeholder,
 }: Props<T>) => {
+  const isError = !!errors[name as string];
+
   return (
     <>
       <Controller
@@ -33,11 +31,16 @@ export const Select = <T,>({
             value={value}
             label={placeholder}
             onChange={onChange}
+            error={isError}
             select
             InputProps={{
               startAdornment: icon && (
                 <InputAdornment position="start">
-                  <Icon icon={icon} size="lg" color={iconColor} />
+                  <Icon
+                    icon={icon}
+                    size="lg"
+                    color={isError ? "danger" : iconColor}
+                  />
                 </InputAdornment>
               ),
             }}

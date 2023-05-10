@@ -1,16 +1,15 @@
-import { IAutocomplete } from "../../../types/Form";
-import { Control, Controller, FieldValues } from "react-hook-form";
+import { IAutocomplete, IFieldHookProps } from "../../../types/Form";
+import { Controller } from "react-hook-form";
 import MuiAutocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import { Icon } from "../../Icon/Icon";
 
-interface Props<T> extends Omit<IAutocomplete<T>, "type"> {
-  control: Control<FieldValues, any>;
-}
+interface Props<T> extends Omit<IAutocomplete<T> & IFieldHookProps, "type"> {}
 
 export const Autocomplete = <T,>({
   control,
+  errors,
   name,
   options,
   placeholder,
@@ -18,6 +17,8 @@ export const Autocomplete = <T,>({
   iconColor = "inherit",
   defaultOption,
 }: Props<T>) => {
+  const isError = !!errors[name as string];
+
   return (
     <>
       <Controller
@@ -38,11 +39,16 @@ export const Autocomplete = <T,>({
               <TextField
                 {...params}
                 label={placeholder}
+                error={isError}
                 InputProps={{
                   ...params.InputProps,
                   startAdornment: icon && (
                     <InputAdornment position="start">
-                      <Icon icon={icon} size="lg" color={iconColor} />
+                      <Icon
+                        icon={icon}
+                        size="lg"
+                        color={isError ? "danger" : iconColor}
+                      />
                     </InputAdornment>
                   ),
                 }}

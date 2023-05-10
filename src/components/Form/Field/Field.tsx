@@ -1,15 +1,10 @@
-import InputLabel from "@mui/material/InputLabel";
-import { Control, Controller, FieldValues } from "react-hook-form";
-import MuiSelect from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import { IField, ISelect } from "../../../types/Form";
+import { IField, IFieldHookProps } from "../../../types/Form";
+import { Controller } from "react-hook-form";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import { Icon } from "../../Icon/Icon";
-import classes from "../Form.module.css";
 
-interface Props<T> extends Omit<IField<T>, "type"> {
-  control: Control<FieldValues, any>;
+interface Props<T> extends Omit<IField<T> & IFieldHookProps, "type"> {
   multiline?: boolean;
   rows?: number;
   minRows?: number;
@@ -18,6 +13,7 @@ interface Props<T> extends Omit<IField<T>, "type"> {
 
 export const Field = <T,>({
   control,
+  errors,
   fieldType = "text",
   name,
   placeholder,
@@ -30,7 +26,7 @@ export const Field = <T,>({
   minRows = undefined,
   maxRows = undefined,
 }: Props<T>) => {
-  console.log("field:", defaultValue);
+  const isError = !!errors[name as string];
 
   return (
     <Controller
@@ -40,6 +36,12 @@ export const Field = <T,>({
       render={({ field: { onChange, value } }) => (
         <TextField
           onChange={onChange}
+          error={isError}
+          helperText={
+            errors[name as string]
+              ? (errors[name as string]?.message as React.ReactNode)
+              : ""
+          }
           value={value}
           label={placeholder}
           type={fieldType}
@@ -52,7 +54,11 @@ export const Field = <T,>({
           InputProps={{
             startAdornment: icon ? (
               <InputAdornment position="start">
-                <Icon icon={icon} size="lg" color={iconColor} />
+                <Icon
+                  icon={icon}
+                  size="lg"
+                  color={isError ? "danger" : iconColor}
+                />
               </InputAdornment>
             ) : undefined,
             endAdornment: unit && (

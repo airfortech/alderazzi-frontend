@@ -8,12 +8,12 @@ import { toast } from "react-toastify";
 import { FieldErrors } from "react-hook-form";
 
 export interface FormData {
-  datetime: Date;
-  field: string;
-  field2: string;
-  textarea: string;
-  select: string;
-  autocomplete: { label: string; id: number };
+  name: string;
+  age: number;
+  description: string;
+  birthDate: Date;
+  // select: string;
+  // autocomplete: { label: string; id: string };
 }
 
 const submit = (formData: FormData) => {
@@ -24,16 +24,25 @@ const submit = (formData: FormData) => {
 };
 
 const validationSchema = yup.object().shape({
-  select: yup.string().required("Podaj select!"),
-  autocomplete: yup.object().nullable().required("Podaj autocomplete!"),
+  name: yup
+    .string()
+    .required("Podaj imie!")
+    .min(3)
+    .matches(/^[0-9]+$/, "Must be only digits"),
+  age: yup
+    .number()
+    .typeError("Podaj liczbe!")
+    .required("Podaj wiek!")
+    .min(18, "minimum 18!"),
+  birthDate: yup.date().required("Wybierz date!"),
 });
 
 const errors = (errors: FieldErrors<FormData>) => {
   console.log("errors:", errors);
-  if (errors.select !== undefined) toast.dismiss();
-  if (errors.select !== undefined) toast.dismiss();
-  toast.error(errors?.select?.message);
-  toast.error(errors?.autocomplete?.message);
+  // if (errors.select !== undefined) toast.dismiss();
+  // if (errors.select !== undefined) toast.dismiss();
+  // toast.error(errors?.select?.message);
+  // toast.error(errors?.autocomplete?.message);
 };
 
 export const KeysView = () => {
@@ -46,51 +55,23 @@ export const KeysView = () => {
           items={[
             {
               type: "field",
-              name: "field2",
-              placeholder: "field2",
+              name: "name",
+              placeholder: "Name",
+              icon: "calendar",
             },
             {
               type: "field",
-              name: "field",
-              placeholder: "field",
-              fieldType: "number",
-              unit: "kg",
-              icon: "basket",
+              name: "age",
+              placeholder: "Age",
+              // defaultValue: 27,
             },
             {
               type: "textarea",
-              name: "textarea",
-              placeholder: "textarea",
-              minRows: 3,
-              maxRows: 5,
-              defaultValue: "lorem ipsum",
+              name: "description",
+              placeholder: "Description",
+              rows: 5,
             },
-            {
-              type: "select",
-              name: "select",
-              placeholder: "select",
-              options: [
-                { label: "test", value: "1" },
-                { label: "test2", value: "2" },
-              ],
-              defaultValue: "2",
-            },
-            {
-              type: "autocomplete",
-              name: "autocomplete",
-              placeholder: "autocomplete",
-              options: [
-                { label: "test", value: "1" },
-                { label: "test2", value: "2" },
-              ],
-              icon: "chest",
-            },
-            {
-              type: "datetime",
-              name: "datetime",
-              placeholder: "datetime",
-              defaultValue: new Date(),
-            },
+            { type: "datetime", name: "birthDate", placeholder: "Birth Date" },
             { type: "submit" },
           ]}
           submit={submit}

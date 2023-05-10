@@ -1,19 +1,18 @@
 import dayjs from "dayjs";
 import "dayjs/locale/pl";
-import { Control, Controller, FieldValues } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { MobileDateTimePicker } from "@mui/x-date-pickers/MobileDateTimePicker";
 import { Icon } from "../../Icon/Icon";
 import classes from "./DateTime.module.css";
-import { IDateTime } from "../../../types/Form";
+import { IDateTime, IFieldHookProps } from "../../../types/Form";
 
-interface Props<T> extends Omit<IDateTime<T>, "type"> {
-  control: Control<FieldValues, any>;
-}
+interface Props<T> extends Omit<IDateTime<T> & IFieldHookProps, "type"> {}
 
 export const DateTime = <T,>({
   control,
+  errors,
   name,
   placeholder,
   defaultValue,
@@ -21,6 +20,8 @@ export const DateTime = <T,>({
   showIcon = true,
   iconColor = "inherit",
 }: Props<T>) => {
+  const isError = !!errors[name as string];
+
   return (
     <Controller
       control={control}
@@ -44,11 +45,16 @@ export const DateTime = <T,>({
                 InputProps: {
                   startAdornment: showIcon && (
                     <div className={classes.iconWrapper}>
-                      <Icon icon="clock" size="lg" color={iconColor} />
+                      <Icon
+                        icon="clock"
+                        size="lg"
+                        color={isError ? "danger" : iconColor}
+                      />
                     </div>
                   ),
                 },
               },
+              textField: { error: isError },
             }}
             value={value}
             onChange={onChange}
