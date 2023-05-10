@@ -1,11 +1,9 @@
 import * as yup from "yup";
-import dayjs from "dayjs";
+import { FieldErrors } from "react-hook-form";
 import { Form } from "../../components/Form/Form";
 import { MobileWrapper } from "../../components/MobileWrapper/MobileWrapper";
 
 import classes from "./KeysView.module.css";
-import { toast } from "react-toastify";
-import { FieldErrors } from "react-hook-form";
 
 export interface FormData {
   name: string;
@@ -47,10 +45,6 @@ const validationSchema = yup.object().shape({
 
 const errors = (errors: FieldErrors<FormData>) => {
   console.log("errors:", errors);
-  // if (errors.select !== undefined) toast.dismiss();
-  // if (errors.select !== undefined) toast.dismiss();
-  // toast.error(errors?.select?.message);
-  // toast.error(errors?.autocomplete?.message);
 };
 
 export const KeysView = () => {

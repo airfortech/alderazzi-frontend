@@ -1,33 +1,17 @@
-import {
-  Controller,
-  FieldValues,
-  SubmitHandler,
-  useForm,
-} from "react-hook-form";
-import * as yup from "yup";
+import { IForm } from "../../types/Form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-// import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import Button from "@mui/material/Button";
-import { Loader } from "../Loader/Loader";
-
-import classes from "./Form.module.css";
 import { yupResolver } from "@hookform/resolvers/yup";
-// import Autocomplete from "@mui/material/Autocomplete";
-// import TextField from "@mui/material/TextField";
 import { Key, useEffect } from "react";
-import { toast } from "react-toastify";
 import { Select } from "./Select/Select";
 import { Autocomplete } from "./Autocomplete/Autocomplete";
 import { Submit } from "./Submit/Submit";
-import { IForm } from "../../types/Form";
-import TextField from "@mui/material/TextField";
-import InputAdornment from "@mui/material/InputAdornment";
 import { Field } from "./Field/Field";
 import { DateTime } from "./DateTime/DateTime";
 import { TextArea } from "./TextArea/TextArea";
 import clsx from "clsx";
+
+import classes from "./Form.module.css";
 
 export interface FormData {
   role: number;
@@ -49,6 +33,7 @@ export const Form = <T,>({
   items,
   validationSchema,
   errorsHandler,
+  isLoading = false,
 }: IForm<T>) => {
   const {
     handleSubmit,
@@ -116,7 +101,7 @@ export const Form = <T,>({
                 align={item.align}
                 disableIfInvalid={item.disableIfInvalid}
                 isValid={isValid}
-                isLoading={true}
+                isLoading={isLoading}
                 key={i}
               />
             );

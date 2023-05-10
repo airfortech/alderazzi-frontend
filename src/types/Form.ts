@@ -10,6 +10,7 @@ export interface IForm<T> {
   // TODO: how to type it?
   validationSchema?: any;
   errorsHandler?: (errors: FieldErrors<FieldValues>) => void;
+  isLoading?: boolean;
 }
 
 export type Field<T> =
