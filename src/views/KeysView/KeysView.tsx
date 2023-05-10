@@ -18,9 +18,6 @@ export interface FormData {
 
 const submit = (formData: FormData) => {
   console.log("submit:", formData);
-  // console.log("date:", formData.datetime.valueOf());
-
-  // FIXME: submit returns formData.select not formData.select.value
 };
 
 const validationSchema = yup.object().shape({

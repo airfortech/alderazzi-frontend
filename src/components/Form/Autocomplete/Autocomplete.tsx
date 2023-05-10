@@ -40,6 +40,11 @@ export const Autocomplete = <T,>({
                 {...params}
                 label={placeholder}
                 error={isError}
+                helperText={
+                  errors[name as string]
+                    ? (errors[name as string]?.message as React.ReactNode)
+                    : ""
+                }
                 InputProps={{
                   ...params.InputProps,
                   startAdornment: icon && (

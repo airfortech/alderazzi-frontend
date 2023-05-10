@@ -32,6 +32,11 @@ export const Select = <T,>({
             label={placeholder}
             onChange={onChange}
             error={isError}
+            helperText={
+              errors[name as string]
+                ? (errors[name as string]?.message as React.ReactNode)
+                : ""
+            }
             select
             InputProps={{
               startAdornment: icon && (
