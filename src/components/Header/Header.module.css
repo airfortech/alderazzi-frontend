@@ -4,10 +4,33 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   color: var(--color-26);
 }
 
 .Header h1 {
+  display: flex;
   font-family: var(--font-secondary);
   font-size: 50px;
+}
+
+@media (max-width: 630px) {
+  .Header {
+    justify-content: start;
+  }
+  .Header h1 {
+    line-height: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .Header h1 {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 400px) {
+  .Header h1 {
+    font-size: 30px;
+  }
 }
