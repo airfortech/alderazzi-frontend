@@ -12,8 +12,8 @@ export interface FormData {
   age: number;
   description: string;
   birthDate: Date;
-  // select: string;
-  // autocomplete: { label: string; id: string };
+  select: string;
+  autocomplete: { label: string; id: string };
 }
 
 const submit = (formData: FormData) => {
@@ -31,7 +31,18 @@ const validationSchema = yup.object().shape({
     .typeError("Podaj liczbe!")
     .required("Podaj wiek!")
     .min(18, "minimum 18!"),
-  birthDate: yup.date().required("Wybierz date!"),
+  description: yup.string().required("Podaj opis!").min(20, "Opis za krotki!"),
+  birthDate: yup.date().typeError("Wybierz date!").required("Wybierz date!"),
+  select: yup.string().required("Wybierz opcje w selekt!"),
+  autocomplete: yup
+    .object()
+    .typeError("Autocomplete error!")
+    .shape({
+      value: yup
+        .string()
+        .typeError("Wybierz opcje autocomplete!")
+        .required("Wybierz opcje autocomplete!"),
+    }),
 });
 
 const errors = (errors: FieldErrors<FormData>) => {
@@ -60,7 +71,6 @@ export const KeysView = () => {
               type: "field",
               name: "age",
               placeholder: "Age",
-              // defaultValue: 27,
             },
             {
               type: "textarea",
@@ -69,6 +79,26 @@ export const KeysView = () => {
               rows: 5,
             },
             { type: "datetime", name: "birthDate", placeholder: "Birth Date" },
+            {
+              type: "select",
+              name: "select",
+              options: [
+                { value: "1", label: "1" },
+                { value: "2", label: "2" },
+              ],
+              icon: "exit",
+              placeholder: "select",
+            },
+            {
+              type: "autocomplete",
+              name: "autocomplete",
+              options: [
+                { value: "1", label: "1" },
+                { value: "2", label: "2" },
+              ],
+              icon: "exit",
+              placeholder: "autocomplete",
+            },
             { type: "submit" },
           ]}
           submit={submit}

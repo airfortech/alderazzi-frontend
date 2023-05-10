@@ -1,9 +1,22 @@
 import { IAutocomplete, IFieldHookProps } from "../../../types/Form";
-import { Controller } from "react-hook-form";
+import {
+  Controller,
+  FieldError,
+  FieldErrorsImpl,
+  Merge,
+} from "react-hook-form";
 import MuiAutocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import { Icon } from "../../Icon/Icon";
+
+type IError = (
+  | FieldError
+  | Merge<FieldError, FieldErrorsImpl<any>>
+  | undefined
+) & {
+  value: FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined;
+};
 
 interface Props<T> extends Omit<IAutocomplete<T> & IFieldHookProps, "type"> {}
 
@@ -17,7 +30,9 @@ export const Autocomplete = <T,>({
   iconColor = "inherit",
   defaultOption,
 }: Props<T>) => {
-  const isError = !!errors[name as string];
+  const newError = errors[name as string] as IError;
+  const error = newError?.value?.message || newError?.message;
+  const isError = !!error;
 
   return (
     <>
@@ -40,11 +55,7 @@ export const Autocomplete = <T,>({
                 {...params}
                 label={placeholder}
                 error={isError}
-                helperText={
-                  errors[name as string]
-                    ? (errors[name as string]?.message as React.ReactNode)
-                    : ""
-                }
+                helperText={(error as React.ReactNode) || <br />}
                 InputProps={{
                   ...params.InputProps,
                   startAdornment: icon && (

@@ -33,9 +33,11 @@ export const Select = <T,>({
             onChange={onChange}
             error={isError}
             helperText={
-              errors[name as string]
-                ? (errors[name as string]?.message as React.ReactNode)
-                : ""
+              errors[name as string] ? (
+                (errors[name as string]?.message as React.ReactNode)
+              ) : (
+                <br />
+              )
             }
             select
             InputProps={{

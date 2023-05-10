@@ -56,9 +56,11 @@ export const DateTime = <T,>({
               },
               textField: {
                 error: isError,
-                helperText: errors[name as string]
-                  ? (errors[name as string]?.message as React.ReactNode)
-                  : "",
+                helperText: errors[name as string] ? (
+                  (errors[name as string]?.message as React.ReactNode)
+                ) : (
+                  <br />
+                ),
               },
             }}
             value={value}

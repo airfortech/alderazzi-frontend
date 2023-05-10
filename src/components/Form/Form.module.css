@@ -1,6 +1,6 @@
 .form {
   display: flex;
-  gap: 34px;
+  gap: 8px;
 }
 
 :global(.MuiAutocomplete-paper) {
@@ -42,11 +42,9 @@
   outline: none;
 }
 
-.form :global(.MuiFormHelperText-root.Mui-error) {
-  position: absolute;
-  top: 100%;
-  right: 0;
+.form :global(.MuiFormHelperText-root) {
   font-size: 0.9rem;
+  text-align: right;
 }
 
 .form :global(.Mui-error .MuiOutlinedInput-notchedOutline) {
