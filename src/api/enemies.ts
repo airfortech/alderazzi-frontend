@@ -1,11 +1,11 @@
 import { ApiResponse } from "../types/responseMessages";
-import { Enemy } from "../types/Enemy";
+import { EnemyResponse } from "../types/Enemy";
 
 import { api } from "./api";
 
 export interface GetEnemies extends ApiResponse {
   data: {
-    enemies: Enemy[];
+    enemies: EnemyResponse[];
   };
 }
 

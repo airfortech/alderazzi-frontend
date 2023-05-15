@@ -7,7 +7,7 @@ import { Loader } from "../Loader/Loader";
 import { Icon } from "../Icon/Icon";
 import { Table } from "../Table/Table";
 import { isRoleAllowed } from "../../utils/isRoleAllowed";
-import { columns } from "./dataEnemiesList";
+import { columns, expandableRow } from "./dataEnemiesList";
 
 import classes from "./EnemiesList.module.css";
 
@@ -38,6 +38,7 @@ export const EnemiesList = () => {
           titleTag="h2"
           initialSorting={{ field: "name", order: "asc" }}
           stickyHeaderPosition={50}
+          expandableRowsComponent={expandableRow}
         />
       )}
     </div>

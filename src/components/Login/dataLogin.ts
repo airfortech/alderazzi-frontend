@@ -25,6 +25,7 @@ export const fields: Fields<FormData> = [
   },
   {
     type: "field",
+    fieldType: "password",
     name: "password",
     placeholder: "Hasło",
     icon: "skeletonKey",

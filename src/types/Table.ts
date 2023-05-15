@@ -24,6 +24,7 @@ export type SortFunc = (
 ) => 1 | -1 | 0;
 
 export type CellFunc<T> = (
+  // FIXME: value should be type of selected value from T
   value: string | number,
   props: T
 ) => string | number | ReactElement;

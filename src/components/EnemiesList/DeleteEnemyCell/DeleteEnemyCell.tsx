@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Button } from "../../Button/Button";
-import { Enemy } from "../../../types/Enemy";
+import { EnemyResponse } from "../../../types/Enemy";
 import { Prompt } from "../../Prompt/Prompt";
 import { useEnemies } from "../../../hooks/useEnemies";
 
-export const DeleteEnemyCell = ({ id, name }: Enemy) => {
+export const DeleteEnemyCell = ({ id, name }: EnemyResponse) => {
   const [open, setOpen] = useState(false);
   const { deleteEnemyMutation } = useEnemies();
 

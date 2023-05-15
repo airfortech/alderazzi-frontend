@@ -163,6 +163,11 @@
   width: 20px;
 }
 
+.thead .spanLeft {
+  padding: 0 0.4em 0 0;
+  order: -1;
+}
+
 .thead th p {
   padding: 15px;
   display: flex;
@@ -205,6 +210,7 @@
 
 .thead .theadTrThSwitcher {
   padding: 0;
+  width: 50px;
   background-color: var(--color-2);
   z-index: 1;
 }
@@ -241,6 +247,10 @@
 
 .tbodyTrEven:hover > td {
   background-color: #ffffff32;
+}
+
+.tbodyTrTdEven {
+  background-color: #ffffff0c;
 }
 
 .tbodyTrTdOddSticky {
@@ -300,8 +310,6 @@
 .stickyTrigger {
   position: sticky;
   left: 0;
-  padding: 0;
-  width: 50px;
   text-align: center;
   z-index: 1;
 }

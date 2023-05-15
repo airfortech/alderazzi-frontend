@@ -8,7 +8,6 @@ export const Login = () => {
   const { loginUserMutation, isLoading } = useAuth();
 
   const submit = (formData: FormData) => {
-    console.log("submit:", formData);
     loginUserMutation(formData);
   };
 
