@@ -14,6 +14,7 @@ export const Table = <T extends Row>({
   stickyHeaderPosition,
   onRowClick,
   expandableRowsComponent,
+  expandableRowsComponentPaddingsDisabled = false,
   initialExpandableRowsState = "hidden",
   style,
 }: ITable<T>) => {
@@ -76,6 +77,9 @@ export const Table = <T extends Row>({
       filteringSelectors={filteringSelectors}
       onRowClick={onRowClick}
       expandableRowsComponent={expandableRowsComponent}
+      expandableRowsComponentPaddingsDisabled={
+        expandableRowsComponentPaddingsDisabled
+      }
       initialExpandableRowsState={initialExpandableRowsState}
       horizontalScroll={horizontalScroll}
       stickyColumn={stickyColumn}

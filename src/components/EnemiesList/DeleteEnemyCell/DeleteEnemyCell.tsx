@@ -4,7 +4,12 @@ import { EnemyResponse } from "../../../types/Enemy";
 import { Prompt } from "../../Prompt/Prompt";
 import { useEnemies } from "../../../hooks/useEnemies";
 
-export const DeleteEnemyCell = ({ id, name }: EnemyResponse) => {
+interface Props {
+  id: string;
+  name: string;
+}
+
+export const DeleteEnemyCell = ({ id, name }: Props) => {
   const [open, setOpen] = useState(false);
   const { deleteEnemyMutation } = useEnemies();
 

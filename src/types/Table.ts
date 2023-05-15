@@ -61,6 +61,7 @@ export interface ITable<T> {
   stickyHeaderPosition?: number;
   onRowClick?: OnRowClickFunc<T>;
   expandableRowsComponent?: ExpandableRowsComponent<T>;
+  expandableRowsComponentPaddingsDisabled?: boolean;
   initialExpandableRowsState?: "hidden" | "visible";
   style?: CSSProperties;
 }
@@ -69,6 +70,7 @@ export interface ITableRender<T> extends Omit<ITable<T>, "data"> {
   titleTag: TagName;
   horizontalScroll: "top" | "bottom";
   stickyColumn: "switcher" | "first column" | "none";
+  expandableRowsComponentPaddingsDisabled: boolean;
 
   bodyData: T[];
   filter: string;
@@ -92,6 +94,7 @@ export interface ITableHeader<T>
     | "colSpan"
     | "style"
     | "expandableRowsComponent"
+    | "expandableRowsComponentPaddingsDisabled"
     | "initialExpandableRowsState"
     | "initialSorting"
     | "onRowClick"
@@ -118,6 +121,7 @@ export interface ITableHead<T>
     | "initialSorting"
     | "onRowClick"
     | "stickyHeaderPosition"
+    | "expandableRowsComponentPaddingsDisabled"
   > {
   isAllExpanded: boolean;
   handleAllExpandTrigger: () => void;

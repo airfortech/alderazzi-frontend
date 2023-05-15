@@ -19,6 +19,7 @@ export const TableRender = <T extends Row>({
   filteringSelectors,
   onRowClick,
   expandableRowsComponent,
+  expandableRowsComponentPaddingsDisabled,
   initialExpandableRowsState = "hidden",
   horizontalScroll,
   stickyColumn,
@@ -152,6 +153,9 @@ export const TableRender = <T extends Row>({
             colSpan={colSpan}
             stickyColumn={stickyColumn}
             expandableRowsComponent={expandableRowsComponent}
+            expandableRowsComponentPaddingsDisabled={
+              expandableRowsComponentPaddingsDisabled
+            }
             isAllExpanded={isAllExpanded}
             initialExpandableRowsState={initialExpandableRowsState}
           />

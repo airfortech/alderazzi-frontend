@@ -11,6 +11,7 @@ export const TableBody = <T extends Row>({
   stickyColumn,
   onRowClick,
   expandableRowsComponent,
+  expandableRowsComponentPaddingsDisabled,
   isAllExpanded,
   initialExpandableRowsState,
 }: ITableBody<T>) => {
@@ -43,6 +44,9 @@ export const TableBody = <T extends Row>({
             stickyColumn={stickyColumn}
             onRowClick={onRowClick}
             expandableRowsComponent={expandableRowsComponent}
+            expandableRowsComponentPaddingsDisabled={
+              expandableRowsComponentPaddingsDisabled
+            }
             isAllExpanded={isAllExpanded}
             initialExpandableRowsState={initialExpandableRowsState}
           />

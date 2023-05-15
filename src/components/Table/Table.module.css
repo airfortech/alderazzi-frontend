@@ -304,6 +304,9 @@
 }
 
 .tbodyTrExpandableRowContent {
+}
+
+.tbodyTrExpandableRowContentPaddings {
   padding: 15px;
 }
 

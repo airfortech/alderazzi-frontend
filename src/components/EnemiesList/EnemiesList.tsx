@@ -39,6 +39,7 @@ export const EnemiesList = () => {
           initialSorting={{ field: "name", order: "asc" }}
           stickyHeaderPosition={50}
           expandableRowsComponent={expandableRow}
+          expandableRowsComponentPaddingsDisabled
         />
       )}
     </div>

@@ -15,6 +15,7 @@ import {
   bodyTrExpandTrigger,
   bodyTrExpandableRow,
   bodyTrTd,
+  tbodyTrExpandableRowContent,
   tbodyTrExpandableRowContentWrapper,
 } from "../../TableCss";
 import classes from "../../Table.module.css";
@@ -27,6 +28,7 @@ export const TableRow = <T extends Row>({
   stickyColumn,
   onRowClick,
   expandableRowsComponent,
+  expandableRowsComponentPaddingsDisabled,
   isAllExpanded,
   initialExpandableRowsState,
 }: ITableRow<T>) => {
@@ -130,7 +132,9 @@ export const TableRow = <T extends Row>({
               }}
             >
               <div
-                className={classes.tbodyTrExpandableRowContent}
+                className={tbodyTrExpandableRowContent(
+                  expandableRowsComponentPaddingsDisabled
+                )}
                 ref={refExpandableRowContent}
               >
                 {expandableRowsComponent(row)}

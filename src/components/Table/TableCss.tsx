@@ -124,3 +124,13 @@ export const tbodyTrExpandableRowContentWrapper = (
     isTransitionOn && classes.tbodyTrExpandableRowContentWrapperTransition
   );
 };
+
+export const tbodyTrExpandableRowContent = (
+  expandableRowsComponentPaddingsDisabled: boolean
+) => {
+  return clsx(
+    classes.tbodyTrExpandableRowContent,
+    !expandableRowsComponentPaddingsDisabled &&
+      classes.tbodyTrExpandableRowContentPaddings
+  );
+};

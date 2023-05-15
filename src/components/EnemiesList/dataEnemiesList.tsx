@@ -13,7 +13,15 @@ export const expandableRow: ExpandableRowsComponent<EnemyResponse> = data => (
 export const columns = (
   currentRole: UserRole | undefined
 ): Columns<EnemyResponse> => [
-  { selector: "name", header: "Imię", isFilterable: true, isSortable: true },
+  {
+    selector: "name",
+    header: "Imię",
+    isFilterable: true,
+    isSortable: true,
+    cell: value => (
+      <span style={{ color: "var(--color-20)", fontWeight: 600 }}>{value}</span>
+    ),
+  },
   {
     selector: "short",
     header: "Opis",
@@ -27,6 +35,7 @@ export const columns = (
     isFilterable: true,
     isSortable: true,
     align: "right",
+
     cell: value => value.toString().toUpperCase(),
   },
   // {
