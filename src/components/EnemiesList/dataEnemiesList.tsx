@@ -18,9 +18,8 @@ export const columns = (
     header: "Imię",
     isFilterable: true,
     isSortable: true,
-    cell: value => (
-      <span style={{ color: "var(--color-20)", fontWeight: 600 }}>{value}</span>
-    ),
+    color: "var(--color-20)",
+    bold: true,
   },
   {
     selector: "short",
@@ -28,6 +27,11 @@ export const columns = (
     isFilterable: true,
     isSortable: true,
     align: "right",
+  },
+  {
+    selector: "profession",
+    isFilterable: true,
+    isVisible: false,
   },
   {
     selector: "guild",

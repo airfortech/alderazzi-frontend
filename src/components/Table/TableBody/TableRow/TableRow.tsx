@@ -87,10 +87,18 @@ export const TableRow = <T extends Row>({
           .filter(({ isVisible = true }) => isVisible === true)
           .map(
             (
-              { selector, align = "left", isOnRowClickActive = true, cell },
+              {
+                color,
+                bold,
+                selector,
+                align = "left",
+                isOnRowClickActive = true,
+                cell,
+              },
               i
             ) => (
               <td
+                key={i}
                 className={bodyTrTd(
                   index,
                   i,
@@ -99,7 +107,7 @@ export const TableRow = <T extends Row>({
                   stickyColumn,
                   onRowClick ? true : false
                 )}
-                key={i}
+                style={{ fontWeight: bold ? "bold" : undefined, color: color }}
                 onClick={e => {
                   if (isOnRowClickActive) return;
                   e.stopPropagation();

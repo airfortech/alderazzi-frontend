@@ -41,6 +41,8 @@ export interface Column<T> {
   isSortable?: boolean;
   isFilterable?: boolean;
   isOnRowClickActive?: boolean;
+  color?: string;
+  bold?: boolean;
   cell?: CellFunc<T>;
   sortFunc?: SortFunc;
 }
