@@ -12,7 +12,7 @@ export const DeleteEnemyCell = ({ id, name }: Props) => {
   const [open, setOpen] = useState(false);
   const { deleteEnemyMutation } = useEnemies();
 
-  const handleDeleteEnemy = async (enemyId: string) => {
+  const handleDeleteEnemy = (enemyId: string) => {
     deleteEnemyMutation.mutate(enemyId);
   };
 

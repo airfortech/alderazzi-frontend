@@ -1,4 +1,3 @@
-import { EnemyResponse } from "../../types/Enemy";
 import { ITableRowDetails } from "../../types/TableRowDetails";
 import { Fragment } from "react";
 import clsx from "clsx";

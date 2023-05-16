@@ -1,31 +1,49 @@
 import { UserRole } from "../../types/UserRole";
+import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { useEnemies } from "../../hooks/useEnemies";
-import { AddEnemy } from "./AddEnemy/AddEnemy";
-import Button from "@mui/material/Button";
+import { Button } from "../Button/Button";
 import { Loader } from "../Loader/Loader";
-import { Icon } from "../Icon/Icon";
+import { MobileWrapper } from "../MobileWrapper/MobileWrapper";
 import { Table } from "../Table/Table";
 import { isRoleAllowed } from "../../utils/isRoleAllowed";
 import { columns, expandableRow } from "./dataEnemiesList";
 
 import classes from "./EnemiesList.module.css";
+import { Modal } from "../Modal/Modal";
+import { AddEnemy } from "./AddEnemy/AddEnemy";
 
 export const EnemiesList = () => {
   const { auth } = useAuth();
   const { data: enemies, isError, isLoading } = useEnemies();
+  const [openAddEnemy, setOpenAddEnemy] = useState(false);
 
   return (
     <div className={classes.EnemiesList}>
-      {isRoleAllowed(
-        [UserRole.caporegime, UserRole.consigliore],
-        auth?.role
-      ) && <AddEnemy />}
-      <a href="/data/enemies.txt" target="_blank">
-        <Button size="large" startIcon={<Icon icon="file" size="lg" />}>
-          Podgląd pliku
-        </Button>
-      </a>
+      <MobileWrapper>
+        {isRoleAllowed(
+          [UserRole.caporegime, UserRole.consigliore],
+          auth?.role
+        ) && (
+          <>
+            <Button
+              variant="contained"
+              color="danger"
+              size="lg"
+              onClick={() => setOpenAddEnemy(true)}
+            >
+              Dodaj Wroga
+            </Button>
+            <Modal
+              title="Dodaj wroga:"
+              open={openAddEnemy}
+              onClose={() => setOpenAddEnemy(false)}
+            >
+              <AddEnemy />
+            </Modal>
+          </>
+        )}
+      </MobileWrapper>
       {isLoading ? (
         <Loader isLoading />
       ) : enemies?.length === 0 || isError ? (

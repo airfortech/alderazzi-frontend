@@ -3,7 +3,7 @@ import { UserRole } from "../../types/UserRole";
 import { EnemyResponse } from "../../types/Enemy";
 import { isRoleAllowed } from "../../utils/isRoleAllowed";
 import { DeleteEnemyCell } from "./DeleteEnemyCell/DeleteEnemyCell";
-import { TableRowDetails } from "../ExpandableRow/TableRowDetails";
+import { TableRowDetails } from "../TableRowDetails/TableRowDetails";
 
 export const expandableRow =
   (currentRole: UserRole | undefined): ExpandableRowsComponent<EnemyResponse> =>

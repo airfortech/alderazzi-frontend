@@ -3,6 +3,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { addEnemy, deleteEnemy, getEnemies } from "../api/enemies";
 import { queryClient } from "../api/queryClient";
 import { QueryKey } from "../types/QueryKey";
+import { EnemyRequest } from "../types/Enemy";
 
 export const useEnemies = () => {
   const query = useQuery(
@@ -30,11 +31,19 @@ export const useEnemies = () => {
     },
   });
 
-  const addEnemyMutation = useMutation(addEnemy, {
-    onSuccess: () => {
-      queryClient.invalidateQueries([QueryKey.enemies]);
-    },
-  });
+  const { mutate: addEnemyMutation, isLoading: isAddingEnemy } = useMutation(
+    (enemy: EnemyRequest) => addEnemy(enemy),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries([QueryKey.enemies]);
+      },
+    }
+  );
 
-  return { ...query, addEnemyMutation, deleteEnemyMutation };
+  return {
+    ...query,
+    addEnemyMutation,
+    deleteEnemyMutation,
+    isAddingEnemy,
+  };
 };

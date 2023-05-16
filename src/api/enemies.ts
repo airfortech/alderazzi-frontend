@@ -1,5 +1,5 @@
 import { ApiResponse } from "../types/responseMessages";
-import { EnemyResponse } from "../types/Enemy";
+import { EnemyRequest, EnemyResponse } from "../types/Enemy";
 
 import { api } from "./api";
 
@@ -14,8 +14,8 @@ export const getEnemies = async () => {
   return data;
 };
 
-export const addEnemy = async (name: string) => {
-  const { data } = await api.post<ApiResponse>("/enemies", { name });
+export const addEnemy = async (enemy: EnemyRequest) => {
+  const { data } = await api.post<ApiResponse>("/enemies", enemy);
   return data;
 };
 
