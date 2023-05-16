@@ -38,8 +38,9 @@ export const EnemiesList = () => {
           titleTag="h2"
           initialSorting={{ field: "name", order: "asc" }}
           stickyHeaderPosition={50}
-          expandableRowsComponent={expandableRow}
+          expandableRowsComponent={expandableRow(auth?.role)}
           expandableRowsComponentPaddingsDisabled
+          horizontalScroll="top"
         />
       )}
     </div>

@@ -3,11 +3,30 @@ import { UserRole } from "../../types/UserRole";
 import { EnemyResponse } from "../../types/Enemy";
 import { isRoleAllowed } from "../../utils/isRoleAllowed";
 import { DeleteEnemyCell } from "./DeleteEnemyCell/DeleteEnemyCell";
-import { EnemiesExpandableRow } from "./EnemiesExpandableRow/EnemiesExpandableRow";
+import { TableRowDetails } from "../ExpandableRow/TableRowDetails";
 
-export const expandableRow: ExpandableRowsComponent<EnemyResponse> = data => (
-  <EnemiesExpandableRow data={data} />
-);
+export const expandableRow =
+  (currentRole: UserRole | undefined): ExpandableRowsComponent<EnemyResponse> =>
+  data => {
+    const { id, name, race, level, profession, weapon, comment } = data;
+    return (
+      <TableRowDetails
+        details={[
+          { title: "Rasa:", value: race },
+          { title: "Poziom:", value: level },
+          { title: "Zawód:", value: profession },
+          { title: "Broń:", value: weapon },
+        ]}
+        longDetails={[{ title: "Komentarz:", value: comment || "brak" }]}
+        actions={[
+          isRoleAllowed(
+            [UserRole.caporegime, UserRole.consigliore],
+            currentRole
+          ) && <DeleteEnemyCell id={id} name={name} />,
+        ]}
+      />
+    );
+  };
 
 // INFO: role depending Table columns rendering
 export const columns = (
@@ -42,15 +61,4 @@ export const columns = (
 
     cell: value => value.toString().toUpperCase(),
   },
-  // {
-  //   selector: "id",
-  //   align: "right",
-  //   isVisible: isRoleAllowed(
-  //     [UserRole.caporegime, UserRole.consigliore],
-  //     currentRole
-  //   ),
-  //   // cell: (id, props) => (
-  //   //   <DeleteEnemyCell id={id as string} name={props.name} />
-  //   // ),
-  // },
 ];

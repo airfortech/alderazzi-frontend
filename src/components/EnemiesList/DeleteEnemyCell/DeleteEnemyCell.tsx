@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Button } from "../../Button/Button";
-import { EnemyResponse } from "../../../types/Enemy";
-import { Prompt } from "../../Prompt/Prompt";
 import { useEnemies } from "../../../hooks/useEnemies";
+import { Button } from "../../Button/Button";
+import { Prompt } from "../../Prompt/Prompt";
 
 interface Props {
   id: string;
