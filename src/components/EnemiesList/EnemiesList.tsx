@@ -1,5 +1,5 @@
 import { UserRole } from "../../types/UserRole";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { useEnemies } from "../../hooks/useEnemies";
 import { Button } from "../Button/Button";
@@ -15,8 +15,13 @@ import { AddEnemy } from "./AddEnemy/AddEnemy";
 
 export const EnemiesList = () => {
   const { auth } = useAuth();
-  const { data: enemies, isError, isLoading } = useEnemies();
+  const { data: enemies, isError, isLoading, isAddingEnemy } = useEnemies();
   const [openAddEnemy, setOpenAddEnemy] = useState(false);
+
+  // INFO: closes modal after fetched new data (happens after new data is added)
+  useEffect(() => {
+    setOpenAddEnemy(false);
+  }, [enemies]);
 
   return (
     <div className={classes.EnemiesList}>
@@ -30,6 +35,7 @@ export const EnemiesList = () => {
               variant="contained"
               color="danger"
               size="lg"
+              icon="womanElfFace"
               onClick={() => setOpenAddEnemy(true)}
             >
               Dodaj Wroga

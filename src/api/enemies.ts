@@ -19,6 +19,11 @@ export const addEnemy = async (enemy: EnemyRequest) => {
   return data;
 };
 
+export const updateEnemy = async (id: string, enemy: EnemyRequest) => {
+  const { data } = await api.patch<ApiResponse>("/enemies/" + id, enemy);
+  return data;
+};
+
 export const deleteEnemy = async (id: string) => {
   const { data } = await api.delete<ApiResponse>("/enemies/" + id);
   return data;

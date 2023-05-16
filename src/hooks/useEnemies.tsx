@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 
-import { addEnemy, deleteEnemy, getEnemies } from "../api/enemies";
+import { addEnemy, deleteEnemy, getEnemies, updateEnemy } from "../api/enemies";
 import { queryClient } from "../api/queryClient";
 import { QueryKey } from "../types/QueryKey";
 import { EnemyRequest } from "../types/Enemy";
@@ -40,10 +40,33 @@ export const useEnemies = () => {
     }
   );
 
+  // INFO: mutation with more than one parameter:
+  // const updateEnemyMutation = useMutation(
+  //   (params: { id: string; enemy: EnemyRequest }) => updateEnemy(params.id, params.enemy),
+  //   {
+  //     onSuccess: () => {
+  //       queryClient.invalidateQueries([QueryKey.enemies]);
+  //     },
+  //   }
+  // );
+
+  const { mutate: updateEnemyMutation, isLoading: isUpdatingEnemy } =
+    useMutation(
+      ({ id, enemy }: { id: string; enemy: EnemyRequest }) =>
+        updateEnemy(id, enemy),
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries([QueryKey.enemies]);
+        },
+      }
+    );
+
   return {
     ...query,
     addEnemyMutation,
-    deleteEnemyMutation,
     isAddingEnemy,
+    updateEnemyMutation,
+    isUpdatingEnemy,
+    deleteEnemyMutation,
   };
 };

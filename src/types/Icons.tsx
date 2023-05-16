@@ -7,18 +7,23 @@ import CloseIcon from "@mui/icons-material/Close";
 import DescriptionIcon from "@mui/icons-material/Description";
 import { GiCrossedSwords } from "react-icons/gi";
 import { GiExitDoor } from "react-icons/gi";
+import { GiFeather } from "react-icons/gi";
 import { GiHoodedAssassin } from "react-icons/gi";
 import { GiKeyring } from "react-icons/gi";
 import { GiOpenTreasureChest } from "react-icons/gi";
-import { MdSettings } from "react-icons/md";
 import { GiSkeletonKey } from "react-icons/gi";
 import { GiTavernSign } from "react-icons/gi";
+// FIXME: change to other add user icon
+import { GrUserAdd } from "react-icons/gr";
+import { GiWomanElfFace } from "react-icons/gi";
 import InsertInvitationIcon from "@mui/icons-material/InsertInvitation";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { MdSettings } from "react-icons/md";
 import { CSSProperties } from "react";
 
 export type Icon =
+  | "addUser"
   | "assassin"
   | "basket"
   | "calendar"
@@ -27,6 +32,7 @@ export type Icon =
   | "clock"
   | "close"
   | "crossedSwords"
+  | "feather"
   | "file"
   | "down"
   | "exit"
@@ -34,10 +40,12 @@ export type Icon =
   | "settings"
   | "skeletonKey"
   | "tavernSign"
-  | "up";
+  | "up"
+  | "womanElfFace";
 
 export const iconComponentDefs = (iconStyle: CSSProperties) => {
   return {
+    addUser: <GrUserAdd style={iconStyle} />,
     assassin: <GiHoodedAssassin style={iconStyle} />,
     basket: <DeleteIcon style={iconStyle} />,
     calendar: <InsertInvitationIcon style={iconStyle} />,
@@ -46,6 +54,7 @@ export const iconComponentDefs = (iconStyle: CSSProperties) => {
     clock: <AccessTimeIcon style={iconStyle} />,
     close: <CloseIcon style={iconStyle} />,
     crossedSwords: <GiCrossedSwords style={iconStyle} />,
+    feather: <GiFeather style={iconStyle} />,
     file: <DescriptionIcon style={iconStyle} />,
     down: <KeyboardArrowDownIcon style={iconStyle} />,
     exit: <GiExitDoor style={iconStyle} />,
@@ -54,6 +63,7 @@ export const iconComponentDefs = (iconStyle: CSSProperties) => {
     skeletonKey: <GiSkeletonKey style={iconStyle} />,
     tavernSign: <GiTavernSign style={iconStyle} />,
     up: <KeyboardArrowUpIcon style={iconStyle} />,
+    womanElfFace: <GiWomanElfFace style={iconStyle} />,
   };
 };
 

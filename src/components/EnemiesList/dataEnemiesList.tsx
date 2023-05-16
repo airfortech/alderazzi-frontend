@@ -4,6 +4,7 @@ import { EnemyResponse } from "../../types/Enemy";
 import { isRoleAllowed } from "../../utils/isRoleAllowed";
 import { DeleteEnemyCell } from "./DeleteEnemyCell/DeleteEnemyCell";
 import { TableRowDetails } from "../TableRowDetails/TableRowDetails";
+import { UpdateEnemyCell } from "./UpdateEnemyCell/UpdateEnemyCell";
 
 export const expandableRow =
   (currentRole: UserRole | undefined): ExpandableRowsComponent<EnemyResponse> =>
@@ -19,6 +20,10 @@ export const expandableRow =
         ]}
         longDetails={[{ title: "Komentarz:", value: comment || "brak" }]}
         actions={[
+          isRoleAllowed(
+            [UserRole.soldato, UserRole.caporegime, UserRole.consigliore],
+            currentRole
+          ) && <UpdateEnemyCell id={id} />,
           isRoleAllowed(
             [UserRole.caporegime, UserRole.consigliore],
             currentRole
