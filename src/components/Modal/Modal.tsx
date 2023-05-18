@@ -28,6 +28,7 @@ interface Props {
   open: boolean;
   closeIcon?: boolean;
   onClose: () => void;
+  closeOnBackdropClick?: boolean;
 }
 
 export const Modal = ({
@@ -39,13 +40,14 @@ export const Modal = ({
   open,
   closeIcon = true,
   onClose,
+  closeOnBackdropClick = true,
 }: Props) => {
   return (
     <MuiModal
       aria-labelledby="transition-modal-title"
       aria-describedby="transition-modal-description"
       open={open}
-      onClose={onClose}
+      onClose={closeOnBackdropClick ? onClose : () => onClose}
       closeAfterTransition
       slots={{ backdrop: Backdrop }}
       slotProps={{

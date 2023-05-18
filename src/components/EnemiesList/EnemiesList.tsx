@@ -44,6 +44,7 @@ export const EnemiesList = () => {
               title="Dodaj wroga:"
               open={openAddEnemy}
               onClose={() => setOpenAddEnemy(false)}
+              closeOnBackdropClick={false}
             >
               <AddEnemy />
             </Modal>
