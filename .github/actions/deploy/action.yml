@@ -38,7 +38,7 @@ runs:
       run: npm ci
       shell: bash
     - name: build app
-      run: npm run build:testing
+      run: npm run build:test
       shell: bash
     - name: archive build folder
       run: |
