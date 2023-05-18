@@ -34,10 +34,11 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "env-cmd -f src/config/.env react-scripts start",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:testing": "env-cmd -f src/config/.env.testing react-scripts build",
+    "build:production": "env-cmd -f src/config/.env.production react-scripts build"
   },
   "eslintConfig": {
     "extends": [
@@ -58,6 +59,7 @@
     ]
   },
   "devDependencies": {
-    "@types/uuid": "^8.3.4"
+    "@types/uuid": "^8.3.4",
+    "env-cmd": "^10.1.0"
   }
 }
