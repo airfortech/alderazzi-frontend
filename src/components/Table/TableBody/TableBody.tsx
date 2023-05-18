@@ -1,40 +1,24 @@
-import {
-  Align,
-  Columns,
-  ExpandableRowsComponent,
-  Row,
-} from "../../../types/Table";
-import { Fragment, MouseEventHandler, ReactElement, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
-import clsx from "clsx";
-import classes from "../Table.module.css";
+import { ITableBody, Row } from "../../../types/Table";
 import { TableRow } from "./TableRow/TableRow";
-
-interface Props<T> {
-  bodyData: T[];
-  columns: Columns<T>;
-  linkToId?: string;
-  filter: string;
-  filteringSelectors: Array<keyof T>;
-  colSpan: number;
-  expandableRowsComponent?: ExpandableRowsComponent<T>;
-}
+import classes from "../Table.module.css";
 
 export const TableBody = <T extends Row>({
   bodyData,
   columns,
-  linkToId,
   filter,
   filteringSelectors,
   colSpan,
+  stickyColumn,
+  onRowClick,
   expandableRowsComponent,
-}: Props<T>) => {
-  const navigate = useNavigate();
-
-  return (
-    <tbody>
-      {bodyData
-        .filter(row => {
+  expandableRowsComponentPaddingsDisabled,
+  isAllExpanded,
+  initialExpandableRowsState,
+}: ITableBody<T>) => {
+  const data =
+    filteringSelectors.length === 0
+      ? bodyData
+      : bodyData.filter(row => {
           for (let selector of filteringSelectors) {
             if (
               row[selector]
@@ -45,18 +29,35 @@ export const TableBody = <T extends Row>({
               return true;
           }
           return false;
-        })
-        .map((row, index) => (
+        });
+
+  return (
+    <tbody>
+      {data.length > 0 ? (
+        data.map((row, index) => (
           <TableRow
             columns={columns}
-            linkToId={linkToId}
             row={row}
             colSpan={colSpan}
-            expandableRowsComponent={expandableRowsComponent}
             key={row.id}
             index={index}
+            stickyColumn={stickyColumn}
+            onRowClick={onRowClick}
+            expandableRowsComponent={expandableRowsComponent}
+            expandableRowsComponentPaddingsDisabled={
+              expandableRowsComponentPaddingsDisabled
+            }
+            isAllExpanded={isAllExpanded}
+            initialExpandableRowsState={initialExpandableRowsState}
           />
-        ))}
+        ))
+      ) : (
+        <tr>
+          <td colSpan={colSpan} className={classes.noData}>
+            No data found
+          </td>
+        </tr>
+      )}
     </tbody>
   );
 };

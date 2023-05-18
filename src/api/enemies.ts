@@ -1,11 +1,11 @@
 import { ApiResponse } from "../types/responseMessages";
-import { Enemy } from "../types/Enemy";
+import { EnemyRequest, EnemyResponse } from "../types/Enemy";
 
 import { api } from "./api";
 
 export interface GetEnemies extends ApiResponse {
   data: {
-    enemies: Enemy[];
+    enemies: EnemyResponse[];
   };
 }
 
@@ -14,8 +14,13 @@ export const getEnemies = async () => {
   return data;
 };
 
-export const addEnemy = async (name: string) => {
-  const { data } = await api.post<ApiResponse>("/enemies", { name });
+export const addEnemy = async (enemy: EnemyRequest) => {
+  const { data } = await api.post<ApiResponse>("/enemies", enemy);
+  return data;
+};
+
+export const updateEnemy = async (id: string, enemy: EnemyRequest) => {
+  const { data } = await api.patch<ApiResponse>("/enemies/" + id, enemy);
   return data;
 };
 

@@ -1,81 +1,60 @@
+import { ITableHead, Row } from "../../../types/Table";
 import {
-  Align,
-  Columns,
-  ExpandableRowsComponent,
-  Row,
-  SortFunc,
-  SortOption,
-} from "../../../types/Table";
-import { Dispatch, SetStateAction, useEffect } from "react";
-import clsx from "clsx";
+  thClasses,
+  thSpanClasses,
+  thead,
+  theadTrTh,
+  theadTrThSwitcher,
+} from "../TableCss";
 import SouthIcon from "@mui/icons-material/South";
 import NorthIcon from "@mui/icons-material/North";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
-import { Filter } from "../Filter/Filter";
-import classes from "../Table.module.css";
-
-interface Props<T> {
-  columns: Columns<T>;
-  title: string | undefined;
-  isFilterable: boolean;
-  sortOption: SortOption<T> | undefined;
-  handleSort: (selector: string, sortFunc: SortFunc | undefined) => void;
-  filter: string;
-  setFilter: Dispatch<SetStateAction<string>>;
-  colSpan: number;
-  expandableRowsComponent?: ExpandableRowsComponent<T>;
-}
-
-const headerClasses = (title: string | undefined) => {
-  return clsx(classes.header, !title && null);
-};
-
-const thClasses = (align: Align, isSortable: boolean) => {
-  return clsx(classes["align-" + align], isSortable && classes.cursorPointer);
-};
-
-const thSpanClasses = (align: Align) => {
-  return clsx(align === "right" && classes.spanLeft);
-};
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export const TableHead = <T extends Row>({
+  parent,
   columns,
-  title,
-  isFilterable,
   sortOption,
   handleSort,
-  filter,
-  setFilter,
-  colSpan,
+  filteringSelectors,
+  stickyColumn,
   expandableRowsComponent,
-}: Props<T>) => {
+  isAllExpanded,
+  handleAllExpandTrigger,
+  theadRef,
+}: ITableHead<T>) => {
   return (
-    <thead>
-      {(title || isFilterable) && (
-        <tr>
-          <th colSpan={colSpan}>
-            <div className={headerClasses(title)}>
-              {title && <p className={classes.title}>{title}</p>}
-              {isFilterable && <Filter filter={filter} setFilter={setFilter} />}
-            </div>
-          </th>
-        </tr>
-      )}
+    <thead
+      className={thead(filteringSelectors.length > 0, parent)}
+      ref={theadRef}
+    >
       <tr>
-        {expandableRowsComponent && <th></th>}
-        {columns.map(
-          (
-            {
-              isVisible = true,
-              header,
-              selector,
-              isSortable = false,
-              align = "left",
-              sortFunc,
-            },
-            index
-          ) =>
-            isVisible && (
+        {expandableRowsComponent && (
+          <th
+            className={theadTrThSwitcher(stickyColumn)}
+            onClick={handleAllExpandTrigger}
+          >
+            {isAllExpanded ? (
+              <KeyboardArrowUpIcon />
+            ) : (
+              <KeyboardArrowDownIcon />
+            )}
+          </th>
+        )}
+        {columns
+          .filter(({ isVisible = true }) => isVisible === true)
+          .map(
+            (
+              {
+                header,
+                selector,
+                isSortable = false,
+                align = "left",
+                sortFunc,
+              },
+              index
+            ) => (
               <th
                 key={(selector as string) + index}
                 onClick={
@@ -83,11 +62,17 @@ export const TableHead = <T extends Row>({
                     ? () => handleSort(selector as string, sortFunc)
                     : undefined
                 }
+                className={theadTrTh(index, stickyColumn)}
               >
                 <p className={thClasses(align, isSortable)}>
                   {header}
                   {isSortable && (
-                    <span className={thSpanClasses(align)}>
+                    <span
+                      className={thSpanClasses(
+                        align,
+                        sortOption?.field === selector
+                      )}
+                    >
                       {sortOption?.field === selector ? (
                         sortOption.order === "asc" ? (
                           <NorthIcon />
@@ -102,7 +87,7 @@ export const TableHead = <T extends Row>({
                 </p>
               </th>
             )
-        )}
+          )}
       </tr>
     </thead>
   );

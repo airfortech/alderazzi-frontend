@@ -1,0 +1,162 @@
+.Button {
+}
+
+.Button.Button.small {
+  font-size: 14px;
+}
+
+.Button.success {
+  color: var(--color-23);
+}
+
+.Button.success:hover {
+  background-color: var(--color-23-opacity-2);
+}
+
+.Button.success.outlined {
+  border-color: var(--color-23-opacity-1);
+}
+
+.Button.success.outlined:hover {
+  border-color: var(--color-23);
+  background-color: var(--color-23-opacity-2);
+}
+
+.Button.success.contained {
+  color: var(--color-1-opacity);
+  background-color: var(--color-23);
+}
+
+.Button.success.contained:hover {
+  background-color: var(--color-23-hover);
+}
+
+.Button.danger {
+  color: var(--color-20);
+}
+
+.Button.danger:hover {
+  background-color: var(--color-20-opacity-2);
+}
+
+.Button.danger.outlined {
+  border-color: var(--color-20-opacity-1);
+}
+
+.Button.danger.outlined:hover {
+  border-color: var(--color-20);
+  background-color: var(--color-20-opacity-2);
+}
+
+.Button.danger.contained {
+  color: #fff;
+  background-color: var(--color-20);
+}
+
+.Button.danger.contained:hover {
+  background-color: var(--color-20-hover);
+}
+
+.Button.info {
+  color: var(--color-26);
+}
+
+.Button.info:hover {
+  background-color: var(--color-26-opacity-2);
+}
+
+.Button.info.outlined {
+  border-color: var(--color-26-opacity-1);
+}
+
+.Button.info.outlined:hover {
+  border-color: var(--color-26);
+  background-color: var(--color-26-opacity-2);
+}
+
+.Button.info.contained {
+  color: #fff;
+  background-color: var(--color-26);
+}
+
+.Button.info.contained:hover {
+  background-color: var(--color-26-hover);
+}
+
+.Button.warning {
+  color: var(--color-28);
+}
+
+.Button.warning:hover {
+  background-color: var(--color-28-opacity-2);
+}
+
+.Button.warning.outlined {
+  border-color: var(--color-28-opacity-1);
+}
+
+.Button.warning.outlined:hover {
+  border-color: var(--color-28);
+  background-color: var(--color-28-opacity-2);
+}
+
+.Button.warning.contained {
+  color: #fff;
+  background-color: var(--color-28);
+}
+
+.Button.warning.contained:hover {
+  background-color: var(--color-28-hover);
+}
+
+.Button.primary {
+  color: var(--color-10);
+}
+
+.Button.primary:hover {
+  background-color: var(--color-10-opacity-2);
+}
+
+.Button.primary.outlined {
+  border-color: var(--color-10-opacity-1);
+}
+
+.Button.primary.outlined:hover {
+  border-color: var(--color-10);
+  background-color: var(--color-10-opacity-2);
+}
+
+.Button.primary.contained {
+  color: var(--color-1-opacity);
+  background-color: var(--color-10);
+}
+
+.Button.primary.contained:hover {
+  background-color: var(--color-10-hover);
+}
+
+.Button.secondary {
+  color: var(--color-2);
+}
+
+.Button.secondary:hover {
+  background-color: var(--color-2-opacity-2);
+}
+
+.Button.secondary.outlined {
+  border-color: var(--color-2-opacity-1);
+}
+
+.Button.secondary.outlined:hover {
+  border-color: var(--color-2);
+  background-color: var(--color-2-opacity-2);
+}
+
+.Button.secondary.contained {
+  color: #fff;
+  background-color: var(--color-2);
+}
+
+.Button.secondary.contained:hover {
+  background-color: var(--color-2-hover);
+}

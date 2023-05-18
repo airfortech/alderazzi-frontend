@@ -1,0 +1,9 @@
+.Submit {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.right {
+  justify-content: flex-end;
+}

@@ -1,41 +1,71 @@
-import List from "@mui/material/List";
-import Button from "@mui/material/Button";
-import DescriptionIcon from "@mui/icons-material/Description";
+import { UserRole } from "../../types/UserRole";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { useEnemies } from "../../hooks/useEnemies";
-import { EnemyItem } from "./EnemyItem/EnemyItem";
-import { AddEnemy } from "./AddEnemy/AddEnemy";
+import { Button } from "../Button/Button";
 import { Loader } from "../Loader/Loader";
+import { MobileWrapper } from "../MobileWrapper/MobileWrapper";
+import { Table } from "../Table/Table";
 import { isRoleAllowed } from "../../utils/isRoleAllowed";
-import { UserRole } from "../../types/UserRole";
+import { columns, expandableRow } from "./dataEnemiesList";
+
 import classes from "./EnemiesList.module.css";
+import { Modal } from "../Modal/Modal";
+import { AddEnemy } from "./AddEnemy/AddEnemy";
 
 export const EnemiesList = () => {
   const { auth } = useAuth();
-  const { data: enemies, isError, isLoading } = useEnemies();
+  const { data: enemies, isError, isLoading, isAddingEnemy } = useEnemies();
+  const [openAddEnemy, setOpenAddEnemy] = useState(false);
+
+  // INFO: closes modal after fetched new data (happens after new data is added)
+  useEffect(() => {
+    setOpenAddEnemy(false);
+  }, [enemies]);
 
   return (
     <div className={classes.EnemiesList}>
-      {isRoleAllowed(
-        [UserRole.caporegime, UserRole.consigliore],
-        auth?.role
-      ) && <AddEnemy />}
-      <a href="/data/enemies.txt" target="_blank">
-        <Button size="large" startIcon={<DescriptionIcon />}>
-          Podgląd pliku
-        </Button>
-      </a>
-      <h2>Lista Wrogów:</h2>
+      <MobileWrapper>
+        {isRoleAllowed(
+          [UserRole.caporegime, UserRole.consigliore],
+          auth?.role
+        ) && (
+          <>
+            <Button
+              variant="contained"
+              color="danger"
+              size="lg"
+              icon="womanElfFace"
+              onClick={() => setOpenAddEnemy(true)}
+            >
+              Dodaj Wroga
+            </Button>
+            <Modal
+              title="Dodaj wroga:"
+              open={openAddEnemy}
+              onClose={() => setOpenAddEnemy(false)}
+            >
+              <AddEnemy />
+            </Modal>
+          </>
+        )}
+      </MobileWrapper>
       {isLoading ? (
         <Loader isLoading />
       ) : enemies?.length === 0 || isError ? (
         <p>{"Lista jest pusta"}</p>
       ) : (
-        <List component="ul" aria-labelledby="nested-list-subheader">
-          {enemies?.map(({ id, name }: { id: string; name: string }) => (
-            <EnemyItem key={id} id={id} name={name} />
-          ))}
-        </List>
+        <Table
+          data={enemies}
+          columns={columns(auth?.role)}
+          title="Lista Wrogów"
+          titleTag="h2"
+          initialSorting={{ field: "name", order: "asc" }}
+          stickyHeaderPosition={50}
+          expandableRowsComponent={expandableRow(auth?.role)}
+          expandableRowsComponentPaddingsDisabled
+          horizontalScroll="top"
+        />
       )}
     </div>
   );

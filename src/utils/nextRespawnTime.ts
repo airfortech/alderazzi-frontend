@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 
-export const nextRespawnTime = (time: string) => {
+export const nextRespawnTime = (time: number) => {
   let obj = { type: "info" } as {
     type: "info" | "error" | "success";
     date: string;

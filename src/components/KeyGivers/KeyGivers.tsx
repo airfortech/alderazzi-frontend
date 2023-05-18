@@ -1,5 +1,5 @@
 import { useKeyGivers } from "../../hooks/useKeyGivers";
-import { columns, rows } from "../KeyGiversList/dataKeyGiversList";
+import { columns, handleDetails, rows } from "./dataKeyGiversList";
 import { Loader } from "../Loader/Loader";
 import { Table } from "../Table/Table";
 
@@ -19,10 +19,12 @@ export const KeyGivers = () => {
           data={rows(keyGivers)}
           columns={columns}
           title="Lista kluczników"
-          isFilterable
-          linkToId="/klucznicy"
           expandableRowsComponent={props => <p>{props.id}</p>}
           initialSorting={{ field: "nextRespawn", order: "asc" }}
+          onRowClick={handleDetails}
+          horizontalScroll="top"
+          stickyColumn="first column"
+          stickyHeaderPosition={50}
         />
       )}
     </div>

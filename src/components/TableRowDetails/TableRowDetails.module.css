@@ -1,0 +1,63 @@
+.EnemiesExpandableRow {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  backdrop-filter: blur(3px);
+  border-top: 1px solid var(--color-10-opacity-2);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+}
+
+.container.singleChild {
+  grid-template-columns: 1fr;
+}
+
+.info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* grid-template-rows: 40px; */
+  gap: 20px;
+  list-style: none;
+  align-content: start;
+}
+
+@media (max-width: 400px) {
+  .info {
+    grid-template-columns: 1fr;
+  }
+}
+
+.infoLong {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  list-style: none;
+}
+
+.info > li,
+.infoLong > li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.infoTitle {
+  color: var(--color-10);
+  color: hsl(0, 0%, 90%);
+  font-style: italic;
+}
+
+.infoValue {
+  color: var(--color-10-opacity-1);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}

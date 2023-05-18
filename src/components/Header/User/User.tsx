@@ -1,10 +1,7 @@
-import IconButton from "@mui/material/IconButton";
-import { red } from "@mui/material/colors";
-import { GiExitDoor } from "react-icons/gi";
-
 import { api } from "../../../api/api";
 import { useAuth } from "../../../hooks/useAuth";
 import classes from "./User.module.css";
+import { Icon } from "../../Icon/Icon";
 
 interface Props {
   role: string;
@@ -20,15 +17,15 @@ export const User = ({ role }: Props) => {
   return (
     <div className={classes.User}>
       <p>{role}</p>
-      <IconButton
-        aria-label="logout"
+      <Icon
+        ariaLabel="logout"
+        icon="exit"
+        type="button"
+        size="xl"
+        color="danger"
         edge="end"
-        sx={{ color: red[700] }}
-        className={classes.button}
         onClick={handleLogout}
-      >
-        <GiExitDoor />
-      </IconButton>
+      />
     </div>
   );
 };
