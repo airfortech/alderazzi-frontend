@@ -1,0 +1,28 @@
+name: Create env
+
+description: Create env file
+
+inputs:
+  directory:
+    required: false
+  file-name:
+    required: true
+  backend_url:
+    required: true
+  language:
+    required: true
+  axios_timeout:
+    required: true
+
+runs:
+  using: composite
+
+  steps:
+    - name: create file
+      run: |
+        mkdir -p ${{ inputs.directory }}
+        cd ${{ inputs.directory}}
+        echo 'REACT_APP_backend_url="${{ inputs.backend_url }}"' > ${{ inputs.file-name }}
+        echo 'REACT_APP_language="${{ inputs.language }}"' >> ${{ inputs.file-name }}
+        echo 'REACT_APP_axios_timeout=${{ inputs.axios_timeout }}' >> ${{ inputs.file-name }}
+      shell: bash
