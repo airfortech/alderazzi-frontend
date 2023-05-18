@@ -37,8 +37,8 @@
     "start": "env-cmd -f src/config/.env react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:testing": "env-cmd -f src/config/.env.test react-scripts build",
-    "build:production": "env-cmd -f src/config/.env.production react-scripts build"
+    "build:test": "CI=false env-cmd -f src/config/.env.test react-scripts build",
+    "build:production": "CI=false env-cmd -f src/config/.env.production react-scripts build"
   },
   "eslintConfig": {
     "extends": [
