@@ -25,32 +25,31 @@ export const EnemiesList = () => {
 
   return (
     <div className={classes.EnemiesList}>
-      <MobileWrapper>
-        {isRoleAllowed(
-          [UserRole.caporegime, UserRole.consigliore],
-          auth?.role
-        ) && (
-          <>
-            <Button
-              variant="contained"
-              color="danger"
-              size="lg"
-              icon="womanElfFace"
-              onClick={() => setOpenAddEnemy(true)}
-            >
-              Dodaj Wroga
-            </Button>
-            <Modal
-              title="Dodaj wroga:"
-              open={openAddEnemy}
-              onClose={() => setOpenAddEnemy(false)}
-              closeOnBackdropClick={false}
-            >
-              <AddEnemy />
-            </Modal>
-          </>
-        )}
-      </MobileWrapper>
+      {isRoleAllowed(
+        [UserRole.caporegime, UserRole.consigliore],
+        auth?.role
+      ) && (
+        <MobileWrapper>
+          <Button
+            variant="contained"
+            color="danger"
+            size="lg"
+            icon="womanElfFace"
+            onClick={() => setOpenAddEnemy(true)}
+          >
+            Dodaj Wroga
+          </Button>
+          <Modal
+            title="Dodaj wroga:"
+            open={openAddEnemy}
+            onClose={() => setOpenAddEnemy(false)}
+            closeOnBackdropClick={false}
+          >
+            <AddEnemy />
+          </Modal>
+        </MobileWrapper>
+      )}
+
       {isLoading ? (
         <Loader isLoading />
       ) : enemies?.length === 0 || isError ? (
