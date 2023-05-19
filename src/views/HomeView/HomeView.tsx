@@ -1,6 +1,6 @@
 import { Login } from "../../components/Login/Login";
 import { useAuth } from "../../hooks/useAuth";
-import { UserPrivilages } from "../../components/UserPrivilages/UserPrivilages";
+import { UserPrivileges } from "../../components/UserPrivileges/UserPrivileges";
 
 import classes from "./HomeView.module.css";
 
@@ -12,7 +12,7 @@ export const HomeView = () => {
       {!auth && <Login />}
       {auth && (
         <>
-          <UserPrivilages role={auth.role} />
+          <UserPrivileges role={auth.role} />
         </>
       )}
     </div>

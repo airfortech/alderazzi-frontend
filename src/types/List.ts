@@ -13,7 +13,7 @@ export interface ListItem {
 export type ListItems = ListItem[];
 
 export interface IList {
-  items: ListItems;
+  items?: ListItems;
   title?: string;
   titleAlign?: Align;
   titleTag?: TagName;

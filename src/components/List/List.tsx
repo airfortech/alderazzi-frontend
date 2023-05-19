@@ -49,7 +49,7 @@ export const List = ({
         </Title>
       )}
       <ul className={classes.ul}>
-        {items.length > 0 ? (
+        {items && items.length > 0 ? (
           items.map(
             (
               {

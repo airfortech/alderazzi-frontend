@@ -5,7 +5,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import CancelIcon from "@mui/icons-material/Cancel";
 import CloseIcon from "@mui/icons-material/Close";
 import DescriptionIcon from "@mui/icons-material/Description";
+import { GiCheckMark } from "react-icons/gi";
 import { GiCrossedSwords } from "react-icons/gi";
+import { GiCrossMark } from "react-icons/gi";
 import { GiExitDoor } from "react-icons/gi";
 import { GiFeather } from "react-icons/gi";
 import { GiHoodedAssassin } from "react-icons/gi";
@@ -28,10 +30,12 @@ export type Icon =
   | "basket"
   | "calendar"
   | "cancel"
+  | "checkmark"
   | "chest"
   | "clock"
   | "close"
   | "crossedSwords"
+  | "crossmark"
   | "feather"
   | "file"
   | "down"
@@ -50,6 +54,8 @@ export const iconComponentDefs = (iconStyle: CSSProperties) => {
     basket: <DeleteIcon style={iconStyle} />,
     calendar: <InsertInvitationIcon style={iconStyle} />,
     cancel: <CancelIcon style={iconStyle} />,
+    checkmark: <GiCheckMark style={iconStyle} />,
+    crossmark: <GiCrossMark style={iconStyle} />,
     chest: <GiOpenTreasureChest style={iconStyle} />,
     clock: <AccessTimeIcon style={iconStyle} />,
     close: <CloseIcon style={iconStyle} />,
