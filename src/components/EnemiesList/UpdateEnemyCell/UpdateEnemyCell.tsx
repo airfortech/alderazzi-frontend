@@ -27,7 +27,12 @@ export const UpdateEnemyCell = ({ id }: Props) => {
       >
         Edytuj
       </Button>
-      <Modal title="Edytuj wroga:" open={open} onClose={() => setOpen(false)}>
+      <Modal
+        title="Edytuj wroga:"
+        open={open}
+        onClose={() => setOpen(false)}
+        closeOnBackdropClick={false}
+      >
         <UpdateEnemy id={id} />
       </Modal>
     </>

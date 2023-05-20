@@ -20,6 +20,7 @@ import { RequireAuth } from "./components/RequireAuth/RequireAuth";
 import { Toast } from "./components/Toast/Toast";
 import { queryClient } from "./api/queryClient";
 import classes from "./App.module.css";
+import { SettingsView } from "./views/SettingsView/SettingsView";
 
 const darkTheme = createTheme(
   {
@@ -75,7 +76,7 @@ export const App = () => {
             <Route
               element={<RequireAuth allowedRoles={[UserRole.consigliore]} />}
             >
-              <Route path="/ustawienia" element={<KeysView />} />
+              <Route path="/ustawienia" element={<SettingsView />} />
             </Route>
             <Route path="/unauthorized" element={<UnauthorizedView />} />
             <Route path="*" element={<h2>Nie znaleziono podstrony.</h2>} />

@@ -15,7 +15,7 @@ import { AddEnemy } from "./AddEnemy/AddEnemy";
 
 export const EnemiesList = () => {
   const { auth } = useAuth();
-  const { data: enemies, isError, isLoading, isAddingEnemy } = useEnemies();
+  const { data: enemies, isError, isLoading } = useEnemies();
   const [openAddEnemy, setOpenAddEnemy] = useState(false);
 
   // INFO: closes modal after fetched new data (happens after new data is added)
@@ -25,31 +25,31 @@ export const EnemiesList = () => {
 
   return (
     <div className={classes.EnemiesList}>
-      <MobileWrapper>
-        {isRoleAllowed(
-          [UserRole.caporegime, UserRole.consigliore],
-          auth?.role
-        ) && (
-          <>
-            <Button
-              variant="contained"
-              color="danger"
-              size="lg"
-              icon="womanElfFace"
-              onClick={() => setOpenAddEnemy(true)}
-            >
-              Dodaj Wroga
-            </Button>
-            <Modal
-              title="Dodaj wroga:"
-              open={openAddEnemy}
-              onClose={() => setOpenAddEnemy(false)}
-            >
-              <AddEnemy />
-            </Modal>
-          </>
-        )}
-      </MobileWrapper>
+      {isRoleAllowed(
+        [UserRole.caporegime, UserRole.consigliore],
+        auth?.role
+      ) && (
+        <MobileWrapper>
+          <Button
+            variant="contained"
+            color="danger"
+            size="lg"
+            icon="womanElfFace"
+            onClick={() => setOpenAddEnemy(true)}
+          >
+            Dodaj Wroga
+          </Button>
+          <Modal
+            title="Dodaj wroga:"
+            open={openAddEnemy}
+            onClose={() => setOpenAddEnemy(false)}
+            closeOnBackdropClick={false}
+          >
+            <AddEnemy />
+          </Modal>
+        </MobileWrapper>
+      )}
+
       {isLoading ? (
         <Loader isLoading />
       ) : enemies?.length === 0 || isError ? (

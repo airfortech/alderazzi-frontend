@@ -1,5 +1,6 @@
 import { useAuth } from "../../hooks/useAuth";
 import { Form } from "../Form/Form";
+import { Heading } from "../Heading/Heading";
 import { MobileWrapper } from "../MobileWrapper/MobileWrapper";
 import { fields, validationSchema, FormData } from "./dataLogin";
 import classes from "./Login.module.css";
@@ -14,7 +15,7 @@ export const Login = () => {
   return (
     <MobileWrapper>
       <div className={classes.Login}>
-        <p>Buongiorno! Zaloguj się by uzyskać uprawnienia.</p>
+        <Heading>Buongiorno! Zaloguj się by uzyskać uprawnienia.</Heading>
         <Form<FormData>
           items={fields}
           validationSchema={validationSchema}

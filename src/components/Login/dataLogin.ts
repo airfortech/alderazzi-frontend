@@ -16,9 +16,11 @@ export const fields: Fields<FormData> = [
   {
     type: "select",
     name: "role",
-    options: Object.values(UserRole).map(userRole => {
-      return { value: userRole, label: userRole };
-    }),
+    options: Object.values(UserRole)
+      .filter(userRole => userRole !== UserRole.mudlet)
+      .map(userRole => {
+        return { value: userRole, label: userRole };
+      }),
     defaultValue: UserRole.soldato,
     placeholder: "Poziom uprawnień",
     icon: "assassin",

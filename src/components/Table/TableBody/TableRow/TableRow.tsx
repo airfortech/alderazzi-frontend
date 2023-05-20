@@ -34,7 +34,7 @@ export const TableRow = <T extends Row>({
 }: ITableRow<T>) => {
   const [isExpanded, setIsExpanded] = useState(isAllExpanded);
   const [isTransitionOn, setIsTransitionOn] = useState(false);
-  const [expandableRowContentHeight, setExpandableRowContent] = useState<
+  const [expandableRowContentHeight, setExpandableRowContentHeight] = useState<
     number | null
   >(null);
   const refExpandableRowContent = useRef<HTMLDivElement>(null);
@@ -55,13 +55,26 @@ export const TableRow = <T extends Row>({
   };
 
   useEffect(() => {
-    if (refExpandableRowContent.current) {
-      // INFO: transition for height: auto fix
-      setExpandableRowContent(refExpandableRowContent.current.scrollHeight);
-    }
+    const expandableRowContentHeightCalculations = () => {
+      if (refExpandableRowContent.current) {
+        // INFO: transition for height: auto fix
+        setExpandableRowContentHeight(
+          refExpandableRowContent.current.scrollHeight
+        );
+      }
+    };
+
+    expandableRowContentHeightCalculations();
+    window.addEventListener("resize", expandableRowContentHeightCalculations);
     const timeout = setTimeout(() => setIsTransitionOn(true), 0);
 
-    return () => clearTimeout(timeout);
+    return () => {
+      window.removeEventListener(
+        "resize",
+        expandableRowContentHeightCalculations
+      );
+      clearTimeout(timeout);
+    };
   }, []);
 
   useEffect(() => {

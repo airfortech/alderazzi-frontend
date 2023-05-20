@@ -1,21 +1,21 @@
-import { TagName } from "../../../types/Table";
+import { TagName } from "../../types/Table";
 import { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
 
-import classes from "../Table.module.css";
+import classes from "./Heading.module.css";
 
 interface Props
   extends DetailedHTMLProps<
     HTMLAttributes<HTMLHeadingElement | HTMLParagraphElement>,
     HTMLHeadingElement
   > {
-  tag: TagName;
+  tag?: TagName;
   children: ReactNode;
 }
 
-export const Title = ({ tag, children, ...props }: Props) => {
+export const Heading = ({ tag = "h2", children, ...props }: Props) => {
   const TagName = tag;
   return (
-    <TagName className={classes.title} {...props}>
+    <TagName className={classes.Heading} {...props}>
       {children}
     </TagName>
   );

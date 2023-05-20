@@ -51,7 +51,7 @@ export const KeysView = () => {
   return (
     <div className={classes.KeysView}>
       <MobileWrapper>
-        <h2>Klucze</h2>
+        <h2>Form test</h2>
         <br />
         <Form<FormData>
           label="Lorem ipsum bal bla"

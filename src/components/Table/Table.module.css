@@ -139,6 +139,7 @@
 
 .headerTitle {
   font-size: 1.3em;
+  font-weight: 500;
   letter-spacing: 1px;
   color: var(--color-10);
 }

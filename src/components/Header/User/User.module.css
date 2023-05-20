@@ -11,3 +11,9 @@
   font-weight: 500;
   margin-right: 10px;
 }
+
+@media (max-width: 480px) {
+  .User p {
+    font-size: 0.8em;
+  }
+}

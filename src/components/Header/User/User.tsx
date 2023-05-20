@@ -1,7 +1,7 @@
 import { api } from "../../../api/api";
 import { useAuth } from "../../../hooks/useAuth";
-import classes from "./User.module.css";
 import { Icon } from "../../Icon/Icon";
+import classes from "./User.module.css";
 
 interface Props {
   role: string;
