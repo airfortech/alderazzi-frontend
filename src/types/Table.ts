@@ -24,6 +24,7 @@ export type SortFunc = (
 ) => 1 | -1 | 0;
 
 export type CellFunc<T> = (
+  // FIXME: value should be type of selected value from T
   value: string | number,
   props: T
 ) => string | number | ReactElement;
@@ -40,6 +41,8 @@ export interface Column<T> {
   isSortable?: boolean;
   isFilterable?: boolean;
   isOnRowClickActive?: boolean;
+  color?: string;
+  bold?: boolean;
   cell?: CellFunc<T>;
   sortFunc?: SortFunc;
 }
@@ -51,7 +54,6 @@ export interface ITable<T> {
   data: Array<T>;
   title?: string;
   titleTag?: TagName;
-  isFilterable?: boolean;
   initialSorting?: {
     field: keyof T;
     order: Order;
@@ -61,15 +63,16 @@ export interface ITable<T> {
   stickyHeaderPosition?: number;
   onRowClick?: OnRowClickFunc<T>;
   expandableRowsComponent?: ExpandableRowsComponent<T>;
+  expandableRowsComponentPaddingsDisabled?: boolean;
   initialExpandableRowsState?: "hidden" | "visible";
   style?: CSSProperties;
 }
 
 export interface ITableRender<T> extends Omit<ITable<T>, "data"> {
   titleTag: TagName;
-  isFilterable: boolean;
   horizontalScroll: "top" | "bottom";
   stickyColumn: "switcher" | "first column" | "none";
+  expandableRowsComponentPaddingsDisabled: boolean;
 
   bodyData: T[];
   filter: string;
@@ -88,12 +91,12 @@ export interface ITableHeader<T>
     | "horizontalScroll"
     | "stickyColumn"
     | "bodyData"
-    | "filteringSelectors"
     | "sortOption"
     | "handleSort"
     | "colSpan"
     | "style"
     | "expandableRowsComponent"
+    | "expandableRowsComponentPaddingsDisabled"
     | "initialExpandableRowsState"
     | "initialSorting"
     | "onRowClick"
@@ -103,7 +106,7 @@ export interface ITableHeader<T>
 }
 
 export interface IFilter<T>
-  extends Omit<ITableHeader<T>, "title" | "titleTag" | "isFilterable"> {}
+  extends Omit<ITableHeader<T>, "title" | "titleTag" | "filteringSelectors"> {}
 
 export interface ITableHead<T>
   extends Omit<
@@ -114,13 +117,13 @@ export interface ITableHead<T>
     | "titleTag"
     | "horizontalScroll"
     | "bodyData"
-    | "filteringSelectors"
     | "colSpan"
     | "style"
     | "initialExpandableRowsState"
     | "initialSorting"
     | "onRowClick"
     | "stickyHeaderPosition"
+    | "expandableRowsComponentPaddingsDisabled"
   > {
   isAllExpanded: boolean;
   handleAllExpandTrigger: () => void;
@@ -139,7 +142,6 @@ export interface ITableBody<T>
     | "initialSorting"
     | "sortOption"
     | "handleSort"
-    | "isFilterable"
     | "setFilter"
     | "onRowClick"
     | "stickyHeaderPosition"

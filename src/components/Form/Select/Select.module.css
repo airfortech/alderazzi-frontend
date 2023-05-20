@@ -1,0 +1,7 @@
+.Select {
+  position: relative;
+}
+
+.Select :global(.MuiInputBase-formControl) {
+  width: 100%;
+}

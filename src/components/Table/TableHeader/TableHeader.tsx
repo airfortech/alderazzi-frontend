@@ -6,20 +6,22 @@ import classes from "../Table.module.css";
 export const TableHeader = <T extends Row>({
   title,
   titleTag,
-  isFilterable,
+  filteringSelectors,
   filter,
   setFilter,
 }: ITableHeader<T>) => {
   return (
     <header className={classes.TableHeader}>
-      {(title || isFilterable) && (
+      {(title || filteringSelectors.length > 0) && (
         <div className={classes.headerWrapper}>
           {title && (
             <Title tag={titleTag} className={classes.headerTitle}>
               {title}
             </Title>
           )}
-          {isFilterable && <Filter filter={filter} setFilter={setFilter} />}
+          {filteringSelectors.length > 0 && (
+            <Filter filter={filter} setFilter={setFilter} />
+          )}
         </div>
       )}
     </header>

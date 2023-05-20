@@ -6,3 +6,10 @@ export interface User {
   jwt?: string;
   token?: string;
 }
+
+export interface ChangeUserPasswordRequest
+  extends Omit<User, "jwt" | "token"> {}
+
+export interface ChangePasswordForm extends ChangeUserPasswordRequest {
+  confirmPassword: string;
+}

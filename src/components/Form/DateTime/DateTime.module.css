@@ -1,0 +1,33 @@
+.DateTime :global(.MuiInputBase-root),
+.DateTime input {
+  cursor: pointer;
+}
+
+:global(.MuiPickersLayout-actionBar button:last-child) {
+  color: #fff;
+  background-color: var(--color-23);
+}
+
+:global(.MuiPickersLayout-actionBar button:last-child):hover {
+  color: #fff;
+  background-color: var(--color-23-hover);
+}
+
+:global(.MuiPickersLayout-actionBar button:nth-child(1)) {
+  color: var(--color-20);
+}
+
+:global(.MuiDateTimePickerToolbar-dateContainer span) {
+  /* background-color: red; */
+  font-size: 1.3rem;
+}
+
+:global(.MuiDateTimePickerToolbar-dateContainer) button:first-child {
+  display: none;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}

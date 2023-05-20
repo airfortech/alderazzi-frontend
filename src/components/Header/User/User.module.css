@@ -12,6 +12,8 @@
   margin-right: 10px;
 }
 
-.User svg {
-  font-size: 30px;
+@media (max-width: 480px) {
+  .User p {
+    font-size: 0.8em;
+  }
 }

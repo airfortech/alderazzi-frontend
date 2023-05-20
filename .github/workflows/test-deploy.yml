@@ -1,0 +1,39 @@
+name: "[Test] Deploy"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - test
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      BACKEND_URL: "${{ vars.BACKEND_URL }}"
+      LANGUAGE: ${{ vars.LANGUAGE }}
+      AXIOS_TIMEOUT: ${{ vars.AXIOS_TIMEOUT}}
+      SSH_USERNAME: ${{secrets.SSH_USERNAME_TEST}}
+      SSH_SERVER: ${{secrets.SSH_SERVER_TEST}}
+      SSH_KEY: ${{secrets.SSH_KEY_TEST}}
+      SSH_SERVER_DIR: ${{secrets.SSH_SERVER_DIR_TEST}}
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Create env file
+        uses: ./.github/actions/create-env
+        with:
+          file-name: ".env.test"
+          directory: "./src/config"
+          backend_url: ${{ env.BACKEND_URL }}
+          language: ${{ env.LANGUAGE }}
+          axios_timeout: ${{env.AXIOS_TIMEOUT}}
+      - name: deploy
+        uses: ./.github/actions/deploy
+        with:
+          node-version: 18
+          username: ${{ env.SSH_USERNAME}}
+          server: ${{ env.SSH_SERVER}}
+          server-dir: ${{ env.SSH_SERVER_DIR}}
+          ssh-key: ${{ env.SSH_KEY}}
+          file: dist.zip

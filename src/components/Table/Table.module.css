@@ -139,6 +139,7 @@
 
 .headerTitle {
   font-size: 1.3em;
+  font-weight: 500;
   letter-spacing: 1px;
   color: var(--color-10);
 }
@@ -161,6 +162,11 @@
   justify-content: center;
   align-items: center;
   width: 20px;
+}
+
+.thead .spanLeft {
+  padding: 0 0.4em 0 0;
+  order: -1;
 }
 
 .thead th p {
@@ -205,6 +211,7 @@
 
 .thead .theadTrThSwitcher {
   padding: 0;
+  width: 50px;
   background-color: var(--color-2);
   z-index: 1;
 }
@@ -241,6 +248,10 @@
 
 .tbodyTrEven:hover > td {
   background-color: #ffffff32;
+}
+
+.tbodyTrTdEven {
+  background-color: #ffffff0c;
 }
 
 .tbodyTrTdOddSticky {
@@ -294,14 +305,15 @@
 }
 
 .tbodyTrExpandableRowContent {
+}
+
+.tbodyTrExpandableRowContentPaddings {
   padding: 15px;
 }
 
 .stickyTrigger {
   position: sticky;
   left: 0;
-  padding: 0;
-  width: 50px;
   text-align: center;
   z-index: 1;
 }

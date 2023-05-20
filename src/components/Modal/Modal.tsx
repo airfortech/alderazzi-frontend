@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import { CSSProperties, ReactNode } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import MuiModal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
@@ -20,13 +20,15 @@ const modalClasses = (fullWidth: boolean, fullHeight: boolean) =>
   );
 
 interface Props {
-  children: React.ReactElement;
+  children: ReactNode;
   title?: string;
   style?: CSSProperties;
   fullWidth?: boolean;
   fullHeight?: boolean;
   open: boolean;
+  closeIcon?: boolean;
   onClose: () => void;
+  closeOnBackdropClick?: boolean;
 }
 
 export const Modal = ({
@@ -36,14 +38,16 @@ export const Modal = ({
   fullWidth = false,
   fullHeight = false,
   open,
+  closeIcon = true,
   onClose,
+  closeOnBackdropClick = true,
 }: Props) => {
   return (
     <MuiModal
       aria-labelledby="transition-modal-title"
       aria-describedby="transition-modal-description"
       open={open}
-      onClose={onClose}
+      onClose={closeOnBackdropClick ? onClose : () => onClose}
       closeAfterTransition
       slots={{ backdrop: Backdrop }}
       slotProps={{
@@ -54,17 +58,21 @@ export const Modal = ({
     >
       <Fade in={open}>
         <div className={modalClasses(fullWidth, fullHeight)} style={style}>
-          <div className={headerClasses(title)}>
-            {title && <p className={classes.title}>{title}</p>}
-            <IconButton
-              aria-label="logout"
-              sx={{ color: red[700] }}
-              className={classes.button}
-              onClick={onClose}
-            >
-              <CloseIcon />
-            </IconButton>
-          </div>
+          {(title || closeIcon) && (
+            <div className={headerClasses(title)}>
+              {title && <p className={classes.title}>{title}</p>}
+              {closeIcon && (
+                <IconButton
+                  aria-label="logout"
+                  sx={{ color: red[700] }}
+                  className={classes.button}
+                  onClick={onClose}
+                >
+                  <CloseIcon />
+                </IconButton>
+              )}
+            </div>
+          )}
           <div className={classes.content}>{children}</div>
         </div>
       </Fade>

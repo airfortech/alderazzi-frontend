@@ -1,120 +1,105 @@
-import { useState } from "react";
-import { Icon } from "../../components/Icon/Icon";
-import { Modal } from "../../components/Modal/Modal";
-import classes from "./KeysView.module.css";
-import { Button } from "../../components/Button/Button";
+import * as yup from "yup";
+import { FieldErrors } from "react-hook-form";
+import { Form } from "../../components/Form/Form";
 import { MobileWrapper } from "../../components/MobileWrapper/MobileWrapper";
 
-export const KeysView = () => {
-  const [open, setOpen] = useState(false);
+import classes from "./KeysView.module.css";
 
+export interface FormData {
+  name: string;
+  age: number;
+  description: string;
+  birthDate: Date;
+  select: string;
+  autocomplete: { label: string; id: string };
+}
+
+const submit = (formData: FormData) => {
+  console.log("submit:", formData);
+};
+
+const validationSchema = yup.object().shape({
+  name: yup
+    .string()
+    .required("Podaj imie!")
+    .min(3)
+    .matches(/^[0-9]+$/, "Must be only digits"),
+  age: yup
+    .number()
+    .typeError("Podaj liczbe!")
+    .required("Podaj wiek!")
+    .min(18, "minimum 18!"),
+  description: yup.string().required("Podaj opis!").min(20, "Opis za krotki!"),
+  birthDate: yup.date().typeError("Wybierz date!").required("Wybierz date!"),
+  select: yup.string().required("Wybierz opcje w selekt!"),
+  autocomplete: yup
+    .object()
+    .typeError("Autocomplete error!")
+    .shape({
+      value: yup
+        .string()
+        .typeError("Wybierz opcje autocomplete!")
+        .required("Wybierz opcje autocomplete!"),
+    }),
+});
+
+const errors = (errors: FieldErrors<FormData>) => {
+  console.log("errors:", errors);
+};
+
+export const KeysView = () => {
   return (
     <div className={classes.KeysView}>
       <MobileWrapper>
-        <h2>Klucze</h2>
-        <Button
-          icon="settings"
-          size="lg"
-          variant="outlined"
-          onClick={() => {
-            setOpen(true);
-          }}
-        >
-          Modal
-        </Button>
+        <h2>Form test</h2>
         <br />
-        <Button>Test</Button>
-        <br />
-        <Button size="sm" icon="chest">
-          Test
-        </Button>
-        <Button size="normal" icon="chest">
-          Test
-        </Button>
-        <Button size="lg" color="success" icon="chest">
-          Test
-        </Button>
-        <Button size="lg" color="danger" icon="chest">
-          Test
-        </Button>
-        <Button size="lg" color="info">
-          Test
-        </Button>
-        <Button size="lg" color="warning">
-          Test
-        </Button>
-        <Button size="lg" color="primary">
-          Test
-        </Button>
-        <Button size="lg" color="secondary">
-          Test
-        </Button>
-
-        <br />
-        <Button variant="outlined" size="sm" icon="chest">
-          Test
-        </Button>
-        <Button variant="outlined" size="normal" icon="chest">
-          Test
-        </Button>
-        <Button variant="outlined" size="lg" color="success" icon="chest">
-          Test
-        </Button>
-        <Button variant="outlined" size="lg" color="danger" icon="chest">
-          Test
-        </Button>
-        <Button variant="outlined" size="lg" color="info">
-          Test
-        </Button>
-        <Button variant="outlined" size="lg" color="warning">
-          Test
-        </Button>
-        <Button variant="outlined" size="lg" color="primary">
-          Test
-        </Button>
-        <Button variant="outlined" size="lg" color="secondary">
-          Test
-        </Button>
-        <br />
-        <Button variant="contained" size="sm" icon="chest">
-          Test
-        </Button>
-        <Button variant="contained" size="normal" icon="chest">
-          Test
-        </Button>
-        <Button variant="contained" size="lg" color="success" icon="chest">
-          Test
-        </Button>
-        <Button variant="contained" size="lg" color="danger" icon="chest">
-          Test
-        </Button>
-        <Button variant="contained" size="lg" color="info">
-          Test
-        </Button>
-        <Button variant="contained" size="lg" color="warning">
-          Test
-        </Button>
-        <Button variant="contained" size="lg" color="primary">
-          Test
-        </Button>
-        <Button variant="contained" size="lg" color="secondary">
-          Test
-        </Button>
-        <Modal
-          title=" Lorem ipsum dolor sit amet consectetur adipisicing."
-          open={open}
-          onClose={() => setOpen(false)}
-        >
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
-            doloremque quod placeat blanditiis nesciunt omnis libero, optio
-            fugit reprehenderit ipsa, quasi voluptatibus nam saepe quisquam
-            aliquid enim delectus, magnam amet suscipit nobis accusamus eveniet!
-            Eius dolor voluptate facilis ipsam quaerat aspernatur deleniti ex,
-            quos dicta incidunt quisquam ducimus voluptates amet facere tempore
-            rerum numquam labore minus impedit pariatur est.
-          </p>
-        </Modal>
+        <Form<FormData>
+          label="Lorem ipsum bal bla"
+          items={[
+            {
+              type: "field",
+              name: "name",
+              placeholder: "Name",
+              icon: "calendar",
+            },
+            {
+              type: "field",
+              name: "age",
+              placeholder: "Age",
+            },
+            {
+              type: "textarea",
+              name: "description",
+              placeholder: "Description",
+              rows: 5,
+            },
+            { type: "datetime", name: "birthDate", placeholder: "Birth Date" },
+            {
+              type: "select",
+              name: "select",
+              options: [
+                { value: "1", label: "1" },
+                { value: "2", label: "2" },
+              ],
+              icon: "exit",
+              placeholder: "select",
+            },
+            {
+              type: "autocomplete",
+              name: "autocomplete",
+              options: [
+                { value: "1", label: "1" },
+                { value: "2", label: "2" },
+              ],
+              icon: "exit",
+              placeholder: "autocomplete",
+            },
+            { type: "submit" },
+          ]}
+          submit={submit}
+          errorsHandler={errors}
+          validationSchema={validationSchema}
+        />
       </MobileWrapper>
     </div>
   );

@@ -1,6 +1,8 @@
 import { TagName } from "../../../types/Table";
 import { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
 
+import classes from "../Table.module.css";
+
 interface Props
   extends DetailedHTMLProps<
     HTMLAttributes<HTMLHeadingElement | HTMLParagraphElement>,
@@ -12,5 +14,9 @@ interface Props
 
 export const Title = ({ tag, children, ...props }: Props) => {
   const TagName = tag;
-  return <TagName {...props}>{children}</TagName>;
+  return (
+    <TagName className={classes.title} {...props}>
+      {children}
+    </TagName>
+  );
 };

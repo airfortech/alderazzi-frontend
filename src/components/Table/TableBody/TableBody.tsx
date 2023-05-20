@@ -11,18 +11,26 @@ export const TableBody = <T extends Row>({
   stickyColumn,
   onRowClick,
   expandableRowsComponent,
+  expandableRowsComponentPaddingsDisabled,
   isAllExpanded,
   initialExpandableRowsState,
 }: ITableBody<T>) => {
-  const data = bodyData.filter(row => {
-    for (let selector of filteringSelectors) {
-      if (
-        row[selector]?.toString().toLowerCase().includes(filter.toLowerCase())
-      )
-        return true;
-    }
-    return false;
-  });
+  const data =
+    filteringSelectors.length === 0
+      ? bodyData
+      : bodyData.filter(row => {
+          for (let selector of filteringSelectors) {
+            if (
+              row[selector]
+                ?.toString()
+                .toLowerCase()
+                .includes(filter.toLowerCase())
+            )
+              return true;
+          }
+          return false;
+        });
+
   return (
     <tbody>
       {data.length > 0 ? (
@@ -36,6 +44,9 @@ export const TableBody = <T extends Row>({
             stickyColumn={stickyColumn}
             onRowClick={onRowClick}
             expandableRowsComponent={expandableRowsComponent}
+            expandableRowsComponentPaddingsDisabled={
+              expandableRowsComponentPaddingsDisabled
+            }
             isAllExpanded={isAllExpanded}
             initialExpandableRowsState={initialExpandableRowsState}
           />

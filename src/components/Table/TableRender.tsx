@@ -14,12 +14,12 @@ export const TableRender = <T extends Row>({
   titleTag,
   sortOption,
   handleSort,
-  isFilterable,
   filter,
   setFilter,
   filteringSelectors,
   onRowClick,
   expandableRowsComponent,
+  expandableRowsComponentPaddingsDisabled,
   initialExpandableRowsState = "hidden",
   horizontalScroll,
   stickyColumn,
@@ -103,7 +103,7 @@ export const TableRender = <T extends Row>({
         <TableHeader
           title={title}
           titleTag={titleTag}
-          isFilterable={isFilterable}
+          filteringSelectors={filteringSelectors}
           filter={filter}
           setFilter={setFilter}
         />
@@ -114,10 +114,10 @@ export const TableRender = <T extends Row>({
           <table className={classes.Table}>
             <TableHead
               parent="tableHeader"
-              isFilterable={isFilterable}
               columns={columns}
               sortOption={sortOption}
               handleSort={handleSort}
+              filteringSelectors={filteringSelectors}
               stickyColumn={stickyColumn}
               expandableRowsComponent={expandableRowsComponent}
               isAllExpanded={isAllExpanded}
@@ -134,10 +134,10 @@ export const TableRender = <T extends Row>({
         <table className={classes.Table}>
           <TableHead
             parent="tableBody"
-            isFilterable={isFilterable}
             columns={columns}
             sortOption={sortOption}
             handleSort={handleSort}
+            filteringSelectors={filteringSelectors}
             stickyColumn={stickyColumn}
             expandableRowsComponent={expandableRowsComponent}
             isAllExpanded={isAllExpanded}
@@ -153,6 +153,9 @@ export const TableRender = <T extends Row>({
             colSpan={colSpan}
             stickyColumn={stickyColumn}
             expandableRowsComponent={expandableRowsComponent}
+            expandableRowsComponentPaddingsDisabled={
+              expandableRowsComponentPaddingsDisabled
+            }
             isAllExpanded={isAllExpanded}
             initialExpandableRowsState={initialExpandableRowsState}
           />

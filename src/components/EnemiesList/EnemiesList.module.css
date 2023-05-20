@@ -4,14 +4,3 @@
   flex-direction: column;
   gap: 20px;
 }
-
-.EnemiesList a {
-  text-decoration: none;
-  align-self: center;
-}
-
-.EnemiesList ul {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}

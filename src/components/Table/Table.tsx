@@ -1,5 +1,5 @@
 import { Row, SortFunc, SortOption, ITable } from "../../types/Table";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { tableSortFunc } from "./tableSortFn";
 import { TableRender } from "./TableRender";
 
@@ -9,23 +9,25 @@ export const Table = <T extends Row>({
   title,
   titleTag = "p",
   initialSorting,
-  isFilterable = false,
   horizontalScroll = "bottom",
   stickyColumn = "none",
   stickyHeaderPosition,
   onRowClick,
   expandableRowsComponent,
+  expandableRowsComponentPaddingsDisabled = false,
   initialExpandableRowsState = "hidden",
   style,
 }: ITable<T>) => {
-  const initialBodyData = initialSorting
-    ? tableSortFunc(
-        data,
-        initialSorting,
-        columns.find(({ selector }) => selector === initialSorting.field)
-          ?.sortFunc
-      )
-    : data;
+  const initialBodyData = () => {
+    return initialSorting
+      ? tableSortFunc(
+          data,
+          initialSorting,
+          columns.find(({ selector }) => selector === initialSorting.field)
+            ?.sortFunc
+        )
+      : data;
+  };
   const [bodyData, setBodyData] = useState(initialBodyData);
   const [sortOption, setSortOption] = useState<SortOption<T> | undefined>(
     initialSorting || undefined
@@ -57,6 +59,10 @@ export const Table = <T extends Row>({
       ({ isVisible }) => isVisible === true || isVisible === undefined
     ).length + (expandableRowsComponent ? 1 : 0);
 
+  useEffect(() => {
+    setBodyData(initialBodyData());
+  }, [data]);
+
   return (
     <TableRender
       bodyData={bodyData}
@@ -66,12 +72,14 @@ export const Table = <T extends Row>({
       titleTag={titleTag}
       sortOption={sortOption}
       handleSort={handleSort}
-      isFilterable={isFilterable}
       filter={filter}
       setFilter={setFilter}
       filteringSelectors={filteringSelectors}
       onRowClick={onRowClick}
       expandableRowsComponent={expandableRowsComponent}
+      expandableRowsComponentPaddingsDisabled={
+        expandableRowsComponentPaddingsDisabled
+      }
       initialExpandableRowsState={initialExpandableRowsState}
       horizontalScroll={horizontalScroll}
       stickyColumn={stickyColumn}
