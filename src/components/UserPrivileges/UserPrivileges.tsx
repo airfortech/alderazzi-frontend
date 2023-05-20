@@ -1,5 +1,6 @@
 import { UserRole } from "../../types/UserRole";
 import { usePrivileges } from "../../hooks/usePrivileges";
+import { Heading } from "../Heading/Heading";
 import { List } from "../List/List";
 import { Loader } from "../Loader/Loader";
 import { MobileWrapper } from "../MobileWrapper/MobileWrapper";
@@ -34,7 +35,7 @@ export const UserPrivileges = ({ role }: Props) => {
   return (
     <div className={classes.UserPrivileges}>
       <MobileWrapper>
-        <p>Buongiorno! Jako {role} możesz:</p>
+        <Heading>Buongiorno! Jako {role} możesz:</Heading>
       </MobileWrapper>
       {isLoading ? (
         <Loader isLoading />
