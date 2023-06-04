@@ -4,6 +4,7 @@ import { Form } from "../../components/Form/Form";
 import { MobileWrapper } from "../../components/MobileWrapper/MobileWrapper";
 
 import classes from "./KeysView.module.css";
+import dayjs from "dayjs";
 
 export interface FormData {
   name: string;
@@ -73,7 +74,14 @@ export const KeysView = () => {
               placeholder: "Description",
               rows: 5,
             },
-            { type: "datetime", name: "birthDate", placeholder: "Birth Date" },
+            {
+              type: "datetime",
+              name: "birthDate",
+              placeholder: "Birth Date",
+              defaultValue: dayjs(),
+              minDate: dayjs().subtract(2, "d"),
+              maxDate: dayjs(),
+            },
             {
               type: "select",
               name: "select",

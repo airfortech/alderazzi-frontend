@@ -75,6 +75,8 @@ export interface IDateTime<T> {
   name: keyof T;
   placeholder?: string;
   defaultValue?: Date | dayjs.Dayjs | null;
+  minDate?: Date | dayjs.Dayjs | null;
+  maxDate?: Date | dayjs.Dayjs | null;
   hideToolbar?: boolean;
   showIcon?: boolean;
   iconColor?: IconColor;
