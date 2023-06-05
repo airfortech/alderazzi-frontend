@@ -1,8 +1,8 @@
 import { Columns, OnRowClickFunc, SortFunc } from "../../types/Table";
-import { KeyGiver, KeyGiverTableData } from "../../types/KeyGiver";
+import { KeyGiver, KeyGiverResponse } from "../../types/KeyGiver";
 import dayjs from "dayjs";
 import { InfoText } from "../InfoText/InfoText";
-import { nextRespawnTime } from "../../utils/nextRespawnTime";
+import { respawnTime } from "../../utils/respawnTime";
 
 const sortNextRespawn: SortFunc = (aField, bField, order) => {
   if (aField === bField) return 0;
@@ -40,35 +40,34 @@ const sortNextRespawn: SortFunc = (aField, bField, order) => {
 export const handleDetails: OnRowClickFunc<KeyGiver> = props =>
   console.log(props);
 
-export const rows = (data: KeyGiver[]) => {
-  return data.map(({ id, name, respawnTime, nextRespawn }) => {
+export const rows = (data: KeyGiverResponse[]) => {
+  return data.map(({ id, name, respawnTime }) => {
     return {
       id,
       name,
       respawnTime,
-      nextRespawn,
     };
   });
 };
 
-export const columns: Columns<KeyGiverTableData> = [
+export const columns: Columns<KeyGiverResponse> = [
   {
     selector: "name",
     header: "Nazwa",
     isSortable: true,
     isFilterable: true,
   },
-  {
-    selector: "nextRespawn",
-    header: "Odrodzi się",
-    isSortable: true,
-    align: "right",
-    cell: value => {
-      const { date: nextResp, type } = nextRespawnTime(value as number);
-      return <InfoText message={nextResp} type={type} />;
-    },
-    sortFunc: sortNextRespawn,
-  },
+  // {
+  //   selector: "nextRespawn",
+  //   header: "Odrodzi się",
+  //   isSortable: true,
+  //   align: "right",
+  //   cell: value => {
+  //     const { date: nextResp, type } = nextRespawnTime(value as number);
+  //     return <InfoText message={nextResp} type={type} />;
+  //   },
+  //   sortFunc: sortNextRespawn,
+  // },
   {
     selector: "respawnTime",
     header: "Czas odrodzenia",

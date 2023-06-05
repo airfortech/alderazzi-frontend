@@ -15,17 +15,7 @@ export const KeyGivers = () => {
       ) : keyGivers?.length === 0 || isError ? (
         <p>{"Lista jest pusta"}</p>
       ) : (
-        <Table
-          data={rows(keyGivers)}
-          columns={columns}
-          title="Lista kluczników"
-          expandableRowsComponent={props => <p>{props.id}</p>}
-          initialSorting={{ field: "nextRespawn", order: "asc" }}
-          onRowClick={handleDetails}
-          horizontalScroll="top"
-          stickyColumn="first column"
-          stickyHeaderPosition={50}
-        />
+        <p>Keygivers</p>
       )}
     </div>
   );

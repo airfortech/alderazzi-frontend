@@ -1,6 +1,6 @@
 import { KeyGiver } from "../../../types/KeyGiver";
 import { InfoText } from "../../InfoText/InfoText";
-import { nextRespawnTime } from "../../../utils/nextRespawnTime";
+import { respawnTime } from "../../../utils/respawnTime";
 import classes from "./KeyGiverItem.module.css";
 
 interface Props {
@@ -8,14 +8,14 @@ interface Props {
 }
 
 export const KeyGiverItem = ({ props }: Props) => {
-  const { name, respawnTime, lastRespawn, nextRespawn } = props;
+  const { name, respawnTime } = props;
 
-  const { date: nextResp, type } = nextRespawnTime(nextRespawn);
+  // const { date: nextResp, type } = nextRespawnTime(nextRespawn);
   return (
     <li className={classes.KeyGiverItem}>
       <p className={classes.name}>{name}</p>
       <p className={classes.respawnTime}>{respawnTime}h</p>
-      <InfoText message={nextResp} type={type} />
+      {/* <InfoText message={nextResp} type={type} /> */}
     </li>
   );
 };

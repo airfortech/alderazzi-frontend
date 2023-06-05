@@ -15,6 +15,12 @@ export const links = [
     allowedRoles: [UserRole.caporegime, UserRole.consigliore, UserRole.soldato],
   },
   {
+    url: "/dropy",
+    name: "Dropy",
+    icon: <Icon icon="chest" size="normal" />,
+    allowedRoles: [UserRole.caporegime, UserRole.consigliore, UserRole.soldato],
+  },
+  {
     url: "/klucznicy",
     name: "Klucznicy",
     icon: <Icon icon="chest" size="normal" />,

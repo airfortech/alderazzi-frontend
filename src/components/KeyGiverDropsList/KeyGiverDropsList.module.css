@@ -1,0 +1,13 @@
+.name {
+  color: var(--color-23);
+  font-weight: 600;
+}
+
+.short {
+  color: var(--color-10);
+}
+
+.locationId {
+  color: var(--color-28);
+  font-weight: 600;
+}

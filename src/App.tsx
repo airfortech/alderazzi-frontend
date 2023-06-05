@@ -21,6 +21,7 @@ import { Toast } from "./components/Toast/Toast";
 import { queryClient } from "./api/queryClient";
 import classes from "./App.module.css";
 import { SettingsView } from "./views/SettingsView/SettingsView";
+import { KeyGiverDropsView } from "./views/KeyGiverDropsView/KeyGiverDropsView";
 
 const darkTheme = createTheme(
   {
@@ -70,6 +71,7 @@ export const App = () => {
               }
             >
               <Route path="/wrogowie" element={<EnemiesView />} />
+              <Route path="/dropy" element={<KeyGiverDropsView />} />
               <Route path="/klucze" element={<KeysView />} />
               <Route path="/klucznicy" element={<KeyGiversView />} />
             </Route>

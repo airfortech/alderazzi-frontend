@@ -43,7 +43,11 @@ export const TableRowDetails = ({
           {longDetails.map(({ title, value }, i) => (
             <li key={i}>
               <p className={classes.infoTitle}>{title}</p>
-              <p className={classes.infoValue}>{value as string}</p>
+              {typeof value === "string" || typeof value === "number" ? (
+                <p className={classes.infoValue}>{value as string}</p>
+              ) : (
+                <div className={classes.infoValue}>{value}</div>
+              )}
             </li>
           ))}
         </ul>
