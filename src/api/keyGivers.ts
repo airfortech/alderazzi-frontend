@@ -1,11 +1,15 @@
-import { KeyGiver } from "../types/KeyGiver";
 import { ApiResponse } from "../types/responseMessages";
+import {
+  KeyGiverAddRequest,
+  KeyGiverResponse,
+  KeyGiverUpdateRequest,
+} from "../types/KeyGiver";
 
 import { api } from "./api";
 
 export interface GetKeyGivers extends ApiResponse {
   data: {
-    keyGivers: KeyGiver[];
+    keyGivers: KeyGiverResponse[];
   };
 }
 
@@ -14,8 +18,16 @@ export const getKeyGivers = async () => {
   return data;
 };
 
-export const addKeyGiver = async (name: string) => {
-  const { data } = await api.post<ApiResponse>("/keygivers", { name });
+export const addKeyGiver = async (keyGiver: KeyGiverAddRequest) => {
+  const { data } = await api.post<ApiResponse>("/keygivers", { keyGiver });
+  return data;
+};
+
+export const updateKeyGiver = async (
+  id: string,
+  keyGiver: KeyGiverUpdateRequest
+) => {
+  const { data } = await api.patch<ApiResponse>("/keygivers", { keyGiver });
   return data;
 };
 
