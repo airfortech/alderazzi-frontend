@@ -1,0 +1,16 @@
+.KeyGiversList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.locationId {
+  color: var(--color-28);
+  font-weight: 600;
+}
+
+.respawnTime {
+  /* font-weight: 600; */
+  /* color: var(--color-23); */
+}

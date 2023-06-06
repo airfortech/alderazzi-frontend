@@ -23,13 +23,19 @@ export const links = [
   {
     url: "/klucznicy",
     name: "Klucznicy",
-    icon: <Icon icon="chest" size="normal" />,
+    icon: <Icon icon="dwarf" size="normal" />,
     allowedRoles: [UserRole.caporegime, UserRole.consigliore, UserRole.soldato],
   },
   {
     url: "/klucze",
     name: "Klucze",
     icon: <Icon icon="keys" size="normal" />,
+    allowedRoles: [UserRole.caporegime, UserRole.consigliore, UserRole.soldato],
+  },
+  {
+    url: "/lokacje",
+    name: "Lokacje",
+    icon: <Icon icon="map" size="normal" />,
     allowedRoles: [UserRole.caporegime, UserRole.consigliore, UserRole.soldato],
   },
   {

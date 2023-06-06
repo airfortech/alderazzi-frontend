@@ -1,28 +1,30 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
-import { useKeys } from "../../hooks/useKeys";
+import { useKeyGivers } from "../../hooks/useKeyGivers";
 import { Loader } from "../Loader/Loader";
 import { Table } from "../Table/Table";
-import { columns, expandableRow } from "./dataKeysList";
+import { columns, expandableRow } from "./dataKeyGiversList";
 import { isRoleAllowed } from "../../utils/isRoleAllowed";
 import { UserRole } from "../../types/UserRole";
 import { MobileWrapper } from "../MobileWrapper/MobileWrapper";
-import { AddKey } from "./AddKey/AddKey";
 import { Button } from "../Button/Button";
 import { Modal } from "../Modal/Modal";
-import classes from "./KeysList.module.css";
+import { AddKeyGiver } from "./AddKeyGiver/AddKeyGiver";
+import classes from "./KeyGiversList.module.css";
 
-export const KeysList = () => {
+interface Props {}
+
+export const KeyGiversList = ({}: Props) => {
   const { auth } = useAuth();
-  const { data: keys, isError, isLoading } = useKeys();
-  const [openAddKey, setOpenAddKey] = useState(false);
+  const { data: keyGivers, isError, isLoading } = useKeyGivers();
+  const [openAddKeyGiver, setOpenAddKeyGiver] = useState(false);
 
   useEffect(() => {
-    setOpenAddKey(false);
-  }, [keys]);
+    setOpenAddKeyGiver(false);
+  }, [keyGivers]);
 
   return (
-    <div className={classes.KeysList}>
+    <div className={classes.KeyGiversList}>
       {isRoleAllowed(
         [UserRole.caporegime, UserRole.consigliore],
         auth?.role
@@ -32,30 +34,30 @@ export const KeysList = () => {
             variant="contained"
             color="info"
             size="lg"
-            icon="skeletonKey"
-            onClick={() => setOpenAddKey(true)}
+            icon="dwarf"
+            onClick={() => setOpenAddKeyGiver(true)}
           >
-            Dodaj klucz
+            Dodaj klucznika
           </Button>
           <Modal
-            title="Dodaj klucz:"
-            open={openAddKey}
-            onClose={() => setOpenAddKey(false)}
+            title="Dodaj klucznika:"
+            open={openAddKeyGiver}
+            onClose={() => setOpenAddKeyGiver(false)}
             closeOnBackdropClick={false}
           >
-            <AddKey />
+            <AddKeyGiver />
           </Modal>
         </MobileWrapper>
       )}
       {isLoading ? (
         <Loader isLoading />
-      ) : keys?.length === 0 || isError ? (
+      ) : keyGivers?.length === 0 || isError ? (
         <p>{"Lista jest pusta"}</p>
       ) : (
         <Table
-          data={keys}
+          data={keyGivers}
           columns={columns}
-          title="Lista Kluczy"
+          title="Lista Kluczników"
           titleTag="h2"
           initialSorting={{ field: "name", order: "asc" }}
           stickyHeaderPosition={50}

@@ -8,10 +8,9 @@ import { MobileWrapper } from "../MobileWrapper/MobileWrapper";
 import { Table } from "../Table/Table";
 import { isRoleAllowed } from "../../utils/isRoleAllowed";
 import { columns, expandableRow } from "./dataEnemiesList";
-
-import classes from "./EnemiesList.module.css";
 import { Modal } from "../Modal/Modal";
 import { AddEnemy } from "./AddEnemy/AddEnemy";
+import classes from "./EnemiesList.module.css";
 
 export const EnemiesList = () => {
   const { auth } = useAuth();

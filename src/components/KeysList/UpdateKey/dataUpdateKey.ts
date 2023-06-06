@@ -1,6 +1,6 @@
 import { Domain } from "../../../types/Domain";
 import { Fields } from "../../../types/Form";
-import { KeyUpdateRequest } from "../../../types/Key";
+import { KeyResponse, KeyUpdateRequest } from "../../../types/Key";
 import * as yup from "yup";
 
 export const validationSchema = yup.object().shape({
@@ -18,7 +18,7 @@ export const validationSchema = yup.object().shape({
 });
 
 export const items = (
-  defaultKeyValues: KeyUpdateRequest
+  defaultKeyValues: KeyResponse
 ): Fields<KeyUpdateRequest> => {
   const { name, treasury, domain, description, comment } = defaultKeyValues;
   return [

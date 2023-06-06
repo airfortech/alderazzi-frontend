@@ -16,10 +16,13 @@ export interface IForm<T> {
 export type Field<T> =
   | ISelect<T>
   | IAutocomplete<T>
+  | IMultiAutocomplete<T>
   | IField<T>
   | ITextArea<T>
   | IDateTime<T>
   | ISubmit;
+
+export type FieldForSubmit<T> = Exclude<Field<T>, ISubmit>;
 
 export type Fields<T> = Field<T>[];
 
@@ -68,6 +71,12 @@ export interface IAutocomplete<T> {
   iconColor?: IconColor;
   options: { value: string; label: string }[];
   defaultOption?: { value: string; label: string };
+}
+
+export interface IMultiAutocomplete<T>
+  extends Omit<IAutocomplete<T>, "type" | "defaultOption"> {
+  type: "multiautocomplete";
+  defaultOptions?: { value: string; label: string }[];
 }
 
 export interface IDateTime<T> {

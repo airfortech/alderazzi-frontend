@@ -13,7 +13,6 @@ export const AddKey = () => {
 
   return (
     <div className={classes.AddKey}>
-      {" "}
       <Form<KeyAddRequest>
         items={items}
         validationSchema={validationSchema}

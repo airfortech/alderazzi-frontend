@@ -1,4 +1,4 @@
-import { IAutocomplete, IFieldHookProps } from "../../../types/Form";
+import { IFieldHookProps, IMultiAutocomplete } from "../../../types/Form";
 import {
   Controller,
   FieldError,
@@ -18,9 +18,10 @@ type IError = (
   value: FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined;
 };
 
-interface Props<T> extends Omit<IAutocomplete<T> & IFieldHookProps, "type"> {}
+interface Props<T>
+  extends Omit<IMultiAutocomplete<T> & IFieldHookProps, "type"> {}
 
-export const Autocomplete = <T,>({
+export const MultiAutocomplete = <T,>({
   control,
   errors,
   name,
@@ -28,7 +29,7 @@ export const Autocomplete = <T,>({
   placeholder,
   icon,
   iconColor = "inherit",
-  defaultOption,
+  defaultOptions,
 }: Props<T>) => {
   const newError = errors[name as string] as IError;
   const error = newError?.value?.message || newError?.message;
@@ -39,10 +40,11 @@ export const Autocomplete = <T,>({
       <Controller
         name={name as string}
         control={control}
-        defaultValue={defaultOption}
+        defaultValue={defaultOptions}
         render={({ field: { onChange, value } }) => (
           <MuiAutocomplete
-            value={value}
+            multiple
+            value={value || []}
             options={options}
             getOptionLabel={option => {
               return option.label;
@@ -50,6 +52,7 @@ export const Autocomplete = <T,>({
             isOptionEqualToValue={(option, value) =>
               option.value === value.value
             }
+            filterSelectedOptions
             renderInput={params => (
               <TextField
                 {...params}
@@ -58,14 +61,19 @@ export const Autocomplete = <T,>({
                 helperText={(error as React.ReactNode) || <br />}
                 InputProps={{
                   ...params.InputProps,
-                  startAdornment: icon && (
-                    <InputAdornment position="start">
-                      <Icon
-                        icon={icon}
-                        size="lg"
-                        color={isError ? "danger" : iconColor}
-                      />
-                    </InputAdornment>
+                  startAdornment: icon ? (
+                    <>
+                      <InputAdornment position="start">
+                        <Icon
+                          icon={icon}
+                          size="lg"
+                          color={isError ? "danger" : iconColor}
+                        />
+                      </InputAdornment>
+                      {params.InputProps.startAdornment}
+                    </>
+                  ) : (
+                    params.InputProps.startAdornment
                   ),
                 }}
               />
