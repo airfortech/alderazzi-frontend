@@ -19,7 +19,7 @@ export const getKeyGivers = async () => {
 };
 
 export const addKeyGiver = async (keyGiver: KeyGiverAddRequest) => {
-  const { data } = await api.post<ApiResponse>("/keygivers", { keyGiver });
+  const { data } = await api.post<ApiResponse>("/keygivers", keyGiver);
   return data;
 };
 
@@ -27,7 +27,7 @@ export const updateKeyGiver = async (
   id: string,
   keyGiver: KeyGiverUpdateRequest
 ) => {
-  const { data } = await api.patch<ApiResponse>("/keygivers", { keyGiver });
+  const { data } = await api.patch<ApiResponse>("/keygivers/" + id, keyGiver);
   return data;
 };
 

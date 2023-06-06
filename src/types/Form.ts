@@ -31,7 +31,7 @@ export interface IField<T> {
   unit?: string;
   icon?: Icon;
   iconColor?: IconColor;
-  defaultValue?: string | number;
+  defaultValue?: string | number | null;
 }
 
 export interface IFieldHookProps {

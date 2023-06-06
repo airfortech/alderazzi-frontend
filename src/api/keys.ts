@@ -14,12 +14,12 @@ export const getKeys = async () => {
 };
 
 export const addKey = async (key: KeyAddRequest) => {
-  const { data } = await api.post<ApiResponse>("/keys", { key });
+  const { data } = await api.post<ApiResponse>("/keys", key);
   return data;
 };
 
 export const updateKey = async (id: string, key: KeyUpdateRequest) => {
-  const { data } = await api.patch<ApiResponse>("/keys", { key });
+  const { data } = await api.patch<ApiResponse>("/keys/" + id, key);
   return data;
 };
 

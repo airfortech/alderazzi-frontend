@@ -19,7 +19,7 @@ export const useKeys = () => {
     (key: KeyAddRequest) => addKey(key),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries([QueryKey.enemies]);
+        queryClient.invalidateQueries([QueryKey.keys]);
       },
     }
   );
@@ -28,7 +28,7 @@ export const useKeys = () => {
     ({ id, key }: { id: string; key: KeyUpdateRequest }) => updateKey(id, key),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries([QueryKey.enemies]);
+        queryClient.invalidateQueries([QueryKey.keys]);
       },
     }
   );
