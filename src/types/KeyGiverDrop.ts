@@ -12,7 +12,7 @@ export interface KeyGiverDrop {
 }
 
 export interface KeyGiverDropResponse
-  extends Omit<KeyGiverDrop, "isActive" | "keyGiver" | "drop" | "createdAt"> {
+  extends Omit<KeyGiverDrop, "isActive" | "keyGiver" | "drop"> {
   id: string;
   keyGiver: ShortKeyGiverResponse;
   drop: ShortKeyResponse | null;
@@ -24,6 +24,7 @@ export interface TableKeyGiverDropResponse
   keyGiverName: string;
   keyGiverShort: string;
   keyGiverDomain: string;
+  keyGiverRespawnTime: number | null;
   keyGiverLocations: string;
   dropId: string | null;
   dropName: string | null;

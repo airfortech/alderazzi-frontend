@@ -49,11 +49,9 @@ export const KeysList = () => {
       )}
       {isLoading ? (
         <Loader isLoading />
-      ) : keys?.length === 0 || isError ? (
-        <p>{"Lista jest pusta"}</p>
       ) : (
         <Table
-          data={keys}
+          data={keys || []}
           columns={columns}
           title="Lista Kluczy"
           titleTag="h2"

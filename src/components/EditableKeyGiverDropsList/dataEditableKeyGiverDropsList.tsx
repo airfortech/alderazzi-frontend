@@ -7,10 +7,11 @@ import { ShortLocationResponse } from "../../types/Location";
 import dayjs from "dayjs";
 import { TableRowDetails } from "../TableRowDetails/TableRowDetails";
 import { InfoText } from "../InfoText/InfoText";
-
 import { respawnTime } from "../../utils/respawnTime";
 import { formatDate } from "../../utils/formatDate";
-import classes from "./KeyGiverDropsList.module.css";
+import { UpdateKeyGiverDropCell } from "./UpdateKeyGiverDropCell/UpdateKeyGiverDropCell";
+import { DeleteKeyGiverDropCell } from "./DeleteKeyGiverDropCell/DeleteKeyGiverDropCell";
+import classes from "./EditableKeyGiverDropsList.module.css";
 
 export const expandableRow: ExpandableRowsComponent<
   TableKeyGiverDropResponse
@@ -62,6 +63,14 @@ export const expandableRow: ExpandableRowsComponent<
               ) : (
                 <p>Brak</p>
               )}
+            </div>
+          ),
+        },
+        {
+          value: (
+            <div className={classes.actions}>
+              <UpdateKeyGiverDropCell id={id} />
+              <DeleteKeyGiverDropCell id={id} />
             </div>
           ),
         },
@@ -144,6 +153,16 @@ export const columns: Columns<TableKeyGiverDropResponse> = [
     selector: "dropName",
     isFilterable: true,
     isVisible: false,
+  },
+  {
+    selector: "createdAt",
+    header: "Dodano",
+    isSortable: true,
+    align: "right",
+    cell: (value, props) => {
+      const { date: nextResp, type } = respawnTime(value as number);
+      return <p>{nextResp}</p>;
+    },
   },
   {
     selector: "dropDate",

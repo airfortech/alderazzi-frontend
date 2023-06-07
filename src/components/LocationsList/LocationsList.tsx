@@ -49,11 +49,9 @@ export const LocationsList = () => {
       )}
       {isLoading ? (
         <Loader isLoading />
-      ) : locations?.length === 0 || isError ? (
-        <p>{"Lista jest pusta"}</p>
       ) : (
         <Table
-          data={locations}
+          data={locations || []}
           columns={columns}
           title="Lista Lokacji"
           titleTag="h2"

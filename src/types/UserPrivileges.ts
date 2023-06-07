@@ -5,3 +5,12 @@ export interface UserPrivileges {
     isAllowed: boolean;
   }[];
 }
+
+export interface UserPrivilegesResponse {
+  privileges: UserPrivileges[];
+  config: {
+    keyGiverDrops: {
+      maxAddTime: number;
+    };
+  };
+}

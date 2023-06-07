@@ -42,7 +42,7 @@ export const Autocomplete = <T,>({
         defaultValue={defaultOption}
         render={({ field: { onChange, value } }) => (
           <MuiAutocomplete
-            value={value}
+            value={value || null}
             options={options}
             getOptionLabel={option => {
               return option.label;

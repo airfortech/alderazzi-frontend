@@ -13,6 +13,8 @@ export const AddKeyGiver = () => {
     addKeyGiverMutation(formData);
   };
 
+  if (!locations) return null;
+
   return (
     <div className={classes.AddKeygiver}>
       <Form<KeyGiverAddRequest>

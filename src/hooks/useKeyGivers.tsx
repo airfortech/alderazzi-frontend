@@ -11,7 +11,14 @@ import { queryClient } from "../api/queryClient";
 
 export const useKeyGivers = () => {
   const query = useQuery([QueryKey.keygivers], getKeyGivers, {
-    select: data => data.data.keyGivers,
+    select: data =>
+      data.data.keyGivers.sort((a, b) =>
+        a.name.toLowerCase() < b.name.toLowerCase()
+          ? -1
+          : a.name.toLowerCase() > b.name.toLowerCase()
+          ? 1
+          : 0
+      ),
   });
 
   const deleteKeyGiverMutation = useMutation(deleteKeyGiver, {

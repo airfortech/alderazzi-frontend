@@ -1,11 +1,9 @@
 import { ApiResponse } from "../types/responseMessages";
-import { UserPrivileges } from "../types/UserPrivileges";
+import { UserPrivilegesResponse } from "../types/UserPrivileges";
 import { api } from "./api";
 
 export interface GetPrivileges extends ApiResponse {
-  data: {
-    privileges: UserPrivileges[];
-  };
+  data: UserPrivilegesResponse;
 }
 
 export const getPrivileges = async () => {

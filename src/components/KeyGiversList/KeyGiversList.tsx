@@ -51,11 +51,9 @@ export const KeyGiversList = ({}: Props) => {
       )}
       {isLoading ? (
         <Loader isLoading />
-      ) : keyGivers?.length === 0 || isError ? (
-        <p>{"Lista jest pusta"}</p>
       ) : (
         <Table
-          data={keyGivers}
+          data={keyGivers || []}
           columns={columns}
           title="Lista Kluczników"
           titleTag="h2"

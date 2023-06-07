@@ -40,10 +40,10 @@ export const validationSchema = yup.object().shape({
 });
 
 export const items = (
-  locations: LocationResponse[] | undefined
+  locations: LocationResponse[]
 ): Fields<KeyGiverAddRequest> => {
   const locationsOptions =
-    locations?.map(({ id, locationId, name, domain }) => {
+    locations.map(({ id, locationId, name, domain }) => {
       return {
         label: locationId + " - " + name + " (" + domain + ")",
         value: id,

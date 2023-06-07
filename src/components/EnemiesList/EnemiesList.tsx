@@ -51,11 +51,9 @@ export const EnemiesList = () => {
 
       {isLoading ? (
         <Loader isLoading />
-      ) : enemies?.length === 0 || isError ? (
-        <p>{"Lista jest pusta"}</p>
       ) : (
         <Table
-          data={enemies}
+          data={enemies || []}
           columns={columns(auth?.role)}
           title="Lista Wrogów"
           titleTag="h2"
