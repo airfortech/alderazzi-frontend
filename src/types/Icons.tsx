@@ -8,6 +8,7 @@ import DescriptionIcon from "@mui/icons-material/Description";
 import { GiCheckMark } from "react-icons/gi";
 import { GiCrossedSwords } from "react-icons/gi";
 import { GiCrossMark } from "react-icons/gi";
+import { GiDwarfHelmet } from "react-icons/gi";
 import { GiExitDoor } from "react-icons/gi";
 import { GiFeather } from "react-icons/gi";
 import { GiHoodedAssassin } from "react-icons/gi";
@@ -15,6 +16,7 @@ import { GiKeyring } from "react-icons/gi";
 import { GiOpenTreasureChest } from "react-icons/gi";
 import { GiSkeletonKey } from "react-icons/gi";
 import { GiTavernSign } from "react-icons/gi";
+import { GiTreasureMap } from "react-icons/gi";
 // FIXME: change to other add user icon
 import { GrUserAdd } from "react-icons/gr";
 import { GiWomanElfFace } from "react-icons/gi";
@@ -36,11 +38,13 @@ export type Icon =
   | "close"
   | "crossedSwords"
   | "crossmark"
+  | "dwarf"
   | "feather"
   | "file"
   | "down"
   | "exit"
   | "keys"
+  | "map"
   | "settings"
   | "skeletonKey"
   | "tavernSign"
@@ -60,11 +64,13 @@ export const iconComponentDefs = (iconStyle: CSSProperties) => {
     clock: <AccessTimeIcon style={iconStyle} />,
     close: <CloseIcon style={iconStyle} />,
     crossedSwords: <GiCrossedSwords style={iconStyle} />,
+    dwarf: <GiDwarfHelmet style={iconStyle} />,
     feather: <GiFeather style={iconStyle} />,
     file: <DescriptionIcon style={iconStyle} />,
     down: <KeyboardArrowDownIcon style={iconStyle} />,
     exit: <GiExitDoor style={iconStyle} />,
     keys: <GiKeyring style={iconStyle} />,
+    map: <GiTreasureMap style={iconStyle} />,
     settings: <MdSettings style={iconStyle} />,
     skeletonKey: <GiSkeletonKey style={iconStyle} />,
     tavernSign: <GiTavernSign style={iconStyle} />,

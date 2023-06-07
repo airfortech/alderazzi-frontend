@@ -16,10 +16,13 @@ export interface IForm<T> {
 export type Field<T> =
   | ISelect<T>
   | IAutocomplete<T>
+  | IMultiAutocomplete<T>
   | IField<T>
   | ITextArea<T>
   | IDateTime<T>
   | ISubmit;
+
+export type FieldForSubmit<T> = Exclude<Field<T>, ISubmit>;
 
 export type Fields<T> = Field<T>[];
 
@@ -31,7 +34,7 @@ export interface IField<T> {
   unit?: string;
   icon?: Icon;
   iconColor?: IconColor;
-  defaultValue?: string | number;
+  defaultValue?: string | number | null;
 }
 
 export interface IFieldHookProps {
@@ -70,11 +73,19 @@ export interface IAutocomplete<T> {
   defaultOption?: { value: string; label: string };
 }
 
+export interface IMultiAutocomplete<T>
+  extends Omit<IAutocomplete<T>, "type" | "defaultOption"> {
+  type: "multiautocomplete";
+  defaultOptions?: { value: string; label: string }[];
+}
+
 export interface IDateTime<T> {
   type: "datetime";
   name: keyof T;
   placeholder?: string;
   defaultValue?: Date | dayjs.Dayjs | null;
+  minDate?: Date | dayjs.Dayjs | null;
+  maxDate?: Date | dayjs.Dayjs | null;
   hideToolbar?: boolean;
   showIcon?: boolean;
   iconColor?: IconColor;

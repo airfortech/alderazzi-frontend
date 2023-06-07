@@ -1,4 +1,4 @@
-import { IForm } from "../../types/Form";
+import { FieldForSubmit, IForm } from "../../types/Form";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import FormControl from "@mui/material/FormControl";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -9,15 +9,9 @@ import { Submit } from "./Submit/Submit";
 import { Field } from "./Field/Field";
 import { DateTime } from "./DateTime/DateTime";
 import { TextArea } from "./TextArea/TextArea";
+import { MultiAutocomplete } from "./MultiAutocomplete/MultiAutocomplete";
 import clsx from "clsx";
-
 import classes from "./Form.module.css";
-
-export interface FormData {
-  role: number;
-  test: { label: string; id: number };
-  password: { label: string; id: number };
-}
 
 const labelClasses = (align: "left" | "center" | "right") =>
   clsx(
@@ -46,7 +40,19 @@ export const Form = <T,>({
 
   const onSubmit: SubmitHandler<FieldValues> = async formData => {
     if (!submit) return;
-    const form = formData as T;
+    const form: any = {};
+    const noSubmititems = items.filter(
+      ({ type }) => type !== "submit"
+    ) as FieldForSubmit<T>[];
+    for (const key in formData) {
+      const formField = noSubmititems.find(({ name }) => name === key);
+      if (formField?.type === "multiautocomplete")
+        form[key] = formData[key]?.map((item: any) => item.value);
+      else if (formField?.type === "autocomplete")
+        form[key] = formData[key]?.value;
+      else form[key] = formData[key];
+    }
+
     submit(form);
   };
 
@@ -86,6 +92,21 @@ export const Form = <T,>({
                 errors={errors}
                 name={item.name as never}
                 options={item.options}
+                defaultOption={item.defaultOption}
+                placeholder={item.placeholder}
+                icon={item.icon}
+                iconColor={item.iconColor}
+                key={item.name as Key}
+              />
+            );
+          else if (item.type === "multiautocomplete")
+            return (
+              <MultiAutocomplete
+                control={control}
+                errors={errors}
+                name={item.name as never}
+                options={item.options}
+                defaultOptions={item.defaultOptions}
                 placeholder={item.placeholder}
                 icon={item.icon}
                 iconColor={item.iconColor}
@@ -142,6 +163,8 @@ export const Form = <T,>({
                 name={item.name}
                 placeholder={item.placeholder}
                 defaultValue={item.defaultValue}
+                minDate={item.minDate}
+                maxDate={item.maxDate}
                 hideToolbar={item.hideToolbar}
                 showIcon={item.showIcon}
                 iconColor={item.iconColor}

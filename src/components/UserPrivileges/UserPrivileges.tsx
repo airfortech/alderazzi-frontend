@@ -12,9 +12,9 @@ interface Props {
 }
 
 export const UserPrivileges = ({ role }: Props) => {
-  const { data: privileges, isError, isLoading } = usePrivileges();
+  const { data, isError, isLoading } = usePrivileges();
 
-  const lists = privileges?.map(({ category, actions }, i) => (
+  const lists = data?.privileges.map(({ category, actions }, i) => (
     <List
       title={category}
       stickyHeaderPosition={50}

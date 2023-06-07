@@ -16,6 +16,8 @@ export const DateTime = <T,>({
   name,
   placeholder,
   defaultValue,
+  minDate,
+  maxDate,
   hideToolbar = false,
   showIcon = true,
   iconColor = "inherit",
@@ -64,6 +66,8 @@ export const DateTime = <T,>({
               },
             }}
             value={value}
+            minDateTime={minDate ? dayjs(minDate) : null}
+            maxDateTime={maxDate ? dayjs(maxDate) : null}
             onChange={onChange}
             className={classes.DateTime}
           />

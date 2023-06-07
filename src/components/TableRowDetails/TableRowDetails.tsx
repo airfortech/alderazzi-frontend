@@ -3,8 +3,12 @@ import { Fragment } from "react";
 import clsx from "clsx";
 import classes from "./TableRowDetails.module.css";
 
-const containerClasses = (hasSingleChild: boolean) =>
-  clsx(classes.container, hasSingleChild && classes.singleChild);
+const containerClasses = (hasSingleChild: boolean, isOrderLast: boolean) =>
+  clsx(
+    classes.container,
+    hasSingleChild && classes.singleChild,
+    isOrderLast && classes.orderLast
+  );
 
 export const TableRowDetails = ({
   details,
@@ -17,7 +21,10 @@ export const TableRowDetails = ({
     <div className={classes.EnemiesExpandableRow}>
       {(details || filteredActions.length > 0) && (
         <div
-          className={containerClasses(!(details && filteredActions.length > 0))}
+          className={containerClasses(
+            !(details && filteredActions.length > 0),
+            !!!details && !!actions && !!longDetails
+          )}
         >
           {details && (
             <ul className={classes.info}>
@@ -42,8 +49,12 @@ export const TableRowDetails = ({
         <ul className={classes.infoLong}>
           {longDetails.map(({ title, value }, i) => (
             <li key={i}>
-              <p className={classes.infoTitle}>{title}</p>
-              <p className={classes.infoValue}>{value as string}</p>
+              {title && <p className={classes.infoTitle}>{title}</p>}
+              {typeof value === "string" || typeof value === "number" ? (
+                <p className={classes.infoValue}>{value as string}</p>
+              ) : (
+                <div className={classes.infoValue}>{value}</div>
+              )}
             </li>
           ))}
         </ul>
