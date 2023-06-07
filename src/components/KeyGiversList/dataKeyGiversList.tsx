@@ -38,7 +38,7 @@ export const expandableRow =
               <div>
                 {locations.length > 0 ? (
                   locations.map(({ id, locationId, name, domain }) => (
-                    <p>
+                    <p key={id}>
                       <span className={classes.locationId}>{locationId}</span>
                       {" - " + domain + (name && " - " + name)}
                     </p>

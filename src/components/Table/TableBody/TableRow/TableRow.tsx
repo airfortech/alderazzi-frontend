@@ -82,7 +82,7 @@ export const TableRow = <T extends Row>({
   }, [isAllExpanded]);
 
   return (
-    <Fragment key={row.id}>
+    <Fragment>
       <tr
         style={{ zIndex: -1 }}
         className={bodyTr(index)}

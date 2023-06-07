@@ -22,11 +22,11 @@ export const UpdateKeyGiver = ({ id }: Props) => {
   const keyGiver = keyGivers?.find(keyGiver => keyGiver.id === id);
 
   const submit = (formData: KeyGiverUpdateRequest) => {
-    console.log("UpdateKeyGiver:", formData);
     updateKeyGiverMutation({ id, keyGiver: formData });
   };
 
   if (!keyGiver) return null;
+  if (!locations) return null;
 
   return (
     <div className={classes.UpdateKeyGiver}>
