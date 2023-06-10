@@ -1,6 +1,7 @@
 import { Columns } from "../../types/Table";
 import { BackupResponse } from "../../types/Backup";
 import { Button } from "../Button/Button";
+import { RestoreBackupCell } from "./RestoreBackupCell/RestoreBackupCell";
 
 interface BackupData {
   id: string;
@@ -27,10 +28,6 @@ export const columns: Columns<BackupData> = [
   {
     selector: "fileName",
     align: "right",
-    cell: fileName => (
-      <Button variant="outlined" color="warning">
-        Załaduj backup
-      </Button>
-    ),
+    cell: fileName => <RestoreBackupCell fileName={fileName as string} />,
   },
 ];
