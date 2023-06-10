@@ -1,6 +1,28 @@
 .Heading {
   margin-bottom: 50px;
+  width: 100%;
   font-size: 1.2em;
   font-weight: 500;
   text-align: center;
+  font-size: 1.3em;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.medium {
+  font-size: 1.5em;
+}
+
+.large {
+  font-size: 1.8em;
+}
+
+.noMarginBottom {
+  margin-bottom: 0;
 }

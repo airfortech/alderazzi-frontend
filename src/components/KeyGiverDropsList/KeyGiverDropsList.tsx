@@ -7,18 +7,14 @@ import { MobileWrapper } from "../MobileWrapper/MobileWrapper";
 import { Button } from "../Button/Button";
 import { Modal } from "../Modal/Modal";
 import { columns, expandableRow, tableData } from "./dataKeyGiverDrops";
-import classes from "./KeyGiverDropsList.module.css";
 import { AddKeyGiverDrop } from "./AddKeyGiverDrop/AddKeyGiverDrop";
+import classes from "./KeyGiverDropsList.module.css";
 
 interface Props {}
 
 export const KeyGiverDropsList = ({}: Props) => {
-  const {
-    keyGiverDrops,
-    editableKeyGiverDrops,
-    isKeyGiverDropsError,
-    isKeyGiverDropsLoading,
-  } = useKeyGiverDrops();
+  const { keyGiverDrops, editableKeyGiverDrops, isKeyGiverDropsLoading } =
+    useKeyGiverDrops();
   const [openAddKeyGiverDrop, setOpenAddKeyGiverDrop] = useState(false);
 
   const keyGiverDropsData = useMemo(() => {
@@ -49,7 +45,6 @@ export const KeyGiverDropsList = ({}: Props) => {
               color="warning"
               size="lg"
               icon="feather"
-              onClick={() => setOpenAddKeyGiverDrop(true)}
             >
               Edycja
             </Button>
