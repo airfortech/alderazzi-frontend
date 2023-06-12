@@ -10,17 +10,19 @@ import { Modal } from "../Modal/Modal";
 import { useSettings } from "../../hooks/useSettings";
 import { Prompt } from "../Prompt/Prompt";
 import { UpdateBackupSettings } from "./UpdateBackupSettings/UpdateBackupSettings";
-import classes from "./BackupsList.module.css";
 import { monthsToString } from "../../utils/formatDate";
+import classes from "./BackupsList.module.css";
 
 export const BackupsList = () => {
   const {
     data: backups,
     isLoading,
     createBackupMutation,
+    createBackupSuccess,
     deleteBackupMutation,
+    deleteBackupSuccess,
   } = useBackups();
-  const { data: settings } = useSettings();
+  const { data: settings, updateSettingsSuccess } = useSettings();
   const [openBackupSettings, setOpenBackupSettings] = useState(false);
   const [openCreateBackup, setOpenCreateBackup] = useState(false);
   const [openDeleteBackup, setOpenDeleteBackup] = useState(false);
@@ -35,16 +37,15 @@ export const BackupsList = () => {
     deleteBackupMutation();
   };
 
-  // FIXME: modal is not closing when backups is not changing, same for settings when updating to existing values
   useEffect(() => {
     setOpenBackupSettings(false);
+  }, [updateSettingsSuccess]);
+  useEffect(() => {
     setOpenCreateBackup(false);
-    setOpenDeleteBackup(false);
-  }, [backups]);
-
+  }, [createBackupSuccess]);
   useEffect(() => {
-    setOpenBackupSettings(false);
-  }, [settings]);
+    setOpenDeleteBackup(false);
+  }, [deleteBackupSuccess]);
 
   return (
     <div className={classes.BackupsList}>

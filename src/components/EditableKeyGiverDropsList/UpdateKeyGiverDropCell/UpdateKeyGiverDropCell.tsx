@@ -10,11 +10,11 @@ interface Props {
 
 export const UpdateKeyGiverDropCell = ({ id }: Props) => {
   const [open, setOpen] = useState(false);
-  const { editableKeyGiverDrops } = useKeyGiverDrops();
+  const { updateKeyGiverDropSuccess } = useKeyGiverDrops();
 
   useEffect(() => {
     setOpen(false);
-  }, [editableKeyGiverDrops]);
+  }, [updateKeyGiverDropSuccess]);
 
   return (
     <>

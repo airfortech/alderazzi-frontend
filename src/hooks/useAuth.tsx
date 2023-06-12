@@ -1,8 +1,6 @@
 import { QueryKey } from "../types/QueryKey";
 import { User } from "../types/User";
-
 import { useMutation, useQuery } from "@tanstack/react-query";
-
 import { api } from "../api/api";
 import { login, logout, getMe } from "../api/auth";
 import { queryClient } from "../api/queryClient";

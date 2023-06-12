@@ -10,11 +10,11 @@ interface Props {
 
 export const UpdateKeyCell = ({ id }: Props) => {
   const [open, setOpen] = useState(false);
-  const { data: keys } = useKeys();
+  const { updateKeySuccess } = useKeys();
 
   useEffect(() => {
     setOpen(false);
-  }, [keys]);
+  }, [updateKeySuccess]);
 
   return (
     <>

@@ -8,8 +8,14 @@ import {
   updateKeyGiver,
 } from "../api/keyGivers";
 import { queryClient } from "../api/queryClient";
+import { updateKeyGiverSuccessGlobal } from "../gobalStates/reactQuery";
+import { useAtom } from "jotai";
 
 export const useKeyGivers = () => {
+  const [updateKeyGiverSuccess, setUpdateKeyGiverSuccess] = useAtom(
+    updateKeyGiverSuccessGlobal
+  );
+
   const query = useQuery([QueryKey.keygivers], getKeyGivers, {
     select: data =>
       data.data.keyGivers.sort((a, b) =>
@@ -40,6 +46,7 @@ export const useKeyGivers = () => {
         updateKeyGiver(id, keyGiver),
       {
         onSuccess: () => {
+          setUpdateKeyGiverSuccess(prev => prev + 1);
           queryClient.invalidateQueries([QueryKey.keygivers]);
         },
       }
@@ -51,6 +58,7 @@ export const useKeyGivers = () => {
     isAddingKeyGiver,
     updateKeyGiverMutation,
     isUpdatingKeyGiver,
+    updateKeyGiverSuccess,
     deleteKeyGiverMutation,
   };
 };
