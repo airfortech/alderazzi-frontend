@@ -4,8 +4,13 @@ import { addEnemy, deleteEnemy, getEnemies, updateEnemy } from "../api/enemies";
 import { queryClient } from "../api/queryClient";
 import { QueryKey } from "../types/QueryKey";
 import { EnemyRequest } from "../types/Enemy";
+import { useAtom } from "jotai";
+import { updateEnemySuccessGlobal } from "../gobalStates/reactQuery";
 
 export const useEnemies = () => {
+  const [updateEnemySuccess, setUpdateEnemySuccess] = useAtom(
+    updateEnemySuccessGlobal
+  );
   const query = useQuery(
     [QueryKey.enemies],
     getEnemies,
@@ -56,6 +61,7 @@ export const useEnemies = () => {
         updateEnemy(id, enemy),
       {
         onSuccess: () => {
+          setUpdateEnemySuccess(prev => prev + 1);
           queryClient.invalidateQueries([QueryKey.enemies]);
         },
       }
@@ -67,6 +73,7 @@ export const useEnemies = () => {
     isAddingEnemy,
     updateEnemyMutation,
     isUpdatingEnemy,
+    updateEnemySuccess,
     deleteEnemyMutation,
   };
 };

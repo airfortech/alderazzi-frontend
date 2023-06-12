@@ -11,11 +11,11 @@ interface Props {
 
 export const UpdateLocationCell = ({ id }: Props) => {
   const [open, setOpen] = useState(false);
-  const { data: locations } = useLocations();
+  const { updateLocationSuccess } = useLocations();
 
   useEffect(() => {
     setOpen(false);
-  }, [locations]);
+  }, [updateLocationSuccess]);
 
   return (
     <>

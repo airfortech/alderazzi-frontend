@@ -58,7 +58,7 @@ export const items = (
     },
     {
       type: "submit",
-      title: "Dodaj drop",
+      title: "Edytuj drop",
     },
   ];
 };

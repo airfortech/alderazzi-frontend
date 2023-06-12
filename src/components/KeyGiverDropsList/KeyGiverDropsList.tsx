@@ -13,7 +13,7 @@ import classes from "./KeyGiverDropsList.module.css";
 interface Props {}
 
 export const KeyGiverDropsList = ({}: Props) => {
-  const { keyGiverDrops, editableKeyGiverDrops, isKeyGiverDropsLoading } =
+  const { keyGiverDrops, isKeyGiverDropsLoading, addKeyGiverDropSuccess } =
     useKeyGiverDrops();
   const [openAddKeyGiverDrop, setOpenAddKeyGiverDrop] = useState(false);
 
@@ -24,7 +24,7 @@ export const KeyGiverDropsList = ({}: Props) => {
 
   useEffect(() => {
     setOpenAddKeyGiverDrop(false);
-  }, [keyGiverDrops, editableKeyGiverDrops]);
+  }, [addKeyGiverDropSuccess]);
 
   return (
     <div className={classes.KeyGiverDropsList}>

@@ -1,5 +1,5 @@
 import { useSettings } from "../../../hooks/useSettings";
-import { Settings, SettingsRequest } from "../../../types/Settings";
+import { SettingsRequest } from "../../../types/Settings";
 import { Form } from "../../Form/Form";
 import { items, validationSchema } from "./dataUpdateBackupSettings";
 import classes from "./UpdateBackupSettings.module.css";

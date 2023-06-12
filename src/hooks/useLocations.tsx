@@ -8,8 +8,14 @@ import {
   updateLocation,
 } from "../api/locations";
 import { queryClient } from "../api/queryClient";
+import { updateLocationSuccessGlobal } from "../gobalStates/reactQuery";
+import { useAtom } from "jotai";
 
 export const useLocations = () => {
+  const [updateLocationSuccess, setUpdateLocationSuccess] = useAtom(
+    updateLocationSuccessGlobal
+  );
+
   const query = useQuery([QueryKey.locations], getLocations, {
     select: data => data.data.locations,
   });
@@ -33,6 +39,7 @@ export const useLocations = () => {
         updateLocation(id, location),
       {
         onSuccess: () => {
+          setUpdateLocationSuccess(prev => prev + 1);
           queryClient.invalidateQueries([QueryKey.locations]);
         },
       }
@@ -43,6 +50,7 @@ export const useLocations = () => {
     addLocationMutation,
     isAddingLocation,
     updateLocationMutation,
+    updateLocationSuccess,
     isUpdatingLocation,
     deleteLocationMutation,
   };

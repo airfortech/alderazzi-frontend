@@ -12,8 +12,20 @@ import {
   updateKeyGiverDrop,
 } from "../api/keyGiverDrops";
 import { queryClient } from "../api/queryClient";
+import {
+  addKeyGiverDropSuccessGlobal,
+  updateKeyGiverDropSuccessGlobal,
+} from "../gobalStates/reactQuery";
+import { useAtom } from "jotai";
 
 export const useKeyGiverDrops = () => {
+  const [addKeyGiverDropSuccess, setAddKeyGiverDropSuccess] = useAtom(
+    addKeyGiverDropSuccessGlobal
+  );
+  const [updateKeyGiverDropSuccess, setUpdateKeyGiverDropSuccess] = useAtom(
+    updateKeyGiverDropSuccessGlobal
+  );
+
   const {
     data: keyGiverDrops,
     isError: isKeyGiverDropsError,
@@ -42,6 +54,7 @@ export const useKeyGiverDrops = () => {
       (keyGiverDrop: KeyGiverDropAddRequest) => addKeyGiverDrop(keyGiverDrop),
       {
         onSuccess: () => {
+          setAddKeyGiverDropSuccess(prev => prev + 1);
           queryClient.invalidateQueries([QueryKey.keygiverdrops]);
           queryClient.invalidateQueries([QueryKey.editablekeygiverdrops]);
         },
@@ -61,6 +74,7 @@ export const useKeyGiverDrops = () => {
     }) => updateKeyGiverDrop(id, keyGiverDrop),
     {
       onSuccess: () => {
+        setUpdateKeyGiverDropSuccess(prev => prev + 1);
         queryClient.invalidateQueries([QueryKey.keygiverdrops]);
         queryClient.invalidateQueries([QueryKey.editablekeygiverdrops]);
       },
@@ -77,7 +91,9 @@ export const useKeyGiverDrops = () => {
     deleteKeyGiverDropMutation,
     addKeyGiverDropMutation,
     isAddingKeyGiverDrop,
+    addKeyGiverDropSuccess,
     updateKeyGiverDropMutation,
     isUpdatingKeyGiverDrop,
+    updateKeyGiverDropSuccess,
   };
 };

@@ -1,6 +1,5 @@
 import { Columns } from "../../types/Table";
 import { BackupResponse } from "../../types/Backup";
-import { Button } from "../Button/Button";
 import { RestoreBackupCell } from "./RestoreBackupCell/RestoreBackupCell";
 
 interface BackupData {
