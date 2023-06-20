@@ -1,0 +1,12 @@
+.AddKeygiver {
+  padding-top: 8px;
+  width: 100%;
+  max-width: 600px;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  width: 100%;
+}

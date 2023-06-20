@@ -16,7 +16,7 @@ type Color =
   | "inherit";
 
 interface Props {
-  children: string;
+  children: string | JSX.Element;
   type?: "button" | "submit";
   icon?: IIcon;
   iconAlign?: "left" | "right";

@@ -10,11 +10,11 @@ interface Props {
 
 export const UpdateEnemyCell = ({ id }: Props) => {
   const [open, setOpen] = useState(false);
-  const { data: enemies } = useEnemies();
+  const { data: enemies, updateEnemySuccess } = useEnemies();
 
   useEffect(() => {
     setOpen(false);
-  }, [enemies]);
+  }, [updateEnemySuccess]);
 
   return (
     <>
