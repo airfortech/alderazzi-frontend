@@ -84,8 +84,8 @@ const sortNextRespawn: SortFunc = (aField, bField, order) => {
   const now = dayjs();
   const nextTimeA = dayjs.unix(aField as number);
   const nextTimeB = dayjs.unix(bField as number);
-  const diffA = nextTimeA.diff(now, "hour");
-  const diffB = nextTimeB.diff(now, "hour");
+  const diffA = nextTimeA.diff(now, "second");
+  const diffB = nextTimeB.diff(now, "second");
 
   if (order === "asc") {
     if (diffA > 0 && diffB > 0) return aField > bField ? 1 : -1;

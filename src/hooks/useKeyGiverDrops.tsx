@@ -17,6 +17,7 @@ import {
   updateKeyGiverDropSuccessGlobal,
 } from "../gobalStates/reactQuery";
 import { useAtom } from "jotai";
+import { config } from "../config/config";
 
 export const useKeyGiverDrops = () => {
   const [addKeyGiverDropSuccess, setAddKeyGiverDropSuccess] = useAtom(
@@ -32,6 +33,7 @@ export const useKeyGiverDrops = () => {
     isLoading: isKeyGiverDropsLoading,
   } = useQuery([QueryKey.keygiverdrops], getKeyGiverDrops, {
     select: data => data.data.keyGiverDrops,
+    refetchInterval: 1000 * 60 * config.keyGiverDropsRefetchIntervalInMinutes,
   });
 
   const {
@@ -40,6 +42,7 @@ export const useKeyGiverDrops = () => {
     isLoading: isEditableKeyGiverDropsLoading,
   } = useQuery([QueryKey.editablekeygiverdrops], getEditableKeyGiverDrops, {
     select: data => data.data.keyGiverDrops,
+    refetchInterval: 1000 * 60 * config.keyGiverDropsRefetchIntervalInMinutes,
   });
 
   const deleteKeyGiverDropMutation = useMutation(deleteKeyGiverDrop, {
