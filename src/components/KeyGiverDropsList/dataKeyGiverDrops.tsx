@@ -109,7 +109,7 @@ export const tableData = (
     return {
       id,
       keyGiverId: keyGiver.id,
-      keyGiverName: `${keyGiver.name}-${keyGiver.short}`,
+      keyGiverName: keyGiver.name,
       keyGiverShort: keyGiver.short,
       keyGiverDomain: keyGiver.domain,
       keyGiverRespawnTime: keyGiver.respawnTime,
@@ -130,10 +130,15 @@ export const columns: Columns<TableKeyGiverDropResponse> = [
     isSortable: true,
     cell: (value, props) => (
       <div>
-        <p className={classes.name}>{(value as string).split("-")[0]}</p>
+        <p className={classes.name}>{value}</p>
         <p className={classes.short}>{props.keyGiverShort}</p>
       </div>
     ),
+  },
+  {
+    selector: "keyGiverShort",
+    isFilterable: true,
+    isVisible: false,
   },
   {
     selector: "keyGiverDomain",
