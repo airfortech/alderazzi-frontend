@@ -24,6 +24,7 @@ export const Form = <T,>({
   label,
   labelAlign = "left",
   submit,
+  resetFormAfterSubmit,
   items,
   validationSchema,
   errorsHandler,
@@ -31,6 +32,7 @@ export const Form = <T,>({
 }: IForm<T>) => {
   const {
     handleSubmit,
+    reset,
     control,
     formState: { errors, isValid },
   } = useForm<FieldValues>({
@@ -54,6 +56,7 @@ export const Form = <T,>({
     }
 
     submit(form);
+    if (resetFormAfterSubmit) reset();
   };
 
   useEffect(() => {

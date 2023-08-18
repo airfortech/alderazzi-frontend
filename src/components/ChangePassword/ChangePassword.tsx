@@ -21,6 +21,7 @@ export const ChangePassword = ({}: Props) => {
         items={items}
         validationSchema={validationSchema}
         submit={submit}
+        resetFormAfterSubmit
         isLoading={isChangingPassword}
       />
     </div>

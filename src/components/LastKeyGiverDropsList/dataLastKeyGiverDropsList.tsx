@@ -10,17 +10,19 @@ import { InfoText } from "../InfoText/InfoText";
 
 import { respawnTime } from "../../utils/respawnTime";
 import { formatDate } from "../../utils/formatDate";
-import classes from "./KeyGiverDropsList.module.css";
+import classes from "../KeyGiverDropsList/KeyGiverDropsList.module.css";
+
+export const options = new Array(14).fill(null).map((_, i) => {
+  return { value: (i + 1).toString(), label: (i + 1).toString() + " dni" };
+});
 
 export const expandableRow: ExpandableRowsComponent<
   TableKeyGiverDropResponse
 > = data => {
   const {
-    id,
     keyGiverDomain,
     keyGiverRespawnTime,
     keyGiverLocations,
-    dropName,
     dropDate,
     nextRespawnDate,
     createdAt,
@@ -44,7 +46,6 @@ export const expandableRow: ExpandableRowsComponent<
             ? keyGiverRespawnTime + " godzin"
             : "Brak danych",
         },
-        { title: "Drop:", value: dropName ? dropName : "Brak" },
         { title: "Domena:", value: keyGiverDomain },
       ]}
       longDetails={[
@@ -146,11 +147,6 @@ export const columns: Columns<TableKeyGiverDropResponse> = [
     isVisible: false,
   },
   {
-    selector: "dropName",
-    isFilterable: true,
-    isVisible: false,
-  },
-  {
     selector: "dropDate",
     header: "Pop. respawn",
     isSortable: true,
@@ -161,15 +157,10 @@ export const columns: Columns<TableKeyGiverDropResponse> = [
     },
   },
   {
-    selector: "nextRespawnDate",
-    header: "Nast. respawn",
+    selector: "dropName",
+    header: "Drop",
     isSortable: true,
+    isFilterable: true,
     align: "right",
-    sortFunc: sortNextRespawn,
-
-    cell: (value, props) => {
-      const { date: nextResp, type } = respawnTime(value as number);
-      return <InfoText type={type} message={nextResp} />;
-    },
   },
 ];

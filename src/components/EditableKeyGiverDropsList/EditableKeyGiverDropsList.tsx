@@ -26,13 +26,6 @@ export const EditableKeyGiverDropsList = () => {
 
   return (
     <div className={classes.EditableKeyGiverDropsList}>
-      <MobileWrapper>
-        <Link to="/dropy">
-          <Button variant="contained" color="info" size="lg" icon="chest">
-            Nowe Dropy
-          </Button>
-        </Link>
-      </MobileWrapper>
       {isEditableKeyGiverDropsLoading ? (
         <Loader isLoading />
       ) : (
@@ -42,7 +35,7 @@ export const EditableKeyGiverDropsList = () => {
           title="Lista Dropów do Edycji"
           titleTag="h2"
           initialSorting={{ field: "createdAt", order: "desc" }}
-          stickyHeaderPosition={50}
+          stickyHeaderPosition={100}
           expandableRowsComponent={expandableRow}
           expandableRowsComponentPaddingsDisabled
           horizontalScroll="top"

@@ -7,6 +7,7 @@ export interface IForm<T> {
   labelAlign?: "left" | "center" | "right";
   items: Fields<T>;
   submit?: (formData: T) => void;
+  resetFormAfterSubmit?: boolean;
   // TODO: how to type it?
   validationSchema?: any;
   errorsHandler?: (errors: FieldErrors<FieldValues>) => void;

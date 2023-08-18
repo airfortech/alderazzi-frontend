@@ -21,3 +21,8 @@
 :global(.MuiTabs-scroller) {
   display: flex !important;
 }
+
+.Navigation :global(.MuiTabs-indicator) {
+  height: 3px;
+  transform: translateY(-0px);
+}
