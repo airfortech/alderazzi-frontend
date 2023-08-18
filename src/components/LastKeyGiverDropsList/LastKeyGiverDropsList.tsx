@@ -1,14 +1,10 @@
 import { useMemo } from "react";
-import {
-  columns,
-  expandableRow,
-  tableData,
-} from "../KeyGiverDropsList/dataKeyGiverDrops";
+import { columns, expandableRow, tableData } from "./dataLastKeyGiverDropsList";
 import { useKeyGiverDrops } from "../../hooks/useKeyGiverDrops";
 import { Loader } from "../Loader/Loader";
 import { Table } from "../Table/Table";
 import { MobileWrapper } from "../MobileWrapper/MobileWrapper";
-import { options } from "./dataChooseDays";
+import { options } from "./dataLastKeyGiverDropsList";
 import { useSelect } from "../Inputs/Select/useSelect";
 import classes from "./LastKeyGiverDropsList.module.css";
 
