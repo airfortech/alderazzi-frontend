@@ -24,6 +24,9 @@ import { SettingsView } from "./views/SettingsView/SettingsView";
 import { KeyGiverDropsView } from "./views/KeyGiverDropsView/KeyGiverDropsView";
 import { LocationsView } from "./views/LocationsView/LocationsView";
 import { EditableKeyGiverDropsView } from "./views/EditableKeyGiverDropsView/EditableKeyGiverDropsView";
+import { Submenu } from "./components/Submenu/Submenu";
+import { LastKeyGiverDropsView } from "./views/LastKeyGiverDropsView/LastKeyGiverDropsView";
+import { dropsLinks } from "./components/Navigation/dropsLinks";
 
 const darkTheme = createTheme(
   {
@@ -58,6 +61,7 @@ export const App = () => {
         <Toast />
         <Header />
         <Navigation />
+        <Submenu links={dropsLinks} />
         <section className={classes.section}>
           <Routes>
             <Route index element={<HomeView />} />
@@ -74,6 +78,10 @@ export const App = () => {
             >
               <Route path="/wrogowie" element={<EnemiesView />} />
               <Route path="/dropy" element={<KeyGiverDropsView />} />
+              <Route
+                path="/dropy/ostatnie"
+                element={<LastKeyGiverDropsView />}
+              />
               <Route
                 path="/dropy/edycja"
                 element={<EditableKeyGiverDropsView />}

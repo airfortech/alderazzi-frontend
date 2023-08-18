@@ -39,16 +39,6 @@ export const KeyGiverDropsList = ({}: Props) => {
           >
             Dodaj drop
           </Button>
-          <Link to="/dropy/edycja">
-            <Button
-              variant="contained"
-              color="warning"
-              size="lg"
-              icon="feather"
-            >
-              Edycja
-            </Button>
-          </Link>
         </div>
         <Modal
           title="Dodaj drop:"
@@ -65,10 +55,10 @@ export const KeyGiverDropsList = ({}: Props) => {
         <Table
           data={keyGiverDropsData}
           columns={columns}
-          title="Lista Dropów"
+          title="Najbliższe respawny"
           titleTag="h2"
           initialSorting={{ field: "nextRespawnDate", order: "asc" }}
-          stickyHeaderPosition={50}
+          stickyHeaderPosition={100}
           expandableRowsComponent={expandableRow}
           expandableRowsComponentPaddingsDisabled
           horizontalScroll="top"
