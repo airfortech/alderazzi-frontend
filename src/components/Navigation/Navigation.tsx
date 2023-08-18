@@ -26,6 +26,7 @@ export const Navigation = () => {
         allowScrollButtonsMobile
         selectionFollowsFocus
         className={classes.tabs}
+        textColor="inherit"
       >
         {availableLinks.map(({ url, name, icon, allowedRoles }) => (
           <Tab

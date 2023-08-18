@@ -5,6 +5,7 @@ export enum QueryKey {
   locations = "locations",
   keygivers = "keygivers",
   keygiverdrops = "keygiverdrops",
+  lastkeygiverdrops = "lastkeygiverdrops",
   editablekeygiverdrops = "editablekeygiverdrops",
   privileges = "privileges",
   settings = "settings",
