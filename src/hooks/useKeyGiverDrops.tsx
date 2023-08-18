@@ -9,6 +9,7 @@ import {
   deleteKeyGiverDrop,
   getEditableKeyGiverDrops,
   getKeyGiverDrops,
+  getLastKeyGiverDrops,
   updateKeyGiverDrop,
 } from "../api/keyGiverDrops";
 import { queryClient } from "../api/queryClient";
@@ -19,7 +20,7 @@ import {
 import { useAtom } from "jotai";
 import { config } from "../config/config";
 
-export const useKeyGiverDrops = () => {
+export const useKeyGiverDrops = (days: number = 5) => {
   const [addKeyGiverDropSuccess, setAddKeyGiverDropSuccess] = useAtom(
     addKeyGiverDropSuccessGlobal
   );
@@ -37,6 +38,19 @@ export const useKeyGiverDrops = () => {
   });
 
   const {
+    data: lastKeyGiverDrops,
+    isError: isLastKeyGiverDropsError,
+    isLoading: isLastKeyGiverDropsLoading,
+  } = useQuery(
+    [QueryKey.lastkeygiverdrops, days],
+    () => getLastKeyGiverDrops(days),
+    {
+      select: data => data.data.keyGiverDrops,
+      refetchInterval: 1000 * 60 * config.keyGiverDropsRefetchIntervalInMinutes,
+    }
+  );
+
+  const {
     data: editableKeyGiverDrops,
     isError: isEditableKeyGiverDropsError,
     isLoading: isEditableKeyGiverDropsLoading,
@@ -48,6 +62,7 @@ export const useKeyGiverDrops = () => {
   const deleteKeyGiverDropMutation = useMutation(deleteKeyGiverDrop, {
     onSuccess: () => {
       queryClient.invalidateQueries([QueryKey.keygiverdrops]);
+      queryClient.invalidateQueries([QueryKey.lastkeygiverdrops]);
       queryClient.invalidateQueries([QueryKey.editablekeygiverdrops]);
     },
   });
@@ -59,6 +74,7 @@ export const useKeyGiverDrops = () => {
         onSuccess: () => {
           setAddKeyGiverDropSuccess(prev => prev + 1);
           queryClient.invalidateQueries([QueryKey.keygiverdrops]);
+          queryClient.invalidateQueries([QueryKey.lastkeygiverdrops]);
           queryClient.invalidateQueries([QueryKey.editablekeygiverdrops]);
         },
       }
@@ -79,6 +95,7 @@ export const useKeyGiverDrops = () => {
       onSuccess: () => {
         setUpdateKeyGiverDropSuccess(prev => prev + 1);
         queryClient.invalidateQueries([QueryKey.keygiverdrops]);
+        queryClient.invalidateQueries([QueryKey.lastkeygiverdrops]);
         queryClient.invalidateQueries([QueryKey.editablekeygiverdrops]);
       },
     }
@@ -88,6 +105,9 @@ export const useKeyGiverDrops = () => {
     keyGiverDrops,
     isKeyGiverDropsError,
     isKeyGiverDropsLoading,
+    lastKeyGiverDrops,
+    isLastKeyGiverDropsError,
+    isLastKeyGiverDropsLoading,
     editableKeyGiverDrops,
     isEditableKeyGiverDropsError,
     isEditableKeyGiverDropsLoading,

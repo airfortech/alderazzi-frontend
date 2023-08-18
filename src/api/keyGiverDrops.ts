@@ -18,6 +18,13 @@ export const getKeyGiverDrops = async () => {
   return data;
 };
 
+export const getLastKeyGiverDrops = async (days: number) => {
+  const { data } = await api.get<GetKeyGiverDrops>("/keygivers/drops/", {
+    params: { days },
+  });
+  return data;
+};
+
 export const getEditableKeyGiverDrops = async () => {
   const { data } = await api.get<GetKeyGiverDrops>("/keygivers/drops/edit");
   return data;

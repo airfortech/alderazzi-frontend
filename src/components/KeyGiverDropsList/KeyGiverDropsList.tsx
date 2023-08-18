@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
 import { useKeyGiverDrops } from "../../hooks/useKeyGiverDrops";
 import { Loader } from "../Loader/Loader";
 import { Table } from "../Table/Table";
