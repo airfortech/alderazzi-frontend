@@ -4,10 +4,10 @@ import timezone from "dayjs/plugin/timezone";
 import { useSelect } from "../../components/Inputs/Select/useSelect";
 import { KeyGiverDropsStatsInfo } from "../../components/KeyGiverDropsStatsInfo/KeyGiverDropsStatsInfo";
 import { useKeyGiverDropsStats } from "../../hooks/useKeyGiverDropsStats";
-import classes from "./KeyGiverDropsStatsView.module.css";
 import { MobileWrapper } from "../../components/MobileWrapper/MobileWrapper";
 import { options } from "../../components/KeyGiverDropsStatsInfo/dataKeyGiverDropsStats";
 import { useEffect } from "react";
+import classes from "./KeyGiverDropsStatsView.module.css";
 
 dayjs.extend(timezone);
 
@@ -33,7 +33,9 @@ export const KeyGiverDropsStatsView = () => {
           className={classes.select}
         />
       </MobileWrapper>
-      <KeyGiverDropsStatsInfo />
+      {keyGiverDropsStats && (
+        <KeyGiverDropsStatsInfo keyGiverDropsStats={keyGiverDropsStats} />
+      )}
     </div>
   );
 };
