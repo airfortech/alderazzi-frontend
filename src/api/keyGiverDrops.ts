@@ -3,6 +3,7 @@ import {
   KeyGiverDropAddRequest,
   KeyGiverDropResponse,
   KeyGiverDropUpdateRequest,
+  KeyGiverDropsStats,
 } from "../types/KeyGiverDrop";
 
 import { api } from "./api";
@@ -10,6 +11,12 @@ import { api } from "./api";
 export interface GetKeyGiverDrops extends ApiResponse {
   data: {
     keyGiverDrops: KeyGiverDropResponse[];
+  };
+}
+
+export interface GetKeyGiverDropsStats extends ApiResponse {
+  data: {
+    keyGiverDropsStats: KeyGiverDropsStats[];
   };
 }
 
@@ -27,6 +34,16 @@ export const getLastKeyGiverDrops = async (days: number) => {
 
 export const getEditableKeyGiverDrops = async () => {
   const { data } = await api.get<GetKeyGiverDrops>("/keygivers/drops/edit");
+  return data;
+};
+
+export const getKeyGiverDropsStats = async (time: string, timezone: string) => {
+  const { data } = await api.get<GetKeyGiverDropsStats>(
+    "/keygivers/drops/stats/",
+    {
+      params: { time, timezone },
+    }
+  );
   return data;
 };
 

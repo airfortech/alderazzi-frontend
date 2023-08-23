@@ -1,8 +1,9 @@
-.LastKeyGiverDropsList {
+.KeyGiverDropsStatsView {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: center;
+  gap: 80px;
 }
 
 .select {

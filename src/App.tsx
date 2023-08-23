@@ -27,6 +27,7 @@ import { EditableKeyGiverDropsView } from "./views/EditableKeyGiverDropsView/Edi
 import { Submenu } from "./components/Submenu/Submenu";
 import { LastKeyGiverDropsView } from "./views/LastKeyGiverDropsView/LastKeyGiverDropsView";
 import { dropsLinks } from "./components/Navigation/dropsLinks";
+import { KeyGiverDropsStatsView } from "./views/KeyGiverDropsStatsView/KeyGiverDropsStatsView";
 
 const darkTheme = createTheme(
   {
@@ -81,6 +82,10 @@ export const App = () => {
               <Route
                 path="/dropy/ostatnie"
                 element={<LastKeyGiverDropsView />}
+              />
+              <Route
+                path="/dropy/statystyki"
+                element={<KeyGiverDropsStatsView />}
               />
               <Route
                 path="/dropy/edycja"

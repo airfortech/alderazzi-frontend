@@ -1,0 +1,9 @@
+.KeyGiverDropsStatsInfo {
+  width: 100%;
+  max-width: 400px;
+}
+
+.KeyGiverDropsStatsInfo li {
+  font-size: 1em;
+  font-weight: 600;
+}
