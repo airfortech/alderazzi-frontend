@@ -52,7 +52,7 @@ export interface KeyGiverDropUpdateRequest
 export interface KeyGiverDropsStats {
   keyGiversDone: number;
   drops: number;
-  date: number;
+  date: string;
 }
 
 export enum KeyGiverDropsStatsTimeOptions {

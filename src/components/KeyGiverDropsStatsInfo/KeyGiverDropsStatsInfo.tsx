@@ -23,8 +23,8 @@ export const KeyGiverDropsStatsInfo = ({ keyGiverDropsStats }: Props) => {
         title="Statystyki dropów"
         titleTag="h2"
         items={[
-          { value: `Zdobyci klucznicy: ${keyGiversDone}`, color: "success" },
-          { value: `Zdobyte Dropy: ${drops}`, color: "success" },
+          { value: `Zdobyci klucznicy: ${keyGiversDone}`, color: "info" },
+          { value: `Pozyskane Dropy: ${drops}`, color: "success" },
           { value: `Klucznicy z dropem: ${dropRate}%`, color: "warning" },
         ]}
       />

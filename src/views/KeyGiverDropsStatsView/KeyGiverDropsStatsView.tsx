@@ -7,7 +7,9 @@ import { useKeyGiverDropsStats } from "../../hooks/useKeyGiverDropsStats";
 import { MobileWrapper } from "../../components/MobileWrapper/MobileWrapper";
 import { options } from "../../components/KeyGiverDropsStatsInfo/dataKeyGiverDropsStats";
 import { useEffect } from "react";
+import { BarChart } from "../../components/BarChart/BarChart";
 import classes from "./KeyGiverDropsStatsView.module.css";
+import { BarDatum } from "@nivo/bar";
 
 dayjs.extend(timezone);
 
@@ -34,7 +36,13 @@ export const KeyGiverDropsStatsView = () => {
         />
       </MobileWrapper>
       {keyGiverDropsStats && (
-        <KeyGiverDropsStatsInfo keyGiverDropsStats={keyGiverDropsStats} />
+        <>
+          <KeyGiverDropsStatsInfo keyGiverDropsStats={keyGiverDropsStats} />
+          <BarChart
+            keyGiverDropsStats={keyGiverDropsStats as unknown as BarDatum[]}
+            left={110}
+          />
+        </>
       )}
     </div>
   );
