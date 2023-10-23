@@ -1,12 +1,14 @@
+import { IDateTime, IFieldHookProps } from "../../../types/Form";
 import dayjs from "dayjs";
 import "dayjs/locale/pl";
+import utc from "dayjs/plugin/utc";
 import { Controller } from "react-hook-form";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { MobileDateTimePicker } from "@mui/x-date-pickers/MobileDateTimePicker";
 import { Icon } from "../../Icon/Icon";
 import classes from "./DateTime.module.css";
-import { IDateTime, IFieldHookProps } from "../../../types/Form";
+dayjs.extend(utc);
 
 interface Props<T> extends Omit<IDateTime<T> & IFieldHookProps, "type"> {}
 
@@ -32,12 +34,13 @@ export const DateTime = <T,>({
       render={({ field: { onChange, value } }) => (
         <LocalizationProvider
           dateAdapter={AdapterDayjs}
-          adapterLocale="pl"
+          adapterLocale="pl-pl"
           localeText={{
             okButtonLabel: "OK",
           }}
         >
           <MobileDateTimePicker
+            format="DD.MM.YYYY HH:mm"
             label={placeholder}
             ampm={false}
             slotProps={{

@@ -1,15 +1,15 @@
 import { KeyGiverDropsStatsTimeOptions } from "../../types/KeyGiverDrop";
+import { useEffect } from "react";
 import dayjs from "dayjs";
 import timezone from "dayjs/plugin/timezone";
+import { BarDatum } from "@nivo/bar";
 import { useSelect } from "../../components/Inputs/Select/useSelect";
 import { KeyGiverDropsStatsInfo } from "../../components/KeyGiverDropsStatsInfo/KeyGiverDropsStatsInfo";
 import { useKeyGiverDropsStats } from "../../hooks/useKeyGiverDropsStats";
 import { MobileWrapper } from "../../components/MobileWrapper/MobileWrapper";
 import { options } from "../../components/KeyGiverDropsStatsInfo/dataKeyGiverDropsStats";
-import { useEffect } from "react";
 import { BarChart } from "../../components/BarChart/BarChart";
 import classes from "./KeyGiverDropsStatsView.module.css";
-import { BarDatum } from "@nivo/bar";
 
 dayjs.extend(timezone);
 

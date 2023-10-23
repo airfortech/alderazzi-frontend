@@ -16,7 +16,6 @@ export const expandableRow: ExpandableRowsComponent<
   TableKeyGiverDropResponse
 > = data => {
   const {
-    id,
     keyGiverDomain,
     keyGiverRespawnTime,
     keyGiverLocations,
