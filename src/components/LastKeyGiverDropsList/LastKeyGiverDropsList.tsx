@@ -26,7 +26,7 @@ export const LastKeyGiverDropsList = () => {
           placeholder="Wyświetl dropy z ostatnich:"
           options={options}
           icon="calendar"
-          className={classes.test}
+          className={classes.select}
         />
       </MobileWrapper>
       {isLastKeyGiverDropsLoading ? (

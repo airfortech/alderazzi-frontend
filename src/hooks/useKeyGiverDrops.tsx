@@ -9,6 +9,7 @@ import {
   deleteKeyGiverDrop,
   getEditableKeyGiverDrops,
   getKeyGiverDrops,
+  getKeyGiverDropsStats,
   getLastKeyGiverDrops,
   updateKeyGiverDrop,
 } from "../api/keyGiverDrops";
@@ -64,6 +65,7 @@ export const useKeyGiverDrops = (days: number = 5) => {
       queryClient.invalidateQueries([QueryKey.keygiverdrops]);
       queryClient.invalidateQueries([QueryKey.lastkeygiverdrops]);
       queryClient.invalidateQueries([QueryKey.editablekeygiverdrops]);
+      queryClient.invalidateQueries([QueryKey.keyGiverDropsStats]);
     },
   });
 
@@ -76,6 +78,7 @@ export const useKeyGiverDrops = (days: number = 5) => {
           queryClient.invalidateQueries([QueryKey.keygiverdrops]);
           queryClient.invalidateQueries([QueryKey.lastkeygiverdrops]);
           queryClient.invalidateQueries([QueryKey.editablekeygiverdrops]);
+          queryClient.invalidateQueries([QueryKey.keyGiverDropsStats]);
         },
       }
     );
@@ -97,6 +100,7 @@ export const useKeyGiverDrops = (days: number = 5) => {
         queryClient.invalidateQueries([QueryKey.keygiverdrops]);
         queryClient.invalidateQueries([QueryKey.lastkeygiverdrops]);
         queryClient.invalidateQueries([QueryKey.editablekeygiverdrops]);
+        queryClient.invalidateQueries([QueryKey.keyGiverDropsStats]);
       },
     }
   );
