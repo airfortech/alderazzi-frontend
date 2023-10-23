@@ -40,6 +40,7 @@ export const DateTime = <T,>({
           }}
         >
           <MobileDateTimePicker
+            format="DD.MM.YYYY HH:mm"
             label={placeholder}
             ampm={false}
             slotProps={{
