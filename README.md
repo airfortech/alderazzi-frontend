@@ -24,6 +24,38 @@ Api used by mudlet (mud client) scripts too (lua language).
 
 <br>
 
+## Tech Stack
+
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
+
+<br>
+
+## Additional Main Packages
+
+axios - https://www.npmjs.com/package/axios
+
+react query - https://www.npmjs.com/package/@tanstack/react-query
+
+material ui - https://www.npmjs.com/package/@mui/material
+
+react icons - https://www.npmjs.com/package/react-icons
+
+yup - https://www.npmjs.com/package/yup
+
+dayjs - https://www.npmjs.com/package/dayjs
+
+jotai - https://www.npmjs.com/package/jotai
+
+react-toastify - https://www.npmjs.com/package/react-toastify
+
+nivo - https://github.com/plouc/nivo#readme
+
+<br>
+
 ## Features
 
 ### Global errors from api handling on frontend. Returns info using react-query and react-toastify:
@@ -70,38 +102,6 @@ Api used by mudlet (mud client) scripts too (lua language).
 ### Github actions:
 
 - deploy to linux hosting (production and test servers),
-
-<br>
-
-## Tech Stack
-
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
-![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
-
-<br>
-
-## Additional Main Packages
-
-axios - https://www.npmjs.com/package/axios
-
-react query - https://www.npmjs.com/package/@tanstack/react-query
-
-material ui - https://www.npmjs.com/package/@mui/material
-
-react icons - https://www.npmjs.com/package/react-icons
-
-yup - https://www.npmjs.com/package/yup
-
-dayjs - https://www.npmjs.com/package/dayjs
-
-jotai - https://www.npmjs.com/package/jotai
-
-react-toastify - https://www.npmjs.com/package/react-toastify
-
-nivo - https://github.com/plouc/nivo#readme
 
 <br>
 
