@@ -8,7 +8,7 @@ export const validationSchema = yup.object().shape({
     .string()
     .required("Podaj nazwę!")
     .trim()
-    .max(50, "Za długa nazwa (max 50 znaków)"),
+    .max(80, "Za długa nazwa (max 80 znaków)"),
   domain: yup.string().required("Wybierz domenę"),
   description: yup.string().trim().max(4000, "Za długi opis (max 4000 znaków)"),
   comment: yup
