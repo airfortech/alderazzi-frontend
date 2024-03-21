@@ -17,6 +17,14 @@
   z-index: 9;
 }
 
+.level3 {
+  background: linear-gradient(
+    90deg,
+    var(--color-30-opacity-2),
+    var(--color-30-opacity-1)
+  );
+}
+
 .Submenu a {
   min-height: 50px;
   display: flex;

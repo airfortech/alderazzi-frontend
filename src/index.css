@@ -47,6 +47,9 @@
   --color-28-opacity-1: hsl(44, 65%, 51%, 0.5);
   --color-28-opacity-2: hsl(44, 65%, 51%, 0.18);
   --color-29: #afaffd;
+  --color-30: hsl(252, 100%, 78%);
+  --color-30-opacity-1: hsl(252, 100%, 78%, 0.5);
+  --color-30-opacity-2: hsl(252, 100%, 78%, 0.18);
 
   --border-radius-normal: 4px;
 
