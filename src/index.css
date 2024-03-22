@@ -50,6 +50,8 @@
   --color-30: hsl(252, 100%, 78%);
   --color-30-opacity-1: hsl(252, 100%, 78%, 0.5);
   --color-30-opacity-2: hsl(252, 100%, 78%, 0.18);
+  --color-31: hsl(219, 100%, 72%);
+  --color-32: hsl(20, 83%, 55%);
 
   --border-radius-normal: 4px;
 

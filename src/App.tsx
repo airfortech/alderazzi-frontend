@@ -11,6 +11,7 @@ import { plPL } from "@mui/x-date-pickers/locales";
 import { EditableKeyGiverDropsView } from "./views/EditableKeyGiverDropsView/EditableKeyGiverDropsView";
 import { EnemiesView } from "./views/EnemiesView/EnemiesView";
 import { HomeView } from "./views/HomeView/HomeView";
+import { ItemsWeaponsView } from "./views/ItemsWeaponsView/ItemsWeaponsView";
 import { KeyGiversView } from "./views/KeyGiversView/KeyGiversView";
 import { KeyGiverDropsView } from "./views/KeyGiverDropsView/KeyGiverDropsView";
 import { KeyGiverDropsStatsView } from "./views/KeyGiverDropsStatsView/KeyGiverDropsStatsView";
@@ -66,7 +67,7 @@ export const App = () => {
         <Navigation />
         <Submenu level={2} links={dropsLinks} />
         <Submenu level={2} links={itemsLinks} />
-        <Submenu level={3} links={itemsWeaponsLinks} style={{ top: "100px" }} />
+        <Submenu level={3} links={itemsWeaponsLinks} />
         <section className={classes.section}>
           <Routes>
             <Route index element={<HomeView />} />
@@ -114,7 +115,7 @@ export const App = () => {
               />
               <Route
                 path="/przedmioty/bronie/miecze"
-                element={<LocationsView />}
+                element={<ItemsWeaponsView />}
               />
               <Route path="/lokacje" element={<LocationsView />} />
             </Route>
