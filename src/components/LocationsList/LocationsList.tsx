@@ -8,9 +8,9 @@ import { Button } from "../Button/Button";
 import { Modal } from "../Modal/Modal";
 import { Loader } from "../Loader/Loader";
 import { Table } from "../Table/Table";
-import classes from "./LocationsList.module.css";
-import { columns, expandableRow } from "./dataLocationsList";
 import { AddLocation } from "./AddLocation/AddLocation";
+import { columns, expandableRow } from "./dataLocationsList";
+import classes from "./LocationsList.module.css";
 
 export const LocationsList = () => {
   const { auth } = useAuth();

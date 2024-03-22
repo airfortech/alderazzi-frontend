@@ -35,7 +35,7 @@ export const links = [
   {
     url: "/przedmioty",
     name: "Przemioty",
-    icon: <Icon icon="crossedSwords" size="normal" />,
+    icon: <Icon icon="sword" size="normal" />,
     allowedRoles: [UserRole.caporegime, UserRole.consigliore, UserRole.soldato],
   },
   {

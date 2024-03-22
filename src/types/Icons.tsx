@@ -6,6 +6,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import CloseIcon from "@mui/icons-material/Close";
 import DescriptionIcon from "@mui/icons-material/Description";
 import { GiCheckMark } from "react-icons/gi";
+import { GiTwoCoins } from "react-icons/gi";
 import { GiCrossedSwords } from "react-icons/gi";
 import { GiCrossMark } from "react-icons/gi";
 import { GiDwarfHelmet } from "react-icons/gi";
@@ -14,6 +15,7 @@ import { GiFeather } from "react-icons/gi";
 import { GiHoodedAssassin } from "react-icons/gi";
 import { GiKeyring } from "react-icons/gi";
 import { GiOpenTreasureChest } from "react-icons/gi";
+import { GiShardSword } from "react-icons/gi";
 import { GiSkeletonKey } from "react-icons/gi";
 import { GiTavernSign } from "react-icons/gi";
 import { GiTreasureMap } from "react-icons/gi";
@@ -36,6 +38,7 @@ export type Icon =
   | "chest"
   | "clock"
   | "close"
+  | "coins"
   | "crossedSwords"
   | "crossmark"
   | "dwarf"
@@ -47,6 +50,7 @@ export type Icon =
   | "map"
   | "settings"
   | "skeletonKey"
+  | "sword"
   | "tavernSign"
   | "up"
   | "womanElfFace";
@@ -59,6 +63,7 @@ export const iconComponentDefs = (iconStyle: CSSProperties) => {
     calendar: <InsertInvitationIcon style={iconStyle} />,
     cancel: <CancelIcon style={iconStyle} />,
     checkmark: <GiCheckMark style={iconStyle} />,
+    coins: <GiTwoCoins style={iconStyle} />,
     crossmark: <GiCrossMark style={iconStyle} />,
     chest: <GiOpenTreasureChest style={iconStyle} />,
     clock: <AccessTimeIcon style={iconStyle} />,
@@ -73,6 +78,7 @@ export const iconComponentDefs = (iconStyle: CSSProperties) => {
     map: <GiTreasureMap style={iconStyle} />,
     settings: <MdSettings style={iconStyle} />,
     skeletonKey: <GiSkeletonKey style={iconStyle} />,
+    sword: <GiShardSword style={iconStyle} />,
     tavernSign: <GiTavernSign style={iconStyle} />,
     up: <KeyboardArrowUpIcon style={iconStyle} />,
     womanElfFace: <GiWomanElfFace style={iconStyle} />,

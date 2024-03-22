@@ -18,6 +18,7 @@
 }
 
 .level3 {
+  top: 100px;
   background: linear-gradient(
     90deg,
     var(--color-30-opacity-2),
