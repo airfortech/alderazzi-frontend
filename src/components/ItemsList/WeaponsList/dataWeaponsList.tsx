@@ -1,8 +1,12 @@
-import { ItemResponse } from "../../types/Item";
-import { Columns, ExpandableRowsComponent } from "../../types/Table";
-import { Icon } from "../Icon/Icon";
-import { TableRowDetails } from "../TableRowDetails/TableRowDetails";
-import classes from "./ItemsWeaponsList.module.css";
+import { ItemResponse } from "../../../types/Item";
+import { Columns, ExpandableRowsComponent } from "../../../types/Table";
+import { Icon } from "../../Icon/Icon";
+import { TableRowDetails } from "../../TableRowDetails/TableRowDetails";
+import {
+  itemsTableRowDetails,
+  itemsTableRowLongDetails,
+} from "../dataItemsList";
+import classes from "../ItemsList.module.css";
 
 export const options = [
   {
@@ -24,20 +28,7 @@ export const options = [
 ];
 
 export const expandableRow: ExpandableRowsComponent<ItemResponse> = data => {
-  const {
-    id,
-    short,
-    weaponEffectiveness,
-    weaponBalance,
-    weight,
-    volume,
-    durability,
-    specialBonus,
-    occurrence,
-    cost,
-    description,
-    comment,
-  } = data;
+  const { weaponEffectiveness, weaponBalance } = data;
   return (
     <TableRowDetails
       details={[
@@ -49,46 +40,9 @@ export const expandableRow: ExpandableRowsComponent<ItemResponse> = data => {
           title: "Średnia",
           value: (weaponEffectiveness + weaponBalance) / 2,
         },
-        {
-          title: "Waga [g]",
-          value: weight?.toLocaleString("pl"),
-        },
-        {
-          title: "Objętość [ml]",
-          value: volume?.toLocaleString("pl"),
-        },
-        {
-          title: "Trwałość",
-          value: durability,
-        },
-        {
-          title: "Specjalny bonus",
-          value: specialBonus,
-        },
-        {
-          title: "Występowanie",
-          value: occurrence,
-        },
-        {
-          title: "Wartość sprzedaży",
-          value: (
-            <p className={classes.cost}>
-              {cost}
-              <Icon icon="coins" color="warning" size="normal" />
-            </p>
-          ),
-        },
+        ...itemsTableRowDetails(data),
       ]}
-      longDetails={[
-        {
-          title: "Opis",
-          value: description,
-        },
-        {
-          title: "Komentarz",
-          value: comment,
-        },
-      ]}
+      longDetails={[...itemsTableRowLongDetails(data)]}
       actions={
         [
           //  <UpdateEnemyCell id={id} />,
@@ -172,5 +126,10 @@ export const columns: Columns<ItemResponse> = [
           <Icon icon="coins" color="warning" size="normal" />
         </p>
       ),
+  },
+  {
+    selector: "specialBonus",
+    isVisible: false,
+    isFilterable: true,
   },
 ];

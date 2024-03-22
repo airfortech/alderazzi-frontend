@@ -13,8 +13,7 @@ export const useItems = (params: string) => {
   // );
 
   const query = useQuery([QueryKey.items, params], () => getItems(params), {
-    select: data =>
-      data.data.items.sort((a, b) => a.short.localeCompare(b.short)),
+    select: data => data.data.items,
   });
 
   return {
