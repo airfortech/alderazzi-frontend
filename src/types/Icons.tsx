@@ -31,6 +31,7 @@ import { GiOpenTreasureChest } from "react-icons/gi";
 import { GiShardSword } from "react-icons/gi";
 import { GiShinyPurse } from "react-icons/gi";
 import { GiSkeletonKey } from "react-icons/gi";
+import { GiSpearFeather } from "react-icons/gi";
 import { GiStandingPotion } from "react-icons/gi";
 import { GiTravelDress } from "react-icons/gi";
 import { GiTavernSign } from "react-icons/gi";
@@ -48,6 +49,7 @@ import { CSSProperties } from "react";
 export type Icon =
   | "addUser"
   | "armoredPants"
+  | "assassin"
   | "axe"
   | "basket"
   | "calendar"
@@ -62,6 +64,7 @@ export type Icon =
   | "crossmark"
   | "daggers"
   | "diamond"
+  | "down"
   | "dress"
   | "dwarf"
   | "exit"
@@ -82,6 +85,7 @@ export type Icon =
   | "settings"
   | "shield"
   | "skeletonKey"
+  | "spear"
   | "sword"
   | "tavernSign"
   | "up"
@@ -91,6 +95,7 @@ export const iconComponentDefs = (iconStyle: CSSProperties) => {
   return {
     addUser: <GrUserAdd style={iconStyle} />,
     armoredPants: <GiArmoredPants style={iconStyle} />,
+    assassin: <GiHoodedAssassin style={iconStyle} />,
     axe: <GiBattleAxe style={iconStyle} />,
     basket: <DeleteIcon style={iconStyle} />,
     calendar: <InsertInvitationIcon style={iconStyle} />,
@@ -105,6 +110,7 @@ export const iconComponentDefs = (iconStyle: CSSProperties) => {
     crossmark: <GiCrossMark style={iconStyle} />,
     daggers: <GiDaggers style={iconStyle} />,
     diamond: <GiCutDiamond style={iconStyle} />,
+    down: <KeyboardArrowDownIcon style={iconStyle} />,
     dress: <GiTravelDress style={iconStyle} />,
     dwarf: <GiDwarfHelmet style={iconStyle} />,
     exit: <GiExitDoor style={iconStyle} />,
@@ -125,6 +131,7 @@ export const iconComponentDefs = (iconStyle: CSSProperties) => {
     settings: <MdSettings style={iconStyle} />,
     shield: <GiFireShield style={iconStyle} />,
     skeletonKey: <GiSkeletonKey style={iconStyle} />,
+    spear: <GiSpearFeather style={iconStyle} />,
     sword: <GiShardSword style={iconStyle} />,
     tavernSign: <GiTavernSign style={iconStyle} />,
     up: <KeyboardArrowUpIcon style={iconStyle} />,

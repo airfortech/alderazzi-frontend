@@ -1,13 +1,14 @@
-import { useItems } from "../../hooks/useItems";
-import { Button } from "../Button/Button";
-import { useSelect } from "../Inputs/Select/useSelect";
-import { Loader } from "../Loader/Loader";
-import { MobileWrapper } from "../MobileWrapper/MobileWrapper";
-import { Table } from "../Table/Table";
-import { columns, expandableRow, options } from "./dataItemsWeaponsList";
-import classes from "./ItemsWeaponsList.module.css";
+import { useItems } from "../../../hooks/useItems";
+import { Button } from "../../Button/Button";
+import { useSelect } from "../../Inputs/Select/useSelect";
+import { Loader } from "../../Loader/Loader";
+import { MobileWrapper } from "../../MobileWrapper/MobileWrapper";
+import { Table } from "../../Table/Table";
+import { expandableRow, options } from "./dataWeaponsList";
+import { itemColumns } from "../dataItemsList";
+import classes from "../ItemsList.module.css";
 
-export const ItemsWeaponsList = () => {
+export const WeaponsList = () => {
   const { value, Select } = useSelect("weapon&weaponType=sword&isMagic=true");
   const { data: weapons, isLoading } = useItems(value);
 
@@ -24,7 +25,6 @@ export const ItemsWeaponsList = () => {
           <Button
             variant="contained"
             color="info"
-            // icon="sword"
             onClick={() => console.log("Dodaj miecz")}
           >
             Dodaj miecz
@@ -36,7 +36,19 @@ export const ItemsWeaponsList = () => {
       ) : (
         <Table
           data={weapons || []}
-          columns={columns}
+          columns={itemColumns(
+            [
+              "short",
+              "weaponEffectiveness",
+              "weaponBalance",
+              "weaponSlashingDamage",
+              "weaponPiercingDamage",
+              "weaponBluntDamage",
+              "weaponHand",
+              "vendorCost",
+            ],
+            ["name", "specialBonus"]
+          )}
           title="Miecze"
           titleTag="h2"
           initialSorting={{ field: "short", order: "asc" }}
