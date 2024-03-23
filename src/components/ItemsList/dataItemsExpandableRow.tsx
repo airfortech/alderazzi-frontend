@@ -8,7 +8,11 @@ import { TableRowDetails } from "../TableRowDetails/TableRowDetails";
 import { DeleteItemCell } from "./DeleteItemCell/DeleteItemCell";
 import classes from "./ItemsList.module.css";
 
-type ExpandableRowOption = "weaponSum" | "weaponAverage";
+type ExpandableRowOption =
+  | "armorAverage"
+  | "armorSum"
+  | "weaponAverage"
+  | "weaponSum";
 
 export const itemsExpandableRow = (
   options: ExpandableRowOption[],
@@ -18,6 +22,9 @@ export const itemsExpandableRow = (
     const {
       id,
       short,
+      armorSlashingRes,
+      armorPiercingRes,
+      armorBluntRes,
       weaponEffectiveness,
       weaponBalance,
       weight,
@@ -30,6 +37,19 @@ export const itemsExpandableRow = (
       comment,
     } = data;
     const details = [
+      {
+        option: "armorSum",
+        title: "Suma ochrony",
+        value: armorSlashingRes + armorPiercingRes + armorBluntRes,
+      },
+      {
+        option: "armorAverage",
+        title: "Średnia ochrona",
+        value: (
+          (armorSlashingRes + armorPiercingRes + armorBluntRes) /
+          3
+        ).toFixed(2),
+      },
       {
         option: "weaponSum",
         title: "Suma",

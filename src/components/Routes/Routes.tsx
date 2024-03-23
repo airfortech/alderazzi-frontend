@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes as RoutesWrapper } from "react-router-dom";
 import { UserRole } from "../../types/UserRole";
+import { ArmorsView } from "../../views/ItemsView/ArmorsView/ArmorsView";
 import { EditableKeyGiverDropsView } from "../../views/EditableKeyGiverDropsView/EditableKeyGiverDropsView";
 import { EnemiesView } from "../../views/EnemiesView/EnemiesView";
 import { HomeView } from "../../views/HomeView/HomeView";
@@ -11,9 +12,10 @@ import { LastKeyGiverDropsView } from "../../views/LastKeyGiverDropsView/LastKey
 import { LocationsView } from "../../views/LocationsView/LocationsView";
 import { SettingsView } from "../../views/SettingsView/SettingsView";
 import { UnauthorizedView } from "../../views/UnauthorizedView/UnauthorizedView";
+import { WeaponsView } from "../../views/ItemsView/WeaponsView/WeaponsView";
 import { RequireAuth } from "../RequireAuth/RequireAuth";
 import { weaponsListOptions } from "../ItemsList/WeaponsList/dataWeaponsList";
-import { WeaponsView } from "../../views/ItemsView/WeaponsView/WeaponsView";
+import { armorsListOptions } from "../ItemsList/ArmorsList/dataArmorsList";
 
 export const Routes = () => {
   return (
@@ -56,6 +58,16 @@ export const Routes = () => {
           <Route
             path={`/przedmioty/bronie/${options.path}`}
             element={<WeaponsView {...options} />}
+          />
+        ))}
+        <Route
+          path="/przedmioty/zbroje"
+          element={<Navigate to="/przedmioty/zbroje/ciezkie" />}
+        />
+        {armorsListOptions.map(options => (
+          <Route
+            path={`/przedmioty/zbroje/${options.path}`}
+            element={<ArmorsView {...options} />}
           />
         ))}
         <Route path="/lokacje" element={<LocationsView />} />

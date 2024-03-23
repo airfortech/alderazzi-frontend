@@ -12,11 +12,12 @@ import { Navigation } from "./components/Navigation/Navigation";
 import { Toast } from "./components/Toast/Toast";
 import { queryClient } from "./api/queryClient";
 import { Submenu } from "./components/Submenu/Submenu";
+import { Routes } from "./components/Routes/Routes";
 import { dropsLinks } from "./components/Navigation/dropsLinks";
 import { itemsLinks } from "./components/Navigation/itemsLinks";
 import { itemsWeaponsLinks } from "./components/Navigation/itemsWeaponsLinks";
+import { itemsArmorsLinks } from "./components/Navigation/itemsArmorsLinks";
 import classes from "./App.module.css";
-import { Routes } from "./components/Routes/Routes";
 
 const darkTheme = createTheme(
   {
@@ -54,6 +55,7 @@ export const App = () => {
         <Submenu level={2} links={dropsLinks} />
         <Submenu level={2} links={itemsLinks} />
         <Submenu level={3} links={itemsWeaponsLinks} />
+        <Submenu level={3} links={itemsArmorsLinks} />
         <section className={classes.section}>
           <Routes />
         </section>
