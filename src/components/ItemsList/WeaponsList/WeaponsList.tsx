@@ -1,34 +1,41 @@
+import { WeaponsListOption } from "../../../types/ItemsList";
 import { useItems } from "../../../hooks/useItems";
 import { Button } from "../../Button/Button";
 import { useSelect } from "../../Inputs/Select/useSelect";
 import { Loader } from "../../Loader/Loader";
 import { MobileWrapper } from "../../MobileWrapper/MobileWrapper";
 import { Table } from "../../Table/Table";
-import { options } from "./dataWeaponsList";
+import { weaponsOptions } from "./dataWeaponsList";
 import { itemColumns } from "../dataItemColumnsList";
 import { itemsExpandableRow } from "../dataItemsExpandableRow";
 import classes from "../ItemsList.module.css";
 
-export const WeaponsList = () => {
-  const { value, Select } = useSelect("weapon&weaponType=sword&isMagic=true");
-  const { data: weapons, isLoading, deleteItemMutation } = useItems(value);
+export const WeaponsList = ({
+  weaponType,
+  selectPlaceholder,
+  icon,
+  buttonLabel,
+  tableTitle,
+}: WeaponsListOption) => {
+  const { value, Select } = useSelect(weaponsOptions(weaponType)[0].value);
+  const { data: swords, isLoading, deleteItemMutation } = useItems(value);
 
   return (
     <div className={classes.ItemsWeaponsList}>
       <MobileWrapper>
         <div className={classes.actions}>
           <Select
-            placeholder="Rodzaj mieczy:"
-            options={options}
-            icon="sword"
+            placeholder={selectPlaceholder}
+            options={weaponsOptions(weaponType)}
+            icon={icon}
             className={classes.select}
           />
           <Button
             variant="contained"
             color="info"
-            onClick={() => console.log("Dodaj miecz")}
+            onClick={() => console.log(buttonLabel)}
           >
-            Dodaj miecz
+            {buttonLabel}
           </Button>
         </div>
       </MobileWrapper>
@@ -36,7 +43,7 @@ export const WeaponsList = () => {
         <Loader isLoading />
       ) : (
         <Table
-          data={weapons || []}
+          data={swords || []}
           columns={itemColumns(
             [
               "short",
@@ -50,7 +57,7 @@ export const WeaponsList = () => {
             ],
             ["name", "specialBonus"]
           )}
-          title="Miecze"
+          title={tableTitle}
           titleTag="h2"
           initialSorting={{ field: "short", order: "asc" }}
           stickyHeaderPosition={150}

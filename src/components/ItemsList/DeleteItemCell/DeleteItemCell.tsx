@@ -30,7 +30,7 @@ export const DeleteItemCell = ({ id, short, deleteItemMutation }: Props) => {
         Usuń
       </Button>
       <Prompt
-        title={`Czy na pewno chcesz usunąć przedmiot: ${short} id: ${id}?`}
+        title={`Czy na pewno chcesz usunąć przedmiot: ${short}?`}
         open={open}
         onClose={() => setOpen(false)}
         onAccept={() => handleDeleteItem(id)}
