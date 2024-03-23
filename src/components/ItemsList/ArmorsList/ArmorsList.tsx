@@ -1,24 +1,24 @@
-import { WeaponsListOption } from "../../../types/ItemsList";
+import { ArmorsListOption } from "../../../types/ItemsList";
 import { useItems } from "../../../hooks/useItems";
 import { Button } from "../../Button/Button";
 import { useSelect } from "../../Inputs/Select/useSelect";
 import { Loader } from "../../Loader/Loader";
 import { MobileWrapper } from "../../MobileWrapper/MobileWrapper";
 import { Table } from "../../Table/Table";
-import { weaponsOptions } from "./dataWeaponsList";
+import { armorsOptions } from "./dataArmorsList";
 import { itemColumns } from "../dataItemColumnsList";
 import { itemsExpandableRow } from "../dataItemsExpandableRow";
 import classes from "../ItemsList.module.css";
 
-export const WeaponsList = ({
-  weaponType,
+export const ArmorsList = ({
+  armorClass,
   selectPlaceholder,
   icon,
   buttonLabel,
   tableTitle,
-}: WeaponsListOption) => {
-  const { value, Select } = useSelect(weaponsOptions(weaponType)[0].value);
-  const { data: weapons, isLoading, deleteItemMutation } = useItems(value);
+}: ArmorsListOption) => {
+  const { value, Select } = useSelect(armorsOptions(armorClass)[0].value);
+  const { data: armors, isLoading, deleteItemMutation } = useItems(value);
 
   return (
     <div className={classes.ItemsWeaponsList}>
@@ -26,7 +26,7 @@ export const WeaponsList = ({
         <div className={classes.actions}>
           <Select
             placeholder={selectPlaceholder}
-            options={weaponsOptions(weaponType)}
+            options={armorsOptions(armorClass)}
             icon={icon}
             className={classes.select}
           />
@@ -43,17 +43,21 @@ export const WeaponsList = ({
         <Loader isLoading />
       ) : (
         <Table
-          data={weapons || []}
+          data={armors || []}
           columns={itemColumns(
             [
               "short",
-              "weaponEffectiveness",
-              "weaponBalance",
-              "weaponSlashingDamage",
-              "weaponPiercingDamage",
-              "weaponBluntDamage",
-              "weaponHand",
+              "armorSlashingRes",
+              "armorPiercingRes",
+              "armorBluntRes",
               "vendorCost",
+              "armorHead",
+              "armorChest",
+              "armorLegs",
+              "armorLeftArm",
+              "armorRightArm",
+              "armorHands",
+              "armorFoots",
             ],
             ["name", "specialBonus", "description"]
           )}
@@ -62,7 +66,7 @@ export const WeaponsList = ({
           initialSorting={{ field: "short", order: "asc" }}
           stickyHeaderPosition={150}
           expandableRowsComponent={itemsExpandableRow(
-            ["weaponSum", "weaponAverage"],
+            ["armorSum", "armorAverage"],
             deleteItemMutation
           )}
           expandableRowsComponentPaddingsDisabled

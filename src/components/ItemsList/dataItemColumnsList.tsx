@@ -24,6 +24,80 @@ export const itemColumns = (
       },
     },
     {
+      selector: "armorSlashingRes",
+      header: "C",
+      isSortable: true,
+      align: "right",
+    },
+    {
+      selector: "armorPiercingRes",
+      header: "K",
+      isSortable: true,
+      align: "right",
+    },
+    {
+      selector: "armorBluntRes",
+      header: "O",
+      isSortable: true,
+      align: "right",
+    },
+    {
+      selector: "armorHead",
+      header: "G",
+      isSortable: true,
+      align: "right",
+      cell: value =>
+        value && <Icon icon="checkmark" color="success" size="sm" />,
+    },
+    {
+      selector: "armorChest",
+      header: "K",
+      isSortable: true,
+      align: "right",
+      cell: value =>
+        value && <Icon icon="checkmark" color="success" size="sm" />,
+    },
+    {
+      selector: "armorLegs",
+      header: "N",
+      isSortable: true,
+      align: "right",
+      cell: value =>
+        value && <Icon icon="checkmark" color="success" size="sm" />,
+    },
+    {
+      selector: "armorLeftArm",
+      header: "LR",
+      isSortable: true,
+      align: "right",
+      cell: value =>
+        value && <Icon icon="checkmark" color="success" size="sm" />,
+    },
+    {
+      selector: "armorRightArm",
+      header: "PR",
+      isSortable: true,
+      align: "right",
+      cell: value =>
+        value && <Icon icon="checkmark" color="success" size="sm" />,
+    },
+    {
+      selector: "armorHands",
+      header: "D",
+      isSortable: true,
+      align: "right",
+      cell: value =>
+        value && <Icon icon="checkmark" color="success" size="sm" />,
+    },
+    {
+      selector: "armorFoots",
+      header: "S",
+      isSortable: true,
+      align: "right",
+      cell: value =>
+        value && <Icon icon="checkmark" color="success" size="sm" />,
+    },
+    {
       selector: "weaponEffectiveness",
       header: "Skut.",
       isSortable: true,
@@ -91,6 +165,11 @@ export const itemColumns = (
     },
     {
       selector: "specialBonus",
+      isVisible: false,
+      isFilterable: true,
+    },
+    {
+      selector: "description",
       isVisible: false,
       isFilterable: true,
     },

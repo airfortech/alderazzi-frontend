@@ -9,6 +9,7 @@ import { GiArmoredPants } from "react-icons/gi";
 import { GiBattleAxe } from "react-icons/gi";
 import { GiBreastplate } from "react-icons/gi";
 import { GiBrutalHelm } from "react-icons/gi";
+import { GiChainMail } from "react-icons/gi";
 import { GiCheckMark } from "react-icons/gi";
 import { GiClawHammer } from "react-icons/gi";
 import { GiCutDiamond } from "react-icons/gi";
@@ -19,6 +20,7 @@ import { GiFlail } from "react-icons/gi";
 import { GiGemPendant } from "react-icons/gi";
 import { GiGloves } from "react-icons/gi";
 import { GiLegArmor } from "react-icons/gi";
+import { GiLifeJacket } from "react-icons/gi";
 import { GiTwoCoins } from "react-icons/gi";
 import { GiCrossedSwords } from "react-icons/gi";
 import { GiCrossMark } from "react-icons/gi";
@@ -54,6 +56,7 @@ export type Icon =
   | "basket"
   | "calendar"
   | "cancel"
+  | "chainmail"
   | "checkmark"
   | "chest"
   | "clock"
@@ -78,6 +81,7 @@ export type Icon =
   | "helm"
   | "keys"
   | "legArmor"
+  | "lightArmor"
   | "map"
   | "plate"
   | "potion"
@@ -100,6 +104,7 @@ export const iconComponentDefs = (iconStyle: CSSProperties) => {
     basket: <DeleteIcon style={iconStyle} />,
     calendar: <InsertInvitationIcon style={iconStyle} />,
     cancel: <CancelIcon style={iconStyle} />,
+    chainmail: <GiChainMail style={iconStyle} />,
     checkmark: <GiCheckMark style={iconStyle} />,
     chest: <GiOpenTreasureChest style={iconStyle} />,
     clock: <AccessTimeIcon style={iconStyle} />,
@@ -124,6 +129,7 @@ export const iconComponentDefs = (iconStyle: CSSProperties) => {
     helm: <GiBrutalHelm style={iconStyle} />,
     keys: <GiKeyring style={iconStyle} />,
     legArmor: <GiLegArmor style={iconStyle} />,
+    lightArmor: <GiLifeJacket style={iconStyle} />,
     map: <GiTreasureMap style={iconStyle} />,
     plate: <GiBreastplate style={iconStyle} />,
     potion: <GiStandingPotion style={iconStyle} />,
