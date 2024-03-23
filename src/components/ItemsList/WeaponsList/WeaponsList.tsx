@@ -5,13 +5,13 @@ import { Loader } from "../../Loader/Loader";
 import { MobileWrapper } from "../../MobileWrapper/MobileWrapper";
 import { Table } from "../../Table/Table";
 import { options } from "./dataWeaponsList";
-import { itemColumns } from "../dataItemsList";
+import { itemColumns } from "../dataItemColumnsList";
 import { itemsExpandableRow } from "../dataItemsExpandableRow";
 import classes from "../ItemsList.module.css";
 
 export const WeaponsList = () => {
   const { value, Select } = useSelect("weapon&weaponType=sword&isMagic=true");
-  const { data: weapons, isLoading } = useItems(value);
+  const { data: weapons, isLoading, deleteItemMutation } = useItems(value);
 
   return (
     <div className={classes.ItemsWeaponsList}>
@@ -54,10 +54,10 @@ export const WeaponsList = () => {
           titleTag="h2"
           initialSorting={{ field: "short", order: "asc" }}
           stickyHeaderPosition={150}
-          expandableRowsComponent={itemsExpandableRow([
-            "weaponSum",
-            "weaponAverage",
-          ])}
+          expandableRowsComponent={itemsExpandableRow(
+            ["weaponSum", "weaponAverage"],
+            deleteItemMutation
+          )}
           expandableRowsComponentPaddingsDisabled
           horizontalScroll="top"
         />

@@ -1,15 +1,23 @@
+import { ApiResponse } from "../../types/responseMessages";
 import { ItemResponse } from "../../types/Item";
 import { itemDurabilityRealTimes } from "../../types/ItemDurability";
 import { ExpandableRowsComponent } from "../../types/Table";
+import { UseMutationResult } from "@tanstack/react-query";
 import { Icon } from "../Icon/Icon";
 import { TableRowDetails } from "../TableRowDetails/TableRowDetails";
+import { DeleteItemCell } from "./DeleteItemCell/DeleteItemCell";
 import classes from "./ItemsList.module.css";
 
 type ExpandableRowOption = "weaponSum" | "weaponAverage";
 
-export const itemsExpandableRow = (options: ExpandableRowOption[]) => {
+export const itemsExpandableRow = (
+  options: ExpandableRowOption[],
+  deleteItemMutation?: UseMutationResult<ApiResponse, unknown, string, unknown>
+) => {
   const expandableRow: ExpandableRowsComponent<ItemResponse> = data => {
     const {
+      id,
+      short,
       weaponEffectiveness,
       weaponBalance,
       weight,
@@ -83,12 +91,14 @@ export const itemsExpandableRow = (options: ExpandableRowOption[]) => {
             value: comment,
           },
         ]}
-        actions={
-          [
-            //  <UpdateEnemyCell id={id} />,
-            //  <DeleteEnemyCell id={id} name={short} />,
-          ]
-        }
+        actions={[
+          //  <UpdateEnemyCell id={id} />,
+          <DeleteItemCell
+            id={id}
+            short={short}
+            deleteItemMutation={deleteItemMutation}
+          />,
+        ]}
       />
     );
   };

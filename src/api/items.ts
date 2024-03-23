@@ -24,7 +24,7 @@ export const getItems = async (params: string) => {
 //   return data;
 // };
 
-// export const deleteKey = async (id: string) => {
-//   const { data } = await api.delete<ApiResponse>("/keys/" + id);
-//   return data;
-// };
+export const deleteItem = async (id: string) => {
+  const { data } = await api.delete<ApiResponse>("/items/" + id);
+  return data;
+};

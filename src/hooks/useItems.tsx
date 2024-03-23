@@ -5,7 +5,7 @@ import { addKey, deleteKey, getKeys, updateKey } from "../api/keys";
 import { queryClient } from "../api/queryClient";
 import { useAtom } from "jotai";
 import { updateKeySuccessGlobal } from "../gobalStates/reactQuery";
-import { getItems } from "../api/items";
+import { deleteItem, getItems } from "../api/items";
 
 export const useItems = (params: string) => {
   // const [updateKeySuccess, setUpdateKeySuccess] = useAtom(
@@ -16,7 +16,14 @@ export const useItems = (params: string) => {
     select: data => data.data.items,
   });
 
+  const deleteItemMutation = useMutation(deleteItem, {
+    onSuccess: () => {
+      queryClient.invalidateQueries([QueryKey.items]);
+    },
+  });
+
   return {
     ...query,
+    deleteItemMutation,
   };
 };
