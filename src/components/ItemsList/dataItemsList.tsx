@@ -1,59 +1,7 @@
 import { ItemResponse } from "../../types/Item";
-import { itemDurabilityRealTimes } from "../../types/ItemDurability";
 import { Columns } from "../../types/Table";
 import { Icon } from "../Icon/Icon";
 import classes from "./ItemsList.module.css";
-
-export const itemsTableRowDetails = (data: ItemResponse) => {
-  const { weight, volume, durability, specialBonus, occurrence, cost } = data;
-  return [
-    {
-      title: "Waga [g]",
-      value: weight?.toLocaleString("pl"),
-    },
-    {
-      title: "Objętość [ml]",
-      value: volume?.toLocaleString("pl"),
-    },
-    {
-      title: "Trwałość",
-      value:
-        durability &&
-        `${durability} (${durability && itemDurabilityRealTimes[durability]})`,
-    },
-    {
-      title: "Specjalny bonus",
-      value: specialBonus,
-    },
-    {
-      title: "Występowanie",
-      value: occurrence,
-    },
-    {
-      title: "Wartość sprzedaży",
-      value: (
-        <p className={classes.cost}>
-          {cost}
-          <Icon icon="coins" color="warning" size="normal" />
-        </p>
-      ),
-    },
-  ];
-};
-
-export const itemsTableRowLongDetails = (data: ItemResponse) => {
-  const { description, comment } = data;
-  return [
-    {
-      title: "Opis",
-      value: description,
-    },
-    {
-      title: "Komentarz",
-      value: comment,
-    },
-  ];
-};
 
 type ItemColumnsOptions = keyof ItemResponse;
 

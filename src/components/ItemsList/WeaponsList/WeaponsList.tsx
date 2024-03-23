@@ -4,8 +4,9 @@ import { useSelect } from "../../Inputs/Select/useSelect";
 import { Loader } from "../../Loader/Loader";
 import { MobileWrapper } from "../../MobileWrapper/MobileWrapper";
 import { Table } from "../../Table/Table";
-import { expandableRow, options } from "./dataWeaponsList";
+import { options } from "./dataWeaponsList";
 import { itemColumns } from "../dataItemsList";
+import { itemsExpandableRow } from "../dataItemsExpandableRow";
 import classes from "../ItemsList.module.css";
 
 export const WeaponsList = () => {
@@ -53,7 +54,10 @@ export const WeaponsList = () => {
           titleTag="h2"
           initialSorting={{ field: "short", order: "asc" }}
           stickyHeaderPosition={150}
-          expandableRowsComponent={expandableRow}
+          expandableRowsComponent={itemsExpandableRow([
+            "weaponSum",
+            "weaponAverage",
+          ])}
           expandableRowsComponentPaddingsDisabled
           horizontalScroll="top"
         />
