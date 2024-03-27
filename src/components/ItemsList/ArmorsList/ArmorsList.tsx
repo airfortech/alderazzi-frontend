@@ -1,10 +1,14 @@
 import { ArmorsListOption } from "../../../types/ItemsList";
+import { ItemArmorClass } from "../../../types/ItemArmorClass";
+import { useEffect, useState } from "react";
 import { useItems } from "../../../hooks/useItems";
-import { Button } from "../../Button/Button";
 import { useSelect } from "../../Inputs/Select/useSelect";
+import { Modal } from "../../Modal/Modal";
+import { Armor } from "../AddItem/Armor/Armor";
+import { Table } from "../../Table/Table";
+import { Button } from "../../Button/Button";
 import { Loader } from "../../Loader/Loader";
 import { MobileWrapper } from "../../MobileWrapper/MobileWrapper";
-import { Table } from "../../Table/Table";
 import { armorsOptions } from "./dataArmorsList";
 import { itemColumns } from "../dataItemColumnsList";
 import { itemsExpandableRow } from "../dataItemsExpandableRow";
@@ -17,8 +21,25 @@ export const ArmorsList = ({
   buttonLabel,
   tableTitle,
 }: ArmorsListOption) => {
-  const { value, Select } = useSelect(armorsOptions(armorClass)[0].value);
-  const { data: armors, isLoading, deleteItemMutation } = useItems(value);
+  const { value, Select } = useSelect(armorsOptions[0].value);
+  const { data, isLoading, deleteItemMutation } = useItems(
+    `armor&armorClass=${armorClass}`
+  );
+  const [openAddItem, setOpenAddItem] = useState(false);
+
+  const filteredData = data?.filter(item => {
+    const searchObject = armorsOptions.find(
+      option => option.value === value
+    )?.searchOptions;
+    const isMagic = searchObject?.isMagic;
+    if (isMagic) return item.isMagic === true;
+    if (isMagic === false) return item.isMagic !== true;
+    return true;
+  });
+
+  useEffect(() => {
+    setOpenAddItem(false);
+  }, [data]);
 
   return (
     <div className={classes.ItemsWeaponsList}>
@@ -26,24 +47,35 @@ export const ArmorsList = ({
         <div className={classes.actions}>
           <Select
             placeholder={selectPlaceholder}
-            options={armorsOptions(armorClass)}
+            options={armorsOptions}
             icon={icon}
             className={classes.select}
           />
           <Button
             variant="contained"
             color="info"
-            onClick={() => console.log(buttonLabel)}
+            onClick={() => setOpenAddItem(true)}
           >
             {buttonLabel}
           </Button>
         </div>
+        <Modal
+          title={buttonLabel + ":"}
+          open={openAddItem}
+          onClose={() => setOpenAddItem(false)}
+          closeOnBackdropClick={false}
+        >
+          <Armor
+            armorClass={ItemArmorClass[armorClass]}
+            params={`armor&armorClass=${armorClass}`}
+          />
+        </Modal>
       </MobileWrapper>
       {isLoading ? (
         <Loader isLoading />
       ) : (
         <Table
-          data={armors || []}
+          data={filteredData || []}
           columns={itemColumns(
             [
               "short",

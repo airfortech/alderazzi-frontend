@@ -1,22 +1,32 @@
-import { ItemWeapon } from "../../../types/ItemWeapon";
 import { WeaponsListOption } from "../../../types/ItemsList";
 
-export const weaponsOptions = (weaponType: keyof typeof ItemWeapon) => [
+export const weaponsOptions = [
   {
-    value: `weapon&weaponType=${weaponType}&isMagic=true`,
+    value: "magic",
     label: "Magiczne",
+    searchOptions: {
+      isMagic: true,
+    },
   },
   {
-    value: `weapon&weaponType=${weaponType}&isWeaponSilver=true`,
+    value: "silver",
     label: "Srebrne",
+    searchOptions: {
+      isWeaponSilver: true,
+    },
   },
   {
-    value: `weapon&weaponType=${weaponType}&isMagic=false&isWeaponSilver=false`,
+    value: "normal",
     label: "Zwykłe",
+    searchOptions: {
+      isMagic: false,
+      isWeaponSilver: false,
+    },
   },
   {
-    value: `weapon&weaponType=${weaponType}`,
+    value: "all",
     label: "Wszystkie",
+    searchOptions: {},
   },
 ];
 

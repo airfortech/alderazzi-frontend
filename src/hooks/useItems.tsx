@@ -1,11 +1,8 @@
-import { KeyAddRequest, KeyUpdateRequest } from "../types/Key";
 import { QueryKey } from "../types/QueryKey";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { addKey, deleteKey, getKeys, updateKey } from "../api/keys";
 import { queryClient } from "../api/queryClient";
-import { useAtom } from "jotai";
-import { updateKeySuccessGlobal } from "../gobalStates/reactQuery";
-import { deleteItem, getItems } from "../api/items";
+import { addArmor, addWeapon, deleteItem, getItems } from "../api/items";
+import { ItemAddArmorRequest, ItemAddWeaponRequest } from "../types/Item";
 
 export const useItems = (params: string) => {
   // const [updateKeySuccess, setUpdateKeySuccess] = useAtom(
@@ -22,8 +19,30 @@ export const useItems = (params: string) => {
     },
   });
 
+  const { mutate: addWeaponMutation, isLoading: isAddingWeapon } = useMutation(
+    (weapon: ItemAddWeaponRequest) => addWeapon(weapon),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries([QueryKey.items]);
+      },
+    }
+  );
+
+  const { mutate: addArmorMutation, isLoading: isAddingArmor } = useMutation(
+    (armor: ItemAddArmorRequest) => addArmor(armor),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries([QueryKey.items]);
+      },
+    }
+  );
+
   return {
     ...query,
     deleteItemMutation,
+    addWeaponMutation,
+    isAddingWeapon,
+    addArmorMutation,
+    isAddingArmor,
   };
 };

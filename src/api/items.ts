@@ -1,7 +1,11 @@
 import { ApiResponse } from "../types/responseMessages";
 import { KeyAddRequest, KeyResponse, KeyUpdateRequest } from "../types/Key";
 import { api } from "./api";
-import { ItemResponse } from "../types/Item";
+import {
+  ItemAddArmorRequest,
+  ItemAddWeaponRequest,
+  ItemResponse,
+} from "../types/Item";
 
 export interface GetItems extends ApiResponse {
   data: {
@@ -14,10 +18,15 @@ export const getItems = async (params: string) => {
   return data;
 };
 
-// export const addKey = async (key: KeyAddRequest) => {
-//   const { data } = await api.post<ApiResponse>("/keys", key);
-//   return data;
-// };
+export const addWeapon = async (weapon: ItemAddWeaponRequest) => {
+  const { data } = await api.post<ApiResponse>("/items/weapon", weapon);
+  return data;
+};
+
+export const addArmor = async (armor: ItemAddArmorRequest) => {
+  const { data } = await api.post<ApiResponse>("/items/armor", armor);
+  return data;
+};
 
 // export const updateKey = async (id: string, key: KeyUpdateRequest) => {
 //   const { data } = await api.patch<ApiResponse>("/keys/" + id, key);
