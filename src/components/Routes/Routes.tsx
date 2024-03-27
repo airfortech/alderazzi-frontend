@@ -56,6 +56,7 @@ export const Routes = () => {
         />
         {weaponsListOptions.map(options => (
           <Route
+            key={options.path}
             path={`/przedmioty/bronie/${options.path}`}
             element={<WeaponsView {...options} />}
           />
@@ -66,6 +67,7 @@ export const Routes = () => {
         />
         {armorsListOptions.map(options => (
           <Route
+            key={options.path}
             path={`/przedmioty/zbroje/${options.path}`}
             element={<ArmorsView {...options} />}
           />

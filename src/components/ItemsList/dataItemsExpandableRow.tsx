@@ -93,11 +93,11 @@ export const itemsExpandableRow = (
           },
           {
             title: "Wartość sprzedaży",
-            value: (
-              <p className={classes.cost}>
+            value: cost && (
+              <span className={classes.cost}>
                 {cost}
                 <Icon icon="coins" color="warning" size="normal" />
-              </p>
+              </span>
             ),
           },
         ]}

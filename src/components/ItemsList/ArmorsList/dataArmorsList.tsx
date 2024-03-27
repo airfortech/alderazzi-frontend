@@ -1,18 +1,24 @@
 import { ArmorsListOption } from "../../../types/ItemsList";
-import { ItemArmorClass } from "../../../types/ItemArmorClass";
 
-export const armorsOptions = (armorClass: keyof typeof ItemArmorClass) => [
+export const armorsOptions = [
   {
-    value: `armor&armorClass=${armorClass}&isMagic=true`,
+    value: "magic",
     label: "Magiczne",
+    searchOptions: {
+      isMagic: true,
+    },
   },
   {
-    value: `armor&armorClass=${armorClass}&isMagic=false`,
+    value: "normal",
     label: "Zwykłe",
+    searchOptions: {
+      isMagic: false,
+    },
   },
   {
-    value: `armor&armorClass=${armorClass}`,
+    value: "all",
     label: "Wszystkie",
+    searchOptions: {},
   },
 ];
 

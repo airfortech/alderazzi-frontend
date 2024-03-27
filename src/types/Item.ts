@@ -126,3 +126,37 @@ export interface ItemUpdateRequest {
   armorBluntRes?: number;
   shieldParry?: number;
 }
+
+export interface ItemAddFormRequest {
+  name?: string;
+  short: string;
+  isMagic?: boolean;
+  durability?: ItemDurability;
+  isWeaponSilver?: boolean;
+  weaponType?: ItemWeapon;
+  weaponHand?: ItemWeaponHand;
+  weaponEffectiveness?: number;
+  weaponBalance?: number;
+  weaponSlashingDamage?: boolean;
+  weaponPiercingDamage?: boolean;
+  weaponBluntDamage?: boolean;
+  shieldParry?: number;
+  armorPiercingRes?: number;
+  armorSlashingRes?: number;
+  armorBluntRes?: number;
+  armorHead?: boolean;
+  armorChest?: boolean;
+  armorLeftArm?: boolean;
+  armorRightArm?: boolean;
+  armorLegs?: boolean;
+  armorHands?: boolean;
+  armorFoots?: boolean;
+  weight?: number;
+  volume?: number;
+  specialBonus?: string;
+  occurrence?: string;
+  cost?: number;
+  vendorCost?: number;
+  description?: string;
+  comment?: string;
+}
