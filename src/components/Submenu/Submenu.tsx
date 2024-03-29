@@ -2,7 +2,7 @@ import { UserRole } from "../../types/UserRole";
 import { CSSProperties } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { isRoleAllowed } from "../../utils/isRoleAllowed";
 import { useAuth } from "../../hooks/useAuth";
@@ -32,14 +32,11 @@ export const Submenu = ({ links, level, style }: Props) => {
     isRoleAllowed(allowedRoles, auth?.role)
   );
 
-  const matches = availableLinks.filter(
-    ({ match }) => pathname.includes(match) !== false
-  );
   const currentTab = useRouteMatch(
     availableLinks.map(({ url }) => url),
     level
   );
-  if (matches.length === 0) return null;
+  if (!currentTab) return null;
 
   return (
     <nav className={submenuClasses(level)} style={style}>

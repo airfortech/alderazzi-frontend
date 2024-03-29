@@ -1,6 +1,6 @@
 import { ItemAddArmorRequest } from "../../../../types/Item";
 import { ItemArmorClass } from "../../../../types/ItemArmorClass";
-import { useItemsMutations, useItems } from "../../../../hooks/useItems";
+import { useItemsMutations } from "../../../../hooks/useItems";
 import { Form } from "../../../Form/Form";
 import { formDataValidator } from "../../../../utils/formDataValidatr";
 import { items } from "./dataArmor";
