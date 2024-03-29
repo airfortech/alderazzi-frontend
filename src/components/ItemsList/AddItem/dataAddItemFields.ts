@@ -217,6 +217,11 @@ export const itemsOptions: Fields<ItemAddFormRequest> = [
     unit: "złota",
   },
   {
+    type: "field",
+    name: "occurrence",
+    placeholder: "Występowanie",
+  },
+  {
     type: "textarea",
     name: "description",
     placeholder: "Opis",

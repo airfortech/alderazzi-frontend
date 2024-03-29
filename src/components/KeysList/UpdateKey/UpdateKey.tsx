@@ -1,8 +1,7 @@
-import { EnemyRequest } from "../../../types/Enemy";
-import { Form } from "../../Form/Form";
-import { items, validationSchema } from "./dataUpdateKey";
 import { KeyUpdateRequest } from "../../../types/Key";
 import { useKeys } from "../../../hooks/useKeys";
+import { Form } from "../../Form/Form";
+import { items, validationSchema } from "./dataUpdateKey";
 import classes from "./UpdateKey.module.css";
 
 interface Props {
@@ -21,7 +20,7 @@ export const UpdateKey = ({ id }: Props) => {
 
   return (
     <div className={classes.UpdateKey}>
-      <Form<EnemyRequest>
+      <Form<KeyUpdateRequest>
         items={items(key)}
         validationSchema={validationSchema}
         submit={submit}
