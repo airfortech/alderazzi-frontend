@@ -6,8 +6,9 @@ import { validationSchema } from "../AddItem/dataAddItemValidationOptions";
 import { formDataValidator } from "../../../utils/formDataValidatr";
 import { itemsWeaponOptions } from "./dataUpdateWeapon";
 import { itemsArmorOptions } from "./dataUpdateArmor";
-import classes from "../AddItem/AddItem.module.css";
 import { itemsShieldOptions } from "./dataUpdateShield";
+import { itemsOtherOptions } from "./dataUpdateOther";
+import classes from "../AddItem/AddItem.module.css";
 
 interface Props {
   data: ItemResponse;
@@ -27,6 +28,7 @@ export const UpdateItem = ({ data }: Props) => {
   };
 
   const { type } = data;
+
   const validation = validationSchema(
     type === ItemTypes.armor
       ? ["armorBluntRes", "armorPiercingRes", "armorSlashingRes"]
@@ -41,7 +43,9 @@ export const UpdateItem = ({ data }: Props) => {
       ? itemsWeaponOptions
       : type === ItemTypes.armor
       ? itemsArmorOptions
-      : itemsShieldOptions;
+      : type === ItemTypes.shield
+      ? itemsShieldOptions
+      : itemsOtherOptions;
 
   return (
     <div className={classes.AddItem}>

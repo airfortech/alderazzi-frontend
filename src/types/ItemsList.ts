@@ -1,5 +1,6 @@
 import { Icon } from "./Icons";
 import { ItemArmorClass } from "./ItemArmorClass";
+import { ItemTypes } from "./ItemTypes";
 import { ItemWeapon } from "./ItemWeapon";
 
 export interface ItemsListOption {
@@ -8,6 +9,7 @@ export interface ItemsListOption {
   icon: Icon;
   buttonLabel: string;
   tableTitle: string;
+  defaultOption?: number;
 }
 
 export interface WeaponsListOption extends ItemsListOption {
@@ -20,4 +22,9 @@ export interface ArmorsListOption extends ItemsListOption {
 
 export interface ShieldsListOption extends ItemsListOption {
   shieldParry: number;
+}
+
+export interface OthersListOption extends ItemsListOption {
+  type: ItemTypes;
+  endpoint: keyof typeof ItemTypes;
 }

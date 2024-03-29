@@ -3,11 +3,13 @@ import { KeyAddRequest, KeyResponse, KeyUpdateRequest } from "../types/Key";
 import { api } from "./api";
 import {
   ItemAddArmorRequest,
+  ItemAddRequest,
   ItemAddShieldRequest,
   ItemAddWeaponRequest,
   ItemResponse,
   ItemUpdateRequest,
 } from "../types/Item";
+import { ItemTypes } from "../types/ItemTypes";
 
 export interface GetItems extends ApiResponse {
   data: {
@@ -32,6 +34,14 @@ export const addArmor = async (armor: ItemAddArmorRequest) => {
 
 export const addShield = async (shield: ItemAddShieldRequest) => {
   const { data } = await api.post<ApiResponse>("/items/shield", shield);
+  return data;
+};
+
+export const addOther = async (
+  other: ItemAddRequest,
+  endpoint: keyof typeof ItemTypes
+) => {
+  const { data } = await api.post<ApiResponse>("/items/" + endpoint, other);
   return data;
 };
 

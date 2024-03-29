@@ -147,6 +147,13 @@ export const itemColumns = (
       align: "right",
     },
     {
+      selector: "specialBonus",
+      header: "Spec. właściwości",
+      isFilterable: true,
+      isSortable: true,
+      align: "right",
+    },
+    {
       selector: "vendorCost",
       header: "Zlecenie",
       isSortable: true,
