@@ -17,3 +17,7 @@ export interface WeaponsListOption extends ItemsListOption {
 export interface ArmorsListOption extends ItemsListOption {
   armorClass: keyof typeof ItemArmorClass;
 }
+
+export interface ShieldsListOption extends ItemsListOption {
+  shieldParry: number;
+}

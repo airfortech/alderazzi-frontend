@@ -16,6 +16,7 @@ import { WeaponsView } from "../../views/ItemsView/WeaponsView/WeaponsView";
 import { RequireAuth } from "../RequireAuth/RequireAuth";
 import { weaponsListOptions } from "../ItemsList/WeaponsList/dataWeaponsList";
 import { armorsListOptions } from "../ItemsList/ArmorsList/dataArmorsList";
+import { ShieldsView } from "../../views/ItemsView/ShieldsView/ShieldsView";
 
 export const Routes = () => {
   return (
@@ -72,6 +73,7 @@ export const Routes = () => {
             element={<ArmorsView {...options} />}
           />
         ))}
+        <Route path="/przedmioty/tarcze" element={<ShieldsView />} />
         <Route path="/lokacje" element={<LocationsView />} />
       </Route>
       <Route element={<RequireAuth allowedRoles={[UserRole.consigliore]} />}>

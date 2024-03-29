@@ -36,25 +36,28 @@ export const itemsExpandableRow = (options: ExpandableRowOption[]) => {
       {
         option: "armorSum",
         title: "Suma ochrony",
-        value: armorSlashingRes + armorPiercingRes + armorBluntRes,
+        value: armorSlashingRes + armorPiercingRes + armorBluntRes || "",
       },
       {
         option: "armorAverage",
         title: "Średnia ochrona",
-        value: (
-          (armorSlashingRes + armorPiercingRes + armorBluntRes) /
-          3
-        ).toFixed(2),
+        value:
+          armorSlashingRes + armorPiercingRes + armorBluntRes
+            ? (
+                (armorSlashingRes + armorPiercingRes + armorBluntRes) /
+                3
+              ).toFixed(2)
+            : "",
       },
       {
         option: "weaponSum",
         title: "Suma",
-        value: weaponEffectiveness + weaponBalance,
+        value: weaponEffectiveness + weaponBalance || "",
       },
       {
         option: "weaponAverage",
         title: "Średnia",
-        value: (weaponEffectiveness + weaponBalance) / 2,
+        value: (weaponEffectiveness + weaponBalance) / 2 || "",
       },
     ]
       .filter(({ option }) => options.includes(option as ExpandableRowOption))

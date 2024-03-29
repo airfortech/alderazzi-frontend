@@ -7,6 +7,7 @@ import { formDataValidator } from "../../../utils/formDataValidatr";
 import { itemsWeaponOptions } from "./dataUpdateWeapon";
 import { itemsArmorOptions } from "./dataUpdateArmor";
 import classes from "../AddItem/AddItem.module.css";
+import { itemsShieldOptions } from "./dataUpdateShield";
 
 interface Props {
   data: ItemResponse;
@@ -36,7 +37,11 @@ export const UpdateItem = ({ data }: Props) => {
       : []
   );
   const itemsOptions =
-    type === ItemTypes.weapon ? itemsWeaponOptions : itemsArmorOptions;
+    type === ItemTypes.weapon
+      ? itemsWeaponOptions
+      : type === ItemTypes.armor
+      ? itemsArmorOptions
+      : itemsShieldOptions;
 
   return (
     <div className={classes.AddItem}>

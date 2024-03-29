@@ -24,7 +24,7 @@ export const itemsOptions: Fields<ItemAddFormRequest> = [
   {
     type: "field",
     name: "short",
-    placeholder: "Short",
+    placeholder: "Szort",
   },
   {
     type: "toggleButton",

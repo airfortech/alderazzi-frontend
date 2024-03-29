@@ -4,7 +4,7 @@ import classes from "../ItemsView.module.css";
 
 export const ArmorsView = (props: ArmorsListOption) => {
   return (
-    <div key={props.path} className={classes.ItemsWeaponsView}>
+    <div key={props.path} className={classes.ItemsView}>
       <ArmorsList {...props} />
     </div>
   );

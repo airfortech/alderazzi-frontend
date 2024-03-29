@@ -1,5 +1,6 @@
 import {
   ItemAddArmorRequest,
+  ItemAddRequest,
   ItemAddWeaponRequest,
   ItemUpdateRequest,
 } from "../types/Item";
@@ -9,6 +10,7 @@ import { useAtom } from "jotai";
 import { queryClient } from "../api/queryClient";
 import {
   addArmor,
+  addShield,
   addWeapon,
   deleteItem,
   getItems,
@@ -67,12 +69,23 @@ export const useItemsMutations = () => {
     }
   );
 
+  const { mutate: addShieldMutation, isLoading: isAddingShield } = useMutation(
+    (shield: ItemAddRequest) => addShield(shield),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries([QueryKey.items]);
+      },
+    }
+  );
+
   return {
     deleteItemMutation,
     addWeaponMutation,
     isAddingWeapon,
     addArmorMutation,
     isAddingArmor,
+    addShieldMutation,
+    isAddingShield,
     updateItemMutation,
     isUpdatingItem,
     updateItemSuccess,

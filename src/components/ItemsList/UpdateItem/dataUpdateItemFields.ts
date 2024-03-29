@@ -63,7 +63,7 @@ export const itemsOptions = (
     {
       type: "field",
       name: "short",
-      placeholder: "Short",
+      placeholder: "Szort",
       defaultValue: short,
     },
     {
