@@ -2,14 +2,14 @@ import { UserRole } from "../../types/UserRole";
 
 export const itemsLinks = [
   {
-    url: "/przedmioty/bronie",
-    match: "/przedmioty/bronie",
+    url: "/przedmioty/bronie/miecze",
+    match: "/przedmioty/bronie/miecze",
     name: "Bronie",
     allowedRoles: [UserRole.caporegime, UserRole.consigliore, UserRole.soldato],
   },
   {
-    url: "/przedmioty/zbroje",
-    match: "/przedmioty/zbroje",
+    url: "/przedmioty/zbroje/ciezkie",
+    match: "/przedmioty/zbroje/ciezkie",
     name: "Zbroje",
     allowedRoles: [UserRole.caporegime, UserRole.consigliore, UserRole.soldato],
   },

@@ -22,10 +22,6 @@ export const KeyGiverDropsStatsView = () => {
       dayjs.tz.guess()
     );
 
-  useEffect(() => {
-    console.table(keyGiverDropsStats);
-  }, [keyGiverDropsStats]);
-
   return (
     <div className={classes.KeyGiverDropsStatsView}>
       <MobileWrapper>

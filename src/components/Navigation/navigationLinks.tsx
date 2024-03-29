@@ -15,7 +15,7 @@ export const links = [
     allowedRoles: [UserRole.caporegime, UserRole.consigliore, UserRole.soldato],
   },
   {
-    url: "/dropy",
+    url: "/dropy/najblisze-respawny",
     name: "Dropy",
     icon: <Icon icon="chest" size="normal" />,
     allowedRoles: [UserRole.caporegime, UserRole.consigliore, UserRole.soldato],
@@ -33,7 +33,7 @@ export const links = [
     allowedRoles: [UserRole.caporegime, UserRole.consigliore, UserRole.soldato],
   },
   {
-    url: "/przedmioty",
+    url: "/przedmioty/bronie/miecze",
     name: "Przemioty",
     icon: <Icon icon="sword" size="normal" />,
     allowedRoles: [UserRole.caporegime, UserRole.consigliore, UserRole.soldato],

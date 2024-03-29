@@ -1,11 +1,9 @@
 import { QueryKey } from "./types/QueryKey";
-
 import { useEffect } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { plPL as corePlPl } from "@mui/material/locale";
 import { plPL } from "@mui/x-date-pickers/locales";
-
 import { Background } from "./components/Background/Background";
 import { Header } from "./components/Header/Header";
 import { Navigation } from "./components/Navigation/Navigation";

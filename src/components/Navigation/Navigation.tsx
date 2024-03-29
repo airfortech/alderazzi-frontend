@@ -28,7 +28,7 @@ export const Navigation = () => {
         className={classes.tabs}
         textColor="inherit"
       >
-        {availableLinks.map(({ url, name, icon, allowedRoles }) => (
+        {availableLinks.map(({ url, name, icon }) => (
           <Tab
             value={url}
             key={name}
