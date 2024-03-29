@@ -5,6 +5,7 @@ import {
   ItemAddArmorRequest,
   ItemAddWeaponRequest,
   ItemResponse,
+  ItemUpdateRequest,
 } from "../types/Item";
 
 export interface GetItems extends ApiResponse {
@@ -32,6 +33,11 @@ export const addArmor = async (armor: ItemAddArmorRequest) => {
 //   const { data } = await api.patch<ApiResponse>("/keys/" + id, key);
 //   return data;
 // };
+
+export const updateItem = async (id: string, item: ItemUpdateRequest) => {
+  const { data } = await api.patch<ApiResponse>("/items/" + id, item);
+  return data;
+};
 
 export const deleteItem = async (id: string) => {
   const { data } = await api.delete<ApiResponse>("/items/" + id);

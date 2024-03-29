@@ -22,9 +22,7 @@ export const WeaponsList = ({
   tableTitle,
 }: WeaponsListOption) => {
   const { value, Select } = useSelect(weaponsOptions[0].value);
-  const { data, isLoading, deleteItemMutation } = useItems(
-    `weapon&weaponType=${weaponType}`
-  );
+  const { data, isLoading } = useItems(`weapon&weaponType=${weaponType}`);
   const [openAddItem, setOpenAddItem] = useState(false);
 
   const filteredData = data?.filter(item => {
@@ -96,10 +94,10 @@ export const WeaponsList = ({
           titleTag="h2"
           initialSorting={{ field: "short", order: "asc" }}
           stickyHeaderPosition={150}
-          expandableRowsComponent={itemsExpandableRow(
-            ["weaponSum", "weaponAverage"],
-            deleteItemMutation
-          )}
+          expandableRowsComponent={itemsExpandableRow([
+            "weaponSum",
+            "weaponAverage",
+          ])}
           expandableRowsComponentPaddingsDisabled
           stickyColumn="first column"
           horizontalScroll="top"

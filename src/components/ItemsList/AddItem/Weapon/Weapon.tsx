@@ -1,6 +1,6 @@
 import { ItemAddWeaponRequest } from "../../../../types/Item";
 import { ItemWeapon } from "../../../../types/ItemWeapon";
-import { useItems } from "../../../../hooks/useItems";
+import { useItemsMutations, useItems } from "../../../../hooks/useItems";
 import { Form } from "../../../Form/Form";
 import { formDataValidator } from "../../../../utils/formDataValidatr";
 import { items } from "./dataWeapon";
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export const Weapon = ({ weaponType, params }: Props) => {
-  const { addWeaponMutation, isAddingWeapon } = useItems(params);
+  const { addWeaponMutation, isAddingWeapon } = useItemsMutations();
 
   const submit = (formData: ItemAddWeaponRequest) => {
     const data: ItemAddWeaponRequest = { ...formData, weaponType };

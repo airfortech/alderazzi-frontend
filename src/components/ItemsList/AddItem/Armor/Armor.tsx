@@ -1,12 +1,11 @@
 import { ItemAddArmorRequest } from "../../../../types/Item";
-import { ItemWeapon } from "../../../../types/ItemWeapon";
-import { useItems } from "../../../../hooks/useItems";
+import { ItemArmorClass } from "../../../../types/ItemArmorClass";
+import { useItemsMutations, useItems } from "../../../../hooks/useItems";
 import { Form } from "../../../Form/Form";
+import { formDataValidator } from "../../../../utils/formDataValidatr";
 import { items } from "./dataArmor";
 import { validationSchema } from "../dataAddItemValidationOptions";
 import classes from "../AddItem.module.css";
-import { ItemArmorClass } from "../../../../types/ItemArmorClass";
-import { formDataValidator } from "../../../../utils/formDataValidatr";
 
 interface Props {
   armorClass: ItemArmorClass;
@@ -14,7 +13,7 @@ interface Props {
 }
 
 export const Armor = ({ armorClass, params }: Props) => {
-  const { addArmorMutation, isAddingArmor } = useItems(params);
+  const { addArmorMutation, isAddingArmor } = useItemsMutations();
 
   const submit = (formData: ItemAddArmorRequest) => {
     const data: ItemAddArmorRequest = { ...formData, armorClass };

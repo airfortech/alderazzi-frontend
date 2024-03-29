@@ -1,11 +1,10 @@
-import { ApiResponse } from "../../types/responseMessages";
 import { ItemResponse } from "../../types/Item";
 import { itemDurabilityRealTimes } from "../../types/ItemDurability";
 import { ExpandableRowsComponent } from "../../types/Table";
-import { UseMutationResult } from "@tanstack/react-query";
 import { Icon } from "../Icon/Icon";
 import { TableRowDetails } from "../TableRowDetails/TableRowDetails";
 import { DeleteItemCell } from "./DeleteItemCell/DeleteItemCell";
+import { UpdateItemCell } from "./UpdateItemCell/UpdateItemCell";
 import classes from "./ItemsList.module.css";
 
 type ExpandableRowOption =
@@ -14,10 +13,7 @@ type ExpandableRowOption =
   | "weaponAverage"
   | "weaponSum";
 
-export const itemsExpandableRow = (
-  options: ExpandableRowOption[],
-  deleteItemMutation?: UseMutationResult<ApiResponse, unknown, string, unknown>
-) => {
+export const itemsExpandableRow = (options: ExpandableRowOption[]) => {
   const expandableRow: ExpandableRowsComponent<ItemResponse> = data => {
     const {
       id,
@@ -112,12 +108,8 @@ export const itemsExpandableRow = (
           },
         ]}
         actions={[
-          //  <UpdateEnemyCell id={id} />,
-          <DeleteItemCell
-            id={id}
-            short={short}
-            deleteItemMutation={deleteItemMutation}
-          />,
+          <UpdateItemCell data={data} />,
+          <DeleteItemCell id={id} short={short} />,
         ]}
       />
     );

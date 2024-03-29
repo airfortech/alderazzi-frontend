@@ -22,9 +22,7 @@ export const ArmorsList = ({
   tableTitle,
 }: ArmorsListOption) => {
   const { value, Select } = useSelect(armorsOptions[0].value);
-  const { data, isLoading, deleteItemMutation } = useItems(
-    `armor&armorClass=${armorClass}`
-  );
+  const { data, isLoading } = useItems(`armor&armorClass=${armorClass}`);
   const [openAddItem, setOpenAddItem] = useState(false);
 
   const filteredData = data?.filter(item => {
@@ -97,10 +95,10 @@ export const ArmorsList = ({
           titleTag="h2"
           initialSorting={{ field: "short", order: "asc" }}
           stickyHeaderPosition={150}
-          expandableRowsComponent={itemsExpandableRow(
-            ["armorSum", "armorAverage"],
-            deleteItemMutation
-          )}
+          expandableRowsComponent={itemsExpandableRow([
+            "armorSum",
+            "armorAverage",
+          ])}
           expandableRowsComponentPaddingsDisabled
           stickyColumn="first column"
           horizontalScroll="top"

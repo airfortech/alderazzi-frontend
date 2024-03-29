@@ -63,7 +63,7 @@ export const validationSchema = (
       .min(1, "Wartość minimalna to 1")
       .max(1000000, "Wartość maksymalna to 1 000 000"),
     specialBonus: yup.string().max(200, "Maksymalnie 200 znaków)"),
-    occurrence: yup.string().max(200, "Maksymalnie 200 znaków)"),
+    occurrence: yup.string().max(200, "Maksymalnie 200 znaków)").nullable(),
     cost: EmptyNumber()
       .min(0, "Wartość minimalna to 0")
       .max(10000, "Wartość maksymalna to 10 000"),

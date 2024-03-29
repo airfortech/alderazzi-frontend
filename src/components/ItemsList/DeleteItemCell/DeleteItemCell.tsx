@@ -3,6 +3,7 @@ import { Prompt } from "../../Prompt/Prompt";
 import { Button } from "../../Button/Button";
 import { UseMutationResult } from "@tanstack/react-query";
 import { ApiResponse } from "../../../types/responseMessages";
+import { useItemsMutations } from "../../../hooks/useItems";
 
 interface Props {
   id: string;
@@ -10,8 +11,9 @@ interface Props {
   deleteItemMutation?: UseMutationResult<ApiResponse, unknown, string, unknown>;
 }
 
-export const DeleteItemCell = ({ id, short, deleteItemMutation }: Props) => {
+export const DeleteItemCell = ({ id, short }: Props) => {
   const [open, setOpen] = useState(false);
+  const { deleteItemMutation } = useItemsMutations();
 
   const handleDeleteItem = (itemId: string) => {
     if (!deleteItemMutation) return;
