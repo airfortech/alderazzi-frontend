@@ -10,6 +10,7 @@ import { useAtom } from "jotai";
 import { queryClient } from "../api/queryClient";
 import {
   addArmor,
+  addOther,
   addShield,
   addWeapon,
   deleteItem,
@@ -17,6 +18,7 @@ import {
   updateItem,
 } from "../api/items";
 import { updateItemSuccessGlobal } from "../gobalStates/reactQuery";
+import { ItemTypes } from "../types/ItemTypes";
 
 export const useItems = (params: string) => {
   const query = useQuery([QueryKey.items, params], () => getItems(params), {
@@ -78,6 +80,16 @@ export const useItemsMutations = () => {
     }
   );
 
+  const { mutate: addOtherMutation, isLoading: isAddingOther } = useMutation(
+    ([other, endpoint]: [ItemAddRequest, keyof typeof ItemTypes]) =>
+      addOther(other, endpoint),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries([QueryKey.items]);
+      },
+    }
+  );
+
   return {
     deleteItemMutation,
     addWeaponMutation,
@@ -86,6 +98,8 @@ export const useItemsMutations = () => {
     isAddingArmor,
     addShieldMutation,
     isAddingShield,
+    addOtherMutation,
+    isAddingOther,
     updateItemMutation,
     isUpdatingItem,
     updateItemSuccess,

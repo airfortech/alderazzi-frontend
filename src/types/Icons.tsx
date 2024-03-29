@@ -7,6 +7,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import DescriptionIcon from "@mui/icons-material/Description";
 import { GiArmoredPants } from "react-icons/gi";
 import { GiBattleAxe } from "react-icons/gi";
+import { GiBigDiamondRing } from "react-icons/gi";
 import { GiBreastplate } from "react-icons/gi";
 import { GiBrutalHelm } from "react-icons/gi";
 import { GiChainMail } from "react-icons/gi";
@@ -86,6 +87,7 @@ export type Icon =
   | "plate"
   | "potion"
   | "purse"
+  | "ring"
   | "settings"
   | "shield"
   | "skeletonKey"
@@ -134,6 +136,7 @@ export const iconComponentDefs = (iconStyle: CSSProperties) => {
     plate: <GiBreastplate style={iconStyle} />,
     potion: <GiStandingPotion style={iconStyle} />,
     purse: <GiShinyPurse style={iconStyle} />,
+    ring: <GiBigDiamondRing style={iconStyle} />,
     settings: <MdSettings style={iconStyle} />,
     shield: <GiFireShield style={iconStyle} />,
     skeletonKey: <GiSkeletonKey style={iconStyle} />,

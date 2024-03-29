@@ -17,6 +17,8 @@ import { RequireAuth } from "../RequireAuth/RequireAuth";
 import { weaponsListOptions } from "../ItemsList/WeaponsList/dataWeaponsList";
 import { armorsListOptions } from "../ItemsList/ArmorsList/dataArmorsList";
 import { ShieldsView } from "../../views/ItemsView/ShieldsView/ShieldsView";
+import { othersListOptions } from "../ItemsList/OthersList/dataOthersList";
+import { OthersView } from "../../views/ItemsView/OthersView/OthersView";
 
 export const Routes = () => {
   return (
@@ -71,6 +73,13 @@ export const Routes = () => {
             key={options.path}
             path={`/przedmioty/zbroje/${options.path}`}
             element={<ArmorsView {...options} />}
+          />
+        ))}
+        {othersListOptions.map(options => (
+          <Route
+            key={options.path}
+            path={`/przedmioty/${options.path}`}
+            element={<OthersView {...options} />}
           />
         ))}
         <Route path="/przedmioty/tarcze" element={<ShieldsView />} />

@@ -83,7 +83,7 @@ export const itemsExpandableRow = (options: ExpandableRowOption[]) => {
               })`,
           },
           {
-            title: "Specjalny bonus",
+            title: "Specjalne właściwości",
             value: specialBonus,
           },
           {

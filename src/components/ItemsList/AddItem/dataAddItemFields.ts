@@ -1,7 +1,6 @@
 import { Fields } from "../../../types/Form";
 import { ItemAddFormRequest } from "../../../types/Item";
 import { ItemDurability } from "../../../types/ItemDurability";
-import { ItemWeapon } from "../../../types/ItemWeapon";
 import { ItemWeaponHand } from "../../../types/ItemWeaponHand";
 
 const options = [
