@@ -26,6 +26,7 @@ const submenuClasses = (level: 1 | 2 | 3) => {
 
 export const Submenu = ({ links, level, style }: Props) => {
   const { auth } = useAuth();
+  const { pathname } = useLocation();
 
   const availableLinks = links.filter(({ allowedRoles }) =>
     isRoleAllowed(allowedRoles, auth?.role)
