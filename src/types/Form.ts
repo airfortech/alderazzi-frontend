@@ -21,6 +21,7 @@ export type Field<T> =
   | IField<T>
   | ITextArea<T>
   | IDateTime<T>
+  | IToggleButton<T>
   | ISubmit;
 
 export type FieldForSubmit<T> = Exclude<Field<T>, ISubmit>;
@@ -90,6 +91,16 @@ export interface IDateTime<T> {
   hideToolbar?: boolean;
   showIcon?: boolean;
   iconColor?: IconColor;
+}
+
+export interface IToggleButton<T> {
+  type: "toggleButton";
+  name: keyof T;
+  placeholder?: string;
+  icon?: Icon;
+  iconColor?: IconColor;
+  options: { value: string; label: string }[];
+  defaultOption?: string;
 }
 
 export interface ISubmit {

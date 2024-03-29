@@ -8,6 +8,7 @@ export enum QueryKey {
   lastkeygiverdrops = "lastkeygiverdrops",
   editablekeygiverdrops = "editablekeygiverdrops",
   keyGiverDropsStats = "keyGiverDropsStats",
+  items = "items",
   privileges = "privileges",
   settings = "settings",
   backups = "backups",

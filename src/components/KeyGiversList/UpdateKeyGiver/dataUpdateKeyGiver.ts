@@ -69,7 +69,7 @@ export const items = (
   );
   return [
     { type: "field", name: "name", placeholder: "Nazwa", defaultValue: name },
-    { type: "field", name: "short", placeholder: "Short", defaultValue: short },
+    { type: "field", name: "short", placeholder: "Szort", defaultValue: short },
     {
       type: "field",
       name: "respawnTime",

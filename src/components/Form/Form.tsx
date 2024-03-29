@@ -12,6 +12,7 @@ import { TextArea } from "./TextArea/TextArea";
 import { MultiAutocomplete } from "./MultiAutocomplete/MultiAutocomplete";
 import clsx from "clsx";
 import classes from "./Form.module.css";
+import { ToggleButton } from "./ToggleButton/ToggleButton";
 
 const labelClasses = (align: "left" | "center" | "right") =>
   clsx(
@@ -170,6 +171,20 @@ export const Form = <T,>({
                 maxDate={item.maxDate}
                 hideToolbar={item.hideToolbar}
                 showIcon={item.showIcon}
+                iconColor={item.iconColor}
+                key={item.name as Key}
+              />
+            );
+          else if (item.type === "toggleButton")
+            return (
+              <ToggleButton
+                control={control}
+                errors={errors}
+                name={item.name}
+                options={item.options}
+                defaultOption={item.defaultOption}
+                placeholder={item.placeholder}
+                icon={item.icon}
                 iconColor={item.iconColor}
                 key={item.name as Key}
               />

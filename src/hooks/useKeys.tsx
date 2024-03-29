@@ -1,9 +1,9 @@
 import { KeyAddRequest, KeyUpdateRequest } from "../types/Key";
 import { QueryKey } from "../types/QueryKey";
+import { useAtom } from "jotai";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { addKey, deleteKey, getKeys, updateKey } from "../api/keys";
 import { queryClient } from "../api/queryClient";
-import { useAtom } from "jotai";
 import { updateKeySuccessGlobal } from "../gobalStates/reactQuery";
 
 export const useKeys = () => {
