@@ -24,6 +24,12 @@ export const itemColumns = (
       },
     },
     {
+      selector: "shieldParry",
+      header: "Par.",
+      isSortable: true,
+      align: "right",
+    },
+    {
       selector: "armorSlashingRes",
       header: "C",
       isSortable: true,

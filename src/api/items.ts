@@ -3,6 +3,7 @@ import { KeyAddRequest, KeyResponse, KeyUpdateRequest } from "../types/Key";
 import { api } from "./api";
 import {
   ItemAddArmorRequest,
+  ItemAddShieldRequest,
   ItemAddWeaponRequest,
   ItemResponse,
   ItemUpdateRequest,
@@ -26,6 +27,11 @@ export const addWeapon = async (weapon: ItemAddWeaponRequest) => {
 
 export const addArmor = async (armor: ItemAddArmorRequest) => {
   const { data } = await api.post<ApiResponse>("/items/armor", armor);
+  return data;
+};
+
+export const addShield = async (shield: ItemAddShieldRequest) => {
+  const { data } = await api.post<ApiResponse>("/items/shield", shield);
   return data;
 };
 
