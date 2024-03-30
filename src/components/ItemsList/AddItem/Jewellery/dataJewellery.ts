@@ -1,5 +1,5 @@
 import { Fields } from "../../../../types/Form";
-import { ItemAddShieldRequest } from "../../../../types/Item";
+import { ItemAddRequest } from "../../../../types/Item";
 import { itemsOptions } from "../dataAddItemFields";
 
 const properties = [
@@ -15,13 +15,9 @@ const properties = [
   "vendorCost",
   "description",
   "comment",
-  "armorPiercingRes",
-  "armorSlashingRes",
-  "armorBluntRes",
-  "shieldParry",
   "slot",
 ];
 
-export const items: Fields<ItemAddShieldRequest> = itemsOptions.filter(
+export const items: Fields<ItemAddRequest> = itemsOptions.filter(
   field => field.type === "submit" || properties.includes(field.name)
 );

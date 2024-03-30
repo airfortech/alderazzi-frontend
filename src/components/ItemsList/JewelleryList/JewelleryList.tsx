@@ -1,32 +1,24 @@
-import { ArmorsListOption } from "../../../types/ItemsList";
-import { ItemArmorClass } from "../../../types/ItemArmorClass";
 import { useEffect, useState } from "react";
 import { useItems } from "../../../hooks/useItems";
 import { useSelect } from "../../Inputs/Select/useSelect";
 import { Modal } from "../../Modal/Modal";
-import { Armor } from "../AddItem/Armor/Armor";
 import { Table } from "../../Table/Table";
 import { Button } from "../../Button/Button";
 import { Loader } from "../../Loader/Loader";
 import { MobileWrapper } from "../../MobileWrapper/MobileWrapper";
-import { armorsOptions } from "./dataArmorsList";
+import { Jewellery } from "../AddItem/Jewellery/Jewellery";
+import { othersOptions } from "./dataJewelleryList";
 import { itemColumns } from "../dataItemColumnsList";
 import { itemsExpandableRow } from "../dataItemsExpandableRow";
 import classes from "../ItemsList.module.css";
 
-export const ArmorsList = ({
-  armorClass,
-  selectPlaceholder,
-  icon,
-  buttonLabel,
-  tableTitle,
-}: ArmorsListOption) => {
-  const { value, Select } = useSelect(armorsOptions[0].value);
-  const { data, isLoading } = useItems(`armor&armorClass=${armorClass}`);
+export const JewelleryList = () => {
+  const { value, Select } = useSelect(othersOptions[0].value);
+  const { data, isLoading } = useItems("jewellery");
   const [openAddItem, setOpenAddItem] = useState(false);
 
   const filteredData = data?.filter(item => {
-    const searchObject = armorsOptions.find(
+    const searchObject = othersOptions.find(
       option => option.value === value
     )?.searchOptions;
     const isMagic = searchObject?.isMagic;
@@ -44,9 +36,9 @@ export const ArmorsList = ({
       <MobileWrapper>
         <div className={classes.actions}>
           <Select
-            placeholder={selectPlaceholder}
-            options={armorsOptions}
-            icon={icon}
+            placeholder="Rodzaj biżuterii:"
+            options={othersOptions}
+            icon="gem2"
             className={classes.select}
           />
           <Button
@@ -54,19 +46,16 @@ export const ArmorsList = ({
             color="info"
             onClick={() => setOpenAddItem(true)}
           >
-            {buttonLabel}
+            Dodaj biżuterię
           </Button>
         </div>
         <Modal
-          title={buttonLabel + ":"}
+          title="Dodaj biżuterię:"
           open={openAddItem}
           onClose={() => setOpenAddItem(false)}
           closeOnBackdropClick={false}
         >
-          <Armor
-            armorClass={ItemArmorClass[armorClass]}
-            params={`armor&armorClass=${armorClass}`}
-          />
+          <Jewellery />
         </Modal>
       </MobileWrapper>
       {isLoading ? (
@@ -75,31 +64,14 @@ export const ArmorsList = ({
         <Table
           data={filteredData || []}
           columns={itemColumns(
-            [
-              "short",
-              "armorSlashingRes",
-              "armorPiercingRes",
-              "armorBluntRes",
-              "vendorCost",
-              "armorHead",
-              "armorChest",
-              "armorLegs",
-              "armorLeftArm",
-              "armorRightArm",
-              "armorHands",
-              "armorFoots",
-              "slot",
-            ],
-            ["name", "specialBonus", "description"]
+            ["short", "specialBonus", "vendorCost", "slot"],
+            ["name", "description"]
           )}
-          title={tableTitle}
+          title="Biżuteria"
           titleTag="h2"
           initialSorting={{ field: "short", order: "asc" }}
           stickyHeaderPosition={150}
-          expandableRowsComponent={itemsExpandableRow([
-            "armorSum",
-            "armorAverage",
-          ])}
+          expandableRowsComponent={itemsExpandableRow([])}
           expandableRowsComponentPaddingsDisabled
           stickyColumn="first column"
           horizontalScroll="top"

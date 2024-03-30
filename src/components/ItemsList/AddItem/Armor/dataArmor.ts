@@ -25,6 +25,7 @@ const properties = [
   "armorPiercingRes",
   "armorSlashingRes",
   "armorBluntRes",
+  "slot",
 ];
 
 export const items: Fields<ItemAddArmorRequest> = itemsOptions.filter(

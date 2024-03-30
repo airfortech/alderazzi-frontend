@@ -1,4 +1,6 @@
 export enum ItemDurability {
+  "niezniszczalny" = "niezniszczalny",
+  "zuzywalny" = "zuzywalny",
   "naprawde dlugo" = "naprawde dlugo",
   "bardzo dlugo" = "bardzo dlugo",
   "dlugo" = "dlugo",
@@ -10,6 +12,8 @@ export enum ItemDurability {
 }
 
 export const itemDurabilityRealTimes = {
+  [ItemDurability["niezniszczalny"]]: "",
+  [ItemDurability["zuzywalny"]]: "póki się nie zniszczy",
   [ItemDurability["bardzo krotko"]]: "1h",
   [ItemDurability["krotko"]]: "1h-6h",
   [ItemDurability["raczej krotko"]]: "6h-1d",

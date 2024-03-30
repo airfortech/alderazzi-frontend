@@ -21,6 +21,7 @@ const properties = [
   "weaponEffectiveness",
   "weaponBalance",
   "isWeaponSilver",
+  "slot",
 ];
 
 export const itemsWeaponOptions = (defaultValues: ItemResponse) =>
