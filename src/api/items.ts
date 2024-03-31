@@ -7,6 +7,7 @@ import {
   ItemAddShieldRequest,
   ItemAddWeaponRequest,
   ItemResponse,
+  ItemShortResponse,
   ItemUpdateRequest,
 } from "../types/Item";
 import { ItemTypes } from "../types/ItemTypes";
@@ -17,8 +18,19 @@ export interface GetItems extends ApiResponse {
   };
 }
 
+export interface GetMagicItems extends ApiResponse {
+  data: {
+    items: ItemShortResponse[];
+  };
+}
+
 export const getItems = async (params: string) => {
   const { data } = await api.get<GetItems>("/items?type=" + params);
+  return data;
+};
+
+export const getMagicItems = async () => {
+  const { data } = await api.get<GetMagicItems>("/items/magic");
   return data;
 };
 

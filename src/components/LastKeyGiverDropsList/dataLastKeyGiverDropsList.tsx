@@ -106,22 +106,35 @@ const sortNextRespawn: SortFunc = (aField, bField, order) => {
 export const tableData = (
   data: KeyGiverDropResponse[]
 ): TableKeyGiverDropResponse[] =>
-  data.map(({ id, keyGiver, drop, dropDate, nextRespawnDate, createdAt }) => {
-    return {
+  data.map(
+    ({
       id,
-      keyGiverId: keyGiver.id,
-      keyGiverName: keyGiver.name,
-      keyGiverShort: keyGiver.short,
-      keyGiverDomain: keyGiver.domain,
-      keyGiverRespawnTime: keyGiver.respawnTime,
-      keyGiverLocations: JSON.stringify(keyGiver.locations),
-      dropId: drop ? drop.id : null,
-      dropName: drop ? drop.name : null,
+      keyGiver,
+      drop,
+      magicDrops,
       dropDate,
       nextRespawnDate,
       createdAt,
-    };
-  });
+    }) => {
+      return {
+        id,
+        keyGiverId: keyGiver.id,
+        keyGiverName: keyGiver.name,
+        keyGiverShort: keyGiver.short,
+        keyGiverDomain: keyGiver.domain,
+        keyGiverRespawnTime: keyGiver.respawnTime,
+        keyGiverLocations: JSON.stringify(keyGiver.locations),
+        dropId: drop ? drop.id : null,
+        dropName: drop ? drop.name : null,
+        magicDrops: magicDrops
+          .map(({ name, short }) => (name ? `${short} (${name})` : short))
+          .join(", "),
+        dropDate,
+        nextRespawnDate,
+        createdAt,
+      };
+    }
+  );
 
 export const columns: Columns<TableKeyGiverDropResponse> = [
   {
@@ -158,7 +171,14 @@ export const columns: Columns<TableKeyGiverDropResponse> = [
   },
   {
     selector: "dropName",
-    header: "Drop",
+    header: "Klucz",
+    isSortable: true,
+    isFilterable: true,
+    align: "right",
+  },
+  {
+    selector: "magicDrops",
+    header: "Magiki",
     isSortable: true,
     isFilterable: true,
     align: "right",

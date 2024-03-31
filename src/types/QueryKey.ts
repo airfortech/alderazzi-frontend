@@ -9,6 +9,7 @@ export enum QueryKey {
   editablekeygiverdrops = "editablekeygiverdrops",
   keyGiverDropsStats = "keyGiverDropsStats",
   items = "items",
+  magicItems = "magicItems",
   privileges = "privileges",
   settings = "settings",
   backups = "backups",

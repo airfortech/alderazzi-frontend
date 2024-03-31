@@ -27,6 +27,7 @@ export const useBackups = () => {
 
   const query = useQuery([QueryKey.backups], getBackups, {
     select: data => data.data.backups,
+    refetchOnMount: false,
   });
 
   const { mutate: createBackupMutation, isLoading: isCreatingBackup } =
