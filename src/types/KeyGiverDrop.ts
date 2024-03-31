@@ -72,7 +72,10 @@ export interface KeyGiverDropUpdateRequest
 
 export interface KeyGiverDropsStats {
   keyGiversDone: number;
-  drops: number;
+  keys: number;
+  magicDrops: number;
+  keyGiversWithMagicDrops: number;
+  keyGiversWithAnyDrops: number;
   date: string;
 }
 

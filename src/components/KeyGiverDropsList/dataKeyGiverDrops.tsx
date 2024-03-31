@@ -127,7 +127,7 @@ export const tableData = (
         dropId: drop ? drop.id : null,
         dropName: drop ? drop.name : null,
         magicDrops: magicDrops
-          .map(({ name, short }) => (name ? `${short} (${name})` : short))
+          ?.map(({ name, short }) => (name ? `${short} (${name})` : short))
           .join(", "),
         dropDate,
         nextRespawnDate,

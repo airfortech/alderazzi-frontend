@@ -38,7 +38,14 @@ export const KeyGiverDropsStatsView = () => {
           <KeyGiverDropsStatsInfo keyGiverDropsStats={keyGiverDropsStats} />
           <BarChart
             keyGiverDropsStats={keyGiverDropsStats as unknown as BarDatum[]}
-            left={110}
+            left={
+              [
+                KeyGiverDropsStatsTimeOptions.last2months,
+                KeyGiverDropsStatsTimeOptions.last6months,
+              ].includes(value as KeyGiverDropsStatsTimeOptions)
+                ? 130
+                : 110
+            }
           />
         </>
       )}
