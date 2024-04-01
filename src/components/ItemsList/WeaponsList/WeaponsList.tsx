@@ -87,6 +87,7 @@ export const WeaponsList = ({
               "weaponBluntDamage",
               "weaponHand",
               "vendorCost",
+              "slot",
             ],
             ["name", "specialBonus", "description"]
           )}

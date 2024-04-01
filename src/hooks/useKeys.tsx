@@ -13,6 +13,7 @@ export const useKeys = () => {
 
   const query = useQuery([QueryKey.keys], getKeys, {
     select: data => data.data.keys,
+    refetchOnMount: false,
   });
 
   const deleteKeyMutation = useMutation(deleteKey, {

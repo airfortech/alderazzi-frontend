@@ -8,11 +8,13 @@ import { useKeys } from "../../../hooks/useKeys";
 import { usePrivileges } from "../../../hooks/usePrivileges";
 import { useMemo } from "react";
 import dayjs from "dayjs";
+import { useMagicItems } from "../../../hooks/useMagicItems";
 
 export const AddKeyGiverDrop = () => {
   const { addKeyGiverDropMutation, isAddingKeyGiverDrop } = useKeyGiverDrops();
   const { data: keyGivers } = useKeyGivers();
   const { data: keys } = useKeys();
+  const { data: magicItems } = useMagicItems();
   const { data } = usePrivileges();
 
   const submit = (formData: KeyGiverDropAddRequest) => {
@@ -24,6 +26,7 @@ export const AddKeyGiverDrop = () => {
 
   const keyGiversData = useMemo(() => keyGivers, [keyGivers]);
   const keysData = useMemo(() => keys, [keys]);
+  const magicItemsData = useMemo(() => magicItems, [magicItems]) || [];
 
   if (!keyGiversData) return null;
   if (!keysData) return null;
@@ -32,7 +35,12 @@ export const AddKeyGiverDrop = () => {
   return (
     <div className={classes.AddKeyGiverDrop}>
       <Form<KeyGiverDropAddRequest>
-        items={items(keyGiversData, keysData, data.config.keyGiverDrops)}
+        items={items(
+          keyGiversData,
+          keysData,
+          magicItemsData,
+          data.config.keyGiverDrops
+        )}
         validationSchema={validationSchema}
         submit={submit}
         isLoading={isAddingKeyGiverDrop}

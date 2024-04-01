@@ -147,6 +147,14 @@ export const itemColumns = (
       align: "right",
     },
     {
+      selector: "slot",
+      header: "Slot",
+      isSortable: true,
+      align: "right",
+      cell: value =>
+        value && <Icon icon="checkmark" color="success" size="sm" />,
+    },
+    {
       selector: "specialBonus",
       header: "Spec. właściwości",
       isFilterable: true,

@@ -9,6 +9,7 @@ import { itemsArmorOptions } from "./dataUpdateArmor";
 import { itemsShieldOptions } from "./dataUpdateShield";
 import { itemsOtherOptions } from "./dataUpdateOther";
 import classes from "../AddItem/AddItem.module.css";
+import { itemsJewelleryOptions } from "./dataUpdateJewellery";
 
 interface Props {
   data: ItemResponse;
@@ -45,6 +46,8 @@ export const UpdateItem = ({ data }: Props) => {
       ? itemsArmorOptions
       : type === ItemTypes.shield
       ? itemsShieldOptions
+      : type === ItemTypes.jewellery
+      ? itemsJewelleryOptions
       : itemsOtherOptions;
 
   return (

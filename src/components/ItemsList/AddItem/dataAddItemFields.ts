@@ -58,6 +58,13 @@ export const itemsOptions: Fields<ItemAddFormRequest> = [
     defaultOption: "null",
   },
   {
+    type: "toggleButton",
+    name: "slot",
+    placeholder: "Slot",
+    options,
+    defaultOption: "null",
+  },
+  {
     type: "select",
     name: "weaponHand",
     placeholder: "Chwyt",

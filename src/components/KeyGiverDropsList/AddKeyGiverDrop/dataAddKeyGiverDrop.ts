@@ -4,6 +4,7 @@ import { KeyGiverResponse } from "../../../types/KeyGiver";
 import { KeyResponse } from "../../../types/Key";
 import dayjs from "dayjs";
 import * as yup from "yup";
+import { ItemShortResponse } from "../../../types/Item";
 
 export const validationSchema = yup.object().shape({
   keyGiver: yup
@@ -16,6 +17,7 @@ export const validationSchema = yup.object().shape({
 export const items = (
   keyGivers: KeyGiverResponse[],
   keys: KeyResponse[],
+  magicItems: ItemShortResponse[],
   config: {
     maxAddTime: number;
   }
@@ -32,6 +34,12 @@ export const items = (
       value: id,
     };
   });
+  const magicItemsOptions = magicItems.map(({ id, name, short }) => {
+    return {
+      label: name ? `${short} (${name})` : short,
+      value: id,
+    };
+  });
   return [
     {
       type: "autocomplete",
@@ -44,6 +52,12 @@ export const items = (
       name: "drop",
       placeholder: "Klucz",
       options: keysOptions,
+    },
+    {
+      type: "multiautocomplete",
+      name: "magicDrops",
+      placeholder: "Magiki",
+      options: magicItemsOptions,
     },
     {
       type: "datetime",

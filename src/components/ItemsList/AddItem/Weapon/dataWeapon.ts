@@ -22,6 +22,7 @@ const properties = [
   "weaponEffectiveness",
   "weaponBalance",
   "isWeaponSilver",
+  "slot",
 ];
 
 export const items: Fields<ItemAddWeaponRequest> = itemsOptions.filter(

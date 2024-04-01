@@ -14,20 +14,10 @@ const properties = [
   "vendorCost",
   "description",
   "comment",
-  "armorClass",
-  "armorHead",
-  "armorLeftArm",
-  "armorRightArm",
-  "armorChest",
-  "armorLegs",
-  "armorFoots",
-  "armorPiercingRes",
-  "armorSlashingRes",
-  "armorBluntRes",
   "slot",
 ];
 
-export const itemsArmorOptions = (defaultValues: ItemResponse) =>
+export const itemsJewelleryOptions = (defaultValues: ItemResponse) =>
   itemsOptions(defaultValues).filter(
     field => field.type === "submit" || properties.includes(field.name)
   );

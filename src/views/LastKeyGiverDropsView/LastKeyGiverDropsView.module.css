@@ -1,5 +1,6 @@
 .LastKeyGiverDropsView {
   width: 100%;
+  max-width: 1000px !important;
   display: flex;
   flex-direction: column;
   gap: 20px;

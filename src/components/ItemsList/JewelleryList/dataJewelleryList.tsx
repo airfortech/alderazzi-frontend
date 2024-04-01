@@ -35,6 +35,16 @@ export const othersListOptions: OthersListOption[] = [
     defaultOption: 0,
   },
   {
+    type: ItemTypes.jewellery,
+    path: "bizuteria",
+    endpoint: "jewellery",
+    selectPlaceholder: "Rodzaj biżuterii:",
+    icon: "gem2",
+    buttonLabel: "Dodaj biżuterię",
+    tableTitle: "Biżuteria",
+    defaultOption: 0,
+  },
+  {
     type: ItemTypes.stone,
     path: "kamienie",
     endpoint: "stone",

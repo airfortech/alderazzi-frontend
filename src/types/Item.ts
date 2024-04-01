@@ -17,6 +17,7 @@ export interface Item {
   weaponEffectiveness: number;
   weaponBalance: number;
   isWeaponSilver: boolean;
+  slot: boolean;
   armorClass: ItemArmorClass;
   armorHead: boolean;
   armorLeftArm: boolean;
@@ -44,10 +45,17 @@ export interface ItemResponse extends Item {
   id: string;
 }
 
+export interface ItemShortResponse {
+  id: string;
+  name: string;
+  short: string;
+}
+
 export interface ItemAddRequest {
   name?: string;
   short: string;
   isMagic?: boolean;
+  slot?: boolean;
   weight?: number;
   volume?: number;
   durability?: ItemDurability;
@@ -96,6 +104,7 @@ export interface ItemUpdateRequest {
   short?: string;
   type: ItemTypes;
   isMagic?: boolean;
+  slot?: boolean;
   weight?: number;
   volume?: number;
   durability?: ItemDurability;
@@ -131,6 +140,7 @@ export interface ItemAddFormRequest {
   name?: string;
   short: string;
   isMagic?: boolean;
+  slot?: boolean;
   durability?: ItemDurability;
   isWeaponSilver?: boolean;
   weaponType?: ItemWeapon;

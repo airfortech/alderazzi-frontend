@@ -32,6 +32,7 @@ export const itemsOptions = (
     isMagic,
     durability,
     isWeaponSilver,
+    slot,
     weaponHand,
     weaponEffectiveness,
     weaponBalance,
@@ -103,6 +104,13 @@ export const itemsOptions = (
           : isWeaponSilver === false
           ? "false"
           : "null",
+    },
+    {
+      type: "toggleButton",
+      name: "slot",
+      placeholder: "Slot",
+      options,
+      defaultOption: slot === true ? "true" : slot === false ? "false" : "null",
     },
     {
       type: "select",
@@ -323,7 +331,7 @@ export const itemsOptions = (
     },
     {
       type: "submit",
-      title: "Dodaj przedmiot",
+      title: "Zaktualizuj przedmiot",
     },
   ];
 };

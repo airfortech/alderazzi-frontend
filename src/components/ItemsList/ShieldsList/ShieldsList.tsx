@@ -71,6 +71,7 @@ export const ShieldsList = () => {
               "armorBluntRes",
               "vendorCost",
               "shieldParry",
+              "slot",
             ],
             ["name", "specialBonus", "description"]
           )}

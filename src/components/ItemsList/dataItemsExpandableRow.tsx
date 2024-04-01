@@ -78,9 +78,9 @@ export const itemsExpandableRow = (options: ExpandableRowOption[]) => {
             title: "Trwałość",
             value:
               durability &&
-              `${durability} (${
+              `${durability}${itemDurabilityRealTimes[durability] && " ("}${
                 durability && itemDurabilityRealTimes[durability]
-              })`,
+              }${itemDurabilityRealTimes[durability] && ")"}`,
           },
           {
             title: "Specjalne właściwości",

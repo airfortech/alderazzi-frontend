@@ -18,6 +18,7 @@ const properties = [
   "armorSlashingRes",
   "armorBluntRes",
   "shieldParry",
+  "slot",
 ];
 
 export const itemsShieldOptions = (defaultValues: ItemResponse) =>

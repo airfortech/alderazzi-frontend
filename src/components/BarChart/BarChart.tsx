@@ -1,5 +1,4 @@
 import { BarDatum, ResponsiveBar } from "@nivo/bar";
-import { KeyGiverDropsStats } from "../../types/KeyGiverDrop";
 import classes from "./BarChart.module.css";
 
 interface Props {
@@ -22,22 +21,27 @@ export const BarChart = ({
   return (
     <div
       className={classes.BarChart}
-      style={{ height: data.length * 70 + top + "px" }}
+      style={{ height: data.length * 170 + top + "px" }}
     >
       <ResponsiveBar
         ariaLabel={title || ""}
         data={data}
-        keys={["drops", "keyGiversDone"]}
+        keys={["keys", "magicDrops", "keyGiversWithAnyDrops", "keyGiversDone"]}
         indexBy="date"
         labelSkipHeight={10}
         labelSkipWidth={1}
-        margin={{ top, right: 20, bottom: 0, left }}
+        margin={{ top, right: 20, bottom: 0, left: left }}
         groupMode="grouped"
         layout="horizontal"
         padding={0.3}
         isInteractive={false}
         valueScale={{ type: "linear" }}
-        colors={["var(--color-23-opacity-1)", "var(--color-26-opacity-1)"]}
+        colors={[
+          "var(--color-23-opacity-1)",
+          "var(--color-28-opacity-1)",
+          "var(--color-20-opacity-1)",
+          "var(--color-26-opacity-1)",
+        ]}
         borderColor="red"
         theme={{
           textColor: "var(--color-10)",
