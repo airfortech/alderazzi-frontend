@@ -19,6 +19,7 @@ import {
   updateItem,
 } from "../api/items";
 import { updateItemSuccessGlobal } from "../gobalStates/reactQuery";
+import { useMagicItems } from "./useMagicItems";
 
 export const useItems = (params: string) => {
   const query = useQuery([QueryKey.items, params], () => getItems(params), {
@@ -35,10 +36,12 @@ export const useItemsMutations = () => {
   const [updateItemSuccess, setUpdateItemSuccess] = useAtom(
     updateItemSuccessGlobal
   );
+  const { refetch } = useMagicItems();
 
   const deleteItemMutation = useMutation(deleteItem, {
     onSuccess: () => {
       queryClient.invalidateQueries([QueryKey.items]);
+      refetch();
     },
   });
 
@@ -49,6 +52,7 @@ export const useItemsMutations = () => {
       onSuccess: () => {
         setUpdateItemSuccess(prev => prev + 1);
         queryClient.invalidateQueries([QueryKey.items]);
+        refetch();
       },
     }
   );
@@ -58,6 +62,7 @@ export const useItemsMutations = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries([QueryKey.items]);
+        refetch();
       },
     }
   );
@@ -67,6 +72,7 @@ export const useItemsMutations = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries([QueryKey.items]);
+        refetch();
       },
     }
   );
@@ -76,6 +82,7 @@ export const useItemsMutations = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries([QueryKey.items]);
+        refetch();
       },
     }
   );
@@ -86,6 +93,7 @@ export const useItemsMutations = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries([QueryKey.items]);
+        refetch();
       },
     }
   );
