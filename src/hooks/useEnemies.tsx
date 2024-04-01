@@ -16,6 +16,7 @@ export const useEnemies = () => {
     getEnemies,
     {
       select: data => data.data.enemies,
+      refetchOnMount: false,
     }
     // INFO: add to notes, optional sorting after get data
     // {

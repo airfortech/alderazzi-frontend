@@ -1,0 +1,32 @@
+.ItemsWeaponsList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+}
+
+.select {
+  max-width: 250px;
+}
+
+.magic {
+  color: var(--color-32);
+  font-weight: 600;
+}
+
+.silver {
+  color: var(--color-31);
+}
+
+.cost {
+  display: inline-flex;
+  gap: 4px;
+}

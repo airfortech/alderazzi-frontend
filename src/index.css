@@ -47,13 +47,19 @@
   --color-28-opacity-1: hsl(44, 65%, 51%, 0.5);
   --color-28-opacity-2: hsl(44, 65%, 51%, 0.18);
   --color-29: #afaffd;
+  --color-30: hsl(252, 100%, 78%);
+  --color-30-opacity-1: hsl(252, 100%, 78%, 0.5);
+  --color-30-opacity-2: hsl(252, 100%, 78%, 0.18);
+  --color-31: hsl(219, 100%, 72%);
+  --color-32: hsl(20, 83%, 55%);
+  --color-33: hsl(240, 100%, 93%);
 
   --border-radius-normal: 4px;
 
   --transition-speed: 0.2s;
 
-  scrollbar-color: var(--color-26) var(--color-1);
-  scrollbar-width: thin !important;
+  /* scrollbar-color: var(--color-26) var(--color-1); */
+  /* scrollbar-width: thin !important; */
 }
 
 body {
@@ -70,16 +76,16 @@ h2 {
   font-size: 1.2em;
 }
 
-body::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 4px;
   height: 4px;
 }
 
-body::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background-color: var(--color-1);
 }
 
-body::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background-color: var(--color-26);
   outline: none;
 }

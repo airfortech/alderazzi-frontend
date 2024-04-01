@@ -7,15 +7,34 @@ interface Props {
 }
 
 export const KeyGiverDropsStatsInfo = ({ keyGiverDropsStats }: Props) => {
-  const { keyGiversDone, drops } = keyGiverDropsStats.reduce(
+  const {
+    keyGiversDone,
+    keys,
+    magicDrops,
+    keyGiversWithMagicDrops,
+    keyGiversWithAnyDrops,
+  } = keyGiverDropsStats.reduce(
     (sum, item) => {
       sum.keyGiversDone += item.keyGiversDone;
-      sum.drops += item.drops;
+      sum.keys += item.keys;
+      sum.magicDrops += item.magicDrops;
+      sum.keyGiversWithMagicDrops += item.keyGiversWithMagicDrops;
+      sum.keyGiversWithAnyDrops += item.keyGiversWithAnyDrops;
       return sum;
     },
-    { keyGiversDone: 0, drops: 0 }
+    {
+      keyGiversDone: 0,
+      keys: 0,
+      magicDrops: 0,
+      keyGiversWithMagicDrops: 0,
+      keyGiversWithAnyDrops: 0,
+    }
   );
-  const dropRate = Math.round((drops / keyGiversDone) * 100);
+  const keysDropRate = Math.round((keys / keyGiversDone) * 100) || 0;
+  const magicDropsRate =
+    Math.round((keyGiversWithMagicDrops / keyGiversDone) * 100) || 0;
+  const keyGiversWithAnyDropsRate =
+    Math.round((keyGiversWithAnyDrops / keyGiversDone) * 100) || 0;
 
   return (
     <div className={classes.KeyGiverDropsStatsInfo}>
@@ -24,8 +43,24 @@ export const KeyGiverDropsStatsInfo = ({ keyGiverDropsStats }: Props) => {
         titleTag="h2"
         items={[
           { value: `Zdobyci klucznicy: ${keyGiversDone}`, color: "info" },
-          { value: `Pozyskane Dropy: ${drops}`, color: "success" },
-          { value: `Klucznicy z dropem: ${dropRate}%`, color: "warning" },
+          {
+            value: `Klucznicy z jakimkolwiek dropem: ${keyGiversWithAnyDrops}`,
+            color: "danger",
+          },
+          { value: `Pozyskane klucze: ${keys}`, color: "success" },
+          {
+            value: `Pozyskane magiki: ${magicDrops}`,
+            color: "warning",
+          },
+          { value: `Klucznicy z kluczem: ${keysDropRate}%`, color: "primary" },
+          {
+            value: `Klucznicy z magikami: ${magicDropsRate}%`,
+            color: "primary",
+          },
+          {
+            value: `Klucznicy z jakimikolwiek dropem: ${keyGiversWithAnyDropsRate}%`,
+            color: "primary",
+          },
         ]}
       />
     </div>

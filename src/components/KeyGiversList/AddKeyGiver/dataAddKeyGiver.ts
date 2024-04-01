@@ -51,7 +51,7 @@ export const items = (
     }) || [];
   return [
     { type: "field", name: "name", placeholder: "Nazwa" },
-    { type: "field", name: "short", placeholder: "Short" },
+    { type: "field", name: "short", placeholder: "Szort" },
     {
       type: "field",
       name: "respawnTime",

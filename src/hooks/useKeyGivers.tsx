@@ -25,6 +25,7 @@ export const useKeyGivers = () => {
           ? 1
           : 0
       ),
+    refetchOnMount: false,
   });
 
   const deleteKeyGiverMutation = useMutation(deleteKeyGiver, {

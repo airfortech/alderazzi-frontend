@@ -4,11 +4,12 @@ import dayjs from "dayjs";
 import timezone from "dayjs/plugin/timezone";
 import { BarDatum } from "@nivo/bar";
 import { useSelect } from "../../components/Inputs/Select/useSelect";
-import { KeyGiverDropsStatsInfo } from "../../components/KeyGiverDropsStatsInfo/KeyGiverDropsStatsInfo";
 import { useKeyGiverDropsStats } from "../../hooks/useKeyGiverDropsStats";
+import { KeyGiverDropsStatsInfo } from "../../components/KeyGiverDropsStatsInfo/KeyGiverDropsStatsInfo";
 import { MobileWrapper } from "../../components/MobileWrapper/MobileWrapper";
-import { options } from "../../components/KeyGiverDropsStatsInfo/dataKeyGiverDropsStats";
+import { Loader } from "../../components/Loader/Loader";
 import { BarChart } from "../../components/BarChart/BarChart";
+import { options } from "../../components/KeyGiverDropsStatsInfo/dataKeyGiverDropsStats";
 import classes from "./KeyGiverDropsStatsView.module.css";
 
 dayjs.extend(timezone);
@@ -21,10 +22,6 @@ export const KeyGiverDropsStatsView = () => {
       dayjs.tz.guess()
     );
 
-  useEffect(() => {
-    console.table(keyGiverDropsStats);
-  }, [keyGiverDropsStats]);
-
   return (
     <div className={classes.KeyGiverDropsStatsView}>
       <MobileWrapper>
@@ -35,12 +32,20 @@ export const KeyGiverDropsStatsView = () => {
           className={classes.select}
         />
       </MobileWrapper>
+      {isKeyGiverDropsStatsLoading && <Loader />}
       {keyGiverDropsStats && (
         <>
           <KeyGiverDropsStatsInfo keyGiverDropsStats={keyGiverDropsStats} />
           <BarChart
             keyGiverDropsStats={keyGiverDropsStats as unknown as BarDatum[]}
-            left={110}
+            left={
+              [
+                KeyGiverDropsStatsTimeOptions.last2months,
+                KeyGiverDropsStatsTimeOptions.last6months,
+              ].includes(value as KeyGiverDropsStatsTimeOptions)
+                ? 130
+                : 110
+            }
           />
         </>
       )}

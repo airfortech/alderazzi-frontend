@@ -7,6 +7,7 @@ import { KeyGiverResponse } from "../../../types/KeyGiver";
 import { KeyResponse } from "../../../types/Key";
 import dayjs from "dayjs";
 import * as yup from "yup";
+import { ItemShortResponse } from "../../../types/Item";
 
 export const validationSchema = yup.object().shape({
   keyGiver: yup
@@ -19,9 +20,15 @@ export const validationSchema = yup.object().shape({
 export const items = (
   keyGivers: KeyGiverResponse[],
   keys: KeyResponse[],
+  magicItems: ItemShortResponse[],
   defaultKeyGiverDropValues: KeyGiverDropResponse
 ): Fields<KeyGiverDropUpdateRequest> => {
-  const { keyGiver, drop, dropDate } = defaultKeyGiverDropValues;
+  const {
+    keyGiver,
+    drop,
+    dropDate,
+    magicDrops: defaultMagicDrops,
+  } = defaultKeyGiverDropValues;
   const keyGiversOptions = keyGivers.map(({ id, name, short }) => {
     return {
       label: name + " (" + short + ")",
@@ -31,6 +38,12 @@ export const items = (
   const keysOptions = keys.map(({ id, name }) => {
     return {
       label: name,
+      value: id,
+    };
+  });
+  const magicItemsOptions = magicItems.map(({ id, name, short }) => {
+    return {
+      label: name ? `${short} (${name})` : short,
       value: id,
     };
   });
@@ -50,6 +63,15 @@ export const items = (
       placeholder: "Klucz",
       options: keysOptions,
       defaultOption: keysOptions.find(({ value }) => value === drop?.id),
+    },
+    {
+      type: "multiautocomplete",
+      name: "magicDrops",
+      placeholder: "Magiki",
+      options: magicItemsOptions,
+      defaultOptions: magicItemsOptions.filter(({ value }) =>
+        defaultMagicDrops.some(({ id }) => id === value)
+      ),
     },
     {
       type: "datetime",

@@ -14,4 +14,6 @@ export const updateKeyGiverSuccessGlobal = atom(0);
 
 export const updateKeySuccessGlobal = atom(0);
 
+export const updateItemSuccessGlobal = atom(0);
+
 export const updateLocationSuccessGlobal = atom(0);

@@ -22,6 +22,7 @@ export const expandableRow: ExpandableRowsComponent<
     keyGiverRespawnTime,
     keyGiverLocations,
     dropName,
+    magicDrops,
     dropDate,
     nextRespawnDate,
     createdAt,
@@ -45,7 +46,8 @@ export const expandableRow: ExpandableRowsComponent<
             ? keyGiverRespawnTime + " godzin"
             : "Brak danych",
         },
-        { title: "Drop:", value: dropName ? dropName : "Brak" },
+        { title: "Klucz:", value: dropName ? dropName : "Brak" },
+        { title: "Magiki:", value: magicDrops },
         { title: "Domena:", value: keyGiverDomain },
       ]}
       longDetails={[
@@ -114,22 +116,35 @@ const sortNextRespawn: SortFunc = (aField, bField, order) => {
 export const tableData = (
   data: KeyGiverDropResponse[]
 ): TableKeyGiverDropResponse[] =>
-  data.map(({ id, keyGiver, drop, dropDate, nextRespawnDate, createdAt }) => {
-    return {
+  data.map(
+    ({
       id,
-      keyGiverId: keyGiver.id,
-      keyGiverName: `${keyGiver.name}-${keyGiver.short}`,
-      keyGiverShort: keyGiver.short,
-      keyGiverDomain: keyGiver.domain,
-      keyGiverRespawnTime: keyGiver.respawnTime,
-      keyGiverLocations: JSON.stringify(keyGiver.locations),
-      dropId: drop ? drop.id : null,
-      dropName: drop ? drop.name : null,
+      keyGiver,
+      drop,
+      magicDrops,
       dropDate,
       nextRespawnDate,
       createdAt,
-    };
-  });
+    }) => {
+      return {
+        id,
+        keyGiverId: keyGiver.id,
+        keyGiverName: `${keyGiver.name}-${keyGiver.short}`,
+        keyGiverShort: keyGiver.short,
+        keyGiverDomain: keyGiver.domain,
+        keyGiverRespawnTime: keyGiver.respawnTime,
+        keyGiverLocations: JSON.stringify(keyGiver.locations),
+        dropId: drop ? drop.id : null,
+        dropName: drop ? drop.name : null,
+        magicDrops: magicDrops
+          .map(({ name, short }) => (name ? `${short} (${name})` : short))
+          .join(", "),
+        dropDate,
+        nextRespawnDate,
+        createdAt,
+      };
+    }
+  );
 
 export const columns: Columns<TableKeyGiverDropResponse> = [
   {
@@ -151,6 +166,11 @@ export const columns: Columns<TableKeyGiverDropResponse> = [
   },
   {
     selector: "dropName",
+    isFilterable: true,
+    isVisible: false,
+  },
+  {
+    selector: "magicDrops",
     isFilterable: true,
     isVisible: false,
   },

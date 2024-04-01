@@ -1,9 +1,12 @@
 import { UserRole } from "../../types/UserRole";
+import { CSSProperties } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import { Link, matchPath, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import clsx from "clsx";
 import { isRoleAllowed } from "../../utils/isRoleAllowed";
 import { useAuth } from "../../hooks/useAuth";
+import { useRouteMatch } from "../../hooks/useRouteMatch";
 import classes from "./Submenu.module.css";
 
 interface Props {
@@ -13,25 +16,31 @@ interface Props {
     name: string;
     allowedRoles: null | UserRole[];
   }[];
+  level: 1 | 2 | 3;
+  style?: CSSProperties;
 }
 
-export const Submenu = ({ links }: Props) => {
+const submenuClasses = (level: 1 | 2 | 3) => {
+  return clsx(classes.Submenu, level === 3 && classes.level3);
+};
+
+export const Submenu = ({ links, level, style }: Props) => {
   const { auth } = useAuth();
 
   const availableLinks = links.filter(({ allowedRoles }) =>
     isRoleAllowed(allowedRoles, auth?.role)
   );
 
-  const { pathname } = useLocation();
-  const matches = availableLinks.filter(
-    ({ match }) => matchPath({ path: match }, pathname) !== null
+  const currentTab = useRouteMatch(
+    availableLinks.map(({ url }) => url),
+    level
   );
-  if (matches.length === 0) return null;
+  if (!currentTab) return null;
 
   return (
-    <nav className={classes.Submenu}>
+    <nav className={submenuClasses(level)} style={style}>
       <Tabs
-        value={pathname}
+        value={currentTab}
         variant="scrollable"
         scrollButtons="auto"
         allowScrollButtonsMobile
