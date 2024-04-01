@@ -103,6 +103,7 @@ export const ArmorsList = ({
           expandableRowsComponentPaddingsDisabled
           stickyColumn="first column"
           horizontalScroll="top"
+          counter
         />
       )}
     </div>

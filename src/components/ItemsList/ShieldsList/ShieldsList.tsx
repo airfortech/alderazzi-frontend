@@ -86,6 +86,7 @@ export const ShieldsList = () => {
           expandableRowsComponentPaddingsDisabled
           stickyColumn="first column"
           horizontalScroll="top"
+          counter
         />
       )}
     </div>

@@ -42,6 +42,7 @@ export const LastKeyGiverDropsList = () => {
           expandableRowsComponent={expandableRow}
           expandableRowsComponentPaddingsDisabled
           horizontalScroll="top"
+          counter
         />
       )}
     </div>

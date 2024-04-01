@@ -30,6 +30,7 @@
   min-height: 50px;
   display: flex;
   gap: 8px;
+  font-weight: 400;
 }
 
 .Submenu :global(.MuiTabs-indicator) {
