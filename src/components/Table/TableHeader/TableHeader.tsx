@@ -9,6 +9,7 @@ export const TableHeader = <T extends Row>({
   filteringSelectors,
   filter,
   setFilter,
+  dataCount,
 }: ITableHeader<T>) => {
   return (
     <header className={classes.TableHeader}>
@@ -16,7 +17,7 @@ export const TableHeader = <T extends Row>({
         <div className={classes.headerWrapper}>
           {title && (
             <Title tag={titleTag} className={classes.headerTitle}>
-              {title}
+              {dataCount !== false ? `${title} (${dataCount})` : title}
             </Title>
           )}
           {filteringSelectors.length > 0 && (

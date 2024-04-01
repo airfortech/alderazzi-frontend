@@ -1,10 +1,7 @@
 import { useMemo } from "react";
-import { Link } from "react-router-dom";
 import { useKeyGiverDrops } from "../../hooks/useKeyGiverDrops";
 import { Loader } from "../Loader/Loader";
 import { Table } from "../Table/Table";
-import { MobileWrapper } from "../MobileWrapper/MobileWrapper";
-import { Button } from "../Button/Button";
 import {
   columns,
   expandableRow,
@@ -13,11 +10,8 @@ import {
 import classes from "./EditableKeyGiverDropsList.module.css";
 
 export const EditableKeyGiverDropsList = () => {
-  const {
-    editableKeyGiverDrops,
-    isEditableKeyGiverDropsError,
-    isEditableKeyGiverDropsLoading,
-  } = useKeyGiverDrops();
+  const { editableKeyGiverDrops, isEditableKeyGiverDropsLoading } =
+    useKeyGiverDrops();
 
   const editableKeyGiverDropsData = useMemo(() => {
     if (editableKeyGiverDrops) return tableData(editableKeyGiverDrops);
@@ -39,6 +33,7 @@ export const EditableKeyGiverDropsList = () => {
           expandableRowsComponent={expandableRow}
           expandableRowsComponentPaddingsDisabled
           horizontalScroll="top"
+          counter
         />
       )}
     </div>

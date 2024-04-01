@@ -24,6 +24,7 @@ export const TableRender = <T extends Row>({
   horizontalScroll,
   stickyColumn,
   stickyHeaderPosition,
+  counter,
   style,
 }: ITableRender<T>) => {
   const [isAllExpanded, setIsAllExpanded] = useState(
@@ -88,6 +89,24 @@ export const TableRender = <T extends Row>({
     };
   }, []);
 
+  const data =
+    filteringSelectors.length === 0
+      ? bodyData
+      : bodyData.filter(row => {
+          for (let selector of filteringSelectors) {
+            if (
+              row[selector]
+                ?.toString()
+                .toLowerCase()
+                .includes(filter.toLowerCase())
+            )
+              return true;
+          }
+          return false;
+        });
+
+  const dataCount = counter === true && data.length;
+
   return (
     <div className={classes.tableWrapper} style={style}>
       <div
@@ -106,6 +125,8 @@ export const TableRender = <T extends Row>({
           filteringSelectors={filteringSelectors}
           filter={filter}
           setFilter={setFilter}
+          counter={counter}
+          dataCount={dataCount}
         />
         <div
           className={headerScrollClasses(horizontalScroll)}
@@ -146,10 +167,8 @@ export const TableRender = <T extends Row>({
           />
           <TableBody
             columns={columns}
-            bodyData={bodyData}
+            bodyData={data}
             onRowClick={onRowClick}
-            filter={filter}
-            filteringSelectors={filteringSelectors}
             colSpan={colSpan}
             stickyColumn={stickyColumn}
             expandableRowsComponent={expandableRowsComponent}

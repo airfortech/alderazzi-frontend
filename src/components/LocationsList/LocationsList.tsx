@@ -60,6 +60,7 @@ export const LocationsList = () => {
           expandableRowsComponent={expandableRow(auth?.role)}
           expandableRowsComponentPaddingsDisabled
           horizontalScroll="top"
+          counter
         />
       )}
     </div>

@@ -61,6 +61,7 @@ export const KeyGiverDropsList = ({}: Props) => {
           expandableRowsComponent={expandableRow}
           expandableRowsComponentPaddingsDisabled
           horizontalScroll="top"
+          counter
         />
       )}
     </div>

@@ -84,6 +84,7 @@ export const OthersList = ({
           expandableRowsComponentPaddingsDisabled
           stickyColumn="first column"
           horizontalScroll="top"
+          counter
         />
       )}
     </div>

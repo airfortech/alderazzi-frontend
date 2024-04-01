@@ -65,6 +65,7 @@ export interface ITable<T> {
   expandableRowsComponent?: ExpandableRowsComponent<T>;
   expandableRowsComponentPaddingsDisabled?: boolean;
   initialExpandableRowsState?: "hidden" | "visible";
+  counter?: boolean;
   style?: CSSProperties;
 }
 
@@ -103,10 +104,14 @@ export interface ITableHeader<T>
     | "stickyHeaderPosition"
   > {
   title: string | undefined;
+  dataCount: number | false;
 }
 
 export interface IFilter<T>
-  extends Omit<ITableHeader<T>, "title" | "titleTag" | "filteringSelectors"> {}
+  extends Omit<
+    ITableHeader<T>,
+    "title" | "titleTag" | "filteringSelectors" | "dataCount" | "counter"
+  > {}
 
 export interface ITableHead<T>
   extends Omit<
@@ -124,6 +129,7 @@ export interface ITableHead<T>
     | "onRowClick"
     | "stickyHeaderPosition"
     | "expandableRowsComponentPaddingsDisabled"
+    | "counter"
   > {
   isAllExpanded: boolean;
   handleAllExpandTrigger: () => void;
@@ -145,6 +151,9 @@ export interface ITableBody<T>
     | "setFilter"
     | "onRowClick"
     | "stickyHeaderPosition"
+    | "filter"
+    | "filteringSelectors"
+    | "counter"
   > {
   colSpan: number;
   onRowClick?: OnRowClickFunc<T>;

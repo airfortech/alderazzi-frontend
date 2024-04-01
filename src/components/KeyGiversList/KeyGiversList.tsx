@@ -62,6 +62,7 @@ export const KeyGiversList = ({}: Props) => {
           expandableRowsComponent={expandableRow(auth?.role)}
           expandableRowsComponentPaddingsDisabled
           horizontalScroll="top"
+          counter
         />
       )}
     </div>
