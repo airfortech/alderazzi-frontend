@@ -9,6 +9,7 @@ import { Table } from "../../Table/Table";
 import { Button } from "../../Button/Button";
 import { Loader } from "../../Loader/Loader";
 import { MobileWrapper } from "../../MobileWrapper/MobileWrapper";
+import { AddItems } from "../AddItems/AddItems";
 import { weaponsOptions } from "./dataWeaponsList";
 import { itemColumns } from "../dataItemColumnsList";
 import { itemsExpandableRow } from "../dataItemsExpandableRow";
@@ -52,14 +53,18 @@ export const WeaponsList = ({
             icon={icon}
             className={classes.select}
           />
-          <Button
-            variant="contained"
-            color="info"
-            onClick={() => setOpenAddItem(true)}
-          >
-            {buttonLabel}
-          </Button>
+          <div>
+            <AddItems />
+            <Button
+              variant="contained"
+              color="info"
+              onClick={() => setOpenAddItem(true)}
+            >
+              {buttonLabel}
+            </Button>
+          </div>
         </div>
+
         <Modal
           title={buttonLabel + ":"}
           open={openAddItem}

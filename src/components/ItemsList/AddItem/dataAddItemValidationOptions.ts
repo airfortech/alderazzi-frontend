@@ -52,7 +52,7 @@ export const validationSchema = (
       shieldParry: EmptyNumber()
         .integer("Wartość musi być liczbą całkowitą")
         .min(1, "Wartość minimalna to 1")
-        .max(12, "Wartość maksymalna to 12"),
+        .max(14, "Wartość maksymalna to 14"),
     }),
     weight: EmptyNumber()
       .integer("Wartość musi być liczbą całkowitą")
