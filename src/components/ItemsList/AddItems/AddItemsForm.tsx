@@ -1,16 +1,18 @@
 import { Form } from "../../Form/Form";
-import { convertTextToItems } from "./convertTextToItems";
 import { ItemAddItemsRequest, items } from "./dataAddItems";
-import { filterItems } from "./filterItems";
+import { ConvertedItem } from "../../../types/ConvertTextToItems";
 import classes from "./AddItems.module.css";
 
-export const AddItemsForm = () => {
+interface Props {
+  convertedItems: ConvertedItem[];
+}
+
+export const AddItemsForm = ({ convertedItems }: Props) => {
   const submit = (formData: ItemAddItemsRequest) => {
     const data: ItemAddItemsRequest = { ...formData };
     const task = data.task;
-    const finalItems = filterItems(convertTextToItems(data.data));
     console.log("task", task);
-    console.table(finalItems);
+    console.table(convertedItems);
   };
   return (
     <div className={classes.Form}>

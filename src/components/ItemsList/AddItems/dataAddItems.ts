@@ -29,14 +29,8 @@ export const items: Fields<ItemAddItemsRequest> = [
     placeholder: "Sposób aktualizacji przedmiotów",
   },
   {
-    type: "textarea",
-    name: "data",
-    minRows: 9,
-    maxRows: 9,
-    placeholder: "/sprzet",
-  },
-  {
     type: "submit",
     title: "Dodaj przedmioty",
+    align: "right",
   },
 ];

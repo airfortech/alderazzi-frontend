@@ -13,7 +13,10 @@ type ExpandableRowOption =
   | "weaponAverage"
   | "weaponSum";
 
-export const itemsExpandableRow = (options: ExpandableRowOption[]) => {
+export const itemsExpandableRow = (
+  options: ExpandableRowOption[],
+  actions?: boolean
+) => {
   const expandableRow: ExpandableRowsComponent<ItemResponse> = data => {
     const {
       id,
@@ -110,10 +113,14 @@ export const itemsExpandableRow = (options: ExpandableRowOption[]) => {
             value: comment,
           },
         ]}
-        actions={[
-          <UpdateItemCell data={data} />,
-          <DeleteItemCell id={id} short={short} />,
-        ]}
+        actions={
+          actions
+            ? [
+                <UpdateItemCell data={data} />,
+                <DeleteItemCell id={id} short={short} />,
+              ]
+            : []
+        }
       />
     );
   };

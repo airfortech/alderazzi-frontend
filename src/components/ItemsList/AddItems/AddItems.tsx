@@ -1,15 +1,20 @@
 import { useState } from "react";
-import { Modal } from "../../Modal/Modal";
 import { AddItemsForm } from "./AddItemsForm";
 import { MobileWrapper } from "../../MobileWrapper/MobileWrapper";
-import { Button } from "../../Button/Button";
 import { Heading } from "../../Heading/Heading";
 import { Code } from "../../Code/Code";
 import { example } from "./example";
+import { TextField } from "@mui/material";
+import { filterItems } from "./filterItems";
+import { convertTextToItems } from "./convertTextToItems";
+import { ItemResponse } from "../../../types/Item";
+import { Tables } from "./Tables";
 import classes from "./AddItems.module.css";
 
 export const AddItems = () => {
-  const [openAddItems, setOpenAddItems] = useState(false);
+  const [unconvertedItems, setUnconvertedItems] = useState("");
+
+  const convertedItems = filterItems(convertTextToItems(unconvertedItems));
 
   return (
     <div className={classes.AddItems}>
@@ -22,27 +27,23 @@ export const AddItems = () => {
           </p>
           <p>
             Statystyki powtarzających się przedmiotów zostaną przeliczone do
-            wartości bliższym lepszym egzemplarzom.
+            wartości bliższych lepszym egzemplarzom.
           </p>
-          <Button
-            type="button"
-            variant="contained"
-            size="sm"
-            color="warning"
-            onClick={() => setOpenAddItems(true)}
-          >
-            Przykład
-          </Button>
-          <Modal
-            title="Przykład:"
-            open={openAddItems}
-            onClose={() => setOpenAddItems(false)}
-          >
-            <Code type="pre">{example}</Code>
-          </Modal>
         </div>
-        <AddItemsForm />
-        <div className={classes.actions}></div>
+        <TextField
+          value={unconvertedItems}
+          onChange={e => setUnconvertedItems(e.target.value)}
+          placeholder={example}
+          multiline
+          minRows={9}
+          maxRows={9}
+          spellCheck={false}
+          className={classes.textfield}
+        />
+      </MobileWrapper>
+      <Tables items={convertedItems as ItemResponse[]} />
+      <MobileWrapper>
+        <AddItemsForm convertedItems={convertedItems} />
       </MobileWrapper>
     </div>
   );
