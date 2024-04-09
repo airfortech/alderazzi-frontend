@@ -1,9 +1,10 @@
+import { ConvertedItem } from "../../../types/ConvertTextToItems";
 import { ItemArmorClass } from "../../../types/ItemArmorClass";
 import { ItemTypes } from "../../../types/ItemTypes";
 import { ItemWeapon } from "../../../types/ItemWeapon";
 import { ItemWeaponHand } from "../../../types/ItemWeaponHand";
 
-export const convertTextToItems = (text: string) => {
+export const convertTextToItems = (text: string): ConvertedItem[] => {
   const items = text
     .split("\n\n")
     .join("XXXX")

@@ -20,6 +20,7 @@ import { ShieldsView } from "../../views/ItemsView/ShieldsView/ShieldsView";
 import { othersListOptions } from "../ItemsList/OthersList/dataOthersList";
 import { OthersView } from "../../views/ItemsView/OthersView/OthersView";
 import { JewelleryView } from "../../views/ItemsView/JewelleryView/JewelleryView";
+import { AddItemsView } from "../../views/ItemsView/AddItemsView/AddItemsView";
 
 export const Routes = () => {
   return (
@@ -76,6 +77,8 @@ export const Routes = () => {
             element={<ArmorsView {...options} />}
           />
         ))}
+        <Route path="/przedmioty/tarcze" element={<ShieldsView />} />
+        <Route path="/przedmioty/bizuteria" element={<JewelleryView />} />
         {othersListOptions.map(options => (
           <Route
             key={options.path}
@@ -83,8 +86,7 @@ export const Routes = () => {
             element={<OthersView {...options} />}
           />
         ))}
-        <Route path="/przedmioty/tarcze" element={<ShieldsView />} />
-        <Route path="/przedmioty/bizuteria" element={<JewelleryView />} />
+        <Route path="/przedmioty/masowe_dodawanie" element={<AddItemsView />} />
         <Route path="/lokacje" element={<LocationsView />} />
       </Route>
       <Route element={<RequireAuth allowedRoles={[UserRole.consigliore]} />}>

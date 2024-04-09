@@ -1,3 +1,4 @@
+import { ConvertedItem } from "./ConvertTextToItems";
 import { ItemArmorClass } from "./ItemArmorClass";
 import { ItemDurability } from "./ItemDurability";
 import { ItemTypes } from "./ItemTypes";
@@ -169,4 +170,9 @@ export interface ItemAddFormRequest {
   vendorCost?: number;
   description?: string;
   comment?: string;
+}
+
+export interface ItemsAddFormRequest {
+  items: ConvertedItem[];
+  task: "addNew" | "updateAll" | "updateInfosOnly" | "updateValuesOnly";
 }

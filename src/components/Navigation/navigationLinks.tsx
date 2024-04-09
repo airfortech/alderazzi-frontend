@@ -34,7 +34,7 @@ export const links = [
   },
   {
     url: "/przedmioty/bronie/miecze",
-    name: "Przemioty",
+    name: "Przedmioty",
     icon: <Icon icon="sword" size="normal" />,
     allowedRoles: [UserRole.caporegime, UserRole.consigliore, UserRole.soldato],
   },
