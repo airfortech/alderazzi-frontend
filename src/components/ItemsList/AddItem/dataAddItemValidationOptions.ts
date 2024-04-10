@@ -70,6 +70,9 @@ export const validationSchema = (
     vendorCost: EmptyNumber()
       .min(0, "Wartość minimalna to 0")
       .max(10000, "Wartość maksymalna to 10 000"),
+    npcPurchasePrice: EmptyNumber()
+      .min(0, "Wartość minimalna to 0")
+      .max(10000, "Wartość maksymalna to 10 000"),
     description: yup.string().max(4000, "Za długi opis (max 4000 znaków)"),
     comment: yup.string().max(4000, "Za długi komentarz (max 4000 znaków)"),
   });

@@ -15,7 +15,7 @@ type ExpandableRowOption =
 
 export const itemsExpandableRow = (
   options: ExpandableRowOption[],
-  actions?: boolean
+  actions: boolean = true
 ) => {
   const expandableRow: ExpandableRowsComponent<ItemResponse> = data => {
     const {
@@ -32,6 +32,7 @@ export const itemsExpandableRow = (
       specialBonus,
       occurrence,
       cost,
+      npcPurchasePrice,
       description,
       comment,
     } = data;
@@ -98,6 +99,15 @@ export const itemsExpandableRow = (
             value: cost && (
               <span className={classes.cost}>
                 {cost}
+                <Icon icon="coins" color="warning" size="normal" />
+              </span>
+            ),
+          },
+          {
+            title: "Cena zakupu u NPC",
+            value: npcPurchasePrice && (
+              <span className={classes.cost}>
+                {npcPurchasePrice}
                 <Icon icon="coins" color="warning" size="normal" />
               </span>
             ),

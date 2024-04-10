@@ -224,6 +224,13 @@ export const itemsOptions: Fields<ItemAddFormRequest> = [
   },
   {
     type: "field",
+    name: "npcPurchasePrice",
+    fieldType: "number",
+    placeholder: "Cena zakupu u NPC",
+    unit: "złota",
+  },
+  {
+    type: "field",
     name: "occurrence",
     placeholder: "Występowanie",
   },
