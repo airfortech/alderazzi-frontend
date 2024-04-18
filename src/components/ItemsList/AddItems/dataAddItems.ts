@@ -2,7 +2,6 @@ import { Fields } from "../../../types/Form";
 
 export interface ItemAddItemsRequest {
   task: "addNew" | "updateAll" | "updateInfosOnly" | "updateValuesOnly";
-  data: string;
 }
 
 export const items: Fields<ItemAddItemsRequest> = [

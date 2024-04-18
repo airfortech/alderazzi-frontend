@@ -34,7 +34,7 @@ export const DateTime = <T,>({
       render={({ field: { onChange, value } }) => (
         <LocalizationProvider
           dateAdapter={AdapterDayjs}
-          adapterLocale="pl-pl"
+          adapterLocale="pl"
           localeText={{
             okButtonLabel: "OK",
           }}
