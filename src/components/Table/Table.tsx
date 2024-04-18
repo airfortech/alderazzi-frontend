@@ -16,6 +16,7 @@ export const Table = <T extends Row>({
   expandableRowsComponent,
   expandableRowsComponentPaddingsDisabled = false,
   initialExpandableRowsState = "hidden",
+  counter = false,
   style,
 }: ITable<T>) => {
   const initialBodyData = () => {
@@ -84,6 +85,7 @@ export const Table = <T extends Row>({
       horizontalScroll={horizontalScroll}
       stickyColumn={stickyColumn}
       stickyHeaderPosition={stickyHeaderPosition}
+      counter={counter}
       style={style}
     />
   );

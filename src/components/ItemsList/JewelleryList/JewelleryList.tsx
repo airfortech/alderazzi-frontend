@@ -75,6 +75,7 @@ export const JewelleryList = () => {
           expandableRowsComponentPaddingsDisabled
           stickyColumn="first column"
           horizontalScroll="top"
+          counter
         />
       )}
     </div>

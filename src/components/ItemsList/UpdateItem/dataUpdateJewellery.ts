@@ -12,6 +12,7 @@ const properties = [
   "occurrence",
   "cost",
   "vendorCost",
+  "npcPurchasePrice",
   "description",
   "comment",
   "slot",

@@ -62,6 +62,7 @@ export const EnemiesList = () => {
           expandableRowsComponent={expandableRow(auth?.role)}
           expandableRowsComponentPaddingsDisabled
           horizontalScroll="top"
+          counter
         />
       )}
     </div>

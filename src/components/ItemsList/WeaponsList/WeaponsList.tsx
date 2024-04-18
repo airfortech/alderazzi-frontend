@@ -60,6 +60,7 @@ export const WeaponsList = ({
             {buttonLabel}
           </Button>
         </div>
+
         <Modal
           title={buttonLabel + ":"}
           open={openAddItem}
@@ -102,6 +103,7 @@ export const WeaponsList = ({
           expandableRowsComponentPaddingsDisabled
           stickyColumn="first column"
           horizontalScroll="top"
+          counter
         />
       )}
     </div>

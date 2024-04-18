@@ -97,6 +97,7 @@ export interface IToggleButton<T> {
   type: "toggleButton";
   name: keyof T;
   placeholder?: string;
+  orientation?: "horizontal" | "vertical";
   icon?: Icon;
   iconColor?: IconColor;
   options: { value: string; label: string }[];

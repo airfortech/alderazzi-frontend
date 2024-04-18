@@ -55,6 +55,13 @@ export const columns: Columns<LocationResponse> = [
     bold: true,
   },
   {
+    selector: "internalId",
+    header: "Internal Id",
+    isFilterable: true,
+    isSortable: true,
+    align: "left",
+  },
+  {
     selector: "name",
     header: "Nazwa",
     isFilterable: true,

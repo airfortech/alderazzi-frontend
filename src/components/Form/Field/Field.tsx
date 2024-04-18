@@ -52,6 +52,7 @@ export const Field = <T,>({
           rows={rows}
           minRows={minRows}
           maxRows={maxRows}
+          spellCheck={false}
           // autoComplete="current-password"
           InputProps={{
             startAdornment: icon ? (

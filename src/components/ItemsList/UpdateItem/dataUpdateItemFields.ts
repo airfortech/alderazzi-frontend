@@ -55,6 +55,7 @@ export const itemsOptions = (
     volume,
     cost,
     vendorCost,
+    npcPurchasePrice,
     occurrence,
     description,
     comment,
@@ -308,6 +309,14 @@ export const itemsOptions = (
       placeholder: "Wartość zlecenia",
       unit: "złota",
       defaultValue: vendorCost,
+    },
+    {
+      type: "field",
+      name: "npcPurchasePrice",
+      fieldType: "number",
+      placeholder: "Cena zakupu u NPC",
+      unit: "złota",
+      defaultValue: npcPurchasePrice,
     },
     {
       type: "field",
