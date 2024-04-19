@@ -9,6 +9,7 @@ import {
   ItemResponse,
   ItemShortResponse,
   ItemUpdateRequest,
+  ItemsAddFormRequest,
 } from "../types/Item";
 import { ItemTypes } from "../types/ItemTypes";
 
@@ -69,5 +70,10 @@ export const updateItem = async (id: string, item: ItemUpdateRequest) => {
 
 export const deleteItem = async (id: string) => {
   const { data } = await api.delete<ApiResponse>("/items/" + id);
+  return data;
+};
+
+export const addMultipleItems = async (data_: ItemsAddFormRequest) => {
+  const { data } = await api.post<ApiResponse>("/items/multiple", data_);
   return data;
 };

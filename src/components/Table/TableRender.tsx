@@ -87,7 +87,7 @@ export const TableRender = <T extends Row>({
         tableBodyWrapper.removeEventListener("scroll", headerScrollListener);
       }
     };
-  }, []);
+  }, [bodyData, filter]);
 
   const data =
     filteringSelectors.length === 0

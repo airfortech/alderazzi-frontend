@@ -49,4 +49,10 @@ export const itemsLinks = [
     name: "Inne",
     allowedRoles: [UserRole.caporegime, UserRole.consigliore, UserRole.soldato],
   },
+  {
+    url: "/przedmioty/masowe_dodawanie",
+    match: "/przedmioty/masowe_dodawanie",
+    name: "Masowe dodawanie",
+    allowedRoles: [UserRole.caporegime, UserRole.consigliore, UserRole.soldato],
+  },
 ];

@@ -52,7 +52,7 @@ export const validationSchema = (
       shieldParry: EmptyNumber()
         .integer("Wartość musi być liczbą całkowitą")
         .min(1, "Wartość minimalna to 1")
-        .max(12, "Wartość maksymalna to 12"),
+        .max(14, "Wartość maksymalna to 14"),
     }),
     weight: EmptyNumber()
       .integer("Wartość musi być liczbą całkowitą")
@@ -68,6 +68,9 @@ export const validationSchema = (
       .min(0, "Wartość minimalna to 0")
       .max(10000, "Wartość maksymalna to 10 000"),
     vendorCost: EmptyNumber()
+      .min(0, "Wartość minimalna to 0")
+      .max(10000, "Wartość maksymalna to 10 000"),
+    npcPurchasePrice: EmptyNumber()
       .min(0, "Wartość minimalna to 0")
       .max(10000, "Wartość maksymalna to 10 000"),
     description: yup.string().max(4000, "Za długi opis (max 4000 znaków)"),

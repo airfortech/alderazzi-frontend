@@ -11,6 +11,7 @@ export const Filter = <T extends Row>({ filter, setFilter }: IFilter<T>) => {
         placeholder="Filter..."
         onChange={e => setFilter(e.target.value)}
         value={filter}
+        spellCheck={false}
       />
       <button className={classes.clear} onClick={() => setFilter("")}>
         <CancelIcon className={classes.icon} />

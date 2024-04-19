@@ -60,6 +60,7 @@ export const WeaponsList = ({
             {buttonLabel}
           </Button>
         </div>
+
         <Modal
           title={buttonLabel + ":"}
           open={openAddItem}

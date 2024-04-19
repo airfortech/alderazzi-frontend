@@ -13,7 +13,10 @@ type ExpandableRowOption =
   | "weaponAverage"
   | "weaponSum";
 
-export const itemsExpandableRow = (options: ExpandableRowOption[]) => {
+export const itemsExpandableRow = (
+  options: ExpandableRowOption[],
+  actions: boolean = true
+) => {
   const expandableRow: ExpandableRowsComponent<ItemResponse> = data => {
     const {
       id,
@@ -29,6 +32,7 @@ export const itemsExpandableRow = (options: ExpandableRowOption[]) => {
       specialBonus,
       occurrence,
       cost,
+      npcPurchasePrice,
       description,
       comment,
     } = data;
@@ -99,6 +103,15 @@ export const itemsExpandableRow = (options: ExpandableRowOption[]) => {
               </span>
             ),
           },
+          {
+            title: "Cena zakupu u NPC",
+            value: npcPurchasePrice && (
+              <span className={classes.cost}>
+                {npcPurchasePrice}
+                <Icon icon="coins" color="warning" size="normal" />
+              </span>
+            ),
+          },
         ]}
         longDetails={[
           {
@@ -110,10 +123,14 @@ export const itemsExpandableRow = (options: ExpandableRowOption[]) => {
             value: comment,
           },
         ]}
-        actions={[
-          <UpdateItemCell data={data} />,
-          <DeleteItemCell id={id} short={short} />,
-        ]}
+        actions={
+          actions
+            ? [
+                <UpdateItemCell data={data} />,
+                <DeleteItemCell id={id} short={short} />,
+              ]
+            : []
+        }
       />
     );
   };

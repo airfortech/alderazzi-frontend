@@ -13,6 +13,7 @@ export const ToggleButton = <T,>({
   options,
   defaultOption,
   placeholder,
+  orientation = "horizontal",
   icon,
   iconColor,
 }: Props<T>) => {
@@ -34,6 +35,7 @@ export const ToggleButton = <T,>({
               onChange={onChange}
               color="primary"
               defaultValue={defaultOption}
+              orientation={orientation}
             >
               {options.map(({ value, label }, i) => (
                 <ToggleButtonMUI value={value} aria-label="right" key={i}>

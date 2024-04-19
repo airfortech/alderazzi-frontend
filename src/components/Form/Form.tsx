@@ -181,6 +181,7 @@ export const Form = <T,>({
                 control={control}
                 errors={errors}
                 name={item.name}
+                orientation={item.orientation}
                 options={item.options}
                 defaultOption={item.defaultOption}
                 placeholder={item.placeholder}

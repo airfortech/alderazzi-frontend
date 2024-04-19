@@ -3,6 +3,7 @@ import {
   ItemAddRequest,
   ItemAddWeaponRequest,
   ItemUpdateRequest,
+  ItemsAddFormRequest,
 } from "../types/Item";
 import { ItemTypes } from "../types/ItemTypes";
 import { QueryKey } from "../types/QueryKey";
@@ -11,6 +12,7 @@ import { useAtom } from "jotai";
 import { queryClient } from "../api/queryClient";
 import {
   addArmor,
+  addMultipleItems,
   addOther,
   addShield,
   addWeapon,
@@ -18,13 +20,13 @@ import {
   getItems,
   updateItem,
 } from "../api/items";
-import { updateItemSuccessGlobal } from "../gobalStates/reactQuery";
 import { useMagicItems } from "./useMagicItems";
+import { updateItemSuccessGlobal } from "../gobalStates/reactQuery";
 
 export const useItems = (params: string) => {
   const query = useQuery([QueryKey.items, params], () => getItems(params), {
     select: data => data.data.items,
-    refetchOnMount: false,
+    // refetchOnMount: false,
   });
 
   return {
@@ -36,12 +38,12 @@ export const useItemsMutations = () => {
   const [updateItemSuccess, setUpdateItemSuccess] = useAtom(
     updateItemSuccessGlobal
   );
-  const { refetch } = useMagicItems();
+  const { refetch: refetchMagicItems } = useMagicItems();
 
   const deleteItemMutation = useMutation(deleteItem, {
     onSuccess: () => {
       queryClient.invalidateQueries([QueryKey.items]);
-      refetch();
+      refetchMagicItems();
     },
   });
 
@@ -52,7 +54,7 @@ export const useItemsMutations = () => {
       onSuccess: () => {
         setUpdateItemSuccess(prev => prev + 1);
         queryClient.invalidateQueries([QueryKey.items]);
-        refetch();
+        refetchMagicItems();
       },
     }
   );
@@ -62,7 +64,7 @@ export const useItemsMutations = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries([QueryKey.items]);
-        refetch();
+        refetchMagicItems();
       },
     }
   );
@@ -72,7 +74,7 @@ export const useItemsMutations = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries([QueryKey.items]);
-        refetch();
+        refetchMagicItems();
       },
     }
   );
@@ -82,7 +84,7 @@ export const useItemsMutations = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries([QueryKey.items]);
-        refetch();
+        refetchMagicItems();
       },
     }
   );
@@ -93,10 +95,18 @@ export const useItemsMutations = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries([QueryKey.items]);
-        refetch();
+        refetchMagicItems();
       },
     }
   );
+
+  const { mutate: addMultipleItemsMutation, isLoading: isAddingMultipleItems } =
+    useMutation((data: ItemsAddFormRequest) => addMultipleItems(data), {
+      onSuccess: () => {
+        queryClient.invalidateQueries([QueryKey.items]);
+        refetchMagicItems();
+      },
+    });
 
   return {
     deleteItemMutation,
@@ -111,5 +121,7 @@ export const useItemsMutations = () => {
     updateItemMutation,
     isUpdatingItem,
     updateItemSuccess,
+    addMultipleItemsMutation,
+    isAddingMultipleItems,
   };
 };
